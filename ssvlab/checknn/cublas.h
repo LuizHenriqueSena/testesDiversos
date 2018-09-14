@@ -510,4 +510,26 @@ void activeSigmoid(float* saida, int size) {
 	}
 }
 
+int signalChange(float v1, float v2) {
+	if(v1 > 0 && v2 < 0)
+		return 1;
+	else if(v1 < 0 && v2 > 0)
+		return 1;
+	else
+		return 0;
+}
+
+int distanceFunction(float v1, float v2, float d) {
+
+
+
+int valueChange(float v1, float v2, float d) {
+	if(!signalChange &&	
+	
+
+
+
+}
+	
+
 

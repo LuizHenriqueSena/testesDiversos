@@ -496,16 +496,18 @@ cublasStatus_t cublasDaxpy(cublasHandle_t handle, int n,
 }
 
 
-float funcaoDeAtivacao(float u) {
+float sigmoidFunction(float u) {
 	float retorno;
 	retorno = (1/(1 + powf(2.718281,(u*(-1)))));
 	return retorno;
 }
 
 
-void calculaPotencial(float* saida, int size) {
+void activeSigmoid(float* saida, int size) {
 	int i;
 	for(i = 0; i < size; i++) {
-		saida[i] = funcaoDeAtivacao(saida[i]);
+		saida[i] = sigmoidFunction(saida[i]);
 	}
 }
+
+

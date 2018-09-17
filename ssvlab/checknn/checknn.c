@@ -89,7 +89,7 @@ float bfc3[5]={ -4.796374, -6.776394, -7.034788, 4.254948, -0.322288 };
                         out1, 1);
 
 	imprimeResultante(out1, fc1);
-	calculaPotencial(out1, fc1);
+	activeSigmoid(out1, fc1);
 	imprimeResultante(out1, fc1);
 
         cublasSgemm(cublasHandle,
@@ -111,7 +111,7 @@ float bfc3[5]={ -4.796374, -6.776394, -7.034788, 4.254948, -0.322288 };
                         out2, 1);
 
 	imprimeResultante(out2, fc2);
-	calculaPotencial(out2, fc2);
+	activeSigmoid(out2, fc2);
 	imprimeResultante(out2, fc2);
 
         cublasSgemm(cublasHandle,
@@ -133,7 +133,7 @@ float bfc3[5]={ -4.796374, -6.776394, -7.034788, 4.254948, -0.322288 };
                         out3, 1);
 
 	imprimeResultante(out3, fc3);
-	calculaPotencial(out3, fc3);
+	activeSigmoid(out3, fc3);
 	imprimeResultante(out3, fc3);
 
 	return 0;

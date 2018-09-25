@@ -520,14 +520,17 @@ int signalChange(float v1, float v2) {
 }
 
 int distanceFunction(float v1, float v2, float d) {
-	return 0;
+	if (fabs(fabs(v1) - fabs(v2)) > d)
+		return 1;
+	else
+		return 0;
 }
 
 int valueChange(float v1, float v2, float d) {
-	//if(!signalChange &&
-return 0;
-
-
+	if((!signalChange(v1,v2) && distanfeFunction(v1,v2,d))
+		return 1;
+	else
+		return 0;
 }
 
 void normalizef(float* image, int size) {

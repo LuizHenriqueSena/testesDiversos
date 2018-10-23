@@ -519,7 +519,7 @@ int signalChange(float v1, float v2) {
 		return 0;
 }
 
-int distanceFunction(float v1, float v2, float d) {
+int distanceAbsoluteFunction(float v1, float v2, float d) {
 	if (fabs(fabs(v1) - fabs(v2)) > d)
 		return 1;
 	else
@@ -527,7 +527,7 @@ int distanceFunction(float v1, float v2, float d) {
 }
 
 int valueChange(float v1, float v2, float d) {
-	if((!signalChange(v1,v2) && distanfeFunction(v1,v2,d))
+	if((!signalChange(v1,v2) && distanceAbsoluteFunction(v1,v2,d)))
 		return 1;
 	else
 		return 0;

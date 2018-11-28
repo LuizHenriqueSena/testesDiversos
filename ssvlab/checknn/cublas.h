@@ -520,7 +520,7 @@ int signalChange(float v1, float v2) {
 }
 
 int distanceAbsoluteFunction(float v1, float v2, float d) {
-	if (fabs(fabs(v1) - fabs(v2)) > d)
+	if (fabs(v1 - v2) > d)
 		return 1;
 	else
 		return 0;
@@ -531,6 +531,9 @@ int valueChange(float v1, float v2, float d) {
 		return 1;
 	else
 		return 0;
+}
+
+int distanceChange(float* out1, float* out2, int size) {
 }
 
 void normalizef(float* image, int size) {

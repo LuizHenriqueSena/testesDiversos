@@ -600,8 +600,13 @@ int SVCover(float* layer1x1, float* layer1x2, float n2x1, float n2x2, int size1,
 
 //Covering method
 //Distance-Value Cover, or DVCover
-int DVCover(float* layer1x1, float* layer1x2, float n2x1, float n2x2, int size1, int n1, int distance) {
-
+int DVCover(float* layer1x1, float* layer1x2, float n2x1, float n2x2, int size1, int distance) {
+	if(!distanceChange(layer1x1, layer2x2, distance, size1))
+		return 0;
+	if(valueChange(n2x1, n2x2, distance))
+		return 1;
+	else
+		return 0;
 }
 
 

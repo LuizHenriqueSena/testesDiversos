@@ -548,6 +548,61 @@ int distanceChange(float* out1, float* out2, float normDistance, int size) {
 		return 0;
 }
 
+//Covering method
+//Sign-sign Cover, or SSCover
+int SSCover(float* layer1x1, float* layer1x2, float n2x1, float n2x2, int size1, int n1) {
+	int i = 0;
+	if (!signalChange(layer1x1[n1], layer1x2[n1]))
+		return 0;
+	for(i=0;i<size1;i++) {
+		if (i=n1)
+				continue;
+		else if(signalChange(layer1x1[i], layer1x2[i]))
+			return 0;
+	}
+	if(signalChange(n2x1, n2x2))
+		return 1;
+	else
+		return 0;
+}
+
+//Covering method
+//Distance-Sign Cover, or DSCover
+int DSCover(float* layer1x1, float* layer1x2, float n2x1, float n2x2, int size1, int n1, int normDistance) {
+	int i - 0;
+	if(!distanceChange(layer1x1, layer1x2, normDistance, size1))
+		return 0;
+	else {
+		if(signalChange(n2x1,n2x2))
+			return 1;
+		else
+			return 0;
+	}
+}
+
+//Covering method
+//Sign-Value Cover, or SVCover
+int SVCover(float* layer1x1, float* layer1x2, float n2x1, float n2x2, int size1, int n1, int distance) {
+	int i = 0;
+	if (!signalChange(layer1x1[n1], layer1x2[n1]))
+		return 0;
+	for(i=0;i<size1;i++) {
+		if (i=n1)
+				continue;
+		else if(signalChange(layer1x1[i], layer1x2[i]))
+			return 0;
+	}
+	if(valueChange(n2x1, n2x2, distance))
+		return 1;
+	else
+		return 0;
+}
+
+//Covering method
+//Distance-Value Cover, or DVCover
+int DVCover(float* layer1x1, float* layer1x2, float n2x1, float n2x2, int size1, int n1, int distance) {
+
+}
 
 
 void normalizef(float* image, int size) {

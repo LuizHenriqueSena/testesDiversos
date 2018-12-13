@@ -539,7 +539,7 @@ int distanceChange(float* out1, float* out2, float normDistance, int size) {
 	float normbasedDistance = 0;
 	for(i=0;i++;i<size) {
 			normbasedDistance += (out1[i] - out2[i])*(out1[i] - out2[i]);
-			if(signalChange(out1[i], out2[i])
+			if(signalChange(out1[i], out2[i]))
 				return 0;
 	}
 	if(sqrtf(normbasedDistance < normDistance))
@@ -569,7 +569,7 @@ int SSCover(float* layer1x1, float* layer1x2, float n2x1, float n2x2, int size1,
 //Covering method
 //Distance-Sign Cover, or DSCover
 int DSCover(float* layer1x1, float* layer1x2, float n2x1, float n2x2, int size1, int n1, int normDistance) {
-	int i - 0;
+	int i = 0;
 	if(!distanceChange(layer1x1, layer1x2, normDistance, size1))
 		return 0;
 	else {
@@ -601,7 +601,7 @@ int SVCover(float* layer1x1, float* layer1x2, float n2x1, float n2x2, int size1,
 //Covering method
 //Distance-Value Cover, or DVCover
 int DVCover(float* layer1x1, float* layer1x2, float n2x1, float n2x2, int size1, int distance) {
-	if(!distanceChange(layer1x1, layer2x2, distance, size1))
+	if(!distanceChange(layer1x1, layer1x2, distance, size1))
 		return 0;
 	if(valueChange(n2x1, n2x2, distance))
 		return 1;

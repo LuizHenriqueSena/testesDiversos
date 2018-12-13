@@ -520,6 +520,7 @@ int signalChange(float v1, float v2) {
 }
 
 int distanceAbsoluteFunction(float v1, float v2, float d) {
+	//precisa de validacao
 	if (fabs(v1 - v2) > d)
 		return 1;
 	else
@@ -533,8 +534,21 @@ int valueChange(float v1, float v2, float d) {
 		return 0;
 }
 
-int distanceChange(float* out1, float* out2, int size) {
+int distanceChange(float* out1, float* out2, float normDistance, int size) {
+	int i = 0;
+	float normbasedDistance = 0;
+	for(i=0;i++;i<size) {
+			normbasedDistance += (out1[i] - out2[i])*(out1[i] - out2[i]);
+			if(signalChange(out1[i], out2[i])
+				return 0;
+	}
+	if(sqrtf(normbasedDistance < normDistance))
+		return 1;
+	else
+		return 0;
 }
+
+
 
 void normalizef(float* image, int size) {
 	int i = 0;

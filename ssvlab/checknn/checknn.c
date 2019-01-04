@@ -30,7 +30,12 @@ float bfc3[5]={ -12.202182, -8.269168, -6.212107, 3.503773, -3.755674 };
 float img[25] = {255,0,0,0,255,255,0,0,0,255,255,0,0,0,255,255,0,0,0,255,255,255,255,255,255};
 
 int main() {
-	checkNN(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, img, img);
+	//checkNN(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, img, img);
+	float layer1out1[5] = {1, 0, 0, 0, 0};
+	float layer1out2[5] = {-1, 0, 0, 0, 0};
+	float layer2out1[3] = {1, 1, 1};
+	float layer2out2[3] = {1.5, -1.5, 1.5};
 
+	//printf("RESULTADO DO SSCOVER: %d", SSCover(layer1out1,layer1out2, layer2out1[1], layer2out2[1], 5, ) )
 
 }

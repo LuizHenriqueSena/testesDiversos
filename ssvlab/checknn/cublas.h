@@ -574,6 +574,7 @@ int SSCover(float* layer1x1, float* layer1x2, float n2x1, float n2x2, int size1,
 void printSSCover(float* layeri1, float* layeri2, float* layerj1, float* layerj2, int l1, int l2) {
 	int i = 0;
 	int n1 = -1;
+	int n2 = -1;
 	int *sc1, *sc2;
  	sc1 = malloc(l1*sizeof(int));
 	sc2 = malloc(l2*sizeof(int));
@@ -586,12 +587,23 @@ void printSSCover(float* layeri1, float* layeri2, float* layerj1, float* layerj2
 		if((sc1[i]==1) && (n1==-1)) {
 			n1 = i;
 		}
+		if(i==(l1-1)&&(n1==-1)) {
+			printf("There is no SSCover neurons for these 2 test cases \n");
+			return;
+		}
 	}
 	for(i =0; i <l2; i++) {
 		sc2[i] = signalChange(layerj1[i], layerj2[i]);
 		if(sc2[i]) {
-			printf("ni%d, nj%d \n", n1, i);
+			printf("The neuron pair ni%d, nj%d is SSCovered by the 2 test cases.\n", n1, i);
+			n2 = i;
 		}
+		if((n2==-1)&&(i==(l2-1))){
+			printf("There is no SSCover neurons for these 2 test cases \n");
+			return;
+		}
+
+
 	}
 
 }

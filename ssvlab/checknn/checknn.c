@@ -34,8 +34,8 @@ int main() {
 	float layer1out1[5] = {1, 0, 0, 0, 0};
 	float layer1out2[5] = {-1, 0, 0, 0, 0};
 	float layer2out1[3] = {1, 1, 1};
-	float layer2out2[3] = {1.5, -1.5, 1.5};
-
+	float layer2out2[3] = {1.5, -1.5, -1.5};
+	printSSCover(layer1out1, layer1out2, layer2out1, layer2out2, 5, 3);
 	//printf("RESULTADO DO SSCOVER: %d", SSCover(layer1out1,layer1out2, layer2out1[1], layer2out2[1], 5, ) )
 
 }

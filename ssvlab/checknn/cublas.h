@@ -665,7 +665,9 @@ int SVCover(float* layer1x1, float* layer1x2, float n2x1, float n2x2, int size1,
 		return 0;
 }
 
-int printDVCover()
+int printSVCover(float* layer1x1, float* layer1x2, float n2x1, float n2x2, int size1, int n1, int distance){
+	
+}
 //Covering method
 //Distance-Value Cover, or DVCover
 int DVCover(float* layer1x1, float* layer1x2, float n2x1, float n2x2, int size1, int distance) {

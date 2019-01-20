@@ -571,6 +571,7 @@ int SSCover(float* layer1x1, float* layer1x2, float n2x1, float n2x2, int size1,
 		return 0;
 }
 
+//The method that prints the covered neurons
 void printSSCover(float* layeri1, float* layeri2, float* layerj1, float* layerj2, int l1, int l2) {
 	int i = 0;
 	int n1 = -1;
@@ -622,6 +623,7 @@ int DSCover(float* layer1x1, float* layer1x2, float n2x1, float n2x2, int size1,
 	}
 }
 
+//The method that prints the covered neurons
 void printDSCover(float* layeri1, float* layeri2, float* layerj1, float* layerj2, int l1, int l2) {
 	int i = 0;
 	int j = 0;
@@ -665,8 +667,41 @@ int SVCover(float* layer1x1, float* layer1x2, float n2x1, float n2x2, int size1,
 		return 0;
 }
 
-int printSVCover(float* layer1x1, float* layer1x2, float n2x1, float n2x2, int size1, int n1, int distance){
-	
+//The method that prints the covered neurons
+void printSVCover(float* layeri1, float* layeri2, float* layerj1, float* layerj2, int l1, int l2, int distance){
+	int i = 0;
+	int n1 = -1;
+	int n2 = -1;
+	int *sc1, *sc2;
+ 	sc1 = malloc(l1*sizeof(int));
+	sc2 = malloc(l2*sizeof(int));
+	for(i =0; i <l1; i++) {
+		sc1[i] = signalChange(layeri1[i], layeri2[i]);
+		if((n1!=-1)&&(sc1[i]==1)) {
+			printf("There is no SSCover neurons for these 2 test cases \n");
+			return;
+		}
+		if((sc1[i]==1) && (n1==-1)) {
+			n1 = i;
+		}
+		if(i==(l1-1)&&(n1==-1)) {
+			printf("There is no SSCover neurons for these 2 test cases \n");
+			return;
+		}
+	}
+	for(i =0; i <l2; i++) {
+		sc2[i] = valueChange(layerj1[i], layerj2[i], distance);
+		if(sc2[i]) {
+			printf("The neuron pair ni%d, nj%d is SSCovered by the 2 test cases.\n", n1, i);
+			n2 = i;
+		}
+		if((n2==-1)&&(i==(l2-1))){
+			printf("There is no SSCover neurons for these 2 test cases \n");
+			return;
+		}
+
+
+	}
 }
 //Covering method
 //Distance-Value Cover, or DVCover
@@ -677,6 +712,32 @@ int DVCover(float* layer1x1, float* layer1x2, float n2x1, float n2x2, int size1,
 		return 1;
 	else
 		return 0;
+}
+
+//The method that prints the covered neurons
+void printDVCover(float* layeri1, float* layeri2, float* layerj1, float* layerj2, int l1, int l2, int distance) {
+	int i = 0;
+	int j = 0;
+	int find = 0;
+	if(!distanceChange(layeri1, layeri2, 1, l1)) {
+		printf("There is no DSCover neurons for these 2 test cases \n");
+		return;
+	}
+
+	for(i =0; i <l2; i++) {
+		if(valueChange(layerj1[i], layerj2[i])){
+				find=1;
+				for(j=0; j<l1,j++) {
+					printf("The neuron pair ni%d, nj%d is DSCovered by the 2 test cases.\n", j, i);
+					n2 = i;
+				}
+		}
+	}
+		if(!find){
+			printf("There is no DSCover neurons for these 2 test cases \n");
+			return;
+		}
+	}
 }
 
 //void checkSSCover(float* layer1, float* layer2, float* layer3,)
@@ -766,13 +827,13 @@ void checkNN(float* wfc1, float* bfc1, float* wfc2, float* bfc2, float* wfc3, fl
 			x1layer1, 1);
 
 	cublasSgemm(cublasHandle,
-                        CUBLAS_OP_N, CUBLAS_OP_N,
-                        fc1, 1, 1,
-                        &alpha,
-                        bfc1, 1,
-                        onevec, 1,
-                        &alpha,
-                        x1layer1, 1);
+      CUBLAS_OP_N, CUBLAS_OP_N,
+      fc1, 1, 1,
+      &alpha,
+      bfc1, 1,
+      onevec, 1,
+      &alpha,
+      x1layer1, 1);
 
 	imprimeResultante(x1layer1, fc1);
 	activeSigmoid(x1layer1, fc1);
@@ -789,36 +850,36 @@ void checkNN(float* wfc1, float* bfc1, float* wfc2, float* bfc2, float* wfc3, fl
 			x2layer1, 1);
 
 	cublasSgemm(cublasHandle,
-												CUBLAS_OP_N, CUBLAS_OP_N,
-												fc1, 1, 1,
-												&alpha,
-												bfc1, 1,
-												onevec, 1,
-												&alpha,
-												x2layer1, 1);
+			CUBLAS_OP_N, CUBLAS_OP_N,
+			fc1, 1, 1,
+			&alpha,
+			bfc1, 1,
+			onevec, 1,
+			&alpha,
+			x2layer1, 1);
 
 	//imprimeResultante(x2layer1, fc1);
 	activeSigmoid(x2layer1, fc1);
 	//imprimeResultante(x2layer1, fc1);
 	printLayerValues(x1layer1, x2layer1, fc1);
 
-        cublasSgemm(cublasHandle,
-                        CUBLAS_OP_N, CUBLAS_OP_N,
-                        fc2, 1, fc1,
-                        &alpha,
-                        wfc2, fc1,
-                        x1layer1, 1,
-                        &beta,
-                        x1layer2, 1);
+    cublasSgemm(cublasHandle,
+      CUBLAS_OP_N, CUBLAS_OP_N,
+      fc2, 1, fc1,
+      &alpha,
+      wfc2, fc1,
+      x1layer1, 1,
+      &beta,
+      x1layer2, 1);
 
-        cublasSgemm(cublasHandle,
-                        CUBLAS_OP_N, CUBLAS_OP_N,
-                        fc2, 1, 1,
-                        &alpha,
-                        bfc2, 1,
-                        onevec, 1,
-                        &alpha,
-                        x1layer2, 1);
+  cublasSgemm(cublasHandle,
+      CUBLAS_OP_N, CUBLAS_OP_N,
+      fc2, 1, 1,
+      &alpha,
+      bfc2, 1,
+      onevec, 1,
+      &alpha,
+      x1layer2, 1);
 
 	//imprimeResultante(x1layer2, fc2);
 	activeSigmoid(x1layer2, fc2);
@@ -827,44 +888,44 @@ void checkNN(float* wfc1, float* bfc1, float* wfc2, float* bfc2, float* wfc3, fl
 	//Computing the second layer of the second image on the same Neural network
 
 	cublasSgemm(cublasHandle,
-									CUBLAS_OP_N, CUBLAS_OP_N,
-									fc2, 1, fc1,
-									&alpha,
-									wfc2, fc1,
-									x2layer1, 1,
-									&beta,
-									x2layer2, 1);
+			CUBLAS_OP_N, CUBLAS_OP_N,
+			fc2, 1, fc1,
+			&alpha,
+			wfc2, fc1,
+			x2layer1, 1,
+			&beta,
+			x2layer2, 1);
 
 	cublasSgemm(cublasHandle,
-									CUBLAS_OP_N, CUBLAS_OP_N,
-									fc2, 1, 1,
-									&alpha,
-									bfc2, 1,
-									onevec, 1,
-									&alpha,
-									x2layer2, 1);
+			CUBLAS_OP_N, CUBLAS_OP_N,
+			fc2, 1, 1,
+			&alpha,
+			bfc2, 1,
+			onevec, 1,
+			&alpha,
+			x2layer2, 1);
 
 //imprimeResultante(x2layer2, fc2);
 activeSigmoid(x2layer2, fc2);
 //imprimeResultante(x2layer2, fc2);
 
-        cublasSgemm(cublasHandle,
-                        CUBLAS_OP_N, CUBLAS_OP_N,
-                        fc3, 1, fc2,
-                        &alpha,
-                        wfc3, fc2,
-                        x1layer2, 1,
-                        &beta,
-                        x1layer3, 1);
+  cublasSgemm(cublasHandle,
+      CUBLAS_OP_N, CUBLAS_OP_N,
+      fc3, 1, fc2,
+      &alpha,
+      wfc3, fc2,
+      x1layer2, 1,
+      &beta,
+      x1layer3, 1);
 
-        cublasSgemm(cublasHandle,
-                        CUBLAS_OP_N, CUBLAS_OP_N,
-                        fc3, 1, 1,
-                        &alpha,
-                        bfc3, 1,
-                        onevec, 1,
-                        &alpha,
-                        x1layer3, 1);
+  cublasSgemm(cublasHandle,
+    	CUBLAS_OP_N, CUBLAS_OP_N,
+    	fc3, 1, 1,
+    	&alpha,
+    	bfc3, 1,
+    	onevec, 1,
+    	&alpha,
+    	x1layer3, 1);
 
 	//imprimeResultante(x1layer3, fc3);
 	activeSigmoid(x1layer3, fc3);
@@ -873,22 +934,22 @@ activeSigmoid(x2layer2, fc2);
 	//Computing the third layer of the second image on the same Neural network
 
 	cublasSgemm(cublasHandle,
-									CUBLAS_OP_N, CUBLAS_OP_N,
-									fc3, 1, fc2,
-									&alpha,
-									wfc3, fc2,
-									x2layer2, 1,
-									&beta,
-									x2layer3, 1);
+			CUBLAS_OP_N, CUBLAS_OP_N,
+			fc3, 1, fc2,
+			&alpha,
+			wfc3, fc2,
+			x2layer2, 1,
+			&beta,
+			x2layer3, 1);
 
 	cublasSgemm(cublasHandle,
-									CUBLAS_OP_N, CUBLAS_OP_N,
-									fc3, 1, 1,
-									&alpha,
-									bfc3, 1,
-									onevec, 1,
-									&alpha,
-									x2layer3, 1);
+			CUBLAS_OP_N, CUBLAS_OP_N,
+			fc3, 1, 1,
+			&alpha,
+			bfc3, 1,
+			onevec, 1,
+			&alpha,
+			x2layer3, 1);
 
 //imprimeResultante(x3layer3, fc3);
 activeSigmoid(x2layer3, fc3);

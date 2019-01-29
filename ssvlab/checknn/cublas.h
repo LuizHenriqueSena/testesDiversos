@@ -1,6 +1,7 @@
 //#include <cuda.h>
 #include <stdio.h>
 #include <math.h>
+#include <stdlib.h>
 
 #define data 25
 #define fc1 5
@@ -636,9 +637,8 @@ void printDSCover(float* layeri1, float* layeri2, float* layerj1, float* layerj2
 	for(i =0; i <l2; i++) {
 		if(signalChange(layerj1[i], layerj2[i])){
 				find=1;
-				for(j=0; j<l1,j++) {
+				for(j=0; j<l1;j++) {
 					printf("The neuron pair ni%d, nj%d is DSCovered by the 2 test cases.\n", j, i);
-					n2 = i;
 				}
 		}
 	}
@@ -647,7 +647,6 @@ void printDSCover(float* layeri1, float* layeri2, float* layerj1, float* layerj2
 			return;
 		}
 	}
-}
 
 //Covering method
 //Sign-Value Cover, or SVCover
@@ -725,11 +724,10 @@ void printDVCover(float* layeri1, float* layeri2, float* layerj1, float* layerj2
 	}
 
 	for(i =0; i <l2; i++) {
-		if(valueChange(layerj1[i], layerj2[i])){
+		if(valueChange(layerj1[i], layerj2[i], distance)){
 				find=1;
-				for(j=0; j<l1,j++) {
+				for(j=0; j<l1;j++) {
 					printf("The neuron pair ni%d, nj%d is DSCovered by the 2 test cases.\n", j, i);
-					n2 = i;
 				}
 		}
 	}
@@ -737,7 +735,6 @@ void printDVCover(float* layeri1, float* layeri2, float* layerj1, float* layerj2
 			printf("There is no DSCover neurons for these 2 test cases \n");
 			return;
 		}
-	}
 }
 
 //void checkSSCover(float* layer1, float* layer2, float* layer3,)

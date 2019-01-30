@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <math.h>
 
 float sigmoidFunction(float u) {
 	float retorno;
@@ -13,12 +14,18 @@ void printLookUpTableForCVectorSigmoid(int number, int decimalNumber) {
 	} else {
 		size= number*((int)pow(10, decimalNumber));
 	}
-	int i = 0;
+	int i = 1;
 	printf("float lookup[%d] = {", size);
-	for(i=0;i<size;i++) {
-		
-
+	printf("%.6f ,", sigmoidFunction(0));
+	for(i=1;i<size;i++) {
+			printf("%.6f ,", sigmoidFunction(i/100));
+			if(i%10==0)
+				printf("\n");
+			}
+}
 
 
 int main(){
-	
+	printLookUpTableForCVectorSigmoid(10, 10);
+
+}

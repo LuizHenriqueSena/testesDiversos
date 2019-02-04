@@ -1,5 +1,31 @@
+#include <stdlib.h>
 #include <stdio.h>
 
+#define data 25
+#define fc1 5
+#define fc2 4
+#define fc3 5
+
+typedef enum cublasstatus { CUBLAS_STATUS_SUCCESS,
+	CUBLAS_STATUS_NOT_INITIALIZED,
+	CUBLAS_STATUS_ALLOC_FAILED,
+	CUBLAS_STATUS_INVALID_VALUE,
+	CUBLAS_STATUS_ARCH_MISMATCH,
+	CUBLAS_STATUS_MAPPING_ERROR,
+	CUBLAS_STATUS_EXECUTION_FAILED,
+	CUBLAS_STATUS_INTERNAL_ERROR,
+	CUBLAS_STATUS_NOT_SUPPORTED,
+	CUBLAS_STATUS_LICENSE_ERROR} custatusResult;
+
+typedef enum cublasstatus cublasStatus_t;
+typedef struct cublashandle {
+} cublasHandle_t;
+
+typedef enum cublasoperation {CUBLAS_OP_N,
+	CUBLAS_OP_T,
+	CUBLAS_OP_C} cuoperation;
+
+typedef enum cublasoperation cublasOperation_t;
 //lookuptable of sigmoid function variating from -20 to 20 with .00 of resolution
 float lookup[4000] = {0.000000 ,0.000000 ,0.000000 ,0.000000 ,0.000000 ,0.000000 ,0.000000 ,0.000000 ,0.000000 ,0.000000 ,
 0.000000 ,0.000000 ,0.000000 ,0.000000 ,0.000000 ,0.000000 ,0.000000 ,0.000000 ,0.000000 ,0.000000 ,
@@ -402,7 +428,7 @@ float lookup[4000] = {0.000000 ,0.000000 ,0.000000 ,0.000000 ,0.000000 ,0.000000
 1.000000 ,1.000000 ,1.000000 ,1.000000 ,1.000000 ,1.000000 ,1.000000 ,1.000000 ,1.000000 ,1.000000 ,
 1.000000 ,1.000000 ,1.000000 ,1.000000 ,1.000000 ,1.000000 ,1.000000 ,1.000000 ,1.000000 ,1.000000 };
 
-float sigmoid(float u){
+float sigmoidLUT(float u){
   int index = 0;
   index =(int) u*100;
   index = index+ 2000;
@@ -411,12 +437,223 @@ float sigmoid(float u){
   else if(index > 4000)
     return 1;
   else
-    return lookuptable[index];
+    return lookup[index];
 }
 
-void activeSigmoid(float* layer, int sizeLayer) {
+void activeSigmoidLUT(float* layer, int sizeLayer) {
     int i = 0;
     for(i=0;i<sizeLayer;i++) {
-      layer[i] = sigmoid(layer[i])
+      layer[i] = sigmoidLUT(layer[i]);
     }
+}
+
+void normalizef(float* image, int size) {
+	int i = 0;
+	for(i=0;i<size;i++) {
+			image[i] = image[i]/255;
+	}
+}
+
+cublasStatus_t cublasSgemm(cublasHandle_t handle,
+			cublasOperation_t transa, cublasOperation_t transb,
+			int m, int n, int k,
+			const float *alpha,
+			const float *A, int lda,
+			const float *B, int ldb,
+			const float *beta,
+			float *C, int ldc) {
+	int contadorX = 0, contadorY = 0;
+	int contadorZ = 0;
+	float result = 0;
+	//__ESBMC_assert(lda == m || lda == k, "The leading dimensions doens't correspond to matrix A dimensions. Array out of bounds.");
+	//__ESBMC_assert(ldb == k || ldb == n, "The leading dimensions doens't correspond to matrix B dimensions. Array out of bounds.");
+	//__ESBMC_assert(ldc == m || ldc == k, "The leading dimensions doens't correspond to matrix C dimensions. Array out of bounds.");
+	if ((transa == CUBLAS_OP_N) && (transb == CUBLAS_OP_N)) {
+		result = 0;
+		for(contadorZ=0; contadorZ<m; contadorZ++){
+			for(contadorY=0; contadorY<n; contadorY++) {
+				result = 0;
+				for(contadorX=0;contadorX<k; contadorX++) {
+					//result =  (A[contadorX + contadorY*k] * B[contadorX*n + contadorY]) + result;
+					result =  (A[contadorX + contadorZ*lda] * B[contadorX*ldb + contadorY]) + result;
+					}
+				C[contadorY + contadorZ*ldc] = alpha[0]*result + beta[0]*C[contadorY + contadorZ*ldc];
+			}
+		}
+	}
+
+	else if ((transa == CUBLAS_OP_N) && (transb == CUBLAS_OP_T)) {
+		result = 0;
+		for(contadorZ=0; contadorZ<m; contadorZ++){
+			for(contadorY=0; contadorY<n; contadorY++) {
+				result = 0;
+				for(contadorX=0;contadorX<k; contadorX++) {
+					//result =  (A[contadorX + contadorY*k] * B[contadorX*n + contadorY]) + result;
+					result =  (A[contadorX + contadorZ*k] * B[contadorX + contadorY*n]) + result;
+					}
+				C[contadorY + contadorZ*m] = alpha[0]*result + beta[0]*C[contadorY + contadorZ*m];
+			}
+		}
+	}
+	else if ((transa == CUBLAS_OP_T) && (transb == CUBLAS_OP_N)) {
+		result = 0;
+		for(contadorZ=0; contadorZ<m; contadorZ++){
+			for(contadorY=0; contadorY<n; contadorY++) {
+				result = 0;
+				for(contadorX=0;contadorX<k; contadorX++) {
+					//result =  (A[contadorX + contadorY*k] * B[contadorX*n + contadorY]) + result;
+					result =  (A[contadorX*k + contadorZ] * B[contadorX*n + contadorY]) + result;
+					}
+				C[contadorY + contadorZ*m] = alpha[0]*result + beta[0]*C[contadorY + contadorZ*m];
+			}
+		}
+	}
+	else if ((transa == CUBLAS_OP_T) && (transb == CUBLAS_OP_T)) {
+		result = 0;
+		for(contadorZ=0; contadorZ<m; contadorZ++){
+			for(contadorY=0; contadorY<n; contadorY++) {
+				result = 0;
+				for(contadorX=0;contadorX<k; contadorX++) {
+					//result =  (A[contadorX + contadorY*k] * B[contadorX*n + contadorY]) + result;
+					result =  (A[contadorX*k + contadorZ] * B[contadorX + contadorY*n]) + result;
+					}
+				C[contadorY + contadorZ*m] = alpha[0]*result + beta[0]*C[contadorY + contadorZ*m];
+			}
+		}
+
+	}
+	return CUBLAS_STATUS_SUCCESS;
+
+}
+
+cublasStatus_t cublasCreate(cublasHandle_t *handle) {
+/*
+This function initializes the CUBLAS library and creates a handle to an opaque structure holding the CUBLAS library context. It allocates hardware resources on the host and device and must be called prior to making any other CUBLAS library calls. The CUBLAS library context is tied to the current CUDA device. To use the library on multiple devices, one CUBLAS handle needs to be created for each device. Furthermore, for a given device, multiple CUBLAS handles with different configuration can be created. Because cublasCreate allocates some internal resources and the release of those resources by calling cublasDestroy will implicitly call cublasDeviceSynchronize, it is recommended to minimize the number of cublasCreate/cublasDestroy occurences. For multi-threaded applications that use the same device from different threads, the recommended programming model is to create one CUBLAS handle per thread and use that CUBLAS handle for the entire life of the thread.
+*/
+	return CUBLAS_STATUS_SUCCESS;
+}
+
+void imprimeResultante(float* matriz, int size) {
+int cont = 0;
+        for(cont = 0; cont < size; cont++) {
+                printf("resultante: %d com valor: %.6f \n", cont, matriz[cont]);
+        }
+        //printf("limiar de ativacao da posicao: %d com valor: %.2f \n", cont, pesosSinapticos[xn]);
+}
+
+void checkNNLUT(float* wfc1, float* bfc1, float* wfc2, float* bfc2, float* wfc3, float* bfc3, float* img) {
+
+	float *x1layer1;
+	float *x1layer2;
+	float *x1layer3;
+	float *x2layer1;
+	float *x2layer2;
+	float *x2layer3;
+	float alpha;
+	float beta;
+	//float* dev_result;
+
+	//initializing cublas handle
+	cublasHandle_t cublasHandle;
+	cublasCreate(&cublasHandle);
+
+	alpha = 1;
+	beta = 0;
+	/* sets the size of v */
+	//data = (float*)malloc(data*sizeof(float));
+	float onevec[25] = {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1};
+
+	//wfc1 = (float*)malloc(data*fc1*sizeof(float));
+
+
+	x1layer1 = (float*)malloc(fc1*sizeof(float));
+
+	x1layer2 = (float*)malloc(fc2*sizeof(float));
+
+	x1layer3 = (float*)malloc(fc3*sizeof(float));
+
+	x2layer1 = (float*)malloc(fc1*sizeof(float));
+
+	x2layer2 = (float*)malloc(fc2*sizeof(float));
+
+	x2layer3 = (float*)malloc(fc3*sizeof(float));
+
+
+
+  normalizef(img, 25); // ponteiro da entrada e tamanho da imagem
+	cublasSgemm(cublasHandle,
+			CUBLAS_OP_N, CUBLAS_OP_N,
+			fc1, 1, data,
+			&alpha,
+			wfc1, data,
+			img, 1,
+			&beta,
+			x1layer1, 1);
+
+	cublasSgemm(cublasHandle,
+      CUBLAS_OP_N, CUBLAS_OP_N,
+      fc1, 1, 1,
+      &alpha,
+      bfc1, 1,
+      onevec, 1,
+      &alpha,
+      x1layer1, 1);
+
+	//imprimeResultante(x1layer1, fc1);
+	activeSigmoidLUT(x1layer1, fc1);
+//	imprimeResultante(x1layer1, fc1);
+
+//Computing the first layer of the second image x2 on the same Neural Network
+
+    cublasSgemm(cublasHandle,
+      CUBLAS_OP_N, CUBLAS_OP_N,
+      fc2, 1, fc1,
+      &alpha,
+      wfc2, fc1,
+      x1layer1, 1,
+      &beta,
+      x1layer2, 1);
+
+  cublasSgemm(cublasHandle,
+      CUBLAS_OP_N, CUBLAS_OP_N,
+      fc2, 1, 1,
+      &alpha,
+      bfc2, 1,
+      onevec, 1,
+      &alpha,
+      x1layer2, 1);
+
+	//imprimeResultante(x1layer2, fc2);
+	activeSigmoidLUT(x1layer2, fc2);
+//	imprimeResultante(x1layer2, fc2);
+
+	//Computing the second layer of the second image on the same Neural network
+
+
+  cublasSgemm(cublasHandle,
+      CUBLAS_OP_N, CUBLAS_OP_N,
+      fc3, 1, fc2,
+      &alpha,
+      wfc3, fc2,
+      x1layer2, 1,
+      &beta,
+      x1layer3, 1);
+
+  cublasSgemm(cublasHandle,
+    	CUBLAS_OP_N, CUBLAS_OP_N,
+    	fc3, 1, 1,
+    	&alpha,
+    	bfc3, 1,
+    	onevec, 1,
+    	&alpha,
+    	x1layer3, 1);
+
+	//imprimeResultante(x1layer3, fc3);
+	activeSigmoidLUT(x1layer3, fc3);
+	imprimeResultante(x1layer3, fc3);
+
+	//Computing the third layer of the second image on the same Neural network
+
+
+
 }

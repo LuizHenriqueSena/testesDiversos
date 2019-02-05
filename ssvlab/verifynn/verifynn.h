@@ -428,6 +428,33 @@ float lookup[4000] = {0.000000 ,0.000000 ,0.000000 ,0.000000 ,0.000000 ,0.000000
 1.000000 ,1.000000 ,1.000000 ,1.000000 ,1.000000 ,1.000000 ,1.000000 ,1.000000 ,1.000000 ,1.000000 ,
 1.000000 ,1.000000 ,1.000000 ,1.000000 ,1.000000 ,1.000000 ,1.000000 ,1.000000 ,1.000000 ,1.000000 };
 
+float sqrtt(float num)
+{
+    float guess, e, upperbound;
+    guess = 1;
+    e = 0.001;
+    do
+    {
+        upperbound = num / guess;
+        guess = (upperbound + guess) / 2;
+    } while (!(guess * guess >= num - e &&
+               guess * guess <= num + e));
+    return guess;
+}
+
+int isCloseEnough(float* img, float* adversarial, float b, int size) {
+		int i = 0;
+		float normDistance = 0;
+		for(i=0;i<size;i++) {
+			normDistance += (img[i]-adversarial[i])*(img[i]-adversarial[i]);
+		}
+			normDistance = sqrtt(normDistance);
+			if(normDistance <= b)
+				return 1;
+			else
+				return 0;
+}
+
 float sigmoidLUT(float u){
   int index = 0;
   index =(int) u*100;

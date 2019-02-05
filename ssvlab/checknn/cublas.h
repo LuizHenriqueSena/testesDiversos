@@ -1192,6 +1192,18 @@ int cont = 0;
         //printf("limiar de ativacao da posicao: %d com valor: %.2f \n", cont, pesosSinapticos[xn]);
 }
 
+int isCloseEnough(float* img, float* adversarial, float b, int size) {
+		int i = 0;
+		float normDistance = 0;
+		for(i=0;i<size;i++) {
+			normDistance += (img[i]-adversarial[i])*(img[i]-adversarial[i]);
+		}
+			normDistance = sqrtf(normDistance);
+			if(normDistance <= b)
+				return 1;
+			else
+				return 0;
+}
 
 void checkNN(float* wfc1, float* bfc1, float* wfc2, float* bfc2, float* wfc3, float* bfc3, float* img, float* img2) {
 

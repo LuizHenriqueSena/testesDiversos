@@ -572,11 +572,11 @@ int cont = 0;
         //printf("limiar de ativacao da posicao: %d com valor: %.2f \n", cont, pesosSinapticos[xn]);
 }
 
-void checkNNLUT(float wfc1[125], float bfc1[5], float wfc2[20], float bfc2[4], float wfc3[20], float bfc3[5], float img[25]) {
+void checkNNLUT(float* wfc1, float* bfc1, float* wfc2, float* bfc2, float* wfc3, float* bfc3, float* img) {
 
-//	float *x1layer1;
-//	float *x1layer2;
-//	float *x1layer3;
+	float *x1layer1;
+	float *x1layer2;
+	float *x1layer3;
 //	float *x2layer1;
 //	float *x2layer2;
 //	float *x2layer3;
@@ -597,11 +597,11 @@ void checkNNLUT(float wfc1[125], float bfc1[5], float wfc2[20], float bfc2[4], f
 	//wfc1 = (float*)malloc(data*fc1*sizeof(float));
 
 
-	//x1layer1 = (float*)malloc(fc1*sizeof(float));
+	x1layer1 = (float*)malloc(fc1*sizeof(float));
 
-	//x1layer2 = (float*)malloc(fc2*sizeof(float));
+	x1layer2 = (float*)malloc(fc2*sizeof(float));
 
-	//x1layer3 = (float*)malloc(fc3*sizeof(float));
+	x1layer3 = (float*)malloc(fc3*sizeof(float));
 
 	//x2layer1 = (float*)malloc(fc1*sizeof(float));
 
@@ -610,11 +610,11 @@ void checkNNLUT(float wfc1[125], float bfc1[5], float wfc2[20], float bfc2[4], f
 	//x2layer3 = (float*)malloc(fc3*sizeof(float));
 
 
-		float x1layer1[5] = {0,0,0,0,0};
+		//float x1layer1[5] = {0,0,0,0,0};
 
-		float x1layer2[4]= {0,0,0,0} ;
+		//float x1layer2[4]= {0,0,0,0} ;
 
-		float x1layer3[5]= {0,0,0,0,0};
+		//float x1layer3[5]= {0,0,0,0,0};
 
 
   normalizef(img, 25); // ponteiro da entrada e tamanho da imagem

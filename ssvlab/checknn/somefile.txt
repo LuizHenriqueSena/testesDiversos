@@ -1,0 +1,28 @@
+ESBMC version 1.25.4 64-bit x86_64 linux
+file checknn.c: Parsing
+Converting
+Type-checking checknn
+file ./cublas.h line 986 function SSCover: warning: assignment in if condition
+file ./cublas.h line 1080 function SVCover: warning: assignment in if condition
+Generating GOTO Program
+GOTO program creation time: 0.312s
+GOTO program processing time: 0.021s
+Starting Bounded Model Checking
+Unwinding loop 47 iteration 1 file ./cublas.h line 1005 function printSSCover
+Unwinding loop 47 iteration 2 file ./cublas.h line 1005 function printSSCover
+Unwinding loop 47 iteration 3 file ./cublas.h line 1005 function printSSCover
+Unwinding loop 47 iteration 4 file ./cublas.h line 1005 function printSSCover
+Unwinding loop 47 iteration 5 file ./cublas.h line 1005 function printSSCover
+Unwinding loop 48 iteration 1 file ./cublas.h line 1019 function printSSCover
+Unwinding loop 48 iteration 2 file ./cublas.h line 1019 function printSSCover
+Unwinding loop 48 iteration 3 file ./cublas.h line 1019 function printSSCover
+Symex completed in: 0.040s
+size of program expression: 214 assignments
+Slicing time: 0.002s
+Generated 58 VCC(s), 40 remaining after simplification
+Encoding remaining VCC(s) using bit-vector arithmetic
+Encoding to solver time: 0.004s
+Solving with solver Z3 v4.0
+Runtime decision procedure: 0.006s
+VERIFICATION SUCCESSFUL
+BMC program time: 0.053s

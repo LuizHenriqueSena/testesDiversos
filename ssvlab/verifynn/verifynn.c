@@ -1,7 +1,7 @@
 #include "verifynn.h"
 #include <stdlib.h>
 
-//esbmc-gpu verifynn.c -I . --force-malloc-success --state-hashing --context-switch 2 --unwind 30
+//esbmc-gpu verifynn.c -I . --force-malloc-success --state-hashing --unwind 30
 
 float wfc1[125]={ 0.207958,  0.044154,  -4.232451,  0.745003,  -1.340141,  -1.486082,  -1.869501,  -1.486536,  -0.624669,  1.210342,  -4.070879,  -0.600616,  -5.623879,  -3.807880,  1.362974,  1.334723,  -2.295741,  3.483194,  -4.446033,  0.078016,  4.587534,  -0.206197,  0.977980,  1.286488,  0.772414,
 -1.486082,  -1.869501,  -1.486536,  -0.624669,  1.210342,  -4.070879,  -0.600616,  -5.623879,  -3.807880,  1.362974,  1.334723,  -2.295741,  3.483194,  -4.446033,  0.078016,  4.587534,  -0.206197,  0.977980,  1.286488,  0.772414,  -0.095517,  -0.237044,  1.996482,  2.389851,  -0.082591,
@@ -112,11 +112,14 @@ int main() {
 	img2[23] = (float) x24;
 	img2[24] = (float) x25;
 
-
-normalizef(imgA,25);
+	normalizef(imgA,25);
+	normalizef(imgE,25);
+	normalizef(imgI,25);
+	normalizef(imgO,25);
+	normalizef(imgU,25);
 	normalizef(img2,25);
 //	int i = isCloseEnough(img,img2,10,25);
-	__ESBMC_assume(isCloseEnough(imgA,img2,10,25) == 0);
+	__ESBMC_assume(isCloseEnough(imgU,img2,10.5,25) == 1);
 //	__ESBMC_assert(isCloseEnough(img, 1), "Image is near");
-	checkNNLUT(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, img5);
+	checkNNLUT(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, imgU);
 }

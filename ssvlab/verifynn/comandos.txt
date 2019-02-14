@@ -1,5 +1,5 @@
-esbmc-gpu verifynn.c -I . --force-malloc-success --state-hashing --unwind 30 > testeImagemUcomlimit45.txt
-esbmc-gpu verifynn.c -I . --force-malloc-success --state-hashing --unwind 30 > testeImagemUcomlimit75.txt
-esbmc-gpu verifynn.c -I . --force-malloc-success --state-hashing --unwind 30 > testeImagemUcomlimit105.txt
-esbmc-gpu verifynn.c -I . --force-malloc-success --state-hashing --unwind 30 > testeImagemUcomlimit235.txt
-esbmc-gpu verifynn.c -I . --force-malloc-success --state-hashing --unwind 30 > testeImagemUcomlimit4035.txt
+esbmc verifynn.c -I . --force-malloc-success --state-hashing --no-div-by-zero-check > testeImagemUcomlimit35.txt
+esbmc verifynn.c -I . --force-malloc-success --state-hashing --no-div-by-zero-check > testeImagemUcomlimit45.txt
+esbmc verifynn.c -I . --force-malloc-success --state-hashing --no-div-by-zero-check > testeImagemUcomlimit75.txt
+esbmc verifynn.c -I . --force-malloc-success --state-hashing --no-div-by-zero-check > testeImagemUcomlimit105.txt
+

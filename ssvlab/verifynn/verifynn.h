@@ -428,21 +428,20 @@ float lookup[4000] = {0.000000 ,0.000000 ,0.000000 ,0.000000 ,0.000000 ,0.000000
 1.000000 ,1.000000 ,1.000000 ,1.000000 ,1.000000 ,1.000000 ,1.000000 ,1.000000 ,1.000000 ,1.000000 ,
 1.000000 ,1.000000 ,1.000000 ,1.000000 ,1.000000 ,1.000000 ,1.000000 ,1.000000 ,1.000000 ,1.000000 };
 
-float sqrtt(float num)
+float sqrtt(const float x)
 {
-	int i = 0;
-    float guess, e, upperbound;
-    guess = 1;
-    e = 0.001;
-    do
-    {
-				i++;
-        upperbound = num / guess;
-        guess = (upperbound + guess) / 2;
-    } while (!(guess * guess >= num - e &&
-               guess * guess <= num + e));
-							 printf("VALOR DE %d \n", i);
-		return guess;
+union
+{
+int i;
+float x;
+} u;
+u.x = x;
+u.i = (1<<29) + (u.i>>1) - (1<<22);
+
+u.x =    u.x + x/u.x;
+u.x = 0.25f*u.x + x/u.x;
+
+return u.x;
 }
 
 int isCloseEnough(float* img, float* img2, float b, int size) {
@@ -689,6 +688,5 @@ void checkNNLUT(float wfc1[125], float bfc1[5], float wfc2[20], float bfc2[4], f
 //	float a[3] = {0.8, 0.8, 0.8};
 	//Computing the third layer of the second image on the same Neural network
 	__ESBMC_assert(x1layer3[4] > 0.8, "Image is not a U");
-
 
 }

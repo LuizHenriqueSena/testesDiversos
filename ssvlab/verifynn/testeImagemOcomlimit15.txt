@@ -1,0 +1,2809 @@
+ESBMC version 6.0.0 64-bit x86_64 linux
+file verifynn.c: Parsing
+Converting
+Generating GOTO Program
+GOTO program creation time: 0.255s
+GOTO program processing time: 0.001s
+Starting Bounded Model Checking
+Unwinding loop 3 iteration 1 file verifynn.h line 482 function normalizef
+Unwinding loop 3 iteration 2 file verifynn.h line 482 function normalizef
+Unwinding loop 3 iteration 3 file verifynn.h line 482 function normalizef
+Unwinding loop 3 iteration 4 file verifynn.h line 482 function normalizef
+Unwinding loop 3 iteration 5 file verifynn.h line 482 function normalizef
+Unwinding loop 3 iteration 6 file verifynn.h line 482 function normalizef
+Unwinding loop 3 iteration 7 file verifynn.h line 482 function normalizef
+Unwinding loop 3 iteration 8 file verifynn.h line 482 function normalizef
+Unwinding loop 3 iteration 9 file verifynn.h line 482 function normalizef
+Unwinding loop 3 iteration 10 file verifynn.h line 482 function normalizef
+Unwinding loop 3 iteration 11 file verifynn.h line 482 function normalizef
+Unwinding loop 3 iteration 12 file verifynn.h line 482 function normalizef
+Unwinding loop 3 iteration 13 file verifynn.h line 482 function normalizef
+Unwinding loop 3 iteration 14 file verifynn.h line 482 function normalizef
+Unwinding loop 3 iteration 15 file verifynn.h line 482 function normalizef
+Unwinding loop 3 iteration 16 file verifynn.h line 482 function normalizef
+Unwinding loop 3 iteration 17 file verifynn.h line 482 function normalizef
+Unwinding loop 3 iteration 18 file verifynn.h line 482 function normalizef
+Unwinding loop 3 iteration 19 file verifynn.h line 482 function normalizef
+Unwinding loop 3 iteration 20 file verifynn.h line 482 function normalizef
+Unwinding loop 3 iteration 21 file verifynn.h line 482 function normalizef
+Unwinding loop 3 iteration 22 file verifynn.h line 482 function normalizef
+Unwinding loop 3 iteration 23 file verifynn.h line 482 function normalizef
+Unwinding loop 3 iteration 24 file verifynn.h line 482 function normalizef
+Unwinding loop 3 iteration 25 file verifynn.h line 482 function normalizef
+Unwinding loop 3 iteration 1 file verifynn.h line 482 function normalizef
+Unwinding loop 3 iteration 2 file verifynn.h line 482 function normalizef
+Unwinding loop 3 iteration 3 file verifynn.h line 482 function normalizef
+Unwinding loop 3 iteration 4 file verifynn.h line 482 function normalizef
+Unwinding loop 3 iteration 5 file verifynn.h line 482 function normalizef
+Unwinding loop 3 iteration 6 file verifynn.h line 482 function normalizef
+Unwinding loop 3 iteration 7 file verifynn.h line 482 function normalizef
+Unwinding loop 3 iteration 8 file verifynn.h line 482 function normalizef
+Unwinding loop 3 iteration 9 file verifynn.h line 482 function normalizef
+Unwinding loop 3 iteration 10 file verifynn.h line 482 function normalizef
+Unwinding loop 3 iteration 11 file verifynn.h line 482 function normalizef
+Unwinding loop 3 iteration 12 file verifynn.h line 482 function normalizef
+Unwinding loop 3 iteration 13 file verifynn.h line 482 function normalizef
+Unwinding loop 3 iteration 14 file verifynn.h line 482 function normalizef
+Unwinding loop 3 iteration 15 file verifynn.h line 482 function normalizef
+Unwinding loop 3 iteration 16 file verifynn.h line 482 function normalizef
+Unwinding loop 3 iteration 17 file verifynn.h line 482 function normalizef
+Unwinding loop 3 iteration 18 file verifynn.h line 482 function normalizef
+Unwinding loop 3 iteration 19 file verifynn.h line 482 function normalizef
+Unwinding loop 3 iteration 20 file verifynn.h line 482 function normalizef
+Unwinding loop 3 iteration 21 file verifynn.h line 482 function normalizef
+Unwinding loop 3 iteration 22 file verifynn.h line 482 function normalizef
+Unwinding loop 3 iteration 23 file verifynn.h line 482 function normalizef
+Unwinding loop 3 iteration 24 file verifynn.h line 482 function normalizef
+Unwinding loop 3 iteration 25 file verifynn.h line 482 function normalizef
+Unwinding loop 3 iteration 1 file verifynn.h line 482 function normalizef
+Unwinding loop 3 iteration 2 file verifynn.h line 482 function normalizef
+Unwinding loop 3 iteration 3 file verifynn.h line 482 function normalizef
+Unwinding loop 3 iteration 4 file verifynn.h line 482 function normalizef
+Unwinding loop 3 iteration 5 file verifynn.h line 482 function normalizef
+Unwinding loop 3 iteration 6 file verifynn.h line 482 function normalizef
+Unwinding loop 3 iteration 7 file verifynn.h line 482 function normalizef
+Unwinding loop 3 iteration 8 file verifynn.h line 482 function normalizef
+Unwinding loop 3 iteration 9 file verifynn.h line 482 function normalizef
+Unwinding loop 3 iteration 10 file verifynn.h line 482 function normalizef
+Unwinding loop 3 iteration 11 file verifynn.h line 482 function normalizef
+Unwinding loop 3 iteration 12 file verifynn.h line 482 function normalizef
+Unwinding loop 3 iteration 13 file verifynn.h line 482 function normalizef
+Unwinding loop 3 iteration 14 file verifynn.h line 482 function normalizef
+Unwinding loop 3 iteration 15 file verifynn.h line 482 function normalizef
+Unwinding loop 3 iteration 16 file verifynn.h line 482 function normalizef
+Unwinding loop 3 iteration 17 file verifynn.h line 482 function normalizef
+Unwinding loop 3 iteration 18 file verifynn.h line 482 function normalizef
+Unwinding loop 3 iteration 19 file verifynn.h line 482 function normalizef
+Unwinding loop 3 iteration 20 file verifynn.h line 482 function normalizef
+Unwinding loop 3 iteration 21 file verifynn.h line 482 function normalizef
+Unwinding loop 3 iteration 22 file verifynn.h line 482 function normalizef
+Unwinding loop 3 iteration 23 file verifynn.h line 482 function normalizef
+Unwinding loop 3 iteration 24 file verifynn.h line 482 function normalizef
+Unwinding loop 3 iteration 25 file verifynn.h line 482 function normalizef
+Unwinding loop 3 iteration 1 file verifynn.h line 482 function normalizef
+Unwinding loop 3 iteration 2 file verifynn.h line 482 function normalizef
+Unwinding loop 3 iteration 3 file verifynn.h line 482 function normalizef
+Unwinding loop 3 iteration 4 file verifynn.h line 482 function normalizef
+Unwinding loop 3 iteration 5 file verifynn.h line 482 function normalizef
+Unwinding loop 3 iteration 6 file verifynn.h line 482 function normalizef
+Unwinding loop 3 iteration 7 file verifynn.h line 482 function normalizef
+Unwinding loop 3 iteration 8 file verifynn.h line 482 function normalizef
+Unwinding loop 3 iteration 9 file verifynn.h line 482 function normalizef
+Unwinding loop 3 iteration 10 file verifynn.h line 482 function normalizef
+Unwinding loop 3 iteration 11 file verifynn.h line 482 function normalizef
+Unwinding loop 3 iteration 12 file verifynn.h line 482 function normalizef
+Unwinding loop 3 iteration 13 file verifynn.h line 482 function normalizef
+Unwinding loop 3 iteration 14 file verifynn.h line 482 function normalizef
+Unwinding loop 3 iteration 15 file verifynn.h line 482 function normalizef
+Unwinding loop 3 iteration 16 file verifynn.h line 482 function normalizef
+Unwinding loop 3 iteration 17 file verifynn.h line 482 function normalizef
+Unwinding loop 3 iteration 18 file verifynn.h line 482 function normalizef
+Unwinding loop 3 iteration 19 file verifynn.h line 482 function normalizef
+Unwinding loop 3 iteration 20 file verifynn.h line 482 function normalizef
+Unwinding loop 3 iteration 21 file verifynn.h line 482 function normalizef
+Unwinding loop 3 iteration 22 file verifynn.h line 482 function normalizef
+Unwinding loop 3 iteration 23 file verifynn.h line 482 function normalizef
+Unwinding loop 3 iteration 24 file verifynn.h line 482 function normalizef
+Unwinding loop 3 iteration 25 file verifynn.h line 482 function normalizef
+Unwinding loop 3 iteration 1 file verifynn.h line 482 function normalizef
+Unwinding loop 3 iteration 2 file verifynn.h line 482 function normalizef
+Unwinding loop 3 iteration 3 file verifynn.h line 482 function normalizef
+Unwinding loop 3 iteration 4 file verifynn.h line 482 function normalizef
+Unwinding loop 3 iteration 5 file verifynn.h line 482 function normalizef
+Unwinding loop 3 iteration 6 file verifynn.h line 482 function normalizef
+Unwinding loop 3 iteration 7 file verifynn.h line 482 function normalizef
+Unwinding loop 3 iteration 8 file verifynn.h line 482 function normalizef
+Unwinding loop 3 iteration 9 file verifynn.h line 482 function normalizef
+Unwinding loop 3 iteration 10 file verifynn.h line 482 function normalizef
+Unwinding loop 3 iteration 11 file verifynn.h line 482 function normalizef
+Unwinding loop 3 iteration 12 file verifynn.h line 482 function normalizef
+Unwinding loop 3 iteration 13 file verifynn.h line 482 function normalizef
+Unwinding loop 3 iteration 14 file verifynn.h line 482 function normalizef
+Unwinding loop 3 iteration 15 file verifynn.h line 482 function normalizef
+Unwinding loop 3 iteration 16 file verifynn.h line 482 function normalizef
+Unwinding loop 3 iteration 17 file verifynn.h line 482 function normalizef
+Unwinding loop 3 iteration 18 file verifynn.h line 482 function normalizef
+Unwinding loop 3 iteration 19 file verifynn.h line 482 function normalizef
+Unwinding loop 3 iteration 20 file verifynn.h line 482 function normalizef
+Unwinding loop 3 iteration 21 file verifynn.h line 482 function normalizef
+Unwinding loop 3 iteration 22 file verifynn.h line 482 function normalizef
+Unwinding loop 3 iteration 23 file verifynn.h line 482 function normalizef
+Unwinding loop 3 iteration 24 file verifynn.h line 482 function normalizef
+Unwinding loop 3 iteration 25 file verifynn.h line 482 function normalizef
+Unwinding loop 3 iteration 1 file verifynn.h line 482 function normalizef
+Unwinding loop 3 iteration 2 file verifynn.h line 482 function normalizef
+Unwinding loop 3 iteration 3 file verifynn.h line 482 function normalizef
+Unwinding loop 3 iteration 4 file verifynn.h line 482 function normalizef
+Unwinding loop 3 iteration 5 file verifynn.h line 482 function normalizef
+Unwinding loop 3 iteration 6 file verifynn.h line 482 function normalizef
+Unwinding loop 3 iteration 7 file verifynn.h line 482 function normalizef
+Unwinding loop 3 iteration 8 file verifynn.h line 482 function normalizef
+Unwinding loop 3 iteration 9 file verifynn.h line 482 function normalizef
+Unwinding loop 3 iteration 10 file verifynn.h line 482 function normalizef
+Unwinding loop 3 iteration 11 file verifynn.h line 482 function normalizef
+Unwinding loop 3 iteration 12 file verifynn.h line 482 function normalizef
+Unwinding loop 3 iteration 13 file verifynn.h line 482 function normalizef
+Unwinding loop 3 iteration 14 file verifynn.h line 482 function normalizef
+Unwinding loop 3 iteration 15 file verifynn.h line 482 function normalizef
+Unwinding loop 3 iteration 16 file verifynn.h line 482 function normalizef
+Unwinding loop 3 iteration 17 file verifynn.h line 482 function normalizef
+Unwinding loop 3 iteration 18 file verifynn.h line 482 function normalizef
+Unwinding loop 3 iteration 19 file verifynn.h line 482 function normalizef
+Unwinding loop 3 iteration 20 file verifynn.h line 482 function normalizef
+Unwinding loop 3 iteration 21 file verifynn.h line 482 function normalizef
+Unwinding loop 3 iteration 22 file verifynn.h line 482 function normalizef
+Unwinding loop 3 iteration 23 file verifynn.h line 482 function normalizef
+Unwinding loop 3 iteration 24 file verifynn.h line 482 function normalizef
+Unwinding loop 3 iteration 25 file verifynn.h line 482 function normalizef
+Unwinding loop 1 iteration 1 file verifynn.h line 450 function isCloseEnough
+Unwinding loop 1 iteration 2 file verifynn.h line 450 function isCloseEnough
+Unwinding loop 1 iteration 3 file verifynn.h line 450 function isCloseEnough
+Unwinding loop 1 iteration 4 file verifynn.h line 450 function isCloseEnough
+Unwinding loop 1 iteration 5 file verifynn.h line 450 function isCloseEnough
+Unwinding loop 1 iteration 6 file verifynn.h line 450 function isCloseEnough
+Unwinding loop 1 iteration 7 file verifynn.h line 450 function isCloseEnough
+Unwinding loop 1 iteration 8 file verifynn.h line 450 function isCloseEnough
+Unwinding loop 1 iteration 9 file verifynn.h line 450 function isCloseEnough
+Unwinding loop 1 iteration 10 file verifynn.h line 450 function isCloseEnough
+Unwinding loop 1 iteration 11 file verifynn.h line 450 function isCloseEnough
+Unwinding loop 1 iteration 12 file verifynn.h line 450 function isCloseEnough
+Unwinding loop 1 iteration 13 file verifynn.h line 450 function isCloseEnough
+Unwinding loop 1 iteration 14 file verifynn.h line 450 function isCloseEnough
+Unwinding loop 1 iteration 15 file verifynn.h line 450 function isCloseEnough
+Unwinding loop 1 iteration 16 file verifynn.h line 450 function isCloseEnough
+Unwinding loop 1 iteration 17 file verifynn.h line 450 function isCloseEnough
+Unwinding loop 1 iteration 18 file verifynn.h line 450 function isCloseEnough
+Unwinding loop 1 iteration 19 file verifynn.h line 450 function isCloseEnough
+Unwinding loop 1 iteration 20 file verifynn.h line 450 function isCloseEnough
+Unwinding loop 1 iteration 21 file verifynn.h line 450 function isCloseEnough
+Unwinding loop 1 iteration 22 file verifynn.h line 450 function isCloseEnough
+Unwinding loop 1 iteration 23 file verifynn.h line 450 function isCloseEnough
+Unwinding loop 1 iteration 24 file verifynn.h line 450 function isCloseEnough
+Unwinding loop 1 iteration 25 file verifynn.h line 450 function isCloseEnough
+Unwinding loop 4 iteration 1 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 4 iteration 2 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 4 iteration 3 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 4 iteration 4 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 4 iteration 5 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 4 iteration 6 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 4 iteration 7 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 4 iteration 8 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 4 iteration 9 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 4 iteration 10 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 4 iteration 11 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 4 iteration 12 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 4 iteration 13 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 4 iteration 14 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 4 iteration 15 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 4 iteration 16 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 4 iteration 17 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 4 iteration 18 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 4 iteration 19 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 4 iteration 20 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 4 iteration 21 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 4 iteration 22 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 4 iteration 23 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 4 iteration 24 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 4 iteration 25 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 5 iteration 1 file verifynn.h line 504 function cublasSgemm
+Unwinding loop 6 iteration 1 file verifynn.h line 503 function cublasSgemm
+Unwinding loop 4 iteration 1 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 4 iteration 2 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 4 iteration 3 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 4 iteration 4 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 4 iteration 5 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 4 iteration 6 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 4 iteration 7 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 4 iteration 8 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 4 iteration 9 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 4 iteration 10 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 4 iteration 11 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 4 iteration 12 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 4 iteration 13 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 4 iteration 14 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 4 iteration 15 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 4 iteration 16 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 4 iteration 17 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 4 iteration 18 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 4 iteration 19 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 4 iteration 20 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 4 iteration 21 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 4 iteration 22 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 4 iteration 23 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 4 iteration 24 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 4 iteration 25 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 5 iteration 1 file verifynn.h line 504 function cublasSgemm
+Unwinding loop 6 iteration 2 file verifynn.h line 503 function cublasSgemm
+Unwinding loop 4 iteration 1 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 4 iteration 2 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 4 iteration 3 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 4 iteration 4 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 4 iteration 5 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 4 iteration 6 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 4 iteration 7 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 4 iteration 8 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 4 iteration 9 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 4 iteration 10 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 4 iteration 11 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 4 iteration 12 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 4 iteration 13 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 4 iteration 14 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 4 iteration 15 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 4 iteration 16 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 4 iteration 17 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 4 iteration 18 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 4 iteration 19 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 4 iteration 20 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 4 iteration 21 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 4 iteration 22 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 4 iteration 23 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 4 iteration 24 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 4 iteration 25 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 5 iteration 1 file verifynn.h line 504 function cublasSgemm
+Unwinding loop 6 iteration 3 file verifynn.h line 503 function cublasSgemm
+Unwinding loop 4 iteration 1 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 4 iteration 2 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 4 iteration 3 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 4 iteration 4 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 4 iteration 5 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 4 iteration 6 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 4 iteration 7 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 4 iteration 8 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 4 iteration 9 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 4 iteration 10 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 4 iteration 11 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 4 iteration 12 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 4 iteration 13 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 4 iteration 14 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 4 iteration 15 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 4 iteration 16 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 4 iteration 17 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 4 iteration 18 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 4 iteration 19 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 4 iteration 20 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 4 iteration 21 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 4 iteration 22 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 4 iteration 23 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 4 iteration 24 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 4 iteration 25 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 5 iteration 1 file verifynn.h line 504 function cublasSgemm
+Unwinding loop 6 iteration 4 file verifynn.h line 503 function cublasSgemm
+Unwinding loop 4 iteration 1 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 4 iteration 2 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 4 iteration 3 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 4 iteration 4 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 4 iteration 5 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 4 iteration 6 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 4 iteration 7 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 4 iteration 8 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 4 iteration 9 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 4 iteration 10 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 4 iteration 11 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 4 iteration 12 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 4 iteration 13 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 4 iteration 14 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 4 iteration 15 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 4 iteration 16 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 4 iteration 17 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 4 iteration 18 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 4 iteration 19 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 4 iteration 20 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 4 iteration 21 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 4 iteration 22 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 4 iteration 23 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 4 iteration 24 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 4 iteration 25 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 5 iteration 1 file verifynn.h line 504 function cublasSgemm
+Unwinding loop 6 iteration 5 file verifynn.h line 503 function cublasSgemm
+Unwinding loop 4 iteration 1 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 5 iteration 1 file verifynn.h line 504 function cublasSgemm
+Unwinding loop 6 iteration 1 file verifynn.h line 503 function cublasSgemm
+Unwinding loop 4 iteration 1 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 5 iteration 1 file verifynn.h line 504 function cublasSgemm
+Unwinding loop 6 iteration 2 file verifynn.h line 503 function cublasSgemm
+Unwinding loop 4 iteration 1 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 5 iteration 1 file verifynn.h line 504 function cublasSgemm
+Unwinding loop 6 iteration 3 file verifynn.h line 503 function cublasSgemm
+Unwinding loop 4 iteration 1 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 5 iteration 1 file verifynn.h line 504 function cublasSgemm
+Unwinding loop 6 iteration 4 file verifynn.h line 503 function cublasSgemm
+Unwinding loop 4 iteration 1 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 5 iteration 1 file verifynn.h line 504 function cublasSgemm
+Unwinding loop 6 iteration 5 file verifynn.h line 503 function cublasSgemm
+Unwinding loop 2 iteration 1 file verifynn.h line 475 function activeSigmoidLUT
+Unwinding loop 2 iteration 2 file verifynn.h line 475 function activeSigmoidLUT
+Unwinding loop 2 iteration 3 file verifynn.h line 475 function activeSigmoidLUT
+Unwinding loop 2 iteration 4 file verifynn.h line 475 function activeSigmoidLUT
+Unwinding loop 2 iteration 5 file verifynn.h line 475 function activeSigmoidLUT
+Unwinding loop 4 iteration 1 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 4 iteration 2 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 4 iteration 3 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 4 iteration 4 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 4 iteration 5 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 5 iteration 1 file verifynn.h line 504 function cublasSgemm
+Unwinding loop 6 iteration 1 file verifynn.h line 503 function cublasSgemm
+Unwinding loop 4 iteration 1 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 4 iteration 2 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 4 iteration 3 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 4 iteration 4 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 4 iteration 5 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 5 iteration 1 file verifynn.h line 504 function cublasSgemm
+Unwinding loop 6 iteration 2 file verifynn.h line 503 function cublasSgemm
+Unwinding loop 4 iteration 1 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 4 iteration 2 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 4 iteration 3 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 4 iteration 4 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 4 iteration 5 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 5 iteration 1 file verifynn.h line 504 function cublasSgemm
+Unwinding loop 6 iteration 3 file verifynn.h line 503 function cublasSgemm
+Unwinding loop 4 iteration 1 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 4 iteration 2 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 4 iteration 3 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 4 iteration 4 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 4 iteration 5 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 5 iteration 1 file verifynn.h line 504 function cublasSgemm
+Unwinding loop 6 iteration 4 file verifynn.h line 503 function cublasSgemm
+Unwinding loop 4 iteration 1 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 5 iteration 1 file verifynn.h line 504 function cublasSgemm
+Unwinding loop 6 iteration 1 file verifynn.h line 503 function cublasSgemm
+Unwinding loop 4 iteration 1 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 5 iteration 1 file verifynn.h line 504 function cublasSgemm
+Unwinding loop 6 iteration 2 file verifynn.h line 503 function cublasSgemm
+Unwinding loop 4 iteration 1 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 5 iteration 1 file verifynn.h line 504 function cublasSgemm
+Unwinding loop 6 iteration 3 file verifynn.h line 503 function cublasSgemm
+Unwinding loop 4 iteration 1 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 5 iteration 1 file verifynn.h line 504 function cublasSgemm
+Unwinding loop 6 iteration 4 file verifynn.h line 503 function cublasSgemm
+Unwinding loop 2 iteration 1 file verifynn.h line 475 function activeSigmoidLUT
+Unwinding loop 2 iteration 2 file verifynn.h line 475 function activeSigmoidLUT
+Unwinding loop 2 iteration 3 file verifynn.h line 475 function activeSigmoidLUT
+Unwinding loop 2 iteration 4 file verifynn.h line 475 function activeSigmoidLUT
+Unwinding loop 4 iteration 1 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 4 iteration 2 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 4 iteration 3 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 4 iteration 4 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 5 iteration 1 file verifynn.h line 504 function cublasSgemm
+Unwinding loop 6 iteration 1 file verifynn.h line 503 function cublasSgemm
+Unwinding loop 4 iteration 1 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 4 iteration 2 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 4 iteration 3 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 4 iteration 4 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 5 iteration 1 file verifynn.h line 504 function cublasSgemm
+Unwinding loop 6 iteration 2 file verifynn.h line 503 function cublasSgemm
+Unwinding loop 4 iteration 1 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 4 iteration 2 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 4 iteration 3 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 4 iteration 4 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 5 iteration 1 file verifynn.h line 504 function cublasSgemm
+Unwinding loop 6 iteration 3 file verifynn.h line 503 function cublasSgemm
+Unwinding loop 4 iteration 1 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 4 iteration 2 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 4 iteration 3 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 4 iteration 4 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 5 iteration 1 file verifynn.h line 504 function cublasSgemm
+Unwinding loop 6 iteration 4 file verifynn.h line 503 function cublasSgemm
+Unwinding loop 4 iteration 1 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 4 iteration 2 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 4 iteration 3 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 4 iteration 4 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 5 iteration 1 file verifynn.h line 504 function cublasSgemm
+Unwinding loop 6 iteration 5 file verifynn.h line 503 function cublasSgemm
+Unwinding loop 4 iteration 1 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 5 iteration 1 file verifynn.h line 504 function cublasSgemm
+Unwinding loop 6 iteration 1 file verifynn.h line 503 function cublasSgemm
+Unwinding loop 4 iteration 1 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 5 iteration 1 file verifynn.h line 504 function cublasSgemm
+Unwinding loop 6 iteration 2 file verifynn.h line 503 function cublasSgemm
+Unwinding loop 4 iteration 1 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 5 iteration 1 file verifynn.h line 504 function cublasSgemm
+Unwinding loop 6 iteration 3 file verifynn.h line 503 function cublasSgemm
+Unwinding loop 4 iteration 1 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 5 iteration 1 file verifynn.h line 504 function cublasSgemm
+Unwinding loop 6 iteration 4 file verifynn.h line 503 function cublasSgemm
+Unwinding loop 4 iteration 1 file verifynn.h line 506 function cublasSgemm
+Unwinding loop 5 iteration 1 file verifynn.h line 504 function cublasSgemm
+Unwinding loop 6 iteration 5 file verifynn.h line 503 function cublasSgemm
+Unwinding loop 2 iteration 1 file verifynn.h line 475 function activeSigmoidLUT
+Unwinding loop 2 iteration 2 file verifynn.h line 475 function activeSigmoidLUT
+Unwinding loop 2 iteration 3 file verifynn.h line 475 function activeSigmoidLUT
+Unwinding loop 2 iteration 4 file verifynn.h line 475 function activeSigmoidLUT
+Unwinding loop 2 iteration 5 file verifynn.h line 475 function activeSigmoidLUT
+Symex completed in: 0.445s (1638 assignments)
+Slicing time: 0.003s (removed 1077 assignments)
+Generated 1835 VCC(s), 29 remaining after simplification (561 assignments)
+Encoding remaining VCC(s) using bit-vector arithmetic
+Encoding to solver time: 0.103s
+Solving with solver Boolector 2.4.1
+Encoding to solver time: 0.103s
+Runtime decision procedure: 13009.067s
+
+VERIFICATION FAILED
+Building error trace
+
+Counterexample:
+
+State 1 file verifynn.c line 37 function main thread 0
+main
+----------------------------------------------------
+  x1 = 185 (00000000000000000000000010111001)
+
+State 3 file verifynn.c line 39 function main thread 0
+main
+----------------------------------------------------
+  x2 = 168 (00000000000000000000000010101000)
+
+State 5 file verifynn.c line 41 function main thread 0
+main
+----------------------------------------------------
+  x3 = 223 (00000000000000000000000011011111)
+
+State 7 file verifynn.c line 43 function main thread 0
+main
+----------------------------------------------------
+  x4 = 38 (00000000000000000000000000100110)
+
+State 9 file verifynn.c line 45 function main thread 0
+main
+----------------------------------------------------
+  x5 = 1 (00000000000000000000000000000001)
+
+State 11 file verifynn.c line 47 function main thread 0
+main
+----------------------------------------------------
+  x6 = 22 (00000000000000000000000000010110)
+
+State 13 file verifynn.c line 49 function main thread 0
+main
+----------------------------------------------------
+  x7 = 204 (00000000000000000000000011001100)
+
+State 15 file verifynn.c line 51 function main thread 0
+main
+----------------------------------------------------
+  x8 = 191 (00000000000000000000000010111111)
+
+State 17 file verifynn.c line 53 function main thread 0
+main
+----------------------------------------------------
+  x9 = 40 (00000000000000000000000000101000)
+
+State 19 file verifynn.c line 55 function main thread 0
+main
+----------------------------------------------------
+  x10 = 227 (00000000000000000000000011100011)
+
+State 21 file verifynn.c line 57 function main thread 0
+main
+----------------------------------------------------
+  x11 = 246 (00000000000000000000000011110110)
+
+State 23 file verifynn.c line 59 function main thread 0
+main
+----------------------------------------------------
+  x12 = 8 (00000000000000000000000000001000)
+
+State 25 file verifynn.c line 61 function main thread 0
+main
+----------------------------------------------------
+  x13 = 5 (00000000000000000000000000000101)
+
+State 27 file verifynn.c line 63 function main thread 0
+main
+----------------------------------------------------
+  x14 = 1 (00000000000000000000000000000001)
+
+State 29 file verifynn.c line 65 function main thread 0
+main
+----------------------------------------------------
+  x15 = 255 (00000000000000000000000011111111)
+
+State 31 file verifynn.c line 67 function main thread 0
+main
+----------------------------------------------------
+  x16 = 248 (00000000000000000000000011111000)
+
+State 33 file verifynn.c line 69 function main thread 0
+main
+----------------------------------------------------
+  x17 = 2 (00000000000000000000000000000010)
+
+State 35 file verifynn.c line 71 function main thread 0
+main
+----------------------------------------------------
+  x18 = 0 (00000000000000000000000000000000)
+
+State 37 file verifynn.c line 73 function main thread 0
+main
+----------------------------------------------------
+  x19 = 0 (00000000000000000000000000000000)
+
+State 39 file verifynn.c line 75 function main thread 0
+main
+----------------------------------------------------
+  x20 = 254 (00000000000000000000000011111110)
+
+State 41 file verifynn.c line 77 function main thread 0
+main
+----------------------------------------------------
+  x21 = 255 (00000000000000000000000011111111)
+
+State 43 file verifynn.c line 79 function main thread 0
+main
+----------------------------------------------------
+  x22 = 255 (00000000000000000000000011111111)
+
+State 45 file verifynn.c line 81 function main thread 0
+main
+----------------------------------------------------
+  x23 = 252 (00000000000000000000000011111100)
+
+State 47 file verifynn.c line 83 function main thread 0
+main
+----------------------------------------------------
+  x24 = 253 (00000000000000000000000011111101)
+
+State 49 file verifynn.c line 85 function main thread 0
+main
+----------------------------------------------------
+  x25 = 254 (00000000000000000000000011111110)
+
+State 51 file verifynn.c line 89 function main thread 0
+main
+----------------------------------------------------
+  img2[0] = 185f (00000000101110010000000000000000)
+
+State 52 file verifynn.c line 90 function main thread 0
+main
+----------------------------------------------------
+  img2[1] = 168f (00000000101010000000000000000000)
+
+State 53 file verifynn.c line 91 function main thread 0
+main
+----------------------------------------------------
+  img2[2] = 223f (00000000110111110000000000000000)
+
+State 54 file verifynn.c line 92 function main thread 0
+main
+----------------------------------------------------
+  img2[3] = 38f (00000000001001100000000000000000)
+
+State 55 file verifynn.c line 93 function main thread 0
+main
+----------------------------------------------------
+  img2[4] = 1f (00000000000000010000000000000000)
+
+State 56 file verifynn.c line 94 function main thread 0
+main
+----------------------------------------------------
+  img2[5] = 22f (00000000000101100000000000000000)
+
+State 57 file verifynn.c line 95 function main thread 0
+main
+----------------------------------------------------
+  img2[6] = 204f (00000000110011000000000000000000)
+
+State 58 file verifynn.c line 96 function main thread 0
+main
+----------------------------------------------------
+  img2[7] = 191f (00000000101111110000000000000000)
+
+State 59 file verifynn.c line 97 function main thread 0
+main
+----------------------------------------------------
+  img2[8] = 40f (00000000001010000000000000000000)
+
+State 60 file verifynn.c line 98 function main thread 0
+main
+----------------------------------------------------
+  img2[9] = 227f (00000000111000110000000000000000)
+
+State 61 file verifynn.c line 99 function main thread 0
+main
+----------------------------------------------------
+  img2[10] = 246f (00000000111101100000000000000000)
+
+State 62 file verifynn.c line 100 function main thread 0
+main
+----------------------------------------------------
+  img2[11] = 8f (00000000000010000000000000000000)
+
+State 63 file verifynn.c line 101 function main thread 0
+main
+----------------------------------------------------
+  img2[12] = 5f (00000000000001010000000000000000)
+
+State 64 file verifynn.c line 102 function main thread 0
+main
+----------------------------------------------------
+  img2[13] = 1f (00000000000000010000000000000000)
+
+State 65 file verifynn.c line 103 function main thread 0
+main
+----------------------------------------------------
+  img2[14] = 255f (00000000111111110000000000000000)
+
+State 66 file verifynn.c line 104 function main thread 0
+main
+----------------------------------------------------
+  img2[15] = 248f (00000000111110000000000000000000)
+
+State 67 file verifynn.c line 105 function main thread 0
+main
+----------------------------------------------------
+  img2[16] = 2f (00000000000000100000000000000000)
+
+State 68 file verifynn.c line 106 function main thread 0
+main
+----------------------------------------------------
+  img2[17] = 0f (00000000000000000000000000000000)
+
+State 69 file verifynn.c line 107 function main thread 0
+main
+----------------------------------------------------
+  img2[18] = 0f (00000000000000000000000000000000)
+
+State 70 file verifynn.c line 108 function main thread 0
+main
+----------------------------------------------------
+  img2[19] = 254f (00000000111111100000000000000000)
+
+State 71 file verifynn.c line 109 function main thread 0
+main
+----------------------------------------------------
+  img2[20] = 255f (00000000111111110000000000000000)
+
+State 72 file verifynn.c line 110 function main thread 0
+main
+----------------------------------------------------
+  img2[21] = 255f (00000000111111110000000000000000)
+
+State 73 file verifynn.c line 111 function main thread 0
+main
+----------------------------------------------------
+  img2[22] = 252f (00000000111111000000000000000000)
+
+State 74 file verifynn.c line 112 function main thread 0
+main
+----------------------------------------------------
+  img2[23] = 253f (00000000111111010000000000000000)
+
+State 75 file verifynn.c line 113 function main thread 0
+main
+----------------------------------------------------
+  img2[24] = 254f (00000000111111100000000000000000)
+
+State 76 file verifynn.h line 483 function normalizef thread 0
+normalizef at verifynn.c line 120
+main
+----------------------------------------------------
+  *(image + i) = 0.7254791259765625f (00000000000000001011100110111001)
+
+State 77 file verifynn.h line 483 function normalizef thread 0
+normalizef at verifynn.c line 120
+main
+----------------------------------------------------
+  *(image + i) = 0.6588134765625f (00000000000000001010100010101000)
+
+State 78 file verifynn.h line 483 function normalizef thread 0
+normalizef at verifynn.c line 120
+main
+----------------------------------------------------
+  *(image + i) = 0.8744964599609375f (00000000000000001101111111011111)
+
+State 79 file verifynn.h line 483 function normalizef thread 0
+normalizef at verifynn.c line 120
+main
+----------------------------------------------------
+  *(image + i) = 0.149017333984375f (00000000000000000010011000100110)
+
+State 80 file verifynn.h line 483 function normalizef thread 0
+normalizef at verifynn.c line 120
+main
+----------------------------------------------------
+  *(image + i) = 0.0039215087890625f (00000000000000000000000100000001)
+
+State 81 file verifynn.h line 483 function normalizef thread 0
+normalizef at verifynn.c line 120
+main
+----------------------------------------------------
+  *(image + i) = 0.086273193359375f (00000000000000000001011000010110)
+
+State 82 file verifynn.h line 483 function normalizef thread 0
+normalizef at verifynn.c line 120
+main
+----------------------------------------------------
+  *(image + i) = 0.79998779296875f (00000000000000001100110011001100)
+
+State 83 file verifynn.h line 483 function normalizef thread 0
+normalizef at verifynn.c line 120
+main
+----------------------------------------------------
+  *(image + i) = 0.7490081787109375f (00000000000000001011111110111111)
+
+State 84 file verifynn.h line 483 function normalizef thread 0
+normalizef at verifynn.c line 120
+main
+----------------------------------------------------
+  *(image + i) = 0.1568603515625f (00000000000000000010100000101000)
+
+State 85 file verifynn.h line 483 function normalizef thread 0
+normalizef at verifynn.c line 120
+main
+----------------------------------------------------
+  *(image + i) = 0.8901824951171875f (00000000000000001110001111100011)
+
+State 86 file verifynn.h line 483 function normalizef thread 0
+normalizef at verifynn.c line 120
+main
+----------------------------------------------------
+  *(image + i) = 0.964691162109375f (00000000000000001111011011110110)
+
+State 87 file verifynn.h line 483 function normalizef thread 0
+normalizef at verifynn.c line 120
+main
+----------------------------------------------------
+  *(image + i) = 0.0313720703125f (00000000000000000000100000001000)
+
+State 88 file verifynn.h line 483 function normalizef thread 0
+normalizef at verifynn.c line 120
+main
+----------------------------------------------------
+  *(image + i) = 0.0196075439453125f (00000000000000000000010100000101)
+
+State 89 file verifynn.h line 483 function normalizef thread 0
+normalizef at verifynn.c line 120
+main
+----------------------------------------------------
+  *(image + i) = 0.0039215087890625f (00000000000000000000000100000001)
+
+State 90 file verifynn.h line 483 function normalizef thread 0
+normalizef at verifynn.c line 120
+main
+----------------------------------------------------
+  *(image + i) = 1f (00000000000000010000000000000000)
+
+State 91 file verifynn.h line 483 function normalizef thread 0
+normalizef at verifynn.c line 120
+main
+----------------------------------------------------
+  *(image + i) = 0.9725341796875f (00000000000000001111100011111000)
+
+State 92 file verifynn.h line 483 function normalizef thread 0
+normalizef at verifynn.c line 120
+main
+----------------------------------------------------
+  *(image + i) = 0.007843017578125f (00000000000000000000001000000010)
+
+State 93 file verifynn.h line 483 function normalizef thread 0
+normalizef at verifynn.c line 120
+main
+----------------------------------------------------
+  *(image + i) = 0f (00000000000000000000000000000000)
+
+State 94 file verifynn.h line 483 function normalizef thread 0
+normalizef at verifynn.c line 120
+main
+----------------------------------------------------
+  *(image + i) = 0f (00000000000000000000000000000000)
+
+State 95 file verifynn.h line 483 function normalizef thread 0
+normalizef at verifynn.c line 120
+main
+----------------------------------------------------
+  *(image + i) = 0.996063232421875f (00000000000000001111111011111110)
+
+State 96 file verifynn.h line 483 function normalizef thread 0
+normalizef at verifynn.c line 120
+main
+----------------------------------------------------
+  *(image + i) = 1f (00000000000000010000000000000000)
+
+State 97 file verifynn.h line 483 function normalizef thread 0
+normalizef at verifynn.c line 120
+main
+----------------------------------------------------
+  *(image + i) = 1f (00000000000000010000000000000000)
+
+State 98 file verifynn.h line 483 function normalizef thread 0
+normalizef at verifynn.c line 120
+main
+----------------------------------------------------
+  *(image + i) = 0.98822021484375f (00000000000000001111110011111100)
+
+State 99 file verifynn.h line 483 function normalizef thread 0
+normalizef at verifynn.c line 120
+main
+----------------------------------------------------
+  *(image + i) = 0.9921417236328125f (00000000000000001111110111111101)
+
+State 100 file verifynn.h line 483 function normalizef thread 0
+normalizef at verifynn.c line 120
+main
+----------------------------------------------------
+  *(image + i) = 0.996063232421875f (00000000000000001111111011111110)
+
+State 101 file verifynn.h line 451 function isCloseEnough thread 0
+isCloseEnough at verifynn.c line 122
+main
+----------------------------------------------------
+  normDistance = 0.0753631591796875f (00000000000000000001001101001011)
+
+State 102 file verifynn.h line 451 function isCloseEnough thread 0
+isCloseEnough at verifynn.c line 122
+main
+----------------------------------------------------
+  normDistance = 0.1917572021484375f (00000000000000000011000100010111)
+
+State 103 file verifynn.h line 451 function isCloseEnough thread 0
+isCloseEnough at verifynn.c line 122
+main
+----------------------------------------------------
+  normDistance = 0.207489013671875f (00000000000000000011010100011110)
+
+State 104 file verifynn.h line 451 function isCloseEnough thread 0
+isCloseEnough at verifynn.c line 122
+main
+----------------------------------------------------
+  normDistance = 0.9316558837890625f (00000000000000001110111010000001)
+
+State 105 file verifynn.h line 451 function isCloseEnough thread 0
+isCloseEnough at verifynn.c line 122
+main
+----------------------------------------------------
+  normDistance = 1.923828125f (00000000000000011110110010000000)
+
+State 106 file verifynn.h line 451 function isCloseEnough thread 0
+isCloseEnough at verifynn.c line 122
+main
+----------------------------------------------------
+  normDistance = 2.75872802734375f (00000000000000101100001000111100)
+
+State 107 file verifynn.h line 451 function isCloseEnough thread 0
+isCloseEnough at verifynn.c line 122
+main
+----------------------------------------------------
+  normDistance = 3.3986968994140625f (00000000000000110110011000010001)
+
+State 108 file verifynn.h line 451 function isCloseEnough thread 0
+isCloseEnough at verifynn.c line 122
+main
+----------------------------------------------------
+  normDistance = 3.9597015380859375f (00000000000000111111010110101111)
+
+State 109 file verifynn.h line 451 function isCloseEnough thread 0
+isCloseEnough at verifynn.c line 122
+main
+----------------------------------------------------
+  normDistance = 3.9842987060546875f (00000000000000111111101111111011)
+
+State 110 file verifynn.h line 451 function isCloseEnough thread 0
+isCloseEnough at verifynn.c line 122
+main
+----------------------------------------------------
+  normDistance = 3.996337890625f (00000000000000111111111100010000)
+
+State 111 file verifynn.h line 451 function isCloseEnough thread 0
+isCloseEnough at verifynn.c line 122
+main
+----------------------------------------------------
+  normDistance = 3.997589111328125f (00000000000000111111111101100010)
+
+State 112 file verifynn.h line 451 function isCloseEnough thread 0
+isCloseEnough at verifynn.c line 122
+main
+----------------------------------------------------
+  normDistance = 3.998565673828125f (00000000000000111111111110100010)
+
+State 113 file verifynn.h line 451 function isCloseEnough thread 0
+isCloseEnough at verifynn.c line 122
+main
+----------------------------------------------------
+  normDistance = 3.998931884765625f (00000000000000111111111110111010)
+
+State 114 file verifynn.h line 451 function isCloseEnough thread 0
+isCloseEnough at verifynn.c line 122
+main
+----------------------------------------------------
+  normDistance = 3.9989471435546875f (00000000000000111111111110111011)
+
+State 115 file verifynn.h line 451 function isCloseEnough thread 0
+isCloseEnough at verifynn.c line 122
+main
+----------------------------------------------------
+  normDistance = 3.9989471435546875f (00000000000000111111111110111011)
+
+State 116 file verifynn.h line 451 function isCloseEnough thread 0
+isCloseEnough at verifynn.c line 122
+main
+----------------------------------------------------
+  normDistance = 3.99969482421875f (00000000000000111111111111101100)
+
+State 117 file verifynn.h line 451 function isCloseEnough thread 0
+isCloseEnough at verifynn.c line 122
+main
+----------------------------------------------------
+  normDistance = 3.999755859375f (00000000000000111111111111110000)
+
+State 118 file verifynn.h line 451 function isCloseEnough thread 0
+isCloseEnough at verifynn.c line 122
+main
+----------------------------------------------------
+  normDistance = 3.999755859375f (00000000000000111111111111110000)
+
+State 119 file verifynn.h line 451 function isCloseEnough thread 0
+isCloseEnough at verifynn.c line 122
+main
+----------------------------------------------------
+  normDistance = 3.999755859375f (00000000000000111111111111110000)
+
+State 120 file verifynn.h line 451 function isCloseEnough thread 0
+isCloseEnough at verifynn.c line 122
+main
+----------------------------------------------------
+  normDistance = 3.9997711181640625f (00000000000000111111111111110001)
+
+State 121 file verifynn.h line 451 function isCloseEnough thread 0
+isCloseEnough at verifynn.c line 122
+main
+----------------------------------------------------
+  normDistance = 3.9997711181640625f (00000000000000111111111111110001)
+
+State 122 file verifynn.h line 451 function isCloseEnough thread 0
+isCloseEnough at verifynn.c line 122
+main
+----------------------------------------------------
+  normDistance = 3.9997711181640625f (00000000000000111111111111110001)
+
+State 123 file verifynn.h line 451 function isCloseEnough thread 0
+isCloseEnough at verifynn.c line 122
+main
+----------------------------------------------------
+  normDistance = 3.999908447265625f (00000000000000111111111111111010)
+
+State 124 file verifynn.h line 451 function isCloseEnough thread 0
+isCloseEnough at verifynn.c line 122
+main
+----------------------------------------------------
+  normDistance = 3.999969482421875f (00000000000000111111111111111110)
+
+State 125 file verifynn.h line 451 function isCloseEnough thread 0
+isCloseEnough at verifynn.c line 122
+main
+----------------------------------------------------
+  normDistance = 3.9999847412109375f (00000000000000111111111111111111)
+
+State 126 file verifynn.h line 438 function sqrtt thread 0
+sqrtt at verifynn.h line 454
+isCloseEnough at verifynn.c line 122
+main
+----------------------------------------------------
+  { *((unsigned char [4] *)(&u)) } = byte_extract_little_endian((BITCAST:unsigned int)3.9999847412109375f, 0)
+
+State 127 file verifynn.h line 438 function sqrtt thread 0
+sqrtt at verifynn.h line 454
+isCloseEnough at verifynn.c line 122
+main
+----------------------------------------------------
+  { *((unsigned char [4] *)(&u)) } = byte_extract_little_endian((BITCAST:unsigned int)3.9999847412109375f, 1)
+
+State 128 file verifynn.h line 438 function sqrtt thread 0
+sqrtt at verifynn.h line 454
+isCloseEnough at verifynn.c line 122
+main
+----------------------------------------------------
+  { *((unsigned char [4] *)(&u)) } = byte_extract_little_endian((BITCAST:unsigned int)3.9999847412109375f, 2)
+
+State 129 file verifynn.h line 438 function sqrtt thread 0
+sqrtt at verifynn.h line 454
+isCloseEnough at verifynn.c line 122
+main
+----------------------------------------------------
+  { *((unsigned char [4] *)(&u)) } = byte_extract_little_endian((BITCAST:unsigned int)3.9999847412109375f, 3)
+
+State 130 file verifynn.h line 439 function sqrtt thread 0
+sqrtt at verifynn.h line 454
+isCloseEnough at verifynn.c line 122
+main
+----------------------------------------------------
+  { *((unsigned char [4] *)(&u)) } = byte_extract_little_endian((BITCAST:unsigned int)((536870912 + ((BITCAST:signed int)3 >> 1)) - 4194304), 0)
+
+State 131 file verifynn.h line 439 function sqrtt thread 0
+sqrtt at verifynn.h line 454
+isCloseEnough at verifynn.c line 122
+main
+----------------------------------------------------
+  { *((unsigned char [4] *)(&u)) } = byte_extract_little_endian((BITCAST:unsigned int)((536870912 + ((BITCAST:signed int)3 >> 1)) - 4194304), 1)
+
+State 132 file verifynn.h line 439 function sqrtt thread 0
+sqrtt at verifynn.h line 454
+isCloseEnough at verifynn.c line 122
+main
+----------------------------------------------------
+  { *((unsigned char [4] *)(&u)) } = byte_extract_little_endian((BITCAST:unsigned int)((536870912 + ((BITCAST:signed int)3 >> 1)) - 4194304), 2)
+
+State 133 file verifynn.h line 439 function sqrtt thread 0
+sqrtt at verifynn.h line 454
+isCloseEnough at verifynn.c line 122
+main
+----------------------------------------------------
+  { *((unsigned char [4] *)(&u)) } = byte_extract_little_endian((BITCAST:unsigned int)((536870912 + ((BITCAST:signed int)3 >> 1)) - 4194304), 3)
+
+State 134 file verifynn.h line 441 function sqrtt thread 0
+sqrtt at verifynn.h line 454
+isCloseEnough at verifynn.c line 122
+main
+----------------------------------------------------
+  { *((unsigned char [4] *)(&u)) } = byte_extract_little_endian((BITCAST:unsigned int)((BITCAST:float)532676609 + 3.9999847412109375f / (BITCAST:float)532676609), 0)
+
+State 135 file verifynn.h line 441 function sqrtt thread 0
+sqrtt at verifynn.h line 454
+isCloseEnough at verifynn.c line 122
+main
+----------------------------------------------------
+  { *((unsigned char [4] *)(&u)) } = byte_extract_little_endian((BITCAST:unsigned int)((BITCAST:float)532676609 + 3.9999847412109375f / (BITCAST:float)532676609), 1)
+
+State 136 file verifynn.h line 441 function sqrtt thread 0
+sqrtt at verifynn.h line 454
+isCloseEnough at verifynn.c line 122
+main
+----------------------------------------------------
+  { *((unsigned char [4] *)(&u)) } = byte_extract_little_endian((BITCAST:unsigned int)((BITCAST:float)532676609 + 3.9999847412109375f / (BITCAST:float)532676609), 2)
+
+State 137 file verifynn.h line 441 function sqrtt thread 0
+sqrtt at verifynn.h line 454
+isCloseEnough at verifynn.c line 122
+main
+----------------------------------------------------
+  { *((unsigned char [4] *)(&u)) } = byte_extract_little_endian((BITCAST:unsigned int)((BITCAST:float)532676609 + 3.9999847412109375f / (BITCAST:float)532676609), 3)
+
+State 138 file verifynn.h line 442 function sqrtt thread 0
+sqrtt at verifynn.h line 454
+isCloseEnough at verifynn.c line 122
+main
+----------------------------------------------------
+  { *((unsigned char [4] *)(&u)) } = byte_extract_little_endian((BITCAST:unsigned int)(0.25f * (BITCAST:float)4 + 3.9999847412109375f / (BITCAST:float)4), 0)
+
+State 139 file verifynn.h line 442 function sqrtt thread 0
+sqrtt at verifynn.h line 454
+isCloseEnough at verifynn.c line 122
+main
+----------------------------------------------------
+  { *((unsigned char [4] *)(&u)) } = byte_extract_little_endian((BITCAST:unsigned int)(0.25f * (BITCAST:float)4 + 3.9999847412109375f / (BITCAST:float)4), 1)
+
+State 140 file verifynn.h line 442 function sqrtt thread 0
+sqrtt at verifynn.h line 454
+isCloseEnough at verifynn.c line 122
+main
+----------------------------------------------------
+  { *((unsigned char [4] *)(&u)) } = byte_extract_little_endian((BITCAST:unsigned int)(0.25f * (BITCAST:float)4 + 3.9999847412109375f / (BITCAST:float)4), 2)
+
+State 141 file verifynn.h line 442 function sqrtt thread 0
+sqrtt at verifynn.h line 454
+isCloseEnough at verifynn.c line 122
+main
+----------------------------------------------------
+  { *((unsigned char [4] *)(&u)) } = byte_extract_little_endian((BITCAST:unsigned int)(0.25f * (BITCAST:float)4 + 3.9999847412109375f / (BITCAST:float)4), 3)
+
+State 142 file verifynn.h line 444 function sqrtt thread 0
+sqrtt at verifynn.h line 454
+isCloseEnough at verifynn.c line 122
+main
+----------------------------------------------------
+  normDistance = (BITCAST:float)1
+
+State 144 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 618
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = 0.15087890625f (00000000000000000010011010100000)
+
+State 145 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 618
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = 0.179962158203125f (00000000000000000010111000010010)
+
+State 146 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 618
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = -3.5213165283203125f (11111111111111000111101010001011)
+
+State 147 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 618
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = -3.410308837890625f (11111111111111001001011011110110)
+
+State 148 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 618
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = -3.4155731201171875f (11111111111111001001010110011101)
+
+State 149 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 618
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = -3.543792724609375f (11111111111111000111010011001010)
+
+State 150 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 618
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = -5.039398193359375f (11111111111110101111010111101010)
+
+State 151 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 618
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = -6.15283203125f (11111111111110011101100011100000)
+
+State 152 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 618
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = -6.250823974609375f (11111111111110011011111111001010)
+
+State 153 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 618
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = -5.17340087890625f (11111111111110101101001110011100)
+
+State 154 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 618
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = -9.1005401611328125f (11111111111101101110011001000011)
+
+State 155 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 618
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = -9.119384765625f (11111111111101101110000101110000)
+
+State 156 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 618
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = -9.2296600341796875f (11111111111101101100010100110101)
+
+State 157 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 618
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = -9.244598388671875f (11111111111101101100000101100010)
+
+State 158 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 618
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = -7.881622314453125f (11111111111110000001111001001110)
+
+State 159 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 618
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = -6.58355712890625f (11111111111110010110101010011100)
+
+State 160 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 618
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = -6.6015777587890625f (11111111111110010110010111111111)
+
+State 161 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 618
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = -6.601593017578125f (11111111111110010110010111111110)
+
+State 162 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 618
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = -6.601593017578125f (11111111111110010110010111111110)
+
+State 163 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 618
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = -6.5238800048828125f (11111111111110010111100111100011)
+
+State 164 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 618
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = -1.9363555908203125f (11111111111111100001000001001011)
+
+State 165 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 618
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = -2.142547607421875f (11111111111111011101101110000010)
+
+State 166 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 618
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = -1.17608642578125f (11111111111111101101001011101100)
+
+State 167 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 618
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = 0.1002655029296875f (00000000000000000001100110101011)
+
+State 168 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 618
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = 0.8696441650390625f (00000000000000001101111010100001)
+
+State 169 file verifynn.h line 510 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 618
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  *(C + contadorY + contadorZ * ldc) = { result@4!0&0#28, 0f, 0f, 0f, 0f }
+
+State 170 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 618
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = -1.078125f (11111111111111101110110000000000)
+
+State 171 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 618
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = -2.309783935546875f (11111111111111011011000010110010)
+
+State 172 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 618
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = -3.6097564697265625f (11111111111111000110001111100111)
+
+State 173 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 618
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = -3.702850341796875f (11111111111111000100110000010010)
+
+State 174 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 618
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = -3.6981201171875f (11111111111111000100110101001000)
+
+State 175 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 618
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = -4.0493316650390625f (11111111111110111111001101011111)
+
+State 176 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 618
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = -4.529815673828125f (11111111111110110111100001011110)
+
+State 177 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 618
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = -8.7421722412109375f (11111111111101110100001000000001)
+
+State 178 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 618
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = -9.3394775390625f (11111111111101101010100100011000)
+
+State 179 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 618
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = -8.1261749267578125f (11111111111101111101111110110011)
+
+State 180 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 618
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = -6.8386077880859375f (11111111111110010010100101010001)
+
+State 181 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 618
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = -6.9106292724609375f (11111111111110010001011011100001)
+
+State 182 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 618
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = -6.84234619140625f (11111111111110010010100001011100)
+
+State 183 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 618
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = -6.85980224609375f (11111111111110010010001111100100)
+
+State 184 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 618
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = -6.7817840576171875f (11111111111110010011011111011101)
+
+State 185 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 618
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = -2.32025146484375f (11111111111111011010111000000100)
+
+State 186 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 618
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = -2.321868896484375f (11111111111111011010110110011010)
+
+State 187 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 618
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = -2.321868896484375f (11111111111111011010110110011010)
+
+State 188 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 618
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = -2.321868896484375f (11111111111111011010110110011010)
+
+State 189 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 618
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = -1.552490234375f (11111111111111100111001010010000)
+
+State 190 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 618
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = -1.6480255126953125f (11111111111111100101101000011011)
+
+State 191 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 618
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = -1.88507080078125f (11111111111111100001110101101100)
+
+State 192 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 618
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = 0.087890625f (00000000000000000001011010000000)
+
+State 193 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 618
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = 2.4589385986328125f (00000000000000100111010101111101)
+
+State 194 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 618
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = 2.3766632080078125f (00000000000000100110000001101101)
+
+State 195 file verifynn.h line 510 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 618
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  *(C + contadorY + contadorZ * ldc) = 2.3766632080078125f (00000000000000100110000001101101)
+
+State 196 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 618
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = -2.953338623046875f (11111111111111010000101111110010)
+
+State 197 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 618
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = -3.349029541015625f (11111111111111001010011010100110)
+
+State 198 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 618
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = -8.267120361328125f (11111111111101111011101110011110)
+
+State 199 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 618
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = -8.834564208984375f (11111111111101110010101001011010)
+
+State 200 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 618
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = -8.8292236328125f (11111111111101110010101110111000)
+
+State 201 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 618
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = -8.714080810546875f (11111111111101110100100100110010)
+
+State 202 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 618
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = -10.5506439208984375f (11111111111101010111001100001001)
+
+State 203 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 618
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = -7.94171142578125f (11111111111110000000111011101100)
+
+State 204 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 618
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = -8.639129638671875f (11111111111101110101110001100010)
+
+State 205 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 618
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = -8.5696868896484375f (11111111111101110110111000101001)
+
+State 206 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 618
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = -4.1441497802734375f (11111111111110111101101100011001)
+
+State 207 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 618
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = -4.1506195068359375f (11111111111110111101100101110001)
+
+State 208 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 618
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = -4.131439208984375f (11111111111110111101111001011010)
+
+State 209 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 618
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = -4.12640380859375f (11111111111110111101111110100100)
+
+State 210 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 618
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = -3.35400390625f (11111111111111001010010101100000)
+
+State 211 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 618
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = -3.4468994140625f (11111111111111001000110110011000)
+
+State 212 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 618
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = -3.4487762451171875f (11111111111111001000110100011101)
+
+State 213 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 618
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = -3.4487762451171875f (11111111111111001000110100011101)
+
+State 214 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 618
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = -3.4487762451171875f (11111111111111001000110100011101)
+
+State 215 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 618
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = -3.5310516357421875f (11111111111111000111100000001101)
+
+State 216 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 618
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = -1.495086669921875f (11111111111111101000000101000010)
+
+State 217 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 618
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = -3.13116455078125f (11111111111111001101111001101100)
+
+State 218 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 618
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = -5.8929595947265625f (11111111111110100001101101100111)
+
+State 219 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 618
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = -7.145172119140625f (11111111111110001101101011010110)
+
+State 220 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 618
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = -0.7341156005859375f (11111111111111110100010000010001)
+
+State 221 file verifynn.h line 510 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 618
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  *(C + contadorY + contadorZ * ldc) = -0.7341156005859375f (11111111111111110100010000010001)
+
+State 222 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 618
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = 0.9683074951171875f (00000000000000001111011111100011)
+
+State 223 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 618
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = -0.544158935546875f (11111111111111110111010010110010)
+
+State 224 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 618
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = 2.5018768310546875f (00000000000000101000000001111011)
+
+State 225 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 618
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = 1.839324951171875f (00000000000000011101011011011110)
+
+State 226 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 618
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = 1.839630126953125f (00000000000000011101011011110010)
+
+State 227 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 618
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = 2.23541259765625f (00000000000000100011110001000100)
+
+State 228 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 618
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = 2.0704498291015625f (00000000000000100001001000001001)
+
+State 229 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 618
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = 2.802947998046875f (00000000000000101100110110001110)
+
+State 230 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 618
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = 3.0047454833984375f (00000000000000110000000100110111)
+
+State 231 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 618
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = 3.6923370361328125f (00000000000000111011000100111101)
+
+State 232 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 618
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = 3.6001739501953125f (00000000000000111001100110100101)
+
+State 233 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 618
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = 3.592742919921875f (00000000000000111001011110111110)
+
+State 234 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 618
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = 3.631866455078125f (00000000000000111010000111000010)
+
+State 235 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 618
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = 3.6412353515625f (00000000000000111010010000101000)
+
+State 236 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 618
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = 3.5586395263671875f (00000000000000111000111100000011)
+
+State 237 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 618
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = 5.5386810302734375f (00000000000001011000100111100111)
+
+State 238 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 618
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = 5.525848388671875f (00000000000001011000011010011110)
+
+State 239 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 618
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = 5.525848388671875f (00000000000001011000011010011110)
+
+State 240 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 618
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = 5.525848388671875f (00000000000001011000011010011110)
+
+State 241 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 618
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = 11.936920166015625f (00000000000010111110111111011010)
+
+State 242 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 618
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = 11.01458740234375f (00000000000010110000001110111100)
+
+State 243 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 618
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = 8.65625f (00000000000010001010100000000000)
+
+State 244 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 618
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = 8.5158538818359375f (00000000000010001000010000001111)
+
+State 245 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 618
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = 3.6628265380859375f (00000000000000111010100110101111)
+
+State 246 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 618
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = 0.92462158203125f (00000000000000001110110010110100)
+
+State 247 file verifynn.h line 510 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 618
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  *(C + contadorY + contadorZ * ldc) = 0.92462158203125f (00000000000000001110110010110100)
+
+State 248 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 618
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = 3.3281707763671875f (00000000000000110101010000000011)
+
+State 249 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 618
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = 3.1923065185546875f (00000000000000110011000100111011)
+
+State 250 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 618
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = 4.04754638671875f (00000000000001000000110000101100)
+
+State 251 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 618
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = 4.2392578125f (00000000000001000011110101000000)
+
+State 252 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 618
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = 4.242279052734375f (00000000000001000011111000000110)
+
+State 253 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 618
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = 4.2340240478515625f (00000000000001000011101111101001)
+
+State 254 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 618
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = 4.04437255859375f (00000000000001000000101101011100)
+
+State 255 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 618
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = 5.5397491455078125f (00000000000001011000101000101101)
+
+State 256 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 618
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = 5.91461181640625f (00000000000001011110101000100100)
+
+State 257 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 618
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = 5.841064453125f (00000000000001011101011101010000)
+
+State 258 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 618
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = 7.805145263671875f (00000000000001111100111000011110)
+
+State 259 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 618
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = 7.7537994384765625f (00000000000001111100000011111001)
+
+State 260 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 618
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = 7.699005126953125f (00000000000001111011001011110010)
+
+State 261 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 618
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = 7.6940460205078125f (00000000000001111011000110101101)
+
+State 262 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 618
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = 14.1304473876953125f (00000000000011100010000101100101)
+
+State 263 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 618
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = 13.2334442138671875f (00000000000011010011101111000011)
+
+State 264 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 618
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = 13.2149505615234375f (00000000000011010011011100000111)
+
+State 265 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 618
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = 13.214935302734375f (00000000000011010011011100000110)
+
+State 266 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 618
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = 13.214935302734375f (00000000000011010011011100000110)
+
+State 267 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 618
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = 10.4767303466796875f (00000000000010100111101000001011)
+
+State 268 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 618
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = 10.5194244384765625f (00000000000010101000010011111001)
+
+State 269 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 618
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = 10.975006103515625f (00000000000010101111100110011010)
+
+State 270 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 618
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = 11.0824127197265625f (00000000000010110001010100011001)
+
+State 271 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 618
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = 11.8009033203125f (00000000000010111100110100001000)
+
+State 272 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 618
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = 12.4774627685546875f (00000000000011000111101000111011)
+
+State 273 file verifynn.h line 510 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 618
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  *(C + contadorY + contadorZ * ldc) = 12.477447509765625f (00000000000011000111101000111010)
+
+State 274 file verifynn.h line 510 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 627
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  *(C + contadorY + contadorZ * ldc) = 0.77410888671875f (00000000000000001100011000101100)
+
+State 275 file verifynn.h line 510 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 627
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  *(C + contadorY + contadorZ * ldc) = 4.412628173828125f (00000000000001000110100110100010)
+
+State 276 file verifynn.h line 510 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 627
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  *(C + contadorY + contadorZ * ldc) = -1.6564483642578125f (11111111111111100101011111110011)
+
+State 277 file verifynn.h line 510 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 627
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  *(C + contadorY + contadorZ * ldc) = 0.967315673828125f (00000000000000001111011110100010)
+
+State 278 file verifynn.h line 510 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 627
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  *(C + contadorY + contadorZ * ldc) = 14.9510955810546875f (00000000000011101111001101111011)
+
+State 279 file verifynn.h line 463 function sigmoidLUT thread 0
+sigmoidLUT at verifynn.h line 476
+activeSigmoidLUT at verifynn.h line 637
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  index = 0 (00000000000000000000000000000000)
+
+State 280 file verifynn.h line 464 function sigmoidLUT thread 0
+sigmoidLUT at verifynn.h line 476
+activeSigmoidLUT at verifynn.h line 637
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  index = 2000 (00000000000000000000011111010000)
+
+State 283 file verifynn.h line 470 function sigmoidLUT thread 0
+sigmoidLUT at verifynn.h line 476
+activeSigmoidLUT at verifynn.h line 637
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  (POINTER_OFFSET(layer) + i * 4) % 4 == 0 ? x1layer1[(POINTER_OFFSET(&x1layer1[0]) + 0 * 4) / 4] : invalid_object = 0f (00000000000000000000000000000000)
+
+State 284 file verifynn.h line 463 function sigmoidLUT thread 0
+sigmoidLUT at verifynn.h line 476
+activeSigmoidLUT at verifynn.h line 637
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  index = 400 (00000000000000000000000110010000)
+
+State 285 file verifynn.h line 464 function sigmoidLUT thread 0
+sigmoidLUT at verifynn.h line 476
+activeSigmoidLUT at verifynn.h line 637
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  index = 2400 (00000000000000000000100101100000)
+
+State 288 file verifynn.h line 470 function sigmoidLUT thread 0
+sigmoidLUT at verifynn.h line 476
+activeSigmoidLUT at verifynn.h line 637
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  (POINTER_OFFSET(layer) + i * 4) % 4 == 0 ? x1layer1[(POINTER_OFFSET(&x1layer1[0]) + 1 * 4) / 4] : invalid_object = 0f (00000000000000000000000000000000)
+
+State 289 file verifynn.h line 463 function sigmoidLUT thread 0
+sigmoidLUT at verifynn.h line 476
+activeSigmoidLUT at verifynn.h line 637
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  index = -100 (11111111111111111111111110011100)
+
+State 290 file verifynn.h line 464 function sigmoidLUT thread 0
+sigmoidLUT at verifynn.h line 476
+activeSigmoidLUT at verifynn.h line 637
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  index = 1900 (00000000000000000000011101101100)
+
+State 293 file verifynn.h line 470 function sigmoidLUT thread 0
+sigmoidLUT at verifynn.h line 476
+activeSigmoidLUT at verifynn.h line 637
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  (POINTER_OFFSET(layer) + i * 4) % 4 == 0 ? x1layer1[(POINTER_OFFSET(&x1layer1[0]) + 2 * 4) / 4] : invalid_object = 0f (00000000000000000000000000000000)
+
+State 294 file verifynn.h line 463 function sigmoidLUT thread 0
+sigmoidLUT at verifynn.h line 476
+activeSigmoidLUT at verifynn.h line 637
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  index = 0 (00000000000000000000000000000000)
+
+State 295 file verifynn.h line 464 function sigmoidLUT thread 0
+sigmoidLUT at verifynn.h line 476
+activeSigmoidLUT at verifynn.h line 637
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  index = 2000 (00000000000000000000011111010000)
+
+State 298 file verifynn.h line 470 function sigmoidLUT thread 0
+sigmoidLUT at verifynn.h line 476
+activeSigmoidLUT at verifynn.h line 637
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  (POINTER_OFFSET(layer) + i * 4) % 4 == 0 ? x1layer1[(POINTER_OFFSET(&x1layer1[0]) + 3 * 4) / 4] : invalid_object = 0f (00000000000000000000000000000000)
+
+State 299 file verifynn.h line 463 function sigmoidLUT thread 0
+sigmoidLUT at verifynn.h line 476
+activeSigmoidLUT at verifynn.h line 637
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  index = 1400 (00000000000000000000010101111000)
+
+State 300 file verifynn.h line 464 function sigmoidLUT thread 0
+sigmoidLUT at verifynn.h line 476
+activeSigmoidLUT at verifynn.h line 637
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  index = 3400 (00000000000000000000110101001000)
+
+State 303 file verifynn.h line 470 function sigmoidLUT thread 0
+sigmoidLUT at verifynn.h line 476
+activeSigmoidLUT at verifynn.h line 637
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  (POINTER_OFFSET(layer) + i * 4) % 4 == 0 ? x1layer1[(POINTER_OFFSET(&x1layer1[0]) + 4 * 4) / 4] : invalid_object = 0f (00000000000000000000000000000000)
+
+State 304 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 642
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = -4.1660919189453125f (11111111111110111101010101111011)
+
+State 305 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 642
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = -7.1519317626953125f (11111111111110001101100100011011)
+
+State 306 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 642
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = -6.1410980224609375f (11111111111110011101101111100001)
+
+State 307 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 642
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = -8.16583251953125f (11111111111101111101010110001100)
+
+State 308 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 642
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = -5.114898681640625f (11111111111110101110001010010110)
+
+State 309 file verifynn.h line 510 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 642
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  *(C + contadorY + contadorZ * ldc) = { result@6!0&0#8, 0f, 0f, 0f }
+
+State 310 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 642
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = -0.4470062255859375f (11111111111111111000110110010001)
+
+State 311 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 642
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = -1.8670654296875f (11111111111111100010001000001000)
+
+State 312 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 642
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = -0.245635986328125f (11111111111111111100000100011110)
+
+State 313 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 642
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = 2.673095703125f (00000000000000101010110001010000)
+
+State 314 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 642
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = 1.4666290283203125f (00000000000000010111011101110101)
+
+State 315 file verifynn.h line 510 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 642
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  *(C + contadorY + contadorZ * ldc) = 1.4666290283203125f (00000000000000010111011101110101)
+
+State 316 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 642
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = -1.4637451171875f (11111111111111101000100101001000)
+
+State 317 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 642
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = -5.535003662109375f (11111111111110100111011100001010)
+
+State 318 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 642
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = -5.0232086181640625f (11111111111110101111101000001111)
+
+State 319 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 642
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = -3.318206787109375f (11111111111111001010111010001010)
+
+State 320 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 642
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = -3.1264190673828125f (11111111111111001101111110100011)
+
+State 321 file verifynn.h line 510 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 642
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  *(C + contadorY + contadorZ * ldc) = -3.1264190673828125f (11111111111111001101111110100011)
+
+State 322 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 642
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = -2.0582275390625f (11111111111111011111000100011000)
+
+State 323 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 642
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = -9.1004486083984375f (11111111111101101110011001001001)
+
+State 324 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 642
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = -8.377838134765625f (11111111111101111001111101000110)
+
+State 325 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 642
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = -9.2092437744140625f (11111111111101101100101001101111)
+
+State 326 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 642
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = -5.973114013671875f (11111111111110100000011011100010)
+
+State 327 file verifynn.h line 510 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 642
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  *(C + contadorY + contadorZ * ldc) = -5.973114013671875f (11111111111110100000011011100010)
+
+State 328 file verifynn.h line 510 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 651
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  *(C + contadorY + contadorZ * ldc) = -6.0089111328125f (11111111111110011111110110111000)
+
+State 329 file verifynn.h line 510 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 651
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  *(C + contadorY + contadorZ * ldc) = -1.460845947265625f (11111111111111101000101000000110)
+
+State 330 file verifynn.h line 510 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 651
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  *(C + contadorY + contadorZ * ldc) = -7.24285888671875f (11111111111110001100000111010100)
+
+State 331 file verifynn.h line 510 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 651
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  *(C + contadorY + contadorZ * ldc) = -1.061981201171875f (11111111111111101111000000100010)
+
+State 332 file verifynn.h line 463 function sigmoidLUT thread 0
+sigmoidLUT at verifynn.h line 476
+activeSigmoidLUT at verifynn.h line 661
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  index = -600 (11111111111111111111110110101000)
+
+State 333 file verifynn.h line 464 function sigmoidLUT thread 0
+sigmoidLUT at verifynn.h line 476
+activeSigmoidLUT at verifynn.h line 661
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  index = 1400 (00000000000000000000010101111000)
+
+State 336 file verifynn.h line 470 function sigmoidLUT thread 0
+sigmoidLUT at verifynn.h line 476
+activeSigmoidLUT at verifynn.h line 661
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  (POINTER_OFFSET(layer) + i * 4) % 4 == 0 ? x1layer2[(POINTER_OFFSET(&x1layer2[0]) + 0 * 4) / 4] : invalid_object = 0f (00000000000000000000000000000000)
+
+State 337 file verifynn.h line 463 function sigmoidLUT thread 0
+sigmoidLUT at verifynn.h line 476
+activeSigmoidLUT at verifynn.h line 661
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  index = -100 (11111111111111111111111110011100)
+
+State 338 file verifynn.h line 464 function sigmoidLUT thread 0
+sigmoidLUT at verifynn.h line 476
+activeSigmoidLUT at verifynn.h line 661
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  index = 1900 (00000000000000000000011101101100)
+
+State 341 file verifynn.h line 470 function sigmoidLUT thread 0
+sigmoidLUT at verifynn.h line 476
+activeSigmoidLUT at verifynn.h line 661
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  (POINTER_OFFSET(layer) + i * 4) % 4 == 0 ? x1layer2[(POINTER_OFFSET(&x1layer2[0]) + 1 * 4) / 4] : invalid_object = 0f (00000000000000000000000000000000)
+
+State 342 file verifynn.h line 463 function sigmoidLUT thread 0
+sigmoidLUT at verifynn.h line 476
+activeSigmoidLUT at verifynn.h line 661
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  index = -700 (11111111111111111111110101000100)
+
+State 343 file verifynn.h line 464 function sigmoidLUT thread 0
+sigmoidLUT at verifynn.h line 476
+activeSigmoidLUT at verifynn.h line 661
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  index = 1300 (00000000000000000000010100010100)
+
+State 346 file verifynn.h line 470 function sigmoidLUT thread 0
+sigmoidLUT at verifynn.h line 476
+activeSigmoidLUT at verifynn.h line 661
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  (POINTER_OFFSET(layer) + i * 4) % 4 == 0 ? x1layer2[(POINTER_OFFSET(&x1layer2[0]) + 2 * 4) / 4] : invalid_object = 0f (00000000000000000000000000000000)
+
+State 347 file verifynn.h line 463 function sigmoidLUT thread 0
+sigmoidLUT at verifynn.h line 476
+activeSigmoidLUT at verifynn.h line 661
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  index = -100 (11111111111111111111111110011100)
+
+State 348 file verifynn.h line 464 function sigmoidLUT thread 0
+sigmoidLUT at verifynn.h line 476
+activeSigmoidLUT at verifynn.h line 661
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  index = 1900 (00000000000000000000011101101100)
+
+State 351 file verifynn.h line 470 function sigmoidLUT thread 0
+sigmoidLUT at verifynn.h line 476
+activeSigmoidLUT at verifynn.h line 661
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  (POINTER_OFFSET(layer) + i * 4) % 4 == 0 ? x1layer2[(POINTER_OFFSET(&x1layer2[0]) + 3 * 4) / 4] : invalid_object = 0f (00000000000000000000000000000000)
+
+State 352 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 667
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = 0.0137939453125f (00000000000000000000001110001000)
+
+State 353 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 667
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = 1.3777008056640625f (00000000000000010110000010110001)
+
+State 354 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 667
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = 1.3839263916015625f (00000000000000010110001001001001)
+
+State 355 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 667
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = 1.3141937255859375f (00000000000000010101000001101111)
+
+State 356 file verifynn.h line 510 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 667
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  *(C + contadorY + contadorZ * ldc) = { result@8!0&0#7, 0f, 0f, 0f, 0f }
+
+State 357 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 667
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = 0.026092529296875f (00000000000000000000011010101110)
+
+State 358 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 667
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = -2.4850921630859375f (11111111111111011000001111010001)
+
+State 359 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 667
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = -2.4857940673828125f (11111111111111011000001110100011)
+
+State 360 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 667
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = -1.8056488037109375f (11111111111111100011000111000001)
+
+State 361 file verifynn.h line 510 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 667
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  *(C + contadorY + contadorZ * ldc) = -1.8056488037109375f (11111111111111100011000111000001)
+
+State 362 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 667
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = -0.0279541015625f (11111111111111111111100011011000)
+
+State 363 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 667
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = -2.1902008056640625f (11111111111111011100111101001111)
+
+State 364 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 667
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = -2.192413330078125f (11111111111111011100111010111110)
+
+State 365 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 667
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = 0.383148193359375f (00000000000000000110001000010110)
+
+State 366 file verifynn.h line 510 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 667
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  *(C + contadorY + contadorZ * ldc) = 0.383148193359375f (00000000000000000110001000010110)
+
+State 367 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 667
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = -0.0060882568359375f (11111111111111111111111001110001)
+
+State 368 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 667
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = -1.8766632080078125f (11111111111111100001111110010011)
+
+State 369 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 667
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = -1.877960205078125f (11111111111111100001111100111110)
+
+State 370 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 667
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = -5.15863037109375f (11111111111110101101011101100100)
+
+State 371 file verifynn.h line 510 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 667
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  *(C + contadorY + contadorZ * ldc) = -5.15863037109375f (11111111111110101101011101100100)
+
+State 372 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 667
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = -0.0068817138671875f (11111111111111111111111000111101)
+
+State 373 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 667
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = 2.235870361328125f (00000000000000100011110001100010)
+
+State 374 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 667
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = 2.234130859375f (00000000000000100011101111110000)
+
+State 375 file verifynn.h line 508 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 667
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  result = -0.3812255859375f (11111111111111111001111001101000)
+
+State 376 file verifynn.h line 510 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 667
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  *(C + contadorY + contadorZ * ldc) = -0.3812408447265625f (11111111111111111001111001100111)
+
+State 377 file verifynn.h line 510 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 676
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  *(C + contadorY + contadorZ * ldc) = -10.88800048828125f (11111111111101010001110010101100)
+
+State 378 file verifynn.h line 510 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 676
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  *(C + contadorY + contadorZ * ldc) = -10.0748138427734375f (11111111111101011110110011011001)
+
+State 379 file verifynn.h line 510 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 676
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  *(C + contadorY + contadorZ * ldc) = -5.8289642333984375f (11111111111110100010101111001001)
+
+State 380 file verifynn.h line 510 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 676
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  *(C + contadorY + contadorZ * ldc) = -1.6548614501953125f (11111111111111100101100001011011)
+
+State 381 file verifynn.h line 510 function cublasSgemm thread 0
+cublasSgemm at verifynn.h line 676
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  *(C + contadorY + contadorZ * ldc) = -4.1369171142578125f (11111111111110111101110011110011)
+
+State 382 file verifynn.h line 463 function sigmoidLUT thread 0
+sigmoidLUT at verifynn.h line 476
+activeSigmoidLUT at verifynn.h line 686
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  index = -1000 (11111111111111111111110000011000)
+
+State 383 file verifynn.h line 464 function sigmoidLUT thread 0
+sigmoidLUT at verifynn.h line 476
+activeSigmoidLUT at verifynn.h line 686
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  index = 1000 (00000000000000000000001111101000)
+
+State 386 file verifynn.h line 470 function sigmoidLUT thread 0
+sigmoidLUT at verifynn.h line 476
+activeSigmoidLUT at verifynn.h line 686
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  (POINTER_OFFSET(layer) + i * 4) % 4 == 0 ? x1layer3[(POINTER_OFFSET(&x1layer3[0]) + 0 * 4) / 4] : invalid_object = 0.0000457763671875f (00000000000000000000000000000011)
+
+State 387 file verifynn.h line 463 function sigmoidLUT thread 0
+sigmoidLUT at verifynn.h line 476
+activeSigmoidLUT at verifynn.h line 686
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  index = -1000 (11111111111111111111110000011000)
+
+State 388 file verifynn.h line 464 function sigmoidLUT thread 0
+sigmoidLUT at verifynn.h line 476
+activeSigmoidLUT at verifynn.h line 686
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  index = 1000 (00000000000000000000001111101000)
+
+State 391 file verifynn.h line 470 function sigmoidLUT thread 0
+sigmoidLUT at verifynn.h line 476
+activeSigmoidLUT at verifynn.h line 686
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  (POINTER_OFFSET(layer) + i * 4) % 4 == 0 ? x1layer3[(POINTER_OFFSET(&x1layer3[0]) + 1 * 4) / 4] : invalid_object = 0.0000457763671875f (00000000000000000000000000000011)
+
+State 392 file verifynn.h line 463 function sigmoidLUT thread 0
+sigmoidLUT at verifynn.h line 476
+activeSigmoidLUT at verifynn.h line 686
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  index = -500 (11111111111111111111111000001100)
+
+State 393 file verifynn.h line 464 function sigmoidLUT thread 0
+sigmoidLUT at verifynn.h line 476
+activeSigmoidLUT at verifynn.h line 686
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  index = 1500 (00000000000000000000010111011100)
+
+State 396 file verifynn.h line 470 function sigmoidLUT thread 0
+sigmoidLUT at verifynn.h line 476
+activeSigmoidLUT at verifynn.h line 686
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  (POINTER_OFFSET(layer) + i * 4) % 4 == 0 ? x1layer3[(POINTER_OFFSET(&x1layer3[0]) + 2 * 4) / 4] : invalid_object = 0.0066986083984375f (00000000000000000000000110110111)
+
+State 397 file verifynn.h line 463 function sigmoidLUT thread 0
+sigmoidLUT at verifynn.h line 476
+activeSigmoidLUT at verifynn.h line 686
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  index = -100 (11111111111111111111111110011100)
+
+State 398 file verifynn.h line 464 function sigmoidLUT thread 0
+sigmoidLUT at verifynn.h line 476
+activeSigmoidLUT at verifynn.h line 686
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  index = 1900 (00000000000000000000011101101100)
+
+State 401 file verifynn.h line 470 function sigmoidLUT thread 0
+sigmoidLUT at verifynn.h line 476
+activeSigmoidLUT at verifynn.h line 686
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  (POINTER_OFFSET(layer) + i * 4) % 4 == 0 ? x1layer3[(POINTER_OFFSET(&x1layer3[0]) + 3 * 4) / 4] : invalid_object = 0f (00000000000000000000000000000000)
+
+State 402 file verifynn.h line 463 function sigmoidLUT thread 0
+sigmoidLUT at verifynn.h line 476
+activeSigmoidLUT at verifynn.h line 686
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  index = -400 (11111111111111111111111001110000)
+
+State 403 file verifynn.h line 464 function sigmoidLUT thread 0
+sigmoidLUT at verifynn.h line 476
+activeSigmoidLUT at verifynn.h line 686
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  index = 1600 (00000000000000000000011001000000)
+
+State 406 file verifynn.h line 470 function sigmoidLUT thread 0
+sigmoidLUT at verifynn.h line 476
+activeSigmoidLUT at verifynn.h line 686
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+  (POINTER_OFFSET(layer) + i * 4) % 4 == 0 ? x1layer3[(POINTER_OFFSET(&x1layer3[0]) + 4 * 4) / 4] : invalid_object = 0.0179901123046875f (00000000000000000000010010011011)
+
+State 407 file verifynn.h line 690 function checkNNLUT thread 0
+checkNNLUT at verifynn.c line 124
+main
+----------------------------------------------------
+Violated property:
+  file verifynn.h line 690 function checkNNLUT
+  Image is not a O
+  (_Bool)((double)(x1layer3[3]) > 0.5l)

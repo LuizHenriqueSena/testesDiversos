@@ -1007,7 +1007,7 @@ int SSCover(float* layer1x1, float* layer1x2, float n2x1, float n2x2, int size1,
 	if (!signalChange(layer1x1[n1], layer1x2[n1]))
 		return 0;
 	for(i=0;i<size1;i++) {
-		if (i=n1)
+		if (i==n1)
 				continue;
 		else if(signalChange(layer1x1[i], layer1x2[i]))
 			return 0;
@@ -1106,7 +1106,7 @@ int SVCover(float* layer1x1, float* layer1x2, float n2x1, float n2x2, int size1,
 	if (!signalChange(layer1x1[n1], layer1x2[n1]))
 		return 0;
 	for(i=0;i<size1;i++) {
-		if (i=n1)
+		if (i==n1)
 				continue;
 		else if(signalChange(layer1x1[i], layer1x2[i]))
 			return 0;
@@ -1421,245 +1421,54 @@ activeSigmoid(x2layer3, fc3);
 
 }
 
-void checkNNLUT(float* wfc1, float* bfc1, float* wfc2, float* bfc2, float* wfc3, float* bfc3, float* img) {
 
-
-	float *x1layer1;
-	float *x1layer2;
-	float *x1layer3;
-	float *x2layer1;
-	float *x2layer2;
-	float *x2layer3;
-	float alpha;
-	float beta;
-	//float* dev_result;
-
-	//initializing cublas handle
-	cublasHandle_t cublasHandle;
-	cublasCreate(&cublasHandle);
-
-	alpha = 1;
-	beta = 0;
-	/* sets the size of v */
-	//data = (float*)malloc(data*sizeof(float));
-	float onevec[25] = {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1};
-
-	//wfc1 = (float*)malloc(data*fc1*sizeof(float));
-
-
-	x1layer1 = (float*)malloc(fc1*sizeof(float));
-
-	x1layer2 = (float*)malloc(fc2*sizeof(float));
-
-	x1layer3 = (float*)malloc(fc3*sizeof(float));
-
-	x2layer1 = (float*)malloc(fc1*sizeof(float));
-
-	x2layer2 = (float*)malloc(fc2*sizeof(float));
-
-	x2layer3 = (float*)malloc(fc3*sizeof(float));
-
-
-
-  normalizef(img, 25); // ponteiro da entrada e tamanho da imagem
-	cublasSgemm(cublasHandle,
-			CUBLAS_OP_N, CUBLAS_OP_N,
-			fc1, 1, data,
-			&alpha,
-			wfc1, data,
-			img, 1,
-			&beta,
-			x1layer1, 1);
-
-	cublasSgemm(cublasHandle,
-      CUBLAS_OP_N, CUBLAS_OP_N,
-      fc1, 1, 1,
-      &alpha,
-      bfc1, 1,
-      onevec, 1,
-      &alpha,
-      x1layer1, 1);
-
-	imprimeResultante(x1layer1, fc1);
-	activeSigmoidLUT(x1layer1, fc1);
-//	imprimeResultante(x1layer1, fc1);
-
-//Computing the first layer of the second image x2 on the same Neural Network
-
-    cublasSgemm(cublasHandle,
-      CUBLAS_OP_N, CUBLAS_OP_N,
-      fc2, 1, fc1,
-      &alpha,
-      wfc2, fc1,
-      x1layer1, 1,
-      &beta,
-      x1layer2, 1);
-
-  cublasSgemm(cublasHandle,
-      CUBLAS_OP_N, CUBLAS_OP_N,
-      fc2, 1, 1,
-      &alpha,
-      bfc2, 1,
-      onevec, 1,
-      &alpha,
-      x1layer2, 1);
-
-	imprimeResultante(x1layer2, fc2);
-	activeSigmoidLUT(x1layer2, fc2);
-//	imprimeResultante(x1layer2, fc2);
-
-	//Computing the second layer of the second image on the same Neural network
-
-
-  cublasSgemm(cublasHandle,
-      CUBLAS_OP_N, CUBLAS_OP_N,
-      fc3, 1, fc2,
-      &alpha,
-      wfc3, fc2,
-      x1layer2, 1,
-      &beta,
-      x1layer3, 1);
-
-  cublasSgemm(cublasHandle,
-    	CUBLAS_OP_N, CUBLAS_OP_N,
-    	fc3, 1, 1,
-    	&alpha,
-    	bfc3, 1,
-    	onevec, 1,
-    	&alpha,
-    	x1layer3, 1);
-
-	imprimeResultante(x1layer3, fc3);
-	activeSigmoidLUT(x1layer3, fc3);
-	imprimeResultante(x1layer3, fc3);
-
-	//Computing the third layer of the second image on the same Neural network
-
-
-
-}
-
-void checkNNPrinting(float* wfc1, float* bfc1, float* wfc2, float* bfc2, float* wfc3, float* bfc3, float* img) {
-
-
-	float *x1layer1;
-	float *x1layer2;
-	float *x1layer3;
-	float *x2layer1;
-	float *x2layer2;
-	float *x2layer3;
-	float alpha;
-	float beta;
-	//float* dev_result;
-
-	//initializing cublas handle
-	cublasHandle_t cublasHandle;
-	cublasCreate(&cublasHandle);
-
-	alpha = 1;
-	beta = 0;
-	/* sets the size of v */
-	//data = (float*)malloc(data*sizeof(float));
-	float onevec[25] = {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1};
-
-	//wfc1 = (float*)malloc(data*fc1*sizeof(float));
-
-
-	x1layer1 = (float*)malloc(fc1*sizeof(float));
-
-	x1layer2 = (float*)malloc(fc2*sizeof(float));
-
-	x1layer3 = (float*)malloc(fc3*sizeof(float));
-
-	x2layer1 = (float*)malloc(fc1*sizeof(float));
-
-	x2layer2 = (float*)malloc(fc2*sizeof(float));
-
-	x2layer3 = (float*)malloc(fc3*sizeof(float));
-
-
-
-  normalizef(img, 25); // ponteiro da entrada e tamanho da imagem
-	cublasSgemm(cublasHandle,
-			CUBLAS_OP_N, CUBLAS_OP_N,
-			fc1, 1, data,
-			&alpha,
-			wfc1, data,
-			img, 1,
-			&beta,
-			x1layer1, 1);
-
-	cublasSgemm(cublasHandle,
-      CUBLAS_OP_N, CUBLAS_OP_N,
-      fc1, 1, 1,
-      &alpha,
-      bfc1, 1,
-      onevec, 1,
-      &alpha,
-      x1layer1, 1);
-
-	imprimeResultante(x1layer1, fc1);
-	activeSigmoid(x1layer1, fc1);
-//	imprimeResultante(x1layer1, fc1);
-
-//Computing the first layer of the second image x2 on the same Neural Network
-
-    cublasSgemm(cublasHandle,
-      CUBLAS_OP_N, CUBLAS_OP_N,
-      fc2, 1, fc1,
-      &alpha,
-      wfc2, fc1,
-      x1layer1, 1,
-      &beta,
-      x1layer2, 1);
-
-  cublasSgemm(cublasHandle,
-      CUBLAS_OP_N, CUBLAS_OP_N,
-      fc2, 1, 1,
-      &alpha,
-      bfc2, 1,
-      onevec, 1,
-      &alpha,
-      x1layer2, 1);
-
-	imprimeResultante(x1layer2, fc2);
-	activeSigmoid(x1layer2, fc2);
-//	imprimeResultante(x1layer2, fc2);
-
-	//Computing the second layer of the second image on the same Neural network
-
-
-  cublasSgemm(cublasHandle,
-      CUBLAS_OP_N, CUBLAS_OP_N,
-      fc3, 1, fc2,
-      &alpha,
-      wfc3, fc2,
-      x1layer2, 1,
-      &beta,
-      x1layer3, 1);
-
-  cublasSgemm(cublasHandle,
-    	CUBLAS_OP_N, CUBLAS_OP_N,
-    	fc3, 1, 1,
-    	&alpha,
-    	bfc3, 1,
-    	onevec, 1,
-    	&alpha,
-    	x1layer3, 1);
-
-	imprimeResultante(x1layer3, fc3);
-	activeSigmoid(x1layer3, fc3);
-	imprimeResultante(x1layer3, fc3);
-
-	//Computing the third layer of the second image on the same Neural network
-}
-
-void printCoverageSS(){
+float neuronCoverageSS(){
 	int i = 0;
+	float sum = 0;
+	float neuronsCoveredPercent = 0;
 	for(i = 0; i < (fc1 + fc2 + fc3); i++) {
-			printf("Values %d : %d \n", i, coverageSS[i]);
+			sum += coverageSS[i];
 	}
+	neuronsCoveredPercent = sum / (fc1 + fc2 + fc3);
+	return neuronsCoveredPercent;
 }
+
+float neuronCoverageDS(){
+	int i = 0;
+	float sum = 0;
+	float neuronsCoveredPercent = 0;
+	for(i = 0; i < (fc1 + fc2 + fc3); i++) {
+			sum += coverageDS[i];
+	}
+	neuronsCoveredPercent = sum / (fc1 + fc2 + fc3);
+	return neuronsCoveredPercent;
+}
+
+
+float neuronCoverageSV(){
+	int i = 0;
+	float sum = 0;
+	float neuronsCoveredPercent = 0;
+	for(i = 0; i < (fc1 + fc2 + fc3); i++) {
+			sum += coverageSV[i];
+	}
+	neuronsCoveredPercent = sum / (fc1 + fc2 + fc3);
+	return neuronsCoveredPercent;
+}
+
+
+float neuronCoverageDV(){
+	int i = 0;
+	float sum = 0;
+	float neuronsCoveredPercent = 0;
+	for(i = 0; i < (fc1 + fc2 + fc3); i++) {
+			sum += coverageDV[i];
+	}
+	neuronsCoveredPercent = sum / (fc1 + fc2 + fc3);
+	return neuronsCoveredPercent;
+}
+
+
 
 void checkNNDebug(float* wfc1, float* bfc1, float* wfc2, float* bfc2, float* wfc3, float* bfc3, float* img, float* img2) {
 
@@ -1745,7 +1554,7 @@ void checkNNDebug(float* wfc1, float* bfc1, float* wfc2, float* bfc2, float* wfc
 	      x1layer1, 1);
 
 		memcpy(AV1layer1, x1layer1, fc1*sizeof(float));
-		activeSigmoid(x1layer1, fc1);
+		activeSigmoidLUT(x1layer1, fc1);
 
 	//Computing the first layer of the second image x2 on the same Neural Network
 		cublasSgemm(cublasHandle,
@@ -1767,7 +1576,7 @@ void checkNNDebug(float* wfc1, float* bfc1, float* wfc2, float* bfc2, float* wfc
 				x2layer1, 1);
 
 		memcpy(AV2layer1, x2layer1, fc1*sizeof(float));
-		activeSigmoid(x2layer1, fc1);
+		activeSigmoidLUT(x2layer1, fc1);
 		printLayerValues(AV1layer1, AV2layer1, fc1, 1);
 
 
@@ -1792,7 +1601,7 @@ void checkNNDebug(float* wfc1, float* bfc1, float* wfc2, float* bfc2, float* wfc
 
 		//imprimeResultante(x1layer2, fc2);
 		memcpy(AV1layer2, x1layer2, fc2*sizeof(float));
-		activeSigmoid(x1layer2, fc2);
+		activeSigmoidLUT(x1layer2, fc2);
 	//	imprimeResultante(x1layer2, fc2);
 
 		//Computing the second layer of the second image on the same Neural network
@@ -1819,7 +1628,7 @@ void checkNNDebug(float* wfc1, float* bfc1, float* wfc2, float* bfc2, float* wfc
 	memcpy(AV2layer2, x2layer2, fc2*sizeof(float));
 	printLayerValues(AV1layer2, AV2layer2, fc2, 2);
 	printSSCover(AV1layer1, AV2layer1, AV1layer2, AV2layer2, fc1, fc2, 1);
-	activeSigmoid(x2layer2, fc2);
+	activeSigmoidLUT(x2layer2, fc2);
 	//imprimeResultante(x2layer2, fc2);
 
 	  cublasSgemm(cublasHandle,
@@ -1842,7 +1651,7 @@ void checkNNDebug(float* wfc1, float* bfc1, float* wfc2, float* bfc2, float* wfc
 
 		//imprimeResultante(x1layer3, fc3);
 		memcpy(AV1layer3, x1layer3, fc3*sizeof(float));
-		activeSigmoid(x1layer3, fc3);
+		activeSigmoidLUT(x1layer3, fc3);
 	//	imprimeResultante(x1layer3, fc3);
 
 		//Computing the third layer of the second image on the same Neural network
@@ -1870,5 +1679,6 @@ void checkNNDebug(float* wfc1, float* bfc1, float* wfc2, float* bfc2, float* wfc
 	printLayerValues(AV1layer3, AV2layer3, fc3, 3);
 	printSSCover(AV1layer2, AV2layer2, AV1layer3, AV2layer3, fc2, fc3, 2);
 	printCoverageSS();
-	activeSigmoid(x2layer3, fc3);
+	activeSigmoidLUT(x2layer3, fc3);
+	__ESBMC_assert(neuronCoverageSS() > 0.5, "At least 80% of all neurons must be SS-Covered.");
 	}

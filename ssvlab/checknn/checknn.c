@@ -63,7 +63,7 @@ int main() {
 	img2[22] = 236;
 	img2[23] = 211;
 	img2[24] = 0;
-	checkNNDebug(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3,img, imgU);
+	checkNNSSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3,img, imgU);
 	//float layer1out1[5] = {1, 0, 0, 0, 0};
 	//float layer1out2[5] = {-1, 0, 0, 0, 0};
 	//float layer2out1[3] = {1, 1, 1};

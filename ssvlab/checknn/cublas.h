@@ -1033,6 +1033,7 @@ void printSSCover(float* layeri1, float* layeri2, float* layerj1, float* layerj2
 			return;
 		}
 		if((sc1[i]==1) && (n1==-1)) {
+			printf(" ACHEI O VALOR %.6f e %.6f \n", layeri1[i], layeri2[i]);
 			n1 = i;
 		}
 		if(i==(l1-1)&&(n1==-1)) {
@@ -1653,6 +1654,13 @@ void checkNNPrinting(float* wfc1, float* bfc1, float* wfc2, float* bfc2, float* 
 	//Computing the third layer of the second image on the same Neural network
 }
 
+void printCoverageSS(){
+	int i = 0;
+	for(i = 0; i < (fc1 + fc2 + fc3); i++) {
+			printf("Values %d : %d \n", i, coverageSS[i]);
+	}
+}
+
 void checkNNDebug(float* wfc1, float* bfc1, float* wfc2, float* bfc2, float* wfc3, float* bfc3, float* img, float* img2) {
 
 		float *x1layer1;
@@ -1761,7 +1769,8 @@ void checkNNDebug(float* wfc1, float* bfc1, float* wfc2, float* bfc2, float* wfc
 		memcpy(AV2layer1, x2layer1, fc1*sizeof(float));
 		activeSigmoid(x2layer1, fc1);
 		printLayerValues(AV1layer1, AV2layer1, fc1, 1);
-		printLayerValues(x1layer1, x2layer1, fc1, 1);
+
+
 
 	    cublasSgemm(cublasHandle,
 	      CUBLAS_OP_N, CUBLAS_OP_N,
@@ -1808,6 +1817,8 @@ void checkNNDebug(float* wfc1, float* bfc1, float* wfc2, float* bfc2, float* wfc
 
 	//imprimeResultante(x2layer2, fc2);
 	memcpy(AV2layer2, x2layer2, fc2*sizeof(float));
+	printLayerValues(AV1layer2, AV2layer2, fc2, 2);
+	printSSCover(AV1layer1, AV2layer1, AV1layer2, AV2layer2, fc1, fc2, 1);
 	activeSigmoid(x2layer2, fc2);
 	//imprimeResultante(x2layer2, fc2);
 
@@ -1856,5 +1867,8 @@ void checkNNDebug(float* wfc1, float* bfc1, float* wfc2, float* bfc2, float* wfc
 
 
 	memcpy(AV2layer3, x2layer3, fc3*sizeof(float));
+	printLayerValues(AV1layer3, AV2layer3, fc3, 3);
+	printSSCover(AV1layer2, AV2layer2, AV1layer3, AV2layer3, fc2, fc3, 2);
+	printCoverageSS();
 	activeSigmoid(x2layer3, fc3);
 	}

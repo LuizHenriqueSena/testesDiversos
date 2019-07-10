@@ -1,0 +1,3 @@
+
+~/Downloads/esbmc-gpu-v124/esbmc/esbmc verifynn.c -I . --force-malloc-success --state-hashing --no-div-by-zero-check --no-pointer-check --context-switch 2 >> testProfessorLucas.txt
+

@@ -1,0 +1,7 @@
+ESBMC version 1.25.4 64-bit x86_64 linux
+file verifynn.c: Parsing
+Converting
+Type-checking verifynn
+Generating GOTO Program
+GOTO program creation time: 0.142s
+GOTO program processing time: 0.009s

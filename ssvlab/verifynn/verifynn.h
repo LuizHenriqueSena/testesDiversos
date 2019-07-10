@@ -464,7 +464,7 @@ float sigmoidLUT(float u){
   index = index+ 2000;
   if(index < 0)
     return 0;
-  else if(index > 4000)
+  else if(index >= 4000)
     return 1;
   else
     return lookup[index];
@@ -687,6 +687,6 @@ void checkNNLUT(float wfc1[125], float bfc1[5], float wfc2[20], float bfc2[4], f
 	//imprimeResultante(x1layer3, fc3);
 //	float a[3] = {0.8, 0.8, 0.8};
 	//Computing the third layer of the second image on the same Neural network
-	__ESBMC_assert(x1layer3[4] > 0.8, "Image is not a U");
+	__ESBMC_assert(x1layer3[4] > 0.5 || x1layer3[3] < 0.5, "Image is not a U but an O");
 
 }

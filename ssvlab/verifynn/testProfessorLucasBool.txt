@@ -1,0 +1,6 @@
+file verifynn.c: Parsing
+Converting
+Type-checking verifynn
+Generating GOTO Program
+GOTO program creation time: 0.137s
+GOTO program processing time: 0.009s

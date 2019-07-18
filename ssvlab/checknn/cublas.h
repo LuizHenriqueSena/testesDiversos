@@ -29,6 +29,8 @@ typedef enum cublasoperation {CUBLAS_OP_N,
 
 typedef enum cublasoperation cublasOperation_t;
 
+int coverage[fc1 + fc2 + fc3];
+
 //lookuptable of sigmoid function variating from -20 to 20 with .00 of resolution
 float lookup[4000] = {0.000000 ,0.000000 ,0.000000 ,0.000000 ,0.000000 ,0.000000 ,0.000000 ,0.000000 ,0.000000 ,0.000000 ,
 0.000000 ,0.000000 ,0.000000 ,0.000000 ,0.000000 ,0.000000 ,0.000000 ,0.000000 ,0.000000 ,0.000000 ,
@@ -1207,8 +1209,6 @@ int isCloseEnough(float* img, float* adversarial, float b, int size) {
 
 void checkNN(float* wfc1, float* bfc1, float* wfc2, float* bfc2, float* wfc3, float* bfc3, float* img, float* img2) {
 
-	printf("Hello World \n");
-
 	float *x1layer1;
 	float *x1layer2;
 	float *x1layer3;
@@ -1388,9 +1388,8 @@ activeSigmoid(x2layer3, fc3);
 
 }
 
-void checkNNPrinting(float* wfc1, float* bfc1, float* wfc2, float* bfc2, float* wfc3, float* bfc3, float* img) {
+void checkNNLUT(float* wfc1, float* bfc1, float* wfc2, float* bfc2, float* wfc3, float* bfc3, float* img) {
 
-	printf("Hello World \n");
 
 	float *x1layer1;
 	float *x1layer2;
@@ -1499,6 +1498,124 @@ void checkNNPrinting(float* wfc1, float* bfc1, float* wfc2, float* bfc2, float* 
 
 	imprimeResultante(x1layer3, fc3);
 	activeSigmoidLUT(x1layer3, fc3);
+	imprimeResultante(x1layer3, fc3);
+
+	//Computing the third layer of the second image on the same Neural network
+
+
+
+}
+
+void checkNNPrinting(float* wfc1, float* bfc1, float* wfc2, float* bfc2, float* wfc3, float* bfc3, float* img) {
+
+
+	float *x1layer1;
+	float *x1layer2;
+	float *x1layer3;
+	float *x2layer1;
+	float *x2layer2;
+	float *x2layer3;
+	float alpha;
+	float beta;
+	//float* dev_result;
+
+	//initializing cublas handle
+	cublasHandle_t cublasHandle;
+	cublasCreate(&cublasHandle);
+
+	alpha = 1;
+	beta = 0;
+	/* sets the size of v */
+	//data = (float*)malloc(data*sizeof(float));
+	float onevec[25] = {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1};
+
+	//wfc1 = (float*)malloc(data*fc1*sizeof(float));
+
+
+	x1layer1 = (float*)malloc(fc1*sizeof(float));
+
+	x1layer2 = (float*)malloc(fc2*sizeof(float));
+
+	x1layer3 = (float*)malloc(fc3*sizeof(float));
+
+	x2layer1 = (float*)malloc(fc1*sizeof(float));
+
+	x2layer2 = (float*)malloc(fc2*sizeof(float));
+
+	x2layer3 = (float*)malloc(fc3*sizeof(float));
+
+
+
+  normalizef(img, 25); // ponteiro da entrada e tamanho da imagem
+	cublasSgemm(cublasHandle,
+			CUBLAS_OP_N, CUBLAS_OP_N,
+			fc1, 1, data,
+			&alpha,
+			wfc1, data,
+			img, 1,
+			&beta,
+			x1layer1, 1);
+
+	cublasSgemm(cublasHandle,
+      CUBLAS_OP_N, CUBLAS_OP_N,
+      fc1, 1, 1,
+      &alpha,
+      bfc1, 1,
+      onevec, 1,
+      &alpha,
+      x1layer1, 1);
+
+	imprimeResultante(x1layer1, fc1);
+	activeSigmoid(x1layer1, fc1);
+//	imprimeResultante(x1layer1, fc1);
+
+//Computing the first layer of the second image x2 on the same Neural Network
+
+    cublasSgemm(cublasHandle,
+      CUBLAS_OP_N, CUBLAS_OP_N,
+      fc2, 1, fc1,
+      &alpha,
+      wfc2, fc1,
+      x1layer1, 1,
+      &beta,
+      x1layer2, 1);
+
+  cublasSgemm(cublasHandle,
+      CUBLAS_OP_N, CUBLAS_OP_N,
+      fc2, 1, 1,
+      &alpha,
+      bfc2, 1,
+      onevec, 1,
+      &alpha,
+      x1layer2, 1);
+
+	imprimeResultante(x1layer2, fc2);
+	activeSigmoid(x1layer2, fc2);
+//	imprimeResultante(x1layer2, fc2);
+
+	//Computing the second layer of the second image on the same Neural network
+
+
+  cublasSgemm(cublasHandle,
+      CUBLAS_OP_N, CUBLAS_OP_N,
+      fc3, 1, fc2,
+      &alpha,
+      wfc3, fc2,
+      x1layer2, 1,
+      &beta,
+      x1layer3, 1);
+
+  cublasSgemm(cublasHandle,
+    	CUBLAS_OP_N, CUBLAS_OP_N,
+    	fc3, 1, 1,
+    	&alpha,
+    	bfc3, 1,
+    	onevec, 1,
+    	&alpha,
+    	x1layer3, 1);
+
+	imprimeResultante(x1layer3, fc3);
+	activeSigmoid(x1layer3, fc3);
 	imprimeResultante(x1layer3, fc3);
 
 	//Computing the third layer of the second image on the same Neural network

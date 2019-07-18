@@ -27,6 +27,8 @@ typedef enum cublasoperation {CUBLAS_OP_N,
 
 typedef enum cublasoperation cublasOperation_t;
 //lookuptable of sigmoid function variating from -20 to 20 with .00 of resolution
+
+
 float lookup[4000] = {0.000000 ,0.000000 ,0.000000 ,0.000000 ,0.000000 ,0.000000 ,0.000000 ,0.000000 ,0.000000 ,0.000000 ,
 0.000000 ,0.000000 ,0.000000 ,0.000000 ,0.000000 ,0.000000 ,0.000000 ,0.000000 ,0.000000 ,0.000000 ,
 0.000000 ,0.000000 ,0.000000 ,0.000000 ,0.000000 ,0.000000 ,0.000000 ,0.000000 ,0.000000 ,0.000000 ,

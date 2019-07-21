@@ -1649,7 +1649,204 @@ void checkNNPrinting(float* wfc1, float* bfc1, float* wfc2, float* bfc2, float* 
 	imprimeResultante(x1layer3, fc3);
 
 	//Computing the third layer of the second image on the same Neural network
+}
 
+void checkNNDebug(float* wfc1, float* bfc1, float* wfc2, float* bfc2, float* wfc3, float* bfc3, float* img, float* img2) {
+
+		float *x1layer1;
+		float *x1layer2;
+		float *x1layer3;
+		float *x2layer1;
+		float *x2layer2;
+		float *x2layer3;
+		float alpha;
+		float beta;
+		//float* dev_result;
+
+		//initializing cublas handle
+		cublasHandle_t cublasHandle;
+		cublasCreate(&cublasHandle);
+
+		alpha = 1;
+		beta = 0;
+		/* sets the size of v */
+		//data = (float*)malloc(data*sizeof(float));
+		float onevec[25] = {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1};
+
+		//wfc1 = (float*)malloc(data*fc1*sizeof(float));
+
+
+		x1layer1 = (float*)malloc(fc1*sizeof(float));
+
+		x1layer2 = (float*)malloc(fc2*sizeof(float));
+
+		x1layer3 = (float*)malloc(fc3*sizeof(float));
+
+		x2layer1 = (float*)malloc(fc1*sizeof(float));
+
+		x2layer2 = (float*)malloc(fc2*sizeof(float));
+
+		x2layer3 = (float*)malloc(fc3*sizeof(float));
+
+
+
+
+		AV1layer1 = (float*)malloc(fc1*sizeof(float));
+
+		AV1layer2 = (float*)malloc(fc2*sizeof(float));
+
+		AV1layer3 = (float*)malloc(fc3*sizeof(float));
+
+		AV2layer1 = (float*)malloc(fc1*sizeof(float));
+
+		AV2layer2 = (float*)malloc(fc2*sizeof(float));
+
+		AV2layer3 = (float*)malloc(fc3*sizeof(float));
+
+
+
+	  normalizef(img, 25); // input pointer and image size
+		normalizef(img2, 25); // input pointer and image size
+
+		cublasSgemm(cublasHandle,
+				CUBLAS_OP_N, CUBLAS_OP_N,
+				fc1, 1, data,
+				&alpha,
+				wfc1, data,
+				img, 1,
+				&beta,
+				x1layer1, 1);
+
+		cublasSgemm(cublasHandle,
+	      CUBLAS_OP_N, CUBLAS_OP_N,
+	      fc1, 1, 1,
+	      &alpha,
+	      bfc1, 1,
+	      onevec, 1,
+	      &alpha,
+	      x1layer1, 1);
+
+		memcpy(AV1layer1, x1layer1, fc1*sizeof(int));
+		activeSigmoid(x1layer1, fc1);
+
+	//Computing the first layer of the second image x2 on the same Neural Network
+		cublasSgemm(cublasHandle,
+				CUBLAS_OP_N, CUBLAS_OP_N,
+				fc1, 1, data,
+				&alpha,
+				wfc1, data,
+				img2, 1,
+				&beta,
+				x2layer1, 1);
+
+		cublasSgemm(cublasHandle,
+				CUBLAS_OP_N, CUBLAS_OP_N,
+				fc1, 1, 1,
+				&alpha,
+				bfc1, 1,
+				onevec, 1,
+				&alpha,
+				x2layer1, 1);
+
+		memcpy(AV2layer1, x2layer1, fc1*sizeof(int));
+		activeSigmoid(x2layer1, fc1);
+
+	    cublasSgemm(cublasHandle,
+	      CUBLAS_OP_N, CUBLAS_OP_N,
+	      fc2, 1, fc1,
+	      &alpha,
+	      wfc2, fc1,
+	      x1layer1, 1,
+	      &beta,
+	      x1layer2, 1);
+
+	  cublasSgemm(cublasHandle,
+	      CUBLAS_OP_N, CUBLAS_OP_N,
+	      fc2, 1, 1,
+	      &alpha,
+	      bfc2, 1,
+	      onevec, 1,
+	      &alpha,
+	      x1layer2, 1);
+
+		//imprimeResultante(x1layer2, fc2);
+		memcpy(AV1layer2, x1layer2, fc2*sizeof(int));
+		activeSigmoid(x1layer2, fc2);
+	//	imprimeResultante(x1layer2, fc2);
+
+		//Computing the second layer of the second image on the same Neural network
+
+		cublasSgemm(cublasHandle,
+				CUBLAS_OP_N, CUBLAS_OP_N,
+				fc2, 1, fc1,
+				&alpha,
+				wfc2, fc1,
+				x2layer1, 1,
+				&beta,
+				x2layer2, 1);
+
+		cublasSgemm(cublasHandle,
+				CUBLAS_OP_N, CUBLAS_OP_N,
+				fc2, 1, 1,
+				&alpha,
+				bfc2, 1,
+				onevec, 1,
+				&alpha,
+				x2layer2, 1);
+
+	//imprimeResultante(x2layer2, fc2);
+	memcpy(AV2layer2, x2layer2, fc2*sizeof(int));
+	activeSigmoid(x2layer2, fc2);
+	//imprimeResultante(x2layer2, fc2);
+
+	  cublasSgemm(cublasHandle,
+	      CUBLAS_OP_N, CUBLAS_OP_N,
+	      fc3, 1, fc2,
+	      &alpha,
+	      wfc3, fc2,
+	      x1layer2, 1,
+	      &beta,
+	      x1layer3, 1);
+
+	  cublasSgemm(cublasHandle,
+	    	CUBLAS_OP_N, CUBLAS_OP_N,
+	    	fc3, 1, 1,
+	    	&alpha,
+	    	bfc3, 1,
+	    	onevec, 1,
+	    	&alpha,
+	    	x1layer3, 1);
+
+		//imprimeResultante(x1layer3, fc3);
+		memcpy(AV1layer3, x1layer3, fc3*sizeof(int));
+		activeSigmoid(x1layer3, fc3);
+	//	imprimeResultante(x1layer3, fc3);
+
+		//Computing the third layer of the second image on the same Neural network
+
+		cublasSgemm(cublasHandle,
+				CUBLAS_OP_N, CUBLAS_OP_N,
+				fc3, 1, fc2,
+				&alpha,
+				wfc3, fc2,
+				x2layer2, 1,
+				&beta,
+				x2layer3, 1);
+
+		cublasSgemm(cublasHandle,
+				CUBLAS_OP_N, CUBLAS_OP_N,
+				fc3, 1, 1,
+				&alpha,
+				bfc3, 1,
+				onevec, 1,
+				&alpha,
+				x2layer3, 1);
+
+
+	memcpy(AV2layer3, x2layer3, fc3*sizeof(int));
+	activeSigmoid(x2layer3, fc3);
+
+	}
 
 
 }

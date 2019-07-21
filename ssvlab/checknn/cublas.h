@@ -931,6 +931,22 @@ cublasStatus_t cublasDaxpy(cublasHandle_t handle, int n,
 		return CUBLAS_STATUS_SUCCESS;
 }
 
+int neuronLayerIndexSum(int layerIndex) {
+	layerIndex = layerIndex - 1;
+	if(layerIndex < 0 || layerIndex > (layerNumber - 1))
+		return -1;
+	int returnedValue = 0;
+	int i = 0;
+	if(layerIndex == 0)
+		return returnedValue;
+	else {
+		for(i = 0; i < layerIndex; i++) {
+			returnedValue = layerSizes[i] + returnedValue;
+		}
+		return returnedValue;
+	}
+}
+
 
 float sigmoidFunction(float u) {
 	float retorno;
@@ -1057,7 +1073,7 @@ int DSCover(float* layer1x1, float* layer1x2, float n2x1, float n2x2, int size1,
 }
 
 //The method that prints the covered neurons
-void printDSCover(float* layeri1, float* layeri2, float* layerj1, float* layerj2, int l1, int l2, int LayerIndex) {
+void printDSCover(float* layeri1, float* layeri2, float* layerj1, float* layerj2, int l1, int l2, int layerIndex) {
 	int i = 0;
 	int j = 0;
 	int find = 0;
@@ -1101,7 +1117,7 @@ int SVCover(float* layer1x1, float* layer1x2, float n2x1, float n2x2, int size1,
 }
 
 //The method that prints the covered neurons
-void printSVCover(float* layeri1, float* layeri2, float* layerj1, float* layerj2, int l1, int l2, int distance, layerIndex){
+void printSVCover(float* layeri1, float* layeri2, float* layerj1, float* layerj2, int l1, int l2, int distance,int layerIndex){
 	int i = 0;
 	int n1 = -1;
 	int n2 = -1;
@@ -1150,7 +1166,7 @@ int DVCover(float* layer1x1, float* layer1x2, float n2x1, float n2x2, int size1,
 }
 
 //The method that prints the covered neurons
-void printDVCover(float* layeri1, float* layeri2, float* layerj1, float* layerj2, int l1, int l2, int distance) {
+void printDVCover(float* layeri1, float* layeri2, float* layerj1, float* layerj2, int l1, int l2, int distance, int layerIndex) {
 	int i = 0;
 	int j = 0;
 	int find = 0;
@@ -1200,11 +1216,13 @@ int cont = 0;
         //printf("limiar de ativacao da posicao: %d com valor: %.2f \n", cont, pesosSinapticos[xn]);
 }
 
-void printLayerValues(float* layer1, float* layer2, int size) {
+void printLayerValues(float* layer1, float* layer2, int size, int layer) {
 int cont = 0;
+				printf("LAYER: %d \n ------------------------ \n", layer);
         for(cont = 0; cont < size; cont++) {
                 printf("Neuron: %d : x1: %.6f   x2: %.6f \n", cont, layer1[cont], layer2[cont]);
         }
+				printf("------------------------ \n", layer);
         //printf("limiar de ativacao da posicao: %d com valor: %.2f \n", cont, pesosSinapticos[xn]);
 }
 
@@ -1306,7 +1324,7 @@ void checkNN(float* wfc1, float* bfc1, float* wfc2, float* bfc2, float* wfc3, fl
 	//imprimeResultante(x2layer1, fc1);
 	activeSigmoid(x2layer1, fc1);
 	//imprimeResultante(x2layer1, fc1);
-	printLayerValues(x1layer1, x2layer1, fc1);
+	//printLayerValues(x1layer1, x2layer1, fc1);
 
     cublasSgemm(cublasHandle,
       CUBLAS_OP_N, CUBLAS_OP_N,
@@ -1520,22 +1538,6 @@ void checkNNLUT(float* wfc1, float* bfc1, float* wfc2, float* bfc2, float* wfc3,
 
 }
 
-int neuronLayerIndexSum(int layerIndex) {
-	layerIndex = layerIndex - 1;
-	if(layerIndex < 0 || layerIndex > (layerNumber - 1))
-		return -1;
-	int returnedValue = 0;
-	int i = 0;
-	if(layerIndex == 0)
-		return returnedValue;
-	else {
-		for(i = 0; i < layerIndex; i++) {
-			returnedValue = layerSizes[i] + returnedValue;
-		}
-		return returnedValue;
-	}
-}
-
 void checkNNPrinting(float* wfc1, float* bfc1, float* wfc2, float* bfc2, float* wfc3, float* bfc3, float* img) {
 
 
@@ -1659,6 +1661,14 @@ void checkNNDebug(float* wfc1, float* bfc1, float* wfc2, float* bfc2, float* wfc
 		float *x2layer1;
 		float *x2layer2;
 		float *x2layer3;
+
+		float *AV1layer1;
+		float *AV1layer2;
+		float *AV1layer3;
+		float *AV2layer1;
+		float *AV2layer2;
+		float *AV2layer3;
+
 		float alpha;
 		float beta;
 		//float* dev_result;
@@ -1726,7 +1736,7 @@ void checkNNDebug(float* wfc1, float* bfc1, float* wfc2, float* bfc2, float* wfc
 	      &alpha,
 	      x1layer1, 1);
 
-		memcpy(AV1layer1, x1layer1, fc1*sizeof(int));
+		memcpy(AV1layer1, x1layer1, fc1*sizeof(float));
 		activeSigmoid(x1layer1, fc1);
 
 	//Computing the first layer of the second image x2 on the same Neural Network
@@ -1748,8 +1758,10 @@ void checkNNDebug(float* wfc1, float* bfc1, float* wfc2, float* bfc2, float* wfc
 				&alpha,
 				x2layer1, 1);
 
-		memcpy(AV2layer1, x2layer1, fc1*sizeof(int));
+		memcpy(AV2layer1, x2layer1, fc1*sizeof(float));
 		activeSigmoid(x2layer1, fc1);
+		printLayerValues(AV1layer1, AV2layer1, fc1, 1);
+		printLayerValues(x1layer1, x2layer1, fc1, 1);
 
 	    cublasSgemm(cublasHandle,
 	      CUBLAS_OP_N, CUBLAS_OP_N,
@@ -1770,7 +1782,7 @@ void checkNNDebug(float* wfc1, float* bfc1, float* wfc2, float* bfc2, float* wfc
 	      x1layer2, 1);
 
 		//imprimeResultante(x1layer2, fc2);
-		memcpy(AV1layer2, x1layer2, fc2*sizeof(int));
+		memcpy(AV1layer2, x1layer2, fc2*sizeof(float));
 		activeSigmoid(x1layer2, fc2);
 	//	imprimeResultante(x1layer2, fc2);
 
@@ -1795,7 +1807,7 @@ void checkNNDebug(float* wfc1, float* bfc1, float* wfc2, float* bfc2, float* wfc
 				x2layer2, 1);
 
 	//imprimeResultante(x2layer2, fc2);
-	memcpy(AV2layer2, x2layer2, fc2*sizeof(int));
+	memcpy(AV2layer2, x2layer2, fc2*sizeof(float));
 	activeSigmoid(x2layer2, fc2);
 	//imprimeResultante(x2layer2, fc2);
 
@@ -1818,7 +1830,7 @@ void checkNNDebug(float* wfc1, float* bfc1, float* wfc2, float* bfc2, float* wfc
 	    	x1layer3, 1);
 
 		//imprimeResultante(x1layer3, fc3);
-		memcpy(AV1layer3, x1layer3, fc3*sizeof(int));
+		memcpy(AV1layer3, x1layer3, fc3*sizeof(float));
 		activeSigmoid(x1layer3, fc3);
 	//	imprimeResultante(x1layer3, fc3);
 
@@ -1843,10 +1855,6 @@ void checkNNDebug(float* wfc1, float* bfc1, float* wfc2, float* bfc2, float* wfc
 				x2layer3, 1);
 
 
-	memcpy(AV2layer3, x2layer3, fc3*sizeof(int));
+	memcpy(AV2layer3, x2layer3, fc3*sizeof(float));
 	activeSigmoid(x2layer3, fc3);
-
 	}
-
-
-}

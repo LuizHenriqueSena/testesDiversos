@@ -7,6 +7,7 @@
 #define fc1 5
 #define fc2 4
 #define fc3 5
+#define layerNumber 3
 
 typedef enum cublasstatus { CUBLAS_STATUS_SUCCESS,
 	CUBLAS_STATUS_NOT_INITIALIZED,
@@ -29,7 +30,12 @@ typedef enum cublasoperation {CUBLAS_OP_N,
 
 typedef enum cublasoperation cublasOperation_t;
 
-int coverage[fc1 + fc2 + fc3];
+int coverageSS[fc1 + fc2 + fc3];
+int coverageDS[fc1 + fc2 + fc3];
+int coverageSV[fc1 + fc2 + fc3];
+int coverageDV[fc1 + fc2 + fc3];
+
+int layerSizes[3] = {fc1,fc2,fc3};
 
 //lookuptable of sigmoid function variating from -20 to 20 with .00 of resolution
 float lookup[4000] = {0.000000 ,0.000000 ,0.000000 ,0.000000 ,0.000000 ,0.000000 ,0.000000 ,0.000000 ,0.000000 ,0.000000 ,
@@ -997,7 +1003,7 @@ int SSCover(float* layer1x1, float* layer1x2, float n2x1, float n2x2, int size1,
 }
 
 //The method that prints the covered neurons
-void printSSCover(float* layeri1, float* layeri2, float* layerj1, float* layerj2, int l1, int l2) {
+void printSSCover(float* layeri1, float* layeri2, float* layerj1, float* layerj2, int l1, int l2, int layerIndex) {
 	int i = 0;
 	int n1 = -1;
 	int n2 = -1;
@@ -1021,6 +1027,8 @@ void printSSCover(float* layeri1, float* layeri2, float* layerj1, float* layerj2
 	for(i =0; i <l2; i++) {
 		sc2[i] = signalChange(layerj1[i], layerj2[i]);
 		if(sc2[i]) {
+			coverageSS[neuronLayerIndexSum(layerIndex)+n1] = 1;
+			coverageSS[neuronLayerIndexSum(layerIndex + 1) + i] = 1;
 			printf("The neuron pair ni%d, nj%d is SSCovered by the 2 test cases.\n", n1, i);
 			n2 = i;
 		}
@@ -1049,7 +1057,7 @@ int DSCover(float* layer1x1, float* layer1x2, float n2x1, float n2x2, int size1,
 }
 
 //The method that prints the covered neurons
-void printDSCover(float* layeri1, float* layeri2, float* layerj1, float* layerj2, int l1, int l2) {
+void printDSCover(float* layeri1, float* layeri2, float* layerj1, float* layerj2, int l1, int l2, int LayerIndex) {
 	int i = 0;
 	int j = 0;
 	int find = 0;
@@ -1062,6 +1070,8 @@ void printDSCover(float* layeri1, float* layeri2, float* layerj1, float* layerj2
 		if(signalChange(layerj1[i], layerj2[i])){
 				find=1;
 				for(j=0; j<l1;j++) {
+					 coverageDS[neuronLayerIndexSum(layerIndex) + j] = 1;
+					 coverageDS[neuronLayerIndexSum(layerIndex + 1) +i] = 1;
 					printf("The neuron pair ni%d, nj%d is DSCovered by the 2 test cases.\n", j, i);
 				}
 		}
@@ -1091,7 +1101,7 @@ int SVCover(float* layer1x1, float* layer1x2, float n2x1, float n2x2, int size1,
 }
 
 //The method that prints the covered neurons
-void printSVCover(float* layeri1, float* layeri2, float* layerj1, float* layerj2, int l1, int l2, int distance){
+void printSVCover(float* layeri1, float* layeri2, float* layerj1, float* layerj2, int l1, int l2, int distance, layerIndex){
 	int i = 0;
 	int n1 = -1;
 	int n2 = -1;
@@ -1101,25 +1111,27 @@ void printSVCover(float* layeri1, float* layeri2, float* layerj1, float* layerj2
 	for(i =0; i <l1; i++) {
 		sc1[i] = signalChange(layeri1[i], layeri2[i]);
 		if((n1!=-1)&&(sc1[i]==1)) {
-			printf("There is no SSCover neurons for these 2 test cases \n");
+			printf("There is no SVCover neurons for these 2 test cases \n");
 			return;
 		}
 		if((sc1[i]==1) && (n1==-1)) {
 			n1 = i;
 		}
 		if(i==(l1-1)&&(n1==-1)) {
-			printf("There is no SSCover neurons for these 2 test cases \n");
+			printf("There is no SVCover neurons for these 2 test cases \n");
 			return;
 		}
 	}
 	for(i =0; i <l2; i++) {
 		sc2[i] = valueChange(layerj1[i], layerj2[i], distance);
 		if(sc2[i]) {
-			printf("The neuron pair ni%d, nj%d is SSCovered by the 2 test cases.\n", n1, i);
+			coverageSV[neuronLayerIndexSum(layerIndex) + n1] = 1;
+			coverageSV[neuronLayerIndexSum(layerIndex + 1) + i] = 1;
+			printf("The neuron pair ni%d, nj%d is SVCovered by the 2 test cases.\n", n1, i);
 			n2 = i;
 		}
 		if((n2==-1)&&(i==(l2-1))){
-			printf("There is no SSCover neurons for these 2 test cases \n");
+			printf("There is no SVCover neurons for these 2 test cases \n");
 			return;
 		}
 
@@ -1151,6 +1163,8 @@ void printDVCover(float* layeri1, float* layeri2, float* layerj1, float* layerj2
 		if(valueChange(layerj1[i], layerj2[i], distance)){
 				find=1;
 				for(j=0; j<l1;j++) {
+					coverageDV[neuronLayerIndexSum(layerIndex) + j] = 1;
+					coverageDV[neuronLayerIndexSum(layerIndex + 1) + i] = 1;
 					printf("The neuron pair ni%d, nj%d is DSCovered by the 2 test cases.\n", j, i);
 				}
 		}
@@ -1504,6 +1518,22 @@ void checkNNLUT(float* wfc1, float* bfc1, float* wfc2, float* bfc2, float* wfc3,
 
 
 
+}
+
+int neuronLayerIndexSum(int layerIndex) {
+	layerIndex = layerIndex - 1;
+	if(layerIndex < 0 || layerIndex > (layerNumber - 1))
+		return -1;
+	int returnedValue = 0;
+	int i = 0;
+	if(layerIndex == 0)
+		return returnedValue;
+	else {
+		for(i = 0; i < layerIndex; i++) {
+			returnedValue = layerSizes[i] + returnedValue;
+		}
+		return returnedValue;
+	}
 }
 
 void checkNNPrinting(float* wfc1, float* bfc1, float* wfc2, float* bfc2, float* wfc3, float* bfc3, float* img) {

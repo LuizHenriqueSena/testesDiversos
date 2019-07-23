@@ -1,0 +1,3 @@
+Configuration: concurrency bug checking level is: 2
+
+[GKLEE]: The configuration, Grid: <1, 1, 1>, Block: <2, 1, 1>

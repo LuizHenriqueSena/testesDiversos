@@ -1,0 +1,5 @@
+Error: execution halts on encounering a (shared) race
+File: /home/luiz/Projetos/benchLuiz/benchmarksGklee/041_test_copy_between_memory_spaces/main.cpp
+Line: 37
+Stack: 
+	#0 00000103 in main () at /home/luiz/Projetos/benchLuiz/benchmarksGklee/041_test_copy_between_memory_spaces/main.cpp:37

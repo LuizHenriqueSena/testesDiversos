@@ -1,0 +1,89 @@
+Configuration: concurrency bug checking level is: 2
+
+[GKLEE]: The configuration, Grid: <4, 1, 1>, Block: <4, 1, 1>
+
+[GKLEE]: Start executing a GPU kernel 
+
+[GKLEE]: 
+********** Start checking bank conflicts at SharedMemory 0 **********
+[GKLEE]: The read set is empty in bank conflict checking for capability 2.x
+[GKLEE]: 
+********** Start checking bank conflicts at SharedMemory 1 **********
+[GKLEE]: The read set is empty in bank conflict checking for capability 2.x
+[GKLEE]: 
+********** Start checking bank conflicts at SharedMemory 2 **********
+[GKLEE]: The read set is empty in bank conflict checking for capability 2.x
+[GKLEE]: 
+********** Start checking bank conflicts at SharedMemory 3 **********
+[GKLEE]: The read set is empty in bank conflict checking for capability 2.x
+[GKLEE]: 
+********** Start checking memory coalescing at DeviceMemory at capability: 2.x **********
+[GKLEE]: The read set for memory coalescing cap 2 is empty
+[GKLEE]: The write set for memory coalescing cap 2 is empty
+[GKLEE]: 
+********** Start checking warp divergence **********
+[GKLEE]: In warp 0, threads are diverged into following sub-sets: 
+[GKLEE]: Set 0:
+[GKLEE]: Threads: 0, 1, 2, 3
+[GKLEE]: In warp 1, threads are diverged into following sub-sets: 
+[GKLEE]: Set 0:
+[GKLEE]: Threads: 4, 5, 6, 7
+[GKLEE]: In warp 2, threads are diverged into following sub-sets: 
+[GKLEE]: Set 0:
+[GKLEE]: Threads: 8, 9, 10, 11
+[GKLEE]: In warp 3, threads are diverged into following sub-sets: 
+[GKLEE]: Set 0:
+[GKLEE]: Threads: 12, 13, 14, 15
+
+[GKLEE]: *****************************************************
+[GKLEE]: 
+********** Start checking volatile missing at SharedMemory 0 ********** 
+[GKLEE]: 
+********** Start checking volatile missing at SharedMemory 1 ********** 
+[GKLEE]: 
+********** Start checking volatile missing at SharedMemory 2 ********** 
+[GKLEE]: 
+********** Start checking volatile missing at SharedMemory 3 ********** 
+[GKLEE]: 
+********** Start checking races at SharedMemory 0 **********
+
+[GKLEE]: Under the pure canonical schedule, within a block, thread 0 and 1 incur a Write-Write race (Actual) on 
+[GKLEE] Inst: 
+Instruction Line: 12, In File: main.cpp, With Dir Path: /home/luiz/Projetos/benchLuiz/benchmarksGklee/085_shared_int
+[File: /home/luiz/Projetos/benchLuiz/benchmarksGklee/085_shared_int/main.cpp, Line: 12, Inst:   a = threadIdx.x;]
+<W: _ZZ3foovE1a_block_0, 0:0, b0, t0> 
+[GKLEE] Inst: 
+Instruction Line: 12, In File: main.cpp, With Dir Path: /home/luiz/Projetos/benchLuiz/benchmarksGklee/085_shared_int
+[File: /home/luiz/Projetos/benchLuiz/benchmarksGklee/085_shared_int/main.cpp, Line: 12, Inst:   a = threadIdx.x;]
+<W: _ZZ3foovE1a_block_0, 0:1, b0, t1> 
+path num explored here: 1
++++++++++++++++++ Bank Conflict Rate: +++++++++++++++++
+[GKLEE]: Across 1 BIs, the total num of instructions with BC: 0, the total num of instructions: 4
+[GKLEE]: Across 1 BIs, the total num of warps with BC: 0, the total num of warps: 4
+[GKLEE]: In shared memory 0, num of BIs with BC: 0, num of BIs: 1
+[GKLEE]: In shared memory 1, num of BIs with BC: 0, num of BIs: 1
+[GKLEE]: In shared memory 2, num of BIs with BC: 0, num of BIs: 1
+[GKLEE]: In shared memory 3, num of BIs with BC: 0, num of BIs: 1
+
+[GKLEE]: The Average 'Warp' Bank Conflict Rate for all shared memories at path 1 : 0%, <avgBCWarp, avgWarp> : <0, 4>
+
+[GKLEE]: The Average 'BI' Bank Conflict Rate for all shared memories at path 1 : 0%, <avgBCBI, avgBI> : <0, 1>
++++++++++++++++++ end +++++++++++++++++
++++++++++++++++++ Memory Coalescing Rate: +++++++++++++++++
++++++++++++++++++ end +++++++++++++++++
++++++++++++++++++ Warp Divergence Rate: +++++++++++++++++
+[GKLEE]: Across 1 BIs, the total num of warps with WD: 0, the total num of warps: 4
+[GKLEE]: Num of BIs with WD: 0, num of BIs: 1
+
+[GKLEE]: The Average 'Warp' Warp Divergence Rate at path 1 : 0%, <avgWDWarp, avgWarp> : <0, 4>
+
+[GKLEE]: The Average 'BI' Warp Divergence Rate at path 1 : 0%, <avgWDBI, avgBI> : <0, 1>
++++++++++++++++++ end +++++++++++++++++
+Under concrete configuration, Acorss 0 BIs, Total Time: 0
+After exploring 1 paths, the average exploration time (concrete) is 0
+[GKLEE]: 
+********** Start checking races at Device Memory ********** 
+
+[GKLEE]: Finish executing a GPU kernel 
+
+[GKLEE]: GPU Execution time: 0.003931s

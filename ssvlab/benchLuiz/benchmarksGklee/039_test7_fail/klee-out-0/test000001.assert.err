@@ -1,0 +1,5 @@
+Error: ASSERTION FAIL: v[i]!=i
+File: /home/luiz/Projetos/benchLuiz/benchmarksGklee/039_test7_fail/main.cpp
+Line: 51
+Stack: 
+	#0 00000160 in main () at /home/luiz/Projetos/benchLuiz/benchmarksGklee/039_test7_fail/main.cpp:51

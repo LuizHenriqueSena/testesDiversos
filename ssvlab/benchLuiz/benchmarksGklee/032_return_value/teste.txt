@@ -1,0 +1,6 @@
+Configuration: concurrency bug checking level is: 2
+Digite 0 para multiplicar um vetor por 4 ou
+Digite outro valor para multiplicar um vetor por 2.5: 
+ 4.0;  7.0; 
+
+[GKLEE]: The configuration, Grid: <1, 1, 1>, Block: <2, 1, 1>

@@ -1,0 +1,2 @@
+KLEE: ERROR: /home/luiz/Projetos/benchLuiz/benchmarksGklee/022_basic_statement_pair/main.cpp:30: ASSERTION FAIL: i == 1 | i == 2
+KLEE: NOTE: now ignoring this error at this location

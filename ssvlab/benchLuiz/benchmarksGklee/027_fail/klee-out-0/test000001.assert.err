@@ -1,0 +1,5 @@
+Error: ASSERTION FAIL: c[i]!=a[i]+b[i]
+File: /home/luiz/Projetos/benchLuiz/benchmarksGklee/027_fail/main.cpp
+Line: 54
+Stack: 
+	#0 00000261 in main () at /home/luiz/Projetos/benchLuiz/benchmarksGklee/027_fail/main.cpp:54

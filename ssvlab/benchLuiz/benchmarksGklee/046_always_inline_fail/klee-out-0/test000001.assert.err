@@ -1,0 +1,6 @@
+Error: ASSERTION FAIL: x != 5
+File: /home/luiz/Projetos/benchLuiz/benchmarksGklee/046_always_inline_fail/main.cpp
+Line: 18
+Stack: 
+	#0 00000023 in _Z3foov () at /home/luiz/Projetos/benchLuiz/benchmarksGklee/046_always_inline_fail/main.cpp:18
+	#1 00000058 in main () at /home/luiz/Projetos/benchLuiz/benchmarksGklee/046_always_inline_fail/main.cpp:26

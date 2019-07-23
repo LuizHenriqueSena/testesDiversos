@@ -1,0 +1,101 @@
+Configuration: concurrency bug checking level is: 2
+
+[GKLEE]: The configuration, Grid: <1, 1, 1>, Block: <2, 1, 1>
+
+[GKLEE]: Start executing a GPU kernel 
+
+[GKLEE]: 
+********** Start checking bank conflicts at SharedMemory 0 **********
+[GKLEE]: The read set is empty in bank conflict checking for capability 2.x
+[GKLEE]: The write set is empty in bank conflict checking for capability 2.x
+[GKLEE]: 
+********** Start checking memory coalescing at DeviceMemory at capability: 2.x **********
+
+[GKLEE]: ********** CAPACITY 2.x Inst By Whole Warp ( 1 ) **********
+[GKLEE]: The word size accessed by threads: 4, the 1th request over total 1 requests
+
+[GKLEE]: +++++++++++++++++++++++++++++++++++++++++++++++++++++
+[GKLEE]: This request is coalesced into one memory segment (128 Bytes) accessed by 2 threads
+
+[GKLEE]: +++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+[GKLEE]: ********** CAPACITY 2.x Inst By Whole Warp ( 1 ) **********
+[GKLEE]: The word size accessed by threads: 4, the 1th request over total 1 requests
+
+[GKLEE]: +++++++++++++++++++++++++++++++++++++++++++++++++++++
+[GKLEE]: This request is coalesced into one memory segment (128 Bytes) accessed by 2 threads
+
+[GKLEE]: +++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+[GKLEE]: ********** CAPACITY 2.x Inst By Whole Warp ( 2 ) **********
+[GKLEE]: The word size accessed by threads: 4, the 1th request over total 1 requests
+
+[GKLEE]: +++++++++++++++++++++++++++++++++++++++++++++++++++++
+[GKLEE]: This request is coalesced into one memory segment (128 Bytes) accessed by 1 threads
+
+[GKLEE]: +++++++++++++++++++++++++++++++++++++++++++++++++++++
+[GKLEE]: 
+********** Start checking warp divergence **********
+[GKLEE]: In warp 0, threads are diverged into following sub-sets: 
+[GKLEE]: Set 0:
+[GKLEE]: Threads: 0
+[GKLEE]: Set 1:
+[GKLEE]: Threads: 1
+
+[GKLEE]: *****************************************************
+[GKLEE]: 
+********** Start checking volatile missing at SharedMemory 0 ********** 
+[GKLEE]: 
+********** Start checking races at SharedMemory 0 **********
+[GKLEE]: 
+********** Start checking races at Device Memory ********** 
+
+[GKLEE]: Under the pure canonical schedule, within a block, thread 0 and 1 incur a Write-Write race with the same value (Benign) on 
+[GKLEE] Inst: 
+Instruction Line: 21, In File: main.cpp, With Dir Path: /home/luiz/Projetos/benchLuiz/benchmarksGklee/078_fail
+[File: /home/luiz/Projetos/benchLuiz/benchmarksGklee/078_fail/main.cpp, Line: 21, Inst:   A[THREAD_CHANGE] = 0;		 ]
+<W: _ZL1A, 4:0, b0, t0> 
+[GKLEE] Inst: 
+Instruction Line: 21, In File: main.cpp, With Dir Path: /home/luiz/Projetos/benchLuiz/benchmarksGklee/078_fail
+[File: /home/luiz/Projetos/benchLuiz/benchmarksGklee/078_fail/main.cpp, Line: 21, Inst:   A[THREAD_CHANGE] = 0;		 ]
+<W: _ZL1A, 4:0, b0, t1> 
+
+[GKLEE]: Under the pure canonical schedule, thread 1 and 0 incur a Write-Read race (Actual) on 
+[GKLEE] Inst: 
+Instruction Line: 22, In File: main.cpp, With Dir Path: /home/luiz/Projetos/benchLuiz/benchmarksGklee/078_fail
+[File: /home/luiz/Projetos/benchLuiz/benchmarksGklee/078_fail/main.cpp, Line: 22, Inst:   int a = A[i];]
+<R: _ZL1A, 4:0, b0, t1> 
+[GKLEE] Inst: 
+Instruction Line: 21, In File: main.cpp, With Dir Path: /home/luiz/Projetos/benchLuiz/benchmarksGklee/078_fail
+[File: /home/luiz/Projetos/benchLuiz/benchmarksGklee/078_fail/main.cpp, Line: 21, Inst:   A[THREAD_CHANGE] = 0;		 ]
+<W: _ZL1A, 4:0, b0, t0> 
+[GKLEE]: Under pure canonical schedule, a read-write race is found from BI 1 of the block 0
+path num explored here: 1
++++++++++++++++++ Bank Conflict Rate: +++++++++++++++++
+[GKLEE]: Across 0 BIs, the total num of instructions with BC: 0, the total num of instructions: 0
+[GKLEE]: Across 0 BIs, the total num of warps with BC: 0, the total num of warps: 0
++++++++++++++++++ end +++++++++++++++++
++++++++++++++++++ Memory Coalescing Rate: +++++++++++++++++
+[GKLEE]: Across 1 BIs, the total num of read instructions with MC: 1, the total number of read instructions: 1
+[GKLEE]: Across 1 BIs, the total num of write instructions with MC: 2, the total number of write instructions: 2
+[GKLEE]: Across 1 BIs, the total num of warps with MC: 1, the total num of warps: 1
+[GKLEE]: num of BIs with MC: 1, num of BIs: 1
+
+[GKLEE]: The Average 'Warp' Memory Coalescing Rate at path 1 : 100%, <avgMCWarp, avgWarp> : <1, 1>
+
+[GKLEE]: The Average 'BI' Memory Coalescing Rate at path 1 : 100%, <avgMCBI, avgBI> : <1, 1>
++++++++++++++++++ end +++++++++++++++++
++++++++++++++++++ Warp Divergence Rate: +++++++++++++++++
+[GKLEE]: Across 1 BIs, the total num of warps with WD: 1, the total num of warps: 1
+[GKLEE]: Num of BIs with WD: 1, num of BIs: 1
+
+[GKLEE]: The Average 'Warp' Warp Divergence Rate at path 1 : 100%, <avgWDWarp, avgWarp> : <1, 1>
+
+[GKLEE]: The Average 'BI' Warp Divergence Rate at path 1 : 100%, <avgWDBI, avgBI> : <1, 1>
++++++++++++++++++ end +++++++++++++++++
+Under concrete configuration, Acorss 0 BIs, Total Time: 0
+After exploring 1 paths, the average exploration time (concrete) is 0
+
+[GKLEE]: Finish executing a GPU kernel 
+
+[GKLEE]: GPU Execution time: 0.009555s

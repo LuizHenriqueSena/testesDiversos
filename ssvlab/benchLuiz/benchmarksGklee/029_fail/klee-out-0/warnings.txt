@@ -1,0 +1,2 @@
+KLEE: ERROR: /home/luiz/Projetos/benchLuiz/benchmarksGklee/029_fail/main.cpp:56: ASSERTION FAIL: c[i]!=a[i]+b[i]
+KLEE: NOTE: now ignoring this error at this location

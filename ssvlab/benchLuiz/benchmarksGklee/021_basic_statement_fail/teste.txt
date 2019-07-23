@@ -1,0 +1,6 @@
+Configuration: concurrency bug checking level is: 2
+Digite 1 para duplicar um vetor ou
+Digite 2 para dividir um vetor por 2: 
+ 4.0;  7.0; 
+
+[GKLEE]: The configuration, Grid: <1, 1, 1>, Block: <2, 1, 1>

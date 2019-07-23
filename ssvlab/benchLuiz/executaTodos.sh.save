@@ -1,0 +1,18 @@
+dir=$(pwd)
+if [ $1 == "esbmc-gpu" ]; then
+	echo "ESBMCCCCCZAO"
+	comando="esbmc"
+elif [ $1 == "gklee" ]; then
+	echo "gkleeeee"
+	comando="gklee"
+elif [ $1 == "gpuverify" ]; then
+	echo "gpuverify será executado"
+	comando="gpuverify --gridDim=1 --blockDim=32 main.cu -I ~/libraries"
+fi
+echo $comando
+
+for d in $(find $(dir) -maxdepth 1 -type d)
+do
+	cd "$dir/$d"
+	"$dir"/hello | tee teste.txt
+done

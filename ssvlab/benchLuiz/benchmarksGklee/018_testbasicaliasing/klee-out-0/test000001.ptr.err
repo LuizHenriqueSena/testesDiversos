@@ -1,0 +1,11 @@
+Error: memory error: out of bound pointer
+File: /home/luiz/Projetos/benchLuiz/benchmarksGklee/018_testbasicaliasing/main.cpp
+Line: 12
+Stack: 
+	#0 00000027 in _Z3fooPiS_ (p=38390496, q=38320176) at /home/luiz/Projetos/benchLuiz/benchmarksGklee/018_testbasicaliasing/main.cpp:12
+	#1 00000117 in main () at /home/luiz/Projetos/benchLuiz/benchmarksGklee/018_testbasicaliasing/main.cpp:37
+Info: 
+	address: 38320184
+	next: none
+	prev: object at 38312944 of size 8
+		MO196[8] allocated at _Z3fooPiS_():  %1 = alloca i32*, align 8

@@ -1,0 +1,2 @@
+KLEE: ERROR: /home/luiz/Projetos/benchLuiz/benchmarksGklee/044_simplereturn_fail/main.cpp:37: ASSERTION FAIL: *a != 3
+KLEE: NOTE: now ignoring this error at this location

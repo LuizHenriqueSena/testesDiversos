@@ -1,0 +1,5 @@
+Error: ASSERTION FAIL: b != a+2
+File: /home/luiz/Projetos/benchLuiz/benchmarksGklee/057_fail/main.cpp
+Line: 35
+Stack: 
+	#0 00000090 in main () at /home/luiz/Projetos/benchLuiz/benchmarksGklee/057_fail/main.cpp:35

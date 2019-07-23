@@ -1,0 +1,9 @@
+digraph kernel{
+kernel;
+"kernel" -> "Flow_0_0";
+Flow_0_0 [label="flow 0:true" color=green shape = rectangle];
+Branch_1 [label = <<table><tr><td>"  br i1 %4, label %6, label %5, !dbg !719"</td></tr><tr><td>"true"</td></tr></table>> color = orange shape = invhouse];
+"Flow_0_0" -> "Branch_1";
+"Flow_0_0" -> "return";
+"Flow_0_0" -> "return";
+}

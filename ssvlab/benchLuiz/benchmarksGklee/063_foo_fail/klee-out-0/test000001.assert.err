@@ -1,0 +1,5 @@
+Error: ASSERTION FAIL: !(a[i]== (i+1))
+File: /home/luiz/Projetos/benchLuiz/benchmarksGklee/063_foo_fail/main.cpp
+Line: 38
+Stack: 
+	#0 00000131 in main () at /home/luiz/Projetos/benchLuiz/benchmarksGklee/063_foo_fail/main.cpp:38

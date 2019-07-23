@@ -1,0 +1,2 @@
+KLEE: ERROR: /home/luiz/Projetos/benchLuiz/benchmarksGklee/005_soundness_issue_pair/main.cpp:40: reached "unreachable" instruction
+KLEE: NOTE: now ignoring this error at this location

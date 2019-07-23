@@ -1,0 +1,47 @@
+ 
+ 
+#include <stdio.h>
+#include <assert.h>
+#include <cuda.h>
+
+#define N 2 
+
+__constant__ int A[4096];
+__constant__ int B[3] = {0,1,2};
+
+__global__ void kernel(int* x) {
+  x[threadIdx.x] = A[threadIdx.x] + B[0];  
+}
+int main () {
+
+	int *a;
+	int *c;
+	int *dev_a;
+	int size = N*sizeof(int);
+
+	cudaMalloc((void**)&dev_a, size);
+
+	a = (int*)malloc(size);
+	c = (int*)malloc(size);
+
+	for (int i = 0; i < N; i++)
+		a[i] = rand() %10+1;
+
+	cudaMemcpy(dev_a,a,size, cudaMemcpyHostToDevice);
+{	__set_CUDAConfig(1, N); 
+          
+	kernel(dev_a);}
+          	
+	 
+
+	cudaMemcpy(c,dev_a,size,cudaMemcpyDeviceToHost);
+
+	for (int i = 0; i < N; i++){
+		assert(c[i]==0);
+	}
+	free(a);
+	free(c);
+	cudaFree(dev_a);
+
+	return 0;
+}

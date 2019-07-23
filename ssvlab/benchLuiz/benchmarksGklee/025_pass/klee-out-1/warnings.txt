@@ -1,0 +1,2 @@
+KLEE: ERROR: /home/luiz/Projetos/benchLuiz/benchmarksGklee/025_pass/main.cpp:54: ASSERTION FAIL: (idata[i]!=1)or(odata[i]!=128)
+KLEE: NOTE: now ignoring this error at this location

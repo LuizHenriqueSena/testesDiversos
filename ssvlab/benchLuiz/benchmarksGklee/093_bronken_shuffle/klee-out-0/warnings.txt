@@ -1,0 +1,2 @@
+KLEE: ERROR: /home/luiz/Projetos/benchLuiz/benchmarksGklee/093_bronken_shuffle/main.cpp:16: memory error: out of bound pointer
+KLEE: NOTE: now ignoring this error at this location

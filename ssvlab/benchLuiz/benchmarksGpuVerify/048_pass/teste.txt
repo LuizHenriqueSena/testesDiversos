@@ -1,0 +1,7 @@
+GPUVerify kernel analyser finished with 1 verified, 0 errors
+Verified: main.cu
+- no data races within thread blocks
+- no data races between thread blocks
+- no barrier divergence
+- no assertion failures
+(but absolutely no warranty provided)

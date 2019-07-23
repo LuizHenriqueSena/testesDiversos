@@ -1,0 +1,5 @@
+Error: execution halts on encounering a (global) race
+File: /home/luiz/Projetos/benchLuiz/benchmarksGklee/078_fail/main.cpp
+Line: 47
+Stack: 
+	#0 00000123 in main () at /home/luiz/Projetos/benchLuiz/benchmarksGklee/078_fail/main.cpp:47

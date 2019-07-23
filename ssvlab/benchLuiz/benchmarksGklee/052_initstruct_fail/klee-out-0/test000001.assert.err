@@ -1,0 +1,5 @@
+Error: ASSERTION FAIL: a[i].x != 1
+File: /home/luiz/Projetos/benchLuiz/benchmarksGklee/052_initstruct_fail/main.cpp
+Line: 33
+Stack: 
+	#0 00000123 in main () at /home/luiz/Projetos/benchLuiz/benchmarksGklee/052_initstruct_fail/main.cpp:33

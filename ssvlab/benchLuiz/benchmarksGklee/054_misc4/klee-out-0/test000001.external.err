@@ -1,0 +1,6 @@
+Error: failed external call: _Z3bari
+File: /home/luiz/Projetos/benchLuiz/benchmarksGklee/054_misc4/main.cpp
+Line: 19
+Stack: 
+	#0 00000035 in _Z3fooii (w=5, h=0) at /home/luiz/Projetos/benchLuiz/benchmarksGklee/054_misc4/main.cpp:19
+	#1 00000080 in main () at /home/luiz/Projetos/benchLuiz/benchmarksGklee/054_misc4/main.cpp:28

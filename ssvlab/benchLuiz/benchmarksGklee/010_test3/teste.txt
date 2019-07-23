@@ -1,0 +1,17 @@
+Configuration: concurrency bug checking level is: 2
+
+[GKLEE]: The configuration, Grid: <1, 1, 1>, Block: <2, 1, 1>
+
+[GKLEE]: Start executing a GPU kernel 
+
+path num explored here: 1
++++++++++++++++++ Bank Conflict Rate: +++++++++++++++++
+[GKLEE]: Across 0 BIs, the total num of instructions with BC: 0, the total num of instructions: 0
+[GKLEE]: Across 0 BIs, the total num of warps with BC: 0, the total num of warps: 0
++++++++++++++++++ end +++++++++++++++++
++++++++++++++++++ Memory Coalescing Rate: +++++++++++++++++
++++++++++++++++++ end +++++++++++++++++
++++++++++++++++++ Warp Divergence Rate: +++++++++++++++++
++++++++++++++++++ end +++++++++++++++++
+Under concrete configuration, Acorss 0 BIs, Total Time: 0
+After exploring 1 paths, the average exploration time (concrete) is 0

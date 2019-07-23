@@ -1,0 +1,65 @@
+Configuration: concurrency bug checking level is: 2
+
+[GKLEE]: The configuration, Grid: <1, 1, 1>, Block: <2, 1, 1>
+
+[GKLEE]: Start executing a GPU kernel 
+
+[GKLEE]: 
+********** Start checking bank conflicts at SharedMemory 0 **********
+[GKLEE]: The read set is empty in bank conflict checking for capability 2.x
+[GKLEE]: The write set is empty in bank conflict checking for capability 2.x
+[GKLEE]: 
+********** Start checking memory coalescing at DeviceMemory at capability: 2.x **********
+[GKLEE]: The read set for memory coalescing cap 2 is empty
+
+[GKLEE]: ********** CAPACITY 2.x Inst By Whole Warp ( 1 ) **********
+[GKLEE]: The word size accessed by threads: 4, the 1th request over total 1 requests
+
+[GKLEE]: +++++++++++++++++++++++++++++++++++++++++++++++++++++
+[GKLEE]: This request is coalesced into one memory segment (128 Bytes) accessed by 2 threads
+
+[GKLEE]: +++++++++++++++++++++++++++++++++++++++++++++++++++++
+[GKLEE]: 
+********** Start checking warp divergence **********
+[GKLEE]: In warp 0, threads are diverged into following sub-sets: 
+[GKLEE]: Set 0:
+[GKLEE]: Threads: 0, 1
+
+[GKLEE]: *****************************************************
+[GKLEE]: 
+********** Start checking volatile missing at SharedMemory 0 ********** 
+[GKLEE]: 
+********** Start checking races at SharedMemory 0 **********
+[GKLEE]: 
+********** Start checking races at Device Memory ********** 
+
+[GKLEE]: Finish executing a GPU kernel 
+
+[GKLEE]: GPU Execution time: 0.005852s
+
+[GKLEE]: Finishing the program!
+ path num explored here: 1
++++++++++++++++++ Bank Conflict Rate: +++++++++++++++++
+[GKLEE]: Across 0 BIs, the total num of instructions with BC: 0, the total num of instructions: 0
+[GKLEE]: Across 0 BIs, the total num of warps with BC: 0, the total num of warps: 0
++++++++++++++++++ end +++++++++++++++++
++++++++++++++++++ Memory Coalescing Rate: +++++++++++++++++
+[GKLEE]: Across 1 BIs, the total num of read instructions with MC: 0, the total number of read instructions: 0
+[GKLEE]: Across 1 BIs, the total num of write instructions with MC: 1, the total number of write instructions: 1
+[GKLEE]: Across 1 BIs, the total num of warps with MC: 1, the total num of warps: 1
+[GKLEE]: num of BIs with MC: 1, num of BIs: 1
+
+[GKLEE]: The Average 'Warp' Memory Coalescing Rate at path 1 : 100%, <avgMCWarp, avgWarp> : <1, 1>
+
+[GKLEE]: The Average 'BI' Memory Coalescing Rate at path 1 : 100%, <avgMCBI, avgBI> : <1, 1>
++++++++++++++++++ end +++++++++++++++++
++++++++++++++++++ Warp Divergence Rate: +++++++++++++++++
+[GKLEE]: Across 1 BIs, the total num of warps with WD: 0, the total num of warps: 1
+[GKLEE]: Num of BIs with WD: 0, num of BIs: 1
+
+[GKLEE]: The Average 'Warp' Warp Divergence Rate at path 1 : 0%, <avgWDWarp, avgWarp> : <0, 1>
+
+[GKLEE]: The Average 'BI' Warp Divergence Rate at path 1 : 0%, <avgWDBI, avgBI> : <0, 1>
++++++++++++++++++ end +++++++++++++++++
+Under concrete configuration, Acorss 0 BIs, Total Time: 0
+After exploring 1 paths, the average exploration time (concrete) is 0

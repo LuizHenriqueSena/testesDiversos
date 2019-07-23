@@ -1,0 +1,5 @@
+Error: ASSERTION FAIL: A[t] != 100
+File: /home/luiz/Projetos/benchLuiz/benchmarksGklee/087_floatcastrequired_fail/main.cpp
+Line: 38
+Stack: 
+	#0 00000121 in main () at /home/luiz/Projetos/benchLuiz/benchmarksGklee/087_floatcastrequired_fail/main.cpp:38

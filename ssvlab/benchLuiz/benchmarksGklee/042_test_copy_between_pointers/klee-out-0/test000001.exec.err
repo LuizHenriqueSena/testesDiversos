@@ -1,0 +1,5 @@
+Error: execution halts on encounering a (global) race
+File: /home/luiz/Projetos/benchLuiz/benchmarksGklee/042_test_copy_between_pointers/main.cpp
+Line: 46
+Stack: 
+	#0 00000122 in main () at /home/luiz/Projetos/benchLuiz/benchmarksGklee/042_test_copy_between_pointers/main.cpp:46

@@ -1,0 +1,2 @@
+KLEE: ERROR: /home/luiz/Projetos/benchLuiz/benchmarksGklee/063_foo_fail/main.cpp:38: ASSERTION FAIL: !(a[i]== (i+1))
+KLEE: NOTE: now ignoring this error at this location

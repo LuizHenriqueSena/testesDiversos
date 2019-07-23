@@ -1,0 +1,12 @@
+Error: memory error: out of bound pointer
+File: /home/luiz/Projetos/benchLuiz/benchmarksGklee/097_loop_unwind/main.cpp
+Line: 19
+Stack: 
+	#0 00000034 in helloCUDA (A=26590816) at /home/luiz/Projetos/benchLuiz/benchmarksGklee/097_loop_unwind/main.cpp:19
+	#1 00000116 in main () at /home/luiz/Projetos/benchLuiz/benchmarksGklee/097_loop_unwind/main.cpp:43
+Info: 
+	address: 26590824
+	next: object at 27221120 of size 4
+		MO227[4] allocated at helloCUDA():  %i = alloca i32, align 4
+	prev: object at 26572512 of size 12
+		MO160[12] (no allocation info)

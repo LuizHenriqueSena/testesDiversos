@@ -1,0 +1,2 @@
+KLEE: WARNING: undefined reference to function: __set_CUDAConfig
+KLEE: WARNING: undefined reference to function: __threadfence

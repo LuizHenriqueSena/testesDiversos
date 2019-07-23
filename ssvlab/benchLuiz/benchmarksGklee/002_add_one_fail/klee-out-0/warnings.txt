@@ -1,0 +1,2 @@
+KLEE: ERROR: /home/luiz/Projetos/benchLuiz/benchmarksGklee/002_add_one_fail/main.cpp:14: memory error: out of bound pointer
+KLEE: NOTE: now ignoring this error at this location

@@ -1,0 +1,2 @@
+KLEE: ERROR: /home/luiz/Projetos/benchLuiz/benchmarksGklee/042_test_copy_between_pointers/main.cpp:46: execution halts on encounering a (global) race
+KLEE: NOTE: now ignoring this error at this location

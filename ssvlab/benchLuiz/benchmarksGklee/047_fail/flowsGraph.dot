@@ -1,0 +1,9 @@
+digraph kernel{
+kernel;
+"kernel" -> "Flow_0_0";
+Flow_0_0 [label="flow 0:true" color=green shape = rectangle];
+Barrier_1 [label = <<table><tr><td>"  call void @__syncthreads(), !dbg !723"</td></tr></table>> color = blue shape = egg];
+"Flow_0_0" -> "Barrier_1";
+"Flow_0_0" -> "return";
+"Flow_0_0" -> "return";
+}

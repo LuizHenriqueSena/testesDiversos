@@ -1,0 +1,7 @@
+Error: ASSERTION FAIL: 0
+File: /home/luiz/Projetos/benchLuiz/benchmarksGklee/043_test_pass_value_from_array_fail/main.cpp
+Line: 11
+Stack: 
+	#0 00000023 in _Z3barf (x=1065353216) at /home/luiz/Projetos/benchLuiz/benchmarksGklee/043_test_pass_value_from_array_fail/main.cpp:11
+	#1 00000038 in _Z3fooPi (A=37112112) at /home/luiz/Projetos/benchLuiz/benchmarksGklee/043_test_pass_value_from_array_fail/main.cpp:16
+	#2 00000108 in main () at /home/luiz/Projetos/benchLuiz/benchmarksGklee/043_test_pass_value_from_array_fail/main.cpp:37

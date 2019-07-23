@@ -1,0 +1,3 @@
+KLEE: WARNING: undefined reference to function: __set_CUDAConfig
+KLEE: WARNING: undefined reference to variable: blockDim
+KLEE: WARNING: undefined reference to variable: threadIdx

@@ -1,0 +1,2 @@
+KLEE: ERROR: /home/luiz/Projetos/benchLuiz/benchmarksGklee/057_fail/main.cpp:35: ASSERTION FAIL: b != a+2
+KLEE: NOTE: now ignoring this error at this location

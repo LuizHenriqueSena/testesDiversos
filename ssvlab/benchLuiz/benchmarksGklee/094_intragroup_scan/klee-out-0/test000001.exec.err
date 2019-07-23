@@ -1,0 +1,6 @@
+Error: execution halts on encounering a (global) race
+File: /home/luiz/Projetos/benchLuiz/benchmarksGklee/094_intragroup_scan/main.cpp
+Line: 29
+Stack: 
+	#0 00000171 in _Z4scanPi (A=26816272) at /home/luiz/Projetos/benchLuiz/benchmarksGklee/094_intragroup_scan/main.cpp:29
+	#1 00000442 in main () at /home/luiz/Projetos/benchLuiz/benchmarksGklee/094_intragroup_scan/main.cpp:63

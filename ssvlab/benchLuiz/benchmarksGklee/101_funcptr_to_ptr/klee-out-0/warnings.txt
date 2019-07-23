@@ -1,0 +1,2 @@
+KLEE: ERROR: /home/luiz/Projetos/benchLuiz/benchmarksGklee/101_funcptr_to_ptr/main.cpp:31: ASSERTION FAIL: f == divideByTwo
+KLEE: NOTE: now ignoring this error at this location

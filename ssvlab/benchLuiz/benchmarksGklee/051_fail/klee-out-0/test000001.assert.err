@@ -1,0 +1,6 @@
+Error: ASSERTION FAIL: A[threadIdx.y][threadIdx.x]!=2
+File: /home/luiz/Projetos/benchLuiz/benchmarksGklee/051_fail/main.cpp
+Line: 13
+Stack: 
+	#0 00000032 in _Z3foov () at /home/luiz/Projetos/benchLuiz/benchmarksGklee/051_fail/main.cpp:13
+	#1 00000067 in main () at /home/luiz/Projetos/benchLuiz/benchmarksGklee/051_fail/main.cpp:21

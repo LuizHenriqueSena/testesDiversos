@@ -1,0 +1,5 @@
+Error: execution halts on encounering a (shared) race
+File: /home/luiz/Projetos/benchLuiz/benchmarksGklee/084_race_on_shared/main.cpp
+Line: 17
+Stack: 
+	#0 00000040 in main () at /home/luiz/Projetos/benchLuiz/benchmarksGklee/084_race_on_shared/main.cpp:17

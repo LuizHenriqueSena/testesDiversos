@@ -1,0 +1,5 @@
+Error: ASSERTION FAIL: c != a+b
+File: /home/luiz/Projetos/benchLuiz/benchmarksGklee/024_fail/main.cpp
+Line: 40
+Stack: 
+	#0 00000118 in main () at /home/luiz/Projetos/benchLuiz/benchmarksGklee/024_fail/main.cpp:40

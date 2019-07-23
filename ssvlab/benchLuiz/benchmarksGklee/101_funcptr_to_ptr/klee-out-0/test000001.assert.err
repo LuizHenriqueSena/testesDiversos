@@ -1,0 +1,6 @@
+Error: ASSERTION FAIL: f == divideByTwo
+File: /home/luiz/Projetos/benchLuiz/benchmarksGklee/101_funcptr_to_ptr/main.cpp
+Line: 31
+Stack: 
+	#0 00000074 in _Z3fooPfPFfS_jEji (v=40449056, f=12370169555311111083, size=8, i=1) at /home/luiz/Projetos/benchLuiz/benchmarksGklee/101_funcptr_to_ptr/main.cpp:31
+	#1 00000207 in main () at /home/luiz/Projetos/benchLuiz/benchmarksGklee/101_funcptr_to_ptr/main.cpp:72

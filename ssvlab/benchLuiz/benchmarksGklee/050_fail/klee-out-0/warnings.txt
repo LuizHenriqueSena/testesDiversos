@@ -1,0 +1,2 @@
+KLEE: ERROR: /home/luiz/Projetos/benchLuiz/benchmarksGklee/050_fail/main.cpp:40: ASSERTION FAIL: c[i]!=0
+KLEE: NOTE: now ignoring this error at this location

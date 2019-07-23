@@ -1,0 +1,352 @@
+version: 1
+creator: klee
+pid: 1000
+cmd: main
+
+
+positions: instr line
+event: Icov : CoveredInstructions
+event: Forks : Forks
+event: Ireal : InstructionRealTimes
+event: Itime : InstructionTimes
+event: I : Instructions
+event: UCdist : MinDistToUncovered
+event: Rtime : ResolveTime
+event: States : States
+event: Iuncov : UncoveredInstructions
+event: Q : Queries
+event: Qiv : QueriesInvalid
+event: Qv : QueriesValid
+event: Qtime : QueryTime
+events: Icov Forks Ireal Itime I UCdist Rtime States Iuncov Q Qiv Qv Qtime 
+ob=/home/luiz/Projetos/benchLuiz/benchmarksGklee/049_pass/./klee-out-0/assembly.ll
+fn=_Z3fooPi
+fl=/home/luiz/Projetos/benchLuiz/benchmarksGklee/049_pass/main.cpp
+21 8 1 0 0 0 2 0 0 0 0 0 0 0 0 
+22 8 1 0 0 0 2 0 0 0 0 0 0 0 0 
+23 8 1 0 0 0 2 0 0 0 0 0 0 0 0 
+24 8 1 0 0 0 2 0 0 0 0 0 0 0 0 
+25 8 1 0 0 0 2 0 0 0 0 0 0 0 0 
+26 8 1 0 0 0 2 0 0 0 0 0 0 0 0 
+27 8 1 0 0 0 2 0 0 0 0 0 0 0 0 
+28 9 1 0 0 0 2 0 0 0 0 0 0 0 0 
+29 10 1 0 0 0 2 0 0 0 0 0 0 0 0 
+fn=main
+37 16 1 0 0 0 1 0 0 0 0 0 0 0 0 
+38 16 1 0 0 0 1 0 0 0 0 0 0 0 0 
+39 16 1 0 0 0 1 0 0 0 0 0 0 0 0 
+40 16 1 0 0 0 1 0 0 0 0 0 0 0 0 
+41 16 1 0 0 0 1 0 0 0 0 0 0 0 0 
+42 16 1 0 0 0 1 0 0 0 0 0 0 0 0 
+43 16 1 0 0 0 1 0 0 0 0 0 0 0 0 
+44 16 1 0 0 0 1 0 0 0 0 0 0 0 0 
+45 16 1 0 0 0 1 0 0 0 0 0 0 0 0 
+46 16 1 0 0 0 1 0 0 0 0 0 0 0 0 
+47 16 1 0 0 0 1 0 0 0 0 0 0 0 0 
+48 16 1 0 0 0 1 0 0 0 0 0 0 0 0 
+49 18 1 0 0 0 1 0 0 0 0 0 0 0 0 
+50 18 1 0 0 0 1 0 0 0 0 0 0 0 0 
+51 18 1 0 0 0 1 0 0 0 0 0 0 0 0 
+52 18 1 0 0 0 1 0 0 0 0 0 0 0 0 
+cfl=/home/luiz/Projetos/OutrosVerificadores/Gklee/Gklee/runtime/CudaRuntime/cudaMemManage.cpp
+cfn=cudaMalloc
+calls=1 290 73
+52 18 5 0 0 0 5 0 0 0 0 0 0 0 0 
+53 20 1 0 0 0 1 0 0 0 0 0 0 0 0 
+54 20 1 0 0 0 1 0 0 0 0 0 0 0 0 
+55 20 1 0 0 0 1 0 0 0 0 0 0 0 0 
+56 20 1 0 0 0 1 0 0 0 0 0 0 0 0 
+57 20 1 0 0 0 1 0 0 0 0 0 0 0 0 
+58 20 1 0 0 0 1 0 0 0 0 0 0 0 0 
+59 22 1 0 0 0 1 0 0 0 0 0 0 0 0 
+60 22 1 0 0 0 1 0 0 0 0 0 0 0 0 
+63 22 1 0 0 0 3 0 0 0 0 0 0 0 0 
+64 22 1 0 0 0 3 0 0 0 0 0 0 0 0 
+65 22 1 0 0 0 3 0 0 0 0 0 0 0 0 
+68 23 1 0 0 0 2 0 0 0 0 0 0 0 0 
+69 23 1 0 0 0 2 0 0 0 0 0 0 0 0 
+70 23 1 0 0 0 2 0 0 0 0 0 0 0 0 
+71 23 1 0 0 0 2 0 0 0 0 0 0 0 0 
+72 23 1 0 0 0 2 0 0 0 0 0 0 0 0 
+73 22 1 0 0 0 2 0 0 0 0 0 0 0 0 
+74 22 1 0 0 0 2 0 0 0 0 0 0 0 0 
+75 22 1 0 0 0 2 0 0 0 0 0 0 0 0 
+76 22 1 0 0 0 2 0 0 0 0 0 0 0 0 
+79 25 1 0 0 0 1 0 0 0 0 0 0 0 0 
+80 25 1 0 0 0 1 0 0 0 0 0 0 0 0 
+81 25 1 0 0 0 1 0 0 0 0 0 0 0 0 
+82 25 1 0 0 0 1 0 0 0 0 0 0 0 0 
+83 25 1 0 0 0 1 0 0 0 0 0 0 0 0 
+84 25 1 0 0 0 1 0 0 0 0 0 0 0 0 
+85 25 1 0 0 0 1 0 0 0 0 0 0 0 0 
+cfl=/home/luiz/Projetos/OutrosVerificadores/Gklee/Gklee/runtime/CudaRuntime/cudaMemManage.cpp
+cfn=cudaMemcpy
+calls=1 330 108
+85 25 15 0 0 0 85 0 0 0 0 0 0 0 0 
+86 26 1 0 0 0 1 0 0 0 0 0 0 0 0 
+cfl=/home/luiz/Projetos/OutrosVerificadores/Gklee/Gklee/include/cuda/vector_types.h
+cfn=_ZN4dim3C1Ejjj
+calls=1 154 419
+86 26 33 0 0 0 33 0 0 0 0 0 0 0 0 
+87 26 1 0 0 0 1 0 0 0 0 0 0 0 0 
+cfl=/home/luiz/Projetos/OutrosVerificadores/Gklee/Gklee/include/cuda/vector_types.h
+cfn=_ZN4dim3C1Ejjj
+calls=1 154 419
+87 26 0 0 0 0 33 0 0 0 0 0 0 0 0 
+88 26 1 0 0 0 1 0 0 0 0 0 0 0 0 
+89 26 1 0 0 0 1 0 0 0 0 0 0 0 0 
+90 26 1 0 0 0 1 0 0 0 0 0 0 0 0 
+cfl=/home/luiz/Projetos/OutrosVerificadores/Gklee/Gklee/runtime/Intrinsic/memcpy.c
+cfn=memcpy
+calls=1 199 16
+90 26 0 0 0 0 123 0 0 0 0 0 0 0 0 
+91 26 1 0 0 0 1 0 0 0 0 0 0 0 0 
+92 26 1 0 0 0 1 0 0 0 0 0 0 0 0 
+93 26 1 0 0 0 1 0 0 0 0 0 0 0 0 
+94 26 1 0 0 0 1 0 0 0 0 0 0 0 0 
+95 26 1 0 0 0 1 0 0 0 0 0 0 0 0 
+96 26 1 0 0 0 1 0 0 0 0 0 0 0 0 
+97 26 1 0 0 0 1 0 0 0 0 0 0 0 0 
+cfl=/home/luiz/Projetos/OutrosVerificadores/Gklee/Gklee/runtime/Intrinsic/memcpy.c
+cfn=memcpy
+calls=1 199 16
+97 26 0 0 0 0 123 0 0 0 0 0 0 0 0 
+98 26 1 0 0 0 1 0 0 0 0 0 0 0 0 
+99 26 1 0 0 0 1 0 0 0 0 0 0 0 0 
+100 26 1 0 0 0 1 0 0 0 0 0 0 0 0 
+101 26 1 0 0 0 1 0 0 0 0 0 0 0 0 
+102 26 1 0 0 0 1 0 0 0 0 0 0 0 0 
+103 28 1 0 0 0 1 0 0 0 0 0 0 0 0 
+104 28 1 0 0 0 1 0 0 0 0 0 0 0 0 
+cfn=_Z3fooPi
+calls=1 21 8
+104 28 9 0 0 0 17 0 0 0 0 0 0 0 0 
+105 32 1 0 0 0 1 0 0 0 0 0 0 0 0 
+106 32 1 0 0 0 1 0 0 0 0 0 0 0 0 
+107 32 1 0 0 0 1 0 0 0 0 0 0 0 0 
+108 32 1 0 0 0 1 0 0 0 0 0 0 0 0 
+109 32 1 0 0 0 1 0 0 0 0 0 0 0 0 
+110 32 1 0 0 0 1 0 0 0 0 0 0 0 0 
+111 32 1 0 0 0 1 0 0 0 0 0 0 0 0 
+cfl=/home/luiz/Projetos/OutrosVerificadores/Gklee/Gklee/runtime/CudaRuntime/cudaMemManage.cpp
+cfn=cudaMemcpy
+calls=1 330 108
+111 32 0 0 0 0 85 0 0 0 0 0 0 0 0 
+112 34 1 0 0 0 1 0 0 0 0 0 0 0 0 
+113 34 1 0 0 0 1 0 0 0 0 0 0 0 0 
+116 34 1 0 0 0 3 0 0 0 0 0 0 0 0 
+117 34 1 0 0 0 3 0 0 0 0 0 0 0 0 
+118 34 1 0 0 0 3 0 0 0 0 0 0 0 0 
+121 35 1 0 0 0 2 0 0 0 0 0 0 0 0 
+122 35 1 0 0 0 2 0 0 0 0 0 0 0 0 
+123 35 1 0 0 0 2 0 0 0 0 0 0 0 0 
+124 35 1 0 0 0 2 0 0 0 0 0 0 0 0 
+125 35 1 0 0 0 2 0 0 0 0 0 0 0 0 
+126 35 1 0 0 0 2 0 0 0 0 0 0 0 0 
+127 35 1 0 0 0 2 0 0 0 0 0 0 0 0 
+130 35 0 0 0 0 0 0 0 0 1 0 0 0 0 
+131 35 0 0 0 0 0 0 0 0 0 0 0 0 0 
+134 34 1 0 0 0 2 0 0 0 0 0 0 0 0 
+135 34 1 0 0 0 2 0 0 0 0 0 0 0 0 
+136 34 1 0 0 0 2 0 0 0 0 0 0 0 0 
+137 34 1 0 0 0 2 0 0 0 0 0 0 0 0 
+140 38 1 0 0 0 1 0 0 0 0 0 0 0 0 
+141 38 1 0 0 0 1 0 0 0 0 0 0 0 0 
+142 38 1 0 0 0 1 0 0 0 0 0 0 0 0 
+143 40 1 0 0 0 1 0 0 0 0 0 0 0 0 
+144 40 1 0 0 0 1 0 0 0 0 0 0 0 0 
+145 40 1 0 0 0 1 0 0 0 0 0 0 0 0 
+cfl=/home/luiz/Projetos/OutrosVerificadores/Gklee/Gklee/runtime/CudaRuntime/cudaMemManage.cpp
+cfn=cudaFree
+calls=1 246 30
+145 40 2 0 0 0 2 0 0 0 0 0 0 0 0 
+146 42 1 0 0 0 1 0 0 0 0 0 0 0 0 
+fn=_ZN4dim3C1Ejjj
+fl=/home/luiz/Projetos/OutrosVerificadores/Gklee/Gklee/include/cuda/vector_types.h
+154 419 1 0 0 0 2 0 0 0 0 0 0 0 0 
+155 419 1 0 0 0 2 0 0 0 0 0 0 0 0 
+156 419 1 0 0 0 2 0 0 0 0 0 0 0 0 
+157 419 1 0 0 0 2 0 0 0 0 0 0 0 0 
+158 419 1 0 0 0 2 0 0 0 0 0 0 0 0 
+159 419 1 0 0 0 2 0 0 0 0 0 0 0 0 
+160 419 1 0 0 0 2 0 0 0 0 0 0 0 0 
+161 419 1 0 0 0 2 0 0 0 0 0 0 0 0 
+162 419 1 0 0 0 2 0 0 0 0 0 0 0 0 
+163 419 1 0 0 0 2 0 0 0 0 0 0 0 0 
+164 419 1 0 0 0 2 0 0 0 0 0 0 0 0 
+165 419 1 0 0 0 2 0 0 0 0 0 0 0 0 
+166 419 1 0 0 0 2 0 0 0 0 0 0 0 0 
+cfn=_ZN4dim3C2Ejjj
+calls=2 177 419
+166 419 19 0 0 0 38 0 0 0 0 0 0 0 0 
+167 419 1 0 0 0 2 0 0 0 0 0 0 0 0 
+fn=_ZN4dim3C2Ejjj
+177 419 1 0 0 0 2 0 0 0 0 0 0 0 0 
+178 419 1 0 0 0 2 0 0 0 0 0 0 0 0 
+179 419 1 0 0 0 2 0 0 0 0 0 0 0 0 
+180 419 1 0 0 0 2 0 0 0 0 0 0 0 0 
+181 419 1 0 0 0 2 0 0 0 0 0 0 0 0 
+182 419 1 0 0 0 2 0 0 0 0 0 0 0 0 
+183 419 1 0 0 0 2 0 0 0 0 0 0 0 0 
+184 419 1 0 0 0 2 0 0 0 0 0 0 0 0 
+185 419 1 0 0 0 2 0 0 0 0 0 0 0 0 
+186 419 1 0 0 0 2 0 0 0 0 0 0 0 0 
+187 419 1 0 0 0 2 0 0 0 0 0 0 0 0 
+188 419 1 0 0 0 2 0 0 0 0 0 0 0 0 
+189 419 1 0 0 0 2 0 0 0 0 0 0 0 0 
+190 419 1 0 0 0 2 0 0 0 0 0 0 0 0 
+191 419 1 0 0 0 2 0 0 0 0 0 0 0 0 
+192 419 1 0 0 0 2 0 0 0 0 0 0 0 0 
+193 419 1 0 0 0 2 0 0 0 0 0 0 0 0 
+194 419 1 0 0 0 2 0 0 0 0 0 0 0 0 
+195 419 1 0 0 0 2 0 0 0 0 0 0 0 0 
+fn=memcpy
+fl=/home/luiz/Projetos/OutrosVerificadores/Gklee/Gklee/runtime/Intrinsic/memcpy.c
+199 16 1 0 0 0 4 0 0 0 0 0 0 0 0 
+200 16 1 0 0 0 4 0 0 0 0 0 0 0 0 
+203 16 1 0 0 0 40 0 0 0 0 0 0 0 0 
+204 16 1 0 0 0 40 0 0 0 0 0 0 0 0 
+205 16 1 0 0 0 40 0 0 0 0 0 0 0 0 
+206 16 1 0 0 0 40 0 0 0 0 0 0 0 0 
+207 17 1 0 0 0 40 0 0 0 0 0 0 0 0 
+208 17 1 0 0 0 40 0 0 0 0 0 0 0 0 
+209 17 1 0 0 0 40 0 0 0 0 0 0 0 0 
+210 17 1 0 0 0 40 0 0 0 0 0 0 0 0 
+211 16 1 0 0 0 40 0 0 0 0 0 0 0 0 
+212 16 1 0 0 0 40 0 0 0 0 0 0 0 0 
+215 18 1 0 0 0 4 0 0 0 0 0 0 0 0 
+fn=memset
+fl=/home/luiz/Projetos/OutrosVerificadores/Gklee/Gklee/runtime/Intrinsic/memset.c
+221 14 0 0 0 0 0 0 0 0 1 0 0 0 0 
+222 14 0 0 0 0 0 0 0 0 1 0 0 0 0 
+225 15 0 0 0 0 0 0 0 0 1 0 0 0 0 
+226 14 0 0 0 0 0 0 0 0 1 0 0 0 0 
+229 14 0 0 0 0 0 0 0 0 1 0 0 0 0 
+230 14 0 0 0 0 0 0 0 0 1 0 0 0 0 
+231 14 0 0 0 0 0 0 0 0 1 0 0 0 0 
+232 15 0 0 0 0 0 0 0 0 1 0 0 0 0 
+233 15 0 0 0 0 0 0 0 0 1 0 0 0 0 
+234 14 0 0 0 0 0 0 0 0 1 0 0 0 0 
+235 14 0 0 0 0 0 0 0 0 1 0 0 0 0 
+238 16 0 0 0 0 0 0 0 0 1 0 0 0 0 
+fn=cudaArrayGetInfo
+fl=/home/luiz/Projetos/OutrosVerificadores/Gklee/Gklee/runtime/CudaRuntime/cudaMemManage.cpp
+242 26 0 0 0 0 0 0 0 0 1 0 0 0 0 
+fn=cudaFree
+246 30 1 0 0 0 1 0 0 0 0 0 0 0 0 
+247 31 1 0 0 0 1 0 0 0 0 0 0 0 0 
+fn=cudaFreeArray
+251 35 0 0 0 0 0 0 0 0 1 0 0 0 0 
+252 35 0 0 0 0 0 0 0 0 1 0 0 0 0 
+253 36 0 0 0 0 0 0 0 0 1 0 0 0 0 
+fn=cudaFreeHost
+257 40 0 0 0 0 0 0 0 0 1 0 0 0 0 
+258 41 0 0 0 0 0 0 0 0 1 0 0 0 0 
+fn=cudaGetSymbolAddress
+262 45 0 0 0 0 0 0 0 0 1 0 0 0 0 
+fn=cudaGetSymbolSize
+266 49 0 0 0 0 0 0 0 0 1 0 0 0 0 
+fn=cudaHostAlloc
+270 53 0 0 0 0 0 0 0 0 1 0 0 0 0 
+fn=cudaHostGetDevicePointer
+274 57 0 0 0 0 0 0 0 0 1 0 0 0 0 
+fn=cudaHostGetFlags
+278 61 0 0 0 0 0 0 0 0 1 0 0 0 0 
+fn=cudaHostRegister
+282 65 0 0 0 0 0 0 0 0 1 0 0 0 0 
+fn=cudaHostUnregister
+286 69 0 0 0 0 0 0 0 0 1 0 0 0 0 
+fn=cudaMalloc
+290 73 1 0 0 0 1 0 0 0 0 0 0 0 0 
+291 74 1 0 0 0 1 0 0 0 0 0 0 0 0 
+292 74 1 0 0 0 1 0 0 0 0 0 0 0 0 
+293 75 1 0 0 0 1 0 0 0 0 0 0 0 0 
+294 77 1 0 0 0 1 0 0 0 0 0 0 0 0 
+fn=cudaMalloc3D
+302 81 0 0 0 0 0 0 0 0 1 0 0 0 0 
+fn=cudaMalloc3DArray
+306 86 0 0 0 0 0 0 0 0 1 0 0 0 0 
+fn=cudaMallocArray
+310 91 0 0 0 0 0 0 0 0 1 0 0 0 0 
+fn=cudaMallocHost
+314 95 0 0 0 0 0 0 0 0 1 0 0 0 0 
+315 96 0 0 0 0 0 0 0 0 1 0 0 0 0 
+316 96 0 0 0 0 0 0 0 0 1 0 0 0 0 
+317 97 0 0 0 0 0 0 0 0 1 0 0 0 0 
+318 99 0 0 0 0 0 0 0 0 1 0 0 0 0 
+fn=cudaMallocPitch
+326 103 0 0 0 0 0 0 0 0 1 0 0 0 0 
+fn=cudaMemcpy
+330 108 1 0 0 0 2 0 0 0 0 0 0 0 0 
+cfl=/home/luiz/Projetos/OutrosVerificadores/Gklee/Gklee/runtime/Intrinsic/memcpy.c
+cfn=memcpy
+calls=2 199 16
+330 108 13 0 0 0 166 0 0 0 0 0 0 0 0 
+331 108 1 0 0 0 2 0 0 0 0 0 0 0 0 
+fn=cudaMemcpy2D
+335 113 0 0 0 0 0 0 0 0 1 0 0 0 0 
+fn=cudaMemcpy2DArrayToArray
+339 119 0 0 0 0 0 0 0 0 1 0 0 0 0 
+fn=cudaMemcpy2DAsync
+343 125 0 0 0 0 0 0 0 0 1 0 0 0 0 
+fn=cudaMemcpy2DFromArray
+347 131 0 0 0 0 0 0 0 0 1 0 0 0 0 
+fn=cudaMemcpy2DFromArrayAsync
+351 137 0 0 0 0 0 0 0 0 1 0 0 0 0 
+fn=cudaMemcpy2DToArray
+355 143 0 0 0 0 0 0 0 0 1 0 0 0 0 
+fn=cudaMemcpy2DToArrayAsync
+359 149 0 0 0 0 0 0 0 0 1 0 0 0 0 
+fn=cudaMemcpy3D
+363 153 0 0 0 0 0 0 0 0 1 0 0 0 0 
+fn=cudaMemcpy3DAsync
+367 157 0 0 0 0 0 0 0 0 1 0 0 0 0 
+fn=cudaMemcpy3DPeer
+371 161 0 0 0 0 0 0 0 0 1 0 0 0 0 
+fn=cudaMemcpy3DPeerAsync
+375 165 0 0 0 0 0 0 0 0 1 0 0 0 0 
+fn=cudaMemcpyArrayToArray
+379 171 0 0 0 0 0 0 0 0 1 0 0 0 0 
+fn=cudaMemcpyAsync
+383 176 0 0 0 0 0 0 0 0 1 0 0 0 0 
+fn=cudaMemcpyFromArray
+387 181 0 0 0 0 0 0 0 0 1 0 0 0 0 
+fn=cudaMemcpyFromArrayAsync
+391 187 0 0 0 0 0 0 0 0 1 0 0 0 0 
+fn=cudaMemcpyFromSymbol
+395 192 0 0 0 0 0 0 0 0 1 0 0 0 0 
+fn=cudaMemcpyFromSymbolAsync
+399 198 0 0 0 0 0 0 0 0 1 0 0 0 0 
+fn=cudaMemcpyPeer
+403 203 0 0 0 0 0 0 0 0 1 0 0 0 0 
+404 203 0 0 0 0 0 0 0 0 1 0 0 0 0 
+fn=cudaMemcpyPeerAsync
+408 209 0 0 0 0 0 0 0 0 1 0 0 0 0 
+409 209 0 0 0 0 0 0 0 0 1 0 0 0 0 
+fn=cudaMemcpyToArray
+413 214 0 0 0 0 0 0 0 0 1 0 0 0 0 
+fn=cudaMemcpyToArrayAsync
+417 220 0 0 0 0 0 0 0 0 1 0 0 0 0 
+fn=cudaMemcpyToSymbol
+421 225 0 0 0 0 0 0 0 0 1 0 0 0 0 
+422 225 0 0 0 0 0 0 0 0 1 0 0 0 0 
+423 226 0 0 0 0 0 0 0 0 1 0 0 0 0 
+fn=cudaMemcpyToSymbolAsync
+427 231 0 0 0 0 0 0 0 0 1 0 0 0 0 
+fn=cudaMemGetInfo
+431 235 0 0 0 0 0 0 0 0 1 0 0 0 0 
+fn=cudaMemset
+435 239 0 0 0 0 0 0 0 0 1 0 0 0 0 
+436 239 0 0 0 0 0 0 0 0 1 0 0 0 0 
+437 239 0 0 0 0 0 0 0 0 1 0 0 0 0 
+438 240 0 0 0 0 0 0 0 0 1 0 0 0 0 
+fn=cudaMemset2D
+444 245 0 0 0 0 0 0 0 0 1 0 0 0 0 
+fn=cudaMemset2DAsync
+448 250 0 0 0 0 0 0 0 0 1 0 0 0 0 
+fn=cudaMemset3D
+452 255 0 0 0 0 0 0 0 0 1 0 0 0 0 
+fn=cudaMemset3DAsync
+456 260 0 0 0 0 0 0 0 0 1 0 0 0 0 
+fn=cudaMemsetAsync
+460 264 0 0 0 0 0 0 0 0 1 0 0 0 0 

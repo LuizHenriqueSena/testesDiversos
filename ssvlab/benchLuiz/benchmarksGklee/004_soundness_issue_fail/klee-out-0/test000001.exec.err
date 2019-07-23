@@ -1,0 +1,6 @@
+Error: reached "unreachable" instruction
+File: /home/luiz/Downloads/SCP2017_benchmarks/data/gklee/evaluation/benchmarks/004_soundness_issue_fail/main.cpp
+Line: 41
+Stack: 
+	#0 00000111 in _Z11should_failPfS_S_S_S_ii (p1=35832528, p2=35694384, p3=35832944, p4=36181312, p5=36182384, x=4, y=4) at /home/luiz/Downloads/SCP2017_benchmarks/data/gklee/evaluation/benchmarks/004_soundness_issue_fail/main.cpp:41
+	#1 00000258 in main () at /home/luiz/Downloads/SCP2017_benchmarks/data/gklee/evaluation/benchmarks/004_soundness_issue_fail/main.cpp:100

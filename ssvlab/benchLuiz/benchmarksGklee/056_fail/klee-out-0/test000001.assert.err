@@ -1,0 +1,5 @@
+Error: ASSERTION FAIL: b[i]!=2*a[i]
+File: /home/luiz/Projetos/benchLuiz/benchmarksGklee/056_fail/main.cpp
+Line: 41
+Stack: 
+	#0 00000181 in main () at /home/luiz/Projetos/benchLuiz/benchmarksGklee/056_fail/main.cpp:41

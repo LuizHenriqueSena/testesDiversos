@@ -1,0 +1,10 @@
+Error: memory error: out of bound pointer
+File: /home/luiz/Projetos/benchLuiz/benchmarksGklee/092_2d/main.cpp
+Line: 22
+Stack: 
+	#0 00000049 in _Z16matrix_transposePf (A=49236656) at /home/luiz/Projetos/benchLuiz/benchmarksGklee/092_2d/main.cpp:22
+	#1 00000177 in main () at /home/luiz/Projetos/benchLuiz/benchmarksGklee/092_2d/main.cpp:49
+Info: 
+	address: 49236688
+	next: object at 49709264 of size 12
+		MO1[12] allocated at global:threadIdx

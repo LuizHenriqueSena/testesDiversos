@@ -1,0 +1,121 @@
+Configuration: concurrency bug checking level is: 2
+ 1;  2; 
+
+[GKLEE]: The configuration, Grid: <1, 1, 1>, Block: <2, 1, 1>
+
+[GKLEE]: Start executing a GPU kernel 
+
+[GKLEE]: 
+********** Start checking bank conflicts at SharedMemory 0 **********
+[GKLEE]: 
+********** Start checking memory coalescing at DeviceMemory at capability: 2.x **********
+[GKLEE]: The read set for memory coalescing cap 2 is empty
+
+[GKLEE]: ********** CAPACITY 2.x Inst By Whole Warp ( 1 ) **********
+[GKLEE]: The word size accessed by threads: 4, the 1th request over total 1 requests
+
+[GKLEE]: +++++++++++++++++++++++++++++++++++++++++++++++++++++
+[GKLEE]: This request is coalesced into one memory segment (128 Bytes) accessed by 2 threads
+
+[GKLEE]: +++++++++++++++++++++++++++++++++++++++++++++++++++++
+[GKLEE]: 
+********** Start checking warp divergence **********
+[GKLEE]: In warp 0, threads are diverged into following sub-sets: 
+[GKLEE]: Set 0:
+[GKLEE]: Threads: 0, 1
+
+[GKLEE]: *****************************************************
+[GKLEE]: 
+********** Start checking volatile missing at SharedMemory 0 ********** 
+
+[GKLEE]: Threads 1 and 0 have a Read-Write sharing on 
+[GKLEE] Inst: 
+Instruction Line: 13, In File: main.cpp, With Dir Path: /home/luiz/Projetos/benchLuiz/benchmarksGklee/041_test_copy_between_memory_spaces
+[File: /home/luiz/Projetos/benchLuiz/benchmarksGklee/041_test_copy_between_memory_spaces/main.cpp, Line: 13, Inst: 	A[0] = 1;]
+<W: _ZZ3fooPiE1A_block_0, 0:1, b0, t0> 
+[GKLEE] Inst: 
+Instruction Line: 15, In File: main.cpp, With Dir Path: /home/luiz/Projetos/benchLuiz/benchmarksGklee/041_test_copy_between_memory_spaces
+[File: /home/luiz/Projetos/benchLuiz/benchmarksGklee/041_test_copy_between_memory_spaces/main.cpp, Line: 15, Inst: 	p[0] = A[0];]
+<R: _ZZ3fooPiE1A_block_0, 0:1, b0, t1> 
+
+[GKLEE]: These two threads access common memory location, it is better to set shared variables as volatile!
+
+[GKLEE]: Threads 0 and 1 have a Read-Write sharing on 
+[GKLEE] Inst: 
+Instruction Line: 13, In File: main.cpp, With Dir Path: /home/luiz/Projetos/benchLuiz/benchmarksGklee/041_test_copy_between_memory_spaces
+[File: /home/luiz/Projetos/benchLuiz/benchmarksGklee/041_test_copy_between_memory_spaces/main.cpp, Line: 13, Inst: 	A[0] = 1;]
+<W: _ZZ3fooPiE1A_block_0, 0:1, b0, t1> 
+[GKLEE] Inst: 
+Instruction Line: 15, In File: main.cpp, With Dir Path: /home/luiz/Projetos/benchLuiz/benchmarksGklee/041_test_copy_between_memory_spaces
+[File: /home/luiz/Projetos/benchLuiz/benchmarksGklee/041_test_copy_between_memory_spaces/main.cpp, Line: 15, Inst: 	p[0] = A[0];]
+<R: _ZZ3fooPiE1A_block_0, 0:1, b0, t0> 
+
+[GKLEE]: These two threads access common memory location, it is better to set shared variables as volatile!
+[GKLEE]: 
+********** Start checking races at SharedMemory 0 **********
+
+[GKLEE]: Under the pure canonical schedule, thread 0 and 1 incur a Write-Read race (Actual) on 
+[GKLEE] Inst: 
+Instruction Line: 13, In File: main.cpp, With Dir Path: /home/luiz/Projetos/benchLuiz/benchmarksGklee/041_test_copy_between_memory_spaces
+[File: /home/luiz/Projetos/benchLuiz/benchmarksGklee/041_test_copy_between_memory_spaces/main.cpp, Line: 13, Inst: 	A[0] = 1;]
+<W: _ZZ3fooPiE1A_block_0, 0:1, b0, t0> 
+[GKLEE] Inst: 
+Instruction Line: 15, In File: main.cpp, With Dir Path: /home/luiz/Projetos/benchLuiz/benchmarksGklee/041_test_copy_between_memory_spaces
+[File: /home/luiz/Projetos/benchLuiz/benchmarksGklee/041_test_copy_between_memory_spaces/main.cpp, Line: 15, Inst: 	p[0] = A[0];]
+<R: _ZZ3fooPiE1A_block_0, 0:1, b0, t1> 
+
+[GKLEE]: Under the pure canonical schedule, within a block, thread 0 and 1 incur a Write-Write race with the same value (Benign) on 
+[GKLEE] Inst: 
+Instruction Line: 13, In File: main.cpp, With Dir Path: /home/luiz/Projetos/benchLuiz/benchmarksGklee/041_test_copy_between_memory_spaces
+[File: /home/luiz/Projetos/benchLuiz/benchmarksGklee/041_test_copy_between_memory_spaces/main.cpp, Line: 13, Inst: 	A[0] = 1;]
+<W: _ZZ3fooPiE1A_block_0, 0:1, b0, t0> 
+[GKLEE] Inst: 
+Instruction Line: 13, In File: main.cpp, With Dir Path: /home/luiz/Projetos/benchLuiz/benchmarksGklee/041_test_copy_between_memory_spaces
+[File: /home/luiz/Projetos/benchLuiz/benchmarksGklee/041_test_copy_between_memory_spaces/main.cpp, Line: 13, Inst: 	A[0] = 1;]
+<W: _ZZ3fooPiE1A_block_0, 0:1, b0, t1> 
+path num explored here: 1
++++++++++++++++++ Bank Conflict Rate: +++++++++++++++++
+[GKLEE]: Across 1 BIs, the total num of instructions with BC: 0, the total num of instructions: 2
+[GKLEE]: Across 1 BIs, the total num of warps with BC: 0, the total num of warps: 1
+[GKLEE]: In shared memory 0, num of BIs with BC: 0, num of BIs: 1
+
+[GKLEE]: The Average 'Warp' Bank Conflict Rate for all shared memories at path 1 : 0%, <avgBCWarp, avgWarp> : <0, 1>
+
+[GKLEE]: The Average 'BI' Bank Conflict Rate for all shared memories at path 1 : 0%, <avgBCBI, avgBI> : <0, 1>
++++++++++++++++++ end +++++++++++++++++
++++++++++++++++++ Memory Coalescing Rate: +++++++++++++++++
+[GKLEE]: Across 1 BIs, the total num of read instructions with MC: 0, the total number of read instructions: 0
+[GKLEE]: Across 1 BIs, the total num of write instructions with MC: 1, the total number of write instructions: 1
+[GKLEE]: Across 1 BIs, the total num of warps with MC: 1, the total num of warps: 1
+[GKLEE]: num of BIs with MC: 1, num of BIs: 1
+
+[GKLEE]: The Average 'Warp' Memory Coalescing Rate at path 1 : 100%, <avgMCWarp, avgWarp> : <1, 1>
+
+[GKLEE]: The Average 'BI' Memory Coalescing Rate at path 1 : 100%, <avgMCBI, avgBI> : <1, 1>
++++++++++++++++++ end +++++++++++++++++
++++++++++++++++++ Warp Divergence Rate: +++++++++++++++++
+[GKLEE]: Across 1 BIs, the total num of warps with WD: 0, the total num of warps: 1
+[GKLEE]: Num of BIs with WD: 0, num of BIs: 1
+
+[GKLEE]: The Average 'Warp' Warp Divergence Rate at path 1 : 0%, <avgWDWarp, avgWarp> : <0, 1>
+
+[GKLEE]: The Average 'BI' Warp Divergence Rate at path 1 : 0%, <avgWDBI, avgBI> : <0, 1>
++++++++++++++++++ end +++++++++++++++++
+Under concrete configuration, Acorss 0 BIs, Total Time: 0
+After exploring 1 paths, the average exploration time (concrete) is 0
+[GKLEE]: 
+********** Start checking races at Device Memory ********** 
+
+[GKLEE]: Under the pure canonical schedule, within a block, thread 0 and 1 incur a Write-Write race with the same value (Benign) on 
+[GKLEE] Inst: 
+Instruction Line: 15, In File: main.cpp, With Dir Path: /home/luiz/Projetos/benchLuiz/benchmarksGklee/041_test_copy_between_memory_spaces
+[File: /home/luiz/Projetos/benchLuiz/benchmarksGklee/041_test_copy_between_memory_spaces/main.cpp, Line: 15, Inst: 	p[0] = A[0];]
+<W: 22518544, 0:1, b0, t0> 
+[GKLEE] Inst: 
+Instruction Line: 15, In File: main.cpp, With Dir Path: /home/luiz/Projetos/benchLuiz/benchmarksGklee/041_test_copy_between_memory_spaces
+[File: /home/luiz/Projetos/benchLuiz/benchmarksGklee/041_test_copy_between_memory_spaces/main.cpp, Line: 15, Inst: 	p[0] = A[0];]
+<W: 22518544, 0:1, b0, t1> 
+
+[GKLEE]: Finish executing a GPU kernel 
+
+[GKLEE]: GPU Execution time: 0.016742s

@@ -1,0 +1,5 @@
+Error: execution halts on encounering a (global) race
+File: /home/luiz/Projetos/benchLuiz/benchmarksGklee/095_scan_warp/main.cpp
+Line: 42
+Stack: 
+	#0 00000251 in main () at /home/luiz/Projetos/benchLuiz/benchmarksGklee/095_scan_warp/main.cpp:42

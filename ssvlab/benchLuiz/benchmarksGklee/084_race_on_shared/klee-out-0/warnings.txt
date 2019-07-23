@@ -1,0 +1,2 @@
+KLEE: ERROR: /home/luiz/Projetos/benchLuiz/benchmarksGklee/084_race_on_shared/main.cpp:17: execution halts on encounering a (shared) race
+KLEE: NOTE: now ignoring this error at this location

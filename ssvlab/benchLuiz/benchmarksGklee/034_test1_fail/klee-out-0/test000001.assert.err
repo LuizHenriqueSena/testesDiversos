@@ -1,0 +1,5 @@
+Error: ASSERTION FAIL: c[i] != 0
+File: /home/luiz/Projetos/benchLuiz/benchmarksGklee/034_test1_fail/main.cpp
+Line: 37
+Stack: 
+	#0 00000119 in main () at /home/luiz/Projetos/benchLuiz/benchmarksGklee/034_test1_fail/main.cpp:37

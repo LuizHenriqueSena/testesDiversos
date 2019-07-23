@@ -1,0 +1,5 @@
+Error: ASSERTION FAIL: A[i]!=0
+File: /home/luiz/Projetos/benchLuiz/benchmarksGklee/058_noraceduetoreturn_fail/main.cpp
+Line: 49
+Stack: 
+	#0 00000157 in main () at /home/luiz/Projetos/benchLuiz/benchmarksGklee/058_noraceduetoreturn_fail/main.cpp:49

@@ -1,0 +1,5 @@
+Error: ASSERTION FAIL: a[i]==1
+File: /home/luiz/Projetos/benchLuiz/benchmarksGklee/049_fail/main.cpp
+Line: 32
+Stack: 
+	#0 00000109 in main () at /home/luiz/Projetos/benchLuiz/benchmarksGklee/049_fail/main.cpp:32

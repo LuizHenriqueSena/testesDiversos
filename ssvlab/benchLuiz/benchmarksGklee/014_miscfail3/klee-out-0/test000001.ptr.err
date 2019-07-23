@@ -1,0 +1,11 @@
+Error: memory error: out of bound pointer
+File: /home/luiz/Projetos/benchLuiz/benchmarksGklee/014_miscfail3/main.cpp
+Line: 17
+Stack: 
+	#0 00000044 in _Z7inlinedPii (A=39099264, offset=2) at /home/luiz/Projetos/benchLuiz/benchmarksGklee/014_miscfail3/main.cpp:17
+	#1 00000026 in _Z11inline_testPii (A=39099264, offset=2) at /home/luiz/Projetos/benchLuiz/benchmarksGklee/014_miscfail3/main.cpp:22
+	#2 00000126 in main () at /home/luiz/Projetos/benchLuiz/benchmarksGklee/014_miscfail3/main.cpp:43
+Info: 
+	address: 39099272
+	next: object at 39127472 of size 8
+		MO171[8] allocated at _Z7inlinedPii():  %1 = alloca i32*, align 8

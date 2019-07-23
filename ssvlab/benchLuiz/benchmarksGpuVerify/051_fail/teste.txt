@@ -1,0 +1,1 @@
+GPUVerify kernel analyser finished with 0 verified, 1 error

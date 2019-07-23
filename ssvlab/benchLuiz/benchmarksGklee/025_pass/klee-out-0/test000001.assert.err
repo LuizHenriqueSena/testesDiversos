@@ -1,0 +1,5 @@
+Error: ASSERTION FAIL: (idata[i]!=1)or(odata[i]!=128)
+File: /home/luiz/Projetos/benchLuiz/benchmarksGklee/025_pass/main.cpp
+Line: 54
+Stack: 
+	#0 00000187 in main () at /home/luiz/Projetos/benchLuiz/benchmarksGklee/025_pass/main.cpp:54

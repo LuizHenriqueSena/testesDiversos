@@ -1,0 +1,6 @@
+Error: ASSERTION FAIL: bar () !=0
+File: /home/luiz/Projetos/benchLuiz/benchmarksGklee/045_fail/main.cpp
+Line: 13
+Stack: 
+	#0 00000021 in _Z3foov () at /home/luiz/Projetos/benchLuiz/benchmarksGklee/045_fail/main.cpp:13
+	#1 00000054 in main () at /home/luiz/Projetos/benchLuiz/benchmarksGklee/045_fail/main.cpp:19

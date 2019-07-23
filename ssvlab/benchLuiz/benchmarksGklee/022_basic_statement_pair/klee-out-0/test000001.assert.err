@@ -1,0 +1,6 @@
+Error: ASSERTION FAIL: i == 1 | i == 2
+File: /home/luiz/Projetos/benchLuiz/benchmarksGklee/022_basic_statement_pair/main.cpp
+Line: 30
+Stack: 
+	#0 00000085 in _Z3fooPfj (v=47965264, i=2880154539) at /home/luiz/Projetos/benchLuiz/benchmarksGklee/022_basic_statement_pair/main.cpp:30
+	#1 00000211 in main () at /home/luiz/Projetos/benchLuiz/benchmarksGklee/022_basic_statement_pair/main.cpp:76

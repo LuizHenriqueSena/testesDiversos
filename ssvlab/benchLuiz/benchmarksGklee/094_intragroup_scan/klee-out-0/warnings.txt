@@ -1,0 +1,2 @@
+KLEE: ERROR: /home/luiz/Projetos/benchLuiz/benchmarksGklee/094_intragroup_scan/main.cpp:29: execution halts on encounering a (global) race
+KLEE: NOTE: now ignoring this error at this location

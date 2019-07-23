@@ -1,0 +1,5 @@
+Error: ASSERTION FAIL: (idata[i]==1)and(odata[i]==128)
+File: /home/luiz/Projetos/benchLuiz/benchmarksGklee/025_fail/main.cpp
+Line: 55
+Stack: 
+	#0 00000187 in main () at /home/luiz/Projetos/benchLuiz/benchmarksGklee/025_fail/main.cpp:55

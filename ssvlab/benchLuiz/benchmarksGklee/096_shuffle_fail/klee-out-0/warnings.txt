@@ -1,0 +1,2 @@
+KLEE: ERROR: /home/luiz/Projetos/benchLuiz/benchmarksGklee/096_shuffle_fail/main.cpp:40: execution halts on encounering a (global) race
+KLEE: NOTE: now ignoring this error at this location

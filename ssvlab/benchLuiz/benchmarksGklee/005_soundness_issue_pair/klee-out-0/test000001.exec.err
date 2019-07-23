@@ -1,0 +1,6 @@
+Error: reached "unreachable" instruction
+File: /home/luiz/Projetos/benchLuiz/benchmarksGklee/005_soundness_issue_pair/main.cpp
+Line: 40
+Stack: 
+	#0 00000108 in _Z11should_failPfS_S_S_S_ii (p1=49314512, p2=49315088, p3=49735168, p4=49736160, p5=49737232, x=4, y=4) at /home/luiz/Projetos/benchLuiz/benchmarksGklee/005_soundness_issue_pair/main.cpp:40
+	#1 00000252 in main () at /home/luiz/Projetos/benchLuiz/benchmarksGklee/005_soundness_issue_pair/main.cpp:99

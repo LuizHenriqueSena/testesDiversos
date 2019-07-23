@@ -1,0 +1,10 @@
+KLEE: WARNING: undefined reference to function: __clear_device
+KLEE: WARNING: undefined reference to function: __clear_host
+KLEE: WARNING: undefined reference to function: __mul24
+KLEE: WARNING: undefined reference to function: __set_CUDAConfig
+KLEE: WARNING: undefined reference to function: __set_device
+KLEE: WARNING: undefined reference to function: __set_host
+KLEE: WARNING: undefined reference to function: __umul24
+KLEE: WARNING: undefined reference to variable: blockDim
+KLEE: WARNING: undefined reference to variable: blockIdx
+KLEE: WARNING: undefined reference to variable: threadIdx

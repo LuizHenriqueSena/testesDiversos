@@ -1,0 +1,6 @@
+Error: ASSERTION FAIL: strcmp(choice1,choice2) == 0
+File: /home/luiz/Projetos/benchLuiz/benchmarksGklee/105_pass/main.cpp
+Line: 27
+Stack: 
+	#0 00000089 in _Z3fooPcS_S_ (A=49924720, B=50523824, c=50502784) at /home/luiz/Projetos/benchLuiz/benchmarksGklee/105_pass/main.cpp:27
+	#1 00000176 in main () at /home/luiz/Projetos/benchLuiz/benchmarksGklee/105_pass/main.cpp:57

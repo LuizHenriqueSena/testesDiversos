@@ -1,0 +1,144 @@
+version: 1
+creator: klee
+pid: 1000
+cmd: main
+
+
+positions: instr line
+event: Icov : CoveredInstructions
+event: Forks : Forks
+event: Ireal : InstructionRealTimes
+event: Itime : InstructionTimes
+event: I : Instructions
+event: UCdist : MinDistToUncovered
+event: Rtime : ResolveTime
+event: States : States
+event: Iuncov : UncoveredInstructions
+event: Q : Queries
+event: Qiv : QueriesInvalid
+event: Qv : QueriesValid
+event: Qtime : QueryTime
+events: Icov Forks Ireal Itime I UCdist Rtime States Iuncov Q Qiv Qv Qtime 
+ob=/home/luiz/Projetos/benchLuiz/benchmarksGklee/048_pass/./klee-out-0/assembly.ll
+fn=_Z3foov
+fl=/home/luiz/Projetos/benchLuiz/benchmarksGklee/048_pass/main.cpp
+8 12 1 0 0 0 2 0 0 0 0 0 0 0 0 
+9 12 1 0 0 0 2 0 0 0 0 0 0 0 0 
+10 14 1 0 0 0 2 0 0 0 0 0 0 0 0 
+fn=main
+16 17 1 0 0 0 1 0 0 0 0 0 0 0 0 
+17 17 1 0 0 0 1 0 0 0 0 0 0 0 0 
+18 17 1 0 0 0 1 0 0 0 0 0 0 0 0 
+19 17 1 0 0 0 1 0 0 0 0 0 0 0 0 
+20 17 1 0 0 0 1 0 0 0 0 0 0 0 0 
+21 17 1 0 0 0 1 0 0 0 0 0 0 0 0 
+22 17 1 0 0 0 1 0 0 0 0 0 0 0 0 
+cfl=/home/luiz/Projetos/OutrosVerificadores/Gklee/Gklee/include/cuda/vector_types.h
+cfn=_ZN4dim3C1Ejjj
+calls=1 47 419
+22 17 33 0 0 0 33 0 0 0 0 0 0 0 0 
+23 17 1 0 0 0 1 0 0 0 0 0 0 0 0 
+cfl=/home/luiz/Projetos/OutrosVerificadores/Gklee/Gklee/include/cuda/vector_types.h
+cfn=_ZN4dim3C1Ejjj
+calls=1 47 419
+23 17 0 0 0 0 33 0 0 0 0 0 0 0 0 
+24 17 1 0 0 0 1 0 0 0 0 0 0 0 0 
+25 17 1 0 0 0 1 0 0 0 0 0 0 0 0 
+26 17 1 0 0 0 1 0 0 0 0 0 0 0 0 
+cfl=/home/luiz/Projetos/OutrosVerificadores/Gklee/Gklee/runtime/Intrinsic/memcpy.c
+cfn=memcpy
+calls=1 88 16
+26 17 13 0 0 0 123 0 0 0 0 0 0 0 0 
+27 17 1 0 0 0 1 0 0 0 0 0 0 0 0 
+28 17 1 0 0 0 1 0 0 0 0 0 0 0 0 
+29 17 1 0 0 0 1 0 0 0 0 0 0 0 0 
+30 17 1 0 0 0 1 0 0 0 0 0 0 0 0 
+31 17 1 0 0 0 1 0 0 0 0 0 0 0 0 
+32 17 1 0 0 0 1 0 0 0 0 0 0 0 0 
+33 17 1 0 0 0 1 0 0 0 0 0 0 0 0 
+cfl=/home/luiz/Projetos/OutrosVerificadores/Gklee/Gklee/runtime/Intrinsic/memcpy.c
+cfn=memcpy
+calls=1 88 16
+33 17 0 0 0 0 123 0 0 0 0 0 0 0 0 
+34 17 1 0 0 0 1 0 0 0 0 0 0 0 0 
+35 17 1 0 0 0 1 0 0 0 0 0 0 0 0 
+36 17 1 0 0 0 1 0 0 0 0 0 0 0 0 
+37 17 1 0 0 0 1 0 0 0 0 0 0 0 0 
+38 17 1 0 0 0 1 0 0 0 0 0 0 0 0 
+39 19 1 0 0 0 1 0 0 0 0 0 0 0 0 
+cfn=_Z3foov
+calls=1 8 12
+39 19 3 0 0 0 3 0 0 0 0 0 0 0 0 
+40 23 1 0 0 0 1 0 0 0 0 0 0 0 0 
+cfl=/home/luiz/Projetos/OutrosVerificadores/Gklee/Gklee/runtime/CudaRuntime/cudaThreadManage.c
+cfn=cudaThreadSynchronize
+calls=1 130 34
+40 23 1 0 0 0 1 0 0 0 0 0 0 0 0 
+41 25 1 0 0 0 1 0 0 0 0 0 0 0 0 
+fn=_ZN4dim3C1Ejjj
+fl=/home/luiz/Projetos/OutrosVerificadores/Gklee/Gklee/include/cuda/vector_types.h
+47 419 1 0 0 0 2 0 0 0 0 0 0 0 0 
+48 419 1 0 0 0 2 0 0 0 0 0 0 0 0 
+49 419 1 0 0 0 2 0 0 0 0 0 0 0 0 
+50 419 1 0 0 0 2 0 0 0 0 0 0 0 0 
+51 419 1 0 0 0 2 0 0 0 0 0 0 0 0 
+52 419 1 0 0 0 2 0 0 0 0 0 0 0 0 
+53 419 1 0 0 0 2 0 0 0 0 0 0 0 0 
+54 419 1 0 0 0 2 0 0 0 0 0 0 0 0 
+55 419 1 0 0 0 2 0 0 0 0 0 0 0 0 
+56 419 1 0 0 0 2 0 0 0 0 0 0 0 0 
+57 419 1 0 0 0 2 0 0 0 0 0 0 0 0 
+58 419 1 0 0 0 2 0 0 0 0 0 0 0 0 
+59 419 1 0 0 0 2 0 0 0 0 0 0 0 0 
+cfn=_ZN4dim3C2Ejjj
+calls=2 66 419
+59 419 19 0 0 0 38 0 0 0 0 0 0 0 0 
+60 419 1 0 0 0 2 0 0 0 0 0 0 0 0 
+fn=_ZN4dim3C2Ejjj
+66 419 1 0 0 0 2 0 0 0 0 0 0 0 0 
+67 419 1 0 0 0 2 0 0 0 0 0 0 0 0 
+68 419 1 0 0 0 2 0 0 0 0 0 0 0 0 
+69 419 1 0 0 0 2 0 0 0 0 0 0 0 0 
+70 419 1 0 0 0 2 0 0 0 0 0 0 0 0 
+71 419 1 0 0 0 2 0 0 0 0 0 0 0 0 
+72 419 1 0 0 0 2 0 0 0 0 0 0 0 0 
+73 419 1 0 0 0 2 0 0 0 0 0 0 0 0 
+74 419 1 0 0 0 2 0 0 0 0 0 0 0 0 
+75 419 1 0 0 0 2 0 0 0 0 0 0 0 0 
+76 419 1 0 0 0 2 0 0 0 0 0 0 0 0 
+77 419 1 0 0 0 2 0 0 0 0 0 0 0 0 
+78 419 1 0 0 0 2 0 0 0 0 0 0 0 0 
+79 419 1 0 0 0 2 0 0 0 0 0 0 0 0 
+80 419 1 0 0 0 2 0 0 0 0 0 0 0 0 
+81 419 1 0 0 0 2 0 0 0 0 0 0 0 0 
+82 419 1 0 0 0 2 0 0 0 0 0 0 0 0 
+83 419 1 0 0 0 2 0 0 0 0 0 0 0 0 
+84 419 1 0 0 0 2 0 0 0 0 0 0 0 0 
+fn=memcpy
+fl=/home/luiz/Projetos/OutrosVerificadores/Gklee/Gklee/runtime/Intrinsic/memcpy.c
+88 16 1 0 0 0 2 0 0 0 0 0 0 0 0 
+89 16 1 0 0 0 2 0 0 0 0 0 0 0 0 
+92 16 1 0 0 0 24 0 0 0 0 0 0 0 0 
+93 16 1 0 0 0 24 0 0 0 0 0 0 0 0 
+94 16 1 0 0 0 24 0 0 0 0 0 0 0 0 
+95 16 1 0 0 0 24 0 0 0 0 0 0 0 0 
+96 17 1 0 0 0 24 0 0 0 0 0 0 0 0 
+97 17 1 0 0 0 24 0 0 0 0 0 0 0 0 
+98 17 1 0 0 0 24 0 0 0 0 0 0 0 0 
+99 17 1 0 0 0 24 0 0 0 0 0 0 0 0 
+100 16 1 0 0 0 24 0 0 0 0 0 0 0 0 
+101 16 1 0 0 0 24 0 0 0 0 0 0 0 0 
+104 18 1 0 0 0 2 0 0 0 0 0 0 0 0 
+fn=cudaThreadExit
+fl=/home/luiz/Projetos/OutrosVerificadores/Gklee/Gklee/runtime/CudaRuntime/cudaThreadManage.c
+110 14 0 0 0 0 0 0 0 0 1 0 0 0 0 
+fn=cudaThreadGetCacheConfig
+114 18 0 0 0 0 0 0 0 0 1 0 0 0 0 
+fn=cudaThreadGetLimit
+118 22 0 0 0 0 0 0 0 0 1 0 0 0 0 
+fn=cudaThreadSetCacheConfig
+122 26 0 0 0 0 0 0 0 0 1 0 0 0 0 
+fn=cudaThreadSetLimit
+126 30 0 0 0 0 0 0 0 0 1 0 0 0 0 
+fn=cudaThreadSynchronize
+130 34 1 0 0 0 1 0 0 0 0 0 0 0 0 

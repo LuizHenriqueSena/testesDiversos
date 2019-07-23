@@ -1,0 +1,2 @@
+KLEE: ERROR: /home/luiz/Projetos/benchLuiz/benchmarksGklee/087_floatcastrequired_fail/main.cpp:38: ASSERTION FAIL: A[t] != 100
+KLEE: NOTE: now ignoring this error at this location

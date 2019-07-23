@@ -1,0 +1,10 @@
+Error: memory error: out of bound pointer
+File: /home/luiz/Projetos/benchLuiz/benchmarksGklee/062_struct_fail/main.cpp
+Line: 18
+Stack: 
+	#0 00000039 in _Z1kPf (i0=53334688) at /home/luiz/Projetos/benchLuiz/benchmarksGklee/062_struct_fail/main.cpp:18
+	#1 00000112 in main () at /home/luiz/Projetos/benchLuiz/benchmarksGklee/062_struct_fail/main.cpp:36
+Info: 
+	address: 53334696
+	next: object at 53977840 of size 12
+		MO0[12] allocated at global:threadIdx

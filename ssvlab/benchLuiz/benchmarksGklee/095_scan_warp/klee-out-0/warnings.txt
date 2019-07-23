@@ -1,0 +1,2 @@
+KLEE: ERROR: /home/luiz/Projetos/benchLuiz/benchmarksGklee/095_scan_warp/main.cpp:42: execution halts on encounering a (global) race
+KLEE: NOTE: now ignoring this error at this location

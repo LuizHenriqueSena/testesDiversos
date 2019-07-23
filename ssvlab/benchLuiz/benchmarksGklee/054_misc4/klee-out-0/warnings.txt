@@ -1,0 +1,2 @@
+KLEE: ERROR: /home/luiz/Projetos/benchLuiz/benchmarksGklee/054_misc4/main.cpp:19: failed external call: _Z3bari
+KLEE: NOTE: now ignoring this error at this location

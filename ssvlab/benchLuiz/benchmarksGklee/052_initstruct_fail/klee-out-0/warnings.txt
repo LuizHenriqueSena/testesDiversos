@@ -1,0 +1,2 @@
+KLEE: ERROR: /home/luiz/Projetos/benchLuiz/benchmarksGklee/052_initstruct_fail/main.cpp:33: ASSERTION FAIL: a[i].x != 1
+KLEE: NOTE: now ignoring this error at this location

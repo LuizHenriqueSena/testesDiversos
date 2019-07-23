@@ -1,0 +1,11 @@
+Error: memory error: out of bound pointer
+File: /home/luiz/Projetos/benchLuiz/benchmarksGklee/002_add_one_fail/main.cpp
+Line: 14
+Stack: 
+	#0 00000037 in _Z9race_testPjPi (i=37486336, A=37436832) at /home/luiz/Projetos/benchLuiz/benchmarksGklee/002_add_one_fail/main.cpp:14
+	#1 00000126 in main () at /home/luiz/Projetos/benchLuiz/benchmarksGklee/002_add_one_fail/main.cpp:37
+Info: 
+	address: 18446744068087737420
+	next: none
+	prev: object at 37544496 of size 4
+		MO180[4] allocated at _Z9race_testPjPi():  %j = alloca i32, align 4

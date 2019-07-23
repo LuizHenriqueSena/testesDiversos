@@ -1,0 +1,2 @@
+KLEE: ERROR: /home/luiz/Projetos/benchLuiz/benchmarksGklee/046_always_inline_fail/main.cpp:18: ASSERTION FAIL: x != 5
+KLEE: NOTE: now ignoring this error at this location

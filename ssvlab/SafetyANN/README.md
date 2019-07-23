@@ -1,5 +1,3 @@
-# testesDiversos
-Repositório para builds e execuções de testes diversos
 # ESBMC-GPU v2.0
 
 ESBMC-GPU is a context-bounded model checker based on the satisfiability
@@ -35,10 +33,10 @@ with support to Ubuntu OS 16.04.
 
 ## All benchmark folders have the information inside their name, Ex: iao03 means that the vocalic "a" will be verified with respect to the vocalic "o" with 0.3 as proximity parameter.
 
-###### 1. Firstly, go to the benchmark folder inside repository folder:
+###### 1. Firstly, go to the benchmark folder inside the repository folder:
 
 	cd benchmark
 
 ###### 2. After this process, any benchmark can be run with the command:
 
-./esbmc-gpu "benchmarkfolder"/verifynn.c -I ~/library/ --force-malloc-success --state-hashing --no-div-by-zero-check --no-pointer-check --context-switch 2
+./../esbmc-gpu "benchmarkfolder"/verifynn.c -I ~/library/ --force-malloc-success --state-hashing --no-div-by-zero-check --no-pointer-check

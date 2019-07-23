@@ -119,7 +119,7 @@ int main() {
 	normalizef(imgU,25);
 	normalizef(img2,25);
 //	int i = isCloseEnough(img,img2,10,25);
-	__ESBMC_assume(isCloseEnough(imgU,img2,1.5,25) == 1);
+	__ESBMC_assume(isCloseEnough(imgA,img2,1.5,25) == 1);
 //	__ESBMC_assert(isCloseEnough(img, 1), "Image is near");
-	checkNNLUT(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, img2);
+	checkNNLUT(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, img2, 0, 3);
 }

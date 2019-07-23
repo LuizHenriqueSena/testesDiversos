@@ -1,0 +1,167 @@
+news for release 2.0.1 since 2.0.0
+--------------------------------------
+* fixes bug in model generation
+
+news for release 2.0.0 since 1.6.0
+--------------------------------------
+* General:
+  + Boolector python API
+  + cloning support
+  + support for uninterpreted functions
+  + new improved model generation, supports two modes now:
+    - --model-gen=1 or -m:
+	generate model for all asserted expressions
+	(same as model generation in previous versions)
+    - --model-gen=2 or -m -m:
+	generate model for all created expressions
+  + fixed several rewriting bugs
+  + refactored a lot of code 
+  + new output format for models
+* Optimizations:
+  + re-enabled and fixed unconstrained optimization
+  + don't care reasoning on bit vector skeleton
+    - dual propagation optimization
+    - justification optimization
+* API changes:
+  + API functions return node of type BoolectorNode instead of BtorNode
+  + new option handling
+    + can be set via environment variables
+    + set options via boolector_set_opt
+  + new options
+    - for a complete list of options please refer to the documentation of
+      boolector_set_opt
+  + deprecated functions:
+    - boolector_get_symbol_of_var
+      -> use boolector_get_symbol (...)
+    the following functions are obsolete with boolector_set_opt
+    - boolector_enable_model_gen
+      -> use boolector_set_opt ("model_gen", 1)
+    - boolector_generate_model_for_all_reads
+      -> use boolector_set_opt ("model_gen", 2)
+    - boolector_enable_inc_usage 
+      -> use boolector_set_opt ("incremental", 1)
+    - boolector_set_rewrite_level 
+      -> use boolector_set_opt ("rewrite_level", ...)
+    - boolector_set_verbosity
+      -> use boolector_set_opt ("verbosity", ...)
+    - boolector_set_loglevel
+      -> use boolector_set_opt ("loglevel", ...)
+  + new API functions to create uninterpreted functions
+    - boolector_uf
+    - boolector_bool_sort
+    - boolector_bitvec_sort
+    - boolector_fun_sort
+  + limited boolector_sat calls
+    - set lemmas on demand limit
+    - set conflict limit for SAT solver
+* Notes:
+  + If uninterpreted functions occur in the formula it is not possible to
+    dump the formula to BTOR 1.2 format (this will be fixed with BTOR 2.0).
+
+news for release 1.6.0 since 1.5.119
+--------------------------------------
+* extensionality support disabled
+* support for macros and lambdas
+* model based testing 'btormbt'
+* API tracing and untracing with 'btoruntrace'
+* improved quality of SMT2 parse error messages
+* added missing semantic checks in SMT2 parser
+
+news for release 1.5.119 since 1.5.118
+--------------------------------------
+* fixed '{boolector,btor}_set_sat_solver 
+  (if MiniSAT and/or PicoSAT are not not enabled at compile time)
+
+news for release 1.5.118 since 1.5.116
+--------------------------------------
+* '--solver=...' command line option and 'boolector_set_sat_solver'
+* delayed Lingeling preprocessing using 'simpdelay'
+
+news for release 1.5.116 since 1.5.115
+--------------------------------------
+* examples compilable again
+* fixed assertions in 'booolector.c'
+* support for new reentrant PicoSAT API (since PicoSAT version 953)
+
+news for release 1.5.115 since 1.5.13
+------------------------------------
+* added 'bvcomp'
+* boolean top-level skeleton simplification
+* use of 'lglclone' in incremental mode
+* added some more rewriting
+* removed 3VL code
+* removed PrecoSAT, basicbtor
+* in-depth, look-ahead, interval
+* incremental SMTLIB1 interface
+* added MiniSAT support
+* rebuilding AIGs / Expressions
+* more compact SMTLIB1 parsing
+* symbolic lemmas instead of direct CNF encoding
+* more compact AIG to CNF translation
+* gzip/bzip2/7z compressed input files
+* time out option
+* SMTLIB 2 support
+
+news for release 1.5.13 since 1.4.1
+----------------------------------
+* new incremental mode for multiple formulas in SMT benchmarks
+* integration of MiniSAT
+* SMT parser demotes logic if possible
+* better control of best suitable solver in main application
+* generic incremental SAT glue logic
+* integration of Lingeling
+
+news for release 1.4.1 since 1.4
+--------------------------------
+* MacOS port
+* disabled unconstrained optimization
+
+news for release 1.4 since 1.3
+------------------------------
+* hid API change in 'picosat_add' for older version of PicoSAT
+* fixed EOF issue reading an empty file from stdin
+* removed old license references
+
+news for release 1.3 since 1.2
+------------------------------
+* first source code release
+* fixed a rewriting bug by uncommenting simplification code
+
+news for release 1.2 since 1.1
+------------------------------
+* improved rewriting 
+* PrecoSAT now standard solver for non-incremental usage, 
+  PicoSAT used otherwise
+
+news for release 1.1 since 1.0
+------------------------------
+* improved handling of unconstrained variables and arrays
+* improved rewriting engine
+* removed command line switch for refinement limit
+* fixed bug where Boolector could report 'unknown' in regular (non-bmc) mode
+* fixed minor caching problem on AIG layer 
+* fixed other bugs
+
+news for release 1.0 since 0.7
+------------------------------
+* public C API
+* documentation and examples
+* improved SMT parser (:formula can now be an fvar).
+
+news for release 0.7 since 0.6
+------------------------------
+* fixed model generation bugs
+* improved under-approximation
+* added support for bvcomp (SMT-LIB)
+
+news for release 0.6 since 0.5
+------------------------------
+* fixed model generation bugs
+* fixed rewriting bug
+* support for new under-approximation techniques
+
+news for release 0.5 since 0.4
+------------------------------
+* faster model generation
+* support for array models
+* support for under-approximation techniques for bit-vector variables and reads

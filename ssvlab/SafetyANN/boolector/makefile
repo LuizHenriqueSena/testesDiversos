@@ -1,0 +1,63 @@
+.SUFFIXES: .o .c .cc
+
+MAKEFLAGS=-j $(if $(CORES),$(CORES),1)
+CC=gcc
+INCS=-I. -I../lingeling
+CFLAGS=-W -Wall -Wextra -O3 -DNDEBUG -DNBTORLOG -DBTOR_USE_LINGELING -DBTOR_ENABLE_BETA_REDUCTION_PROBING
+OBJS=
+LIBS=-L../lingeling -llgl -lm
+LDEPS=../lingeling/liblgl.a
+VERSION=$(shell cat VERSION)
+SRCDIRS=. parser dumper
+LIBOBJ=$(patsubst %.c,%.o,$(foreach d,$(SRCDIRS),$(wildcard $(d)/btor[a-z]*.c)))
+LIBOBJ+=boolector.o $(OBJS)
+SRC=$(foreach d,$(SRCDIRS),$(wildcard $(d)/*.[c|h|cc]))
+TARGETS=boolector
+
+all: libboolector.a $(TARGETS)
+
+-include dependencies
+-include python.mk
+-include synthebtor.mk
+-include btor2horn.mk
+
+%.o: %.c
+	$(CC) $(CFLAGS) $(INCS) -c $< -o $@
+
+%.o: %.cc
+	$(CC) $(CFLAGS) $(INCS) -c $< -o $@
+
+analyze:
+	clang --analyze $(CFLAGS) $(INCS) $(shell ls *.c *.cc)
+
+dependencies: btorconfig.h $(SRC) makefile
+	rm -f $@; for srcdir in $(SRCDIRS); do \
+	$(CC) $(CFLAGS) $(INCS) -MM $$srcdir/*.[ch] $$srcdir/*.cc 2>/dev/null | \
+	sed -e 's,\(.*\):,'$$srcdir/'\1: makefile,' >>$@; done
+boolector: boolectormain.o libboolector.a $(LDEPS)
+	$(CC) $(CFLAGS) $(INCS) -o $@ boolectormain.o -L. -lboolector $(LIBS) $(LDEPS)
+
+libboolector.a: $(LIBOBJ)
+	rm -f $@
+	ar rc $@ $(LIBOBJ)
+	ranlib $@
+
+btorconfig.h: makefile VERSION mkconfig
+	rm -f $@; ./mkconfig > $@
+
+SONAME=-Xlinker -soname -Xlinker libboolector.so
+SHOBJS=$(filter-out ./btormbt.o ./btoruntrace.o ./btormain, $(LIBOBJ))
+libboolector.so: $(SHOBJS)
+	$(CC) $(CFLAGS) -shared -o $@ $(SHOBJS) $(LIBS) $(SONAME)
+
+clean:
+	rm -f $(TARGETS)
+	rm -f dependencies makefile btorconfig.h
+	rm -f *.gcda *.gcno *.gcov *.gch *.plist
+	rm -f tests/*.gcda tests/*.gcno tests/*.gcov
+	rm -f parser/*.gcda parser/*.gcno parser/*.gcov
+	rm -f dumper/*.gcda dumper/*.gcno dumper/*.gcov
+	rm -f log/*.log *.tmp
+	rm -f *.a $(foreach d,$(SRCDIRS),$(d)/*.o)
+
+.PHONY: all analyze clean

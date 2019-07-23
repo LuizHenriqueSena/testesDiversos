@@ -1,0 +1,176 @@
+./boolector.o: makefile boolector.c boolector.h btortrapi.h btorcore.h btorass.h \
+ btormem.h btorexp.h btoraigvec.h btoraig.h btorstack.h btorsat.h \
+ btormsg.h ../lingeling/lglib.h btorhash.h btorqueue.h btorsort.h \
+ btoropt.h btorchkclone.h btorconst.h btorcore.h btorexit.h btoriter.h \
+ btormap.h btorutil.h btorabort.h dumper/btordumpbtor.h boolector.h \
+ dumper/btordumpsmt.h btorclone.h btorparse.h btorlogic.h
+./boolector.o: makefile boolector.h
+./boolectormain.o: makefile boolectormain.c btormain.h
+./btor2horn.o: makefile btor2horn.c btorfmt.h
+./btorabort.o: makefile btorabort.h btorexit.h
+./btoraig.o: makefile btoraig.c btoraig.h btorstack.h btormem.h btorsat.h btormsg.h \
+ ../lingeling/lglib.h btorhash.h btorutil.h btormap.h btorcore.h \
+ boolector.h btorass.h btorexp.h btoraigvec.h btorqueue.h btorsort.h \
+ btoropt.h btorexit.h
+./btoraig.o: makefile btoraig.h btorstack.h btormem.h btorsat.h btormsg.h \
+ ../lingeling/lglib.h btorhash.h
+./btoraigvec.o: makefile btoraigvec.c btoraigvec.h btormem.h btoraig.h btorstack.h \
+ btorsat.h btormsg.h ../lingeling/lglib.h btorhash.h btorutil.h btormap.h \
+ btorcore.h boolector.h btorass.h btorexp.h btorqueue.h btorsort.h \
+ btoropt.h
+./btoraigvec.o: makefile btoraigvec.h btormem.h btoraig.h btorstack.h btorsat.h \
+ btormsg.h ../lingeling/lglib.h btorhash.h
+./btorass.o: makefile btorass.c btorass.h btormem.h
+./btorass.o: makefile btorass.h btormem.h
+./btorbeta.o: makefile btorbeta.c btorbeta.h btorcore.h boolector.h btorass.h \
+ btormem.h btorexp.h btoraigvec.h btoraig.h btorstack.h btorsat.h \
+ btormsg.h ../lingeling/lglib.h btorhash.h btorqueue.h btorsort.h \
+ btoropt.h btorlog.h btorutil.h btoriter.h btormap.h btorrewrite.h \
+ btormisc.h btorparamcache.h
+./btorbeta.o: makefile btorbeta.h btorcore.h boolector.h btorass.h btormem.h \
+ btorexp.h btoraigvec.h btoraig.h btorstack.h btorsat.h btormsg.h \
+ ../lingeling/lglib.h btorhash.h btorqueue.h btorsort.h btoropt.h
+./btorbitvec.o: makefile btorbitvec.c btorbitvec.h btorcore.h boolector.h btorass.h \
+ btormem.h btorexp.h btoraigvec.h btoraig.h btorstack.h btorsat.h \
+ btormsg.h ../lingeling/lglib.h btorhash.h btorqueue.h btorsort.h \
+ btoropt.h btorutil.h btorconst.h
+./btorbitvec.o: makefile btorbitvec.h btorcore.h boolector.h btorass.h btormem.h \
+ btorexp.h btoraigvec.h btoraig.h btorstack.h btorsat.h btormsg.h \
+ ../lingeling/lglib.h btorhash.h btorqueue.h btorsort.h btoropt.h
+./btorchkclone.o: makefile btorchkclone.c
+./btorchkclone.o: makefile btorchkclone.h
+./btorclone.o: makefile btorclone.c btoraig.h btorstack.h btormem.h btorsat.h \
+ btormsg.h ../lingeling/lglib.h btorhash.h btoraigvec.h btorcore.h \
+ boolector.h btorass.h btorexp.h btorqueue.h btorsort.h btoropt.h \
+ btormap.h btorlog.h btorutil.h btoriter.h btorbeta.h btorbitvec.h
+./btorclone.o: makefile btorclone.h btormap.h btorcore.h boolector.h btorass.h \
+ btormem.h btorexp.h btoraigvec.h btoraig.h btorstack.h btorsat.h \
+ btormsg.h ../lingeling/lglib.h btorhash.h btorqueue.h btorsort.h \
+ btoropt.h
+./btorconfig.o: makefile btorconfig.h
+./btorconst.o: makefile btorconst.c btorconst.h btormem.h btorutil.h btorstack.h
+./btorconst.o: makefile btorconst.h btormem.h
+./btorcore.o: makefile btorcore.c btoropt.h btorbeta.h btorcore.h boolector.h \
+ btorass.h btormem.h btorexp.h btoraigvec.h btoraig.h btorstack.h \
+ btorsat.h btormsg.h ../lingeling/lglib.h btorhash.h btorqueue.h \
+ btorsort.h btorbitvec.h btorconfig.h btorconst.h btorclone.h btormap.h \
+ btorexit.h btoriter.h btorlog.h btormisc.h btormodel.h btorparamcache.h \
+ btorrewrite.h btorutil.h ../lingeling/lglib.h
+./btorcore.o: makefile btorcore.h boolector.h btorass.h btormem.h btorexp.h \
+ btoraigvec.h btoraig.h btorstack.h btorsat.h btormsg.h \
+ ../lingeling/lglib.h btorhash.h btorqueue.h btorsort.h btoropt.h
+./btorexit.o: makefile btorexit.h
+./btorexp.o: makefile btorexp.c btorexp.h boolector.h btoraigvec.h btormem.h \
+ btoraig.h btorstack.h btorsat.h btormsg.h ../lingeling/lglib.h \
+ btorhash.h btorqueue.h btorsort.h btorutil.h btorconst.h btorexit.h \
+ btorrewrite.h btoriter.h btorcore.h btorass.h btoropt.h btormap.h \
+ btorlog.h btormisc.h
+./btorexp.o: makefile btorexp.h boolector.h btoraigvec.h btormem.h btoraig.h \
+ btorstack.h btorsat.h btormsg.h ../lingeling/lglib.h btorhash.h \
+ btorqueue.h btorsort.h
+./btorfmt.o: makefile btorfmt.c btorfmt.h
+./btorfmt.o: makefile btorfmt.h
+./btorhash.o: makefile btorhash.c btorhash.h btormem.h btoriter.h btorcore.h \
+ boolector.h btorass.h btorexp.h btoraigvec.h btoraig.h btorstack.h \
+ btorsat.h btormsg.h ../lingeling/lglib.h btorqueue.h btorsort.h \
+ btoropt.h btormap.h
+./btorhash.o: makefile btorhash.h btormem.h
+./btoriter.o: makefile btoriter.c btoriter.h btorcore.h boolector.h btorass.h \
+ btormem.h btorexp.h btoraigvec.h btoraig.h btorstack.h btorsat.h \
+ btormsg.h ../lingeling/lglib.h btorhash.h btorqueue.h btorsort.h \
+ btoropt.h btormap.h
+./btoriter.o: makefile btoriter.h btorcore.h boolector.h btorass.h btormem.h \
+ btorexp.h btoraigvec.h btoraig.h btorstack.h btorsat.h btormsg.h \
+ ../lingeling/lglib.h btorhash.h btorqueue.h btorsort.h btoropt.h \
+ btormap.h
+./btorlog.o: makefile btorlog.c
+./btorlog.o: makefile btorlog.h
+./btorlogic.o: makefile btorlogic.h
+./btormain.o: makefile btormain.c btormain.h boolector.h btorconfig.h btoropt.h \
+ btorexit.h btorparse.h btorstack.h btormem.h btorlogic.h btormsg.h \
+ btorutil.h
+./btormain.o: makefile btormain.h
+./btormap.o: makefile btormap.c btormap.h btorcore.h boolector.h btorass.h btormem.h \
+ btorexp.h btoraigvec.h btoraig.h btorstack.h btorsat.h btormsg.h \
+ ../lingeling/lglib.h btorhash.h btorqueue.h btorsort.h btoropt.h \
+ btoriter.h
+./btormap.o: makefile btormap.h btorcore.h boolector.h btorass.h btormem.h btorexp.h \
+ btoraigvec.h btoraig.h btorstack.h btorsat.h btormsg.h \
+ ../lingeling/lglib.h btorhash.h btorqueue.h btorsort.h btoropt.h
+./btormc.o: makefile btormc.c btormc.h boolector.h btorabort.h btorexit.h btorexp.h \
+ btoraigvec.h btormem.h btoraig.h btorstack.h btorsat.h btormsg.h \
+ ../lingeling/lglib.h btorhash.h btorqueue.h btorsort.h btormap.h \
+ btorcore.h btorass.h btoropt.h dumper/btordumpbtor.h boolector.h \
+ btorconst.h btoriter.h
+./btormc.o: makefile btormc.h boolector.h
+./btormem.o: makefile btormem.c btormem.h btorexit.h
+./btormem.o: makefile btormem.h
+./btorminisat.o: makefile btorminisat.h
+./btormisc.o: makefile btormisc.c btorcore.h boolector.h btorass.h btormem.h \
+ btorexp.h btoraigvec.h btoraig.h btorstack.h btorsat.h btormsg.h \
+ ../lingeling/lglib.h btorhash.h btorqueue.h btorsort.h btoropt.h \
+ btormisc.h dumper/btordumpbtor.h boolector.h
+./btormisc.o: makefile btormisc.h btorexp.h boolector.h btoraigvec.h btormem.h \
+ btoraig.h btorstack.h btorsat.h btormsg.h ../lingeling/lglib.h \
+ btorhash.h btorqueue.h btorsort.h
+./btormodel.o: makefile btormodel.c btorbeta.h btorcore.h boolector.h btorass.h \
+ btormem.h btorexp.h btoraigvec.h btoraig.h btorstack.h btorsat.h \
+ btormsg.h ../lingeling/lglib.h btorhash.h btorqueue.h btorsort.h \
+ btoropt.h btorexit.h btormodel.h btorbitvec.h btoriter.h btormap.h \
+ btorutil.h
+./btormodel.o: makefile btormodel.h btorcore.h boolector.h btorass.h btormem.h \
+ btorexp.h btoraigvec.h btoraig.h btorstack.h btorsat.h btormsg.h \
+ ../lingeling/lglib.h btorhash.h btorqueue.h btorsort.h btoropt.h \
+ btorbitvec.h
+./btormsg.o: makefile btormsg.c btormsg.h btormem.h
+./btormsg.o: makefile btormsg.h btormem.h
+./btoropt.o: makefile btoropt.c btoropt.h btorcore.h boolector.h btorass.h btormem.h \
+ btorexp.h btoraigvec.h btoraig.h btorstack.h btorsat.h btormsg.h \
+ ../lingeling/lglib.h btorhash.h btorqueue.h btorsort.h btortrapi.h \
+ btorcore.h btorlog.h btoriter.h btormap.h btormodel.h btorbitvec.h
+./btoropt.o: makefile btoropt.h
+./btorparamcache.o: makefile btorparamcache.c btorparamcache.h btorexp.h boolector.h \
+ btoraigvec.h btormem.h btoraig.h btorstack.h btorsat.h btormsg.h \
+ ../lingeling/lglib.h btorhash.h btorqueue.h btorsort.h btoriter.h \
+ btorcore.h btorass.h btoropt.h btormap.h btorbeta.h
+./btorparamcache.o: makefile btorparamcache.h btorexp.h boolector.h btoraigvec.h \
+ btormem.h btoraig.h btorstack.h btorsat.h btormsg.h ../lingeling/lglib.h \
+ btorhash.h btorqueue.h btorsort.h
+./btorparse.o: makefile btorparse.c btorparse.h boolector.h btorstack.h btormem.h \
+ btorlogic.h btormsg.h parser/btorbtor.h btorparse.h parser/btorsmt.h \
+ boolector.h parser/btorsmt2.h btorexp.h btoraigvec.h btoraig.h btorsat.h \
+ ../lingeling/lglib.h btorhash.h btorqueue.h btorsort.h btorcore.h \
+ btorass.h btorexp.h btoropt.h
+./btorparse.o: makefile btorparse.h boolector.h btorstack.h btormem.h btorlogic.h \
+ btormsg.h
+./btorqueue.o: makefile btorqueue.h btormem.h
+./btorrewrite.o: makefile btorrewrite.c btorrewrite.h btorexp.h boolector.h \
+ btoraigvec.h btormem.h btoraig.h btorstack.h btorsat.h btormsg.h \
+ ../lingeling/lglib.h btorhash.h btorqueue.h btorsort.h btorconst.h \
+ btorutil.h btorbeta.h btorcore.h btorass.h btoropt.h btoriter.h \
+ btormap.h
+./btorrewrite.o: makefile btorrewrite.h btorexp.h boolector.h btoraigvec.h btormem.h \
+ btoraig.h btorstack.h btorsat.h btormsg.h ../lingeling/lglib.h \
+ btorhash.h btorqueue.h btorsort.h
+./btorsat.o: makefile btorsat.c ../lingeling/lglib.h btorsat.h btormem.h btormsg.h \
+ ../lingeling/lglib.h btorexit.h btorutil.h
+./btorsat.o: makefile btorsat.h btormem.h btormsg.h ../lingeling/lglib.h
+./btorsort.o: makefile btorsort.c btorexit.h btorsort.h btormem.h btorstack.h \
+ btorutil.h
+./btorsort.o: makefile btorsort.h btormem.h btorstack.h
+./btorstack.o: makefile btorstack.h btormem.h
+./btortrapi.o: makefile btortrapi.c btortrapi.h btorcore.h boolector.h btorass.h \
+ btormem.h btorexp.h btoraigvec.h btoraig.h btorstack.h btorsat.h \
+ btormsg.h ../lingeling/lglib.h btorhash.h btorqueue.h btorsort.h \
+ btoropt.h
+./btortrapi.o: makefile btortrapi.h btorcore.h boolector.h btorass.h btormem.h \
+ btorexp.h btoraigvec.h btoraig.h btorstack.h btorsat.h btormsg.h \
+ ../lingeling/lglib.h btorhash.h btorqueue.h btorsort.h btoropt.h
+./btorutil.o: makefile btorutil.c btorutil.h
+./btorutil.o: makefile btorutil.h
+./deltabtor.o: makefile deltabtor.c
+./synthebtor.o: makefile synthebtor.c parser/btorbtor.h btorparse.h boolector.h \
+ btorstack.h btormem.h btorlogic.h btormsg.h btoraig.h btorsat.h \
+ ../lingeling/lglib.h btorhash.h btoraigvec.h btorcore.h btorass.h \
+ btorexp.h btorqueue.h btorsort.h btoropt.h btoriter.h btormap.h
+./btorminisat.o: makefile btorminisat.cc

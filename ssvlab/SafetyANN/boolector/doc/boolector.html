@@ -1,0 +1,2537 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Module Index: boolector &mdash; Boolector 2.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '2.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Boolector 2.0 documentation" href="index.html" />
+    <link rel="up" title="Boolector Python API documentation" href="pyboolector.html" />
+    <link rel="prev" title="Boolector Python API documentation" href="pyboolector.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="pyboolector.html" title="Boolector Python API documentation"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Boolector 2.0 documentation</a> &raquo;</li>
+          <li><a href="pyboolector.html" accesskey="U">Boolector Python API documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="pyboolector.html"
+                        title="previous chapter">Boolector Python API documentation</a></p>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="module-boolector">
+<span id="module-index-boolector"></span><h1>Module Index: boolector<a class="headerlink" href="#module-boolector" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="boolector.Boolector">
+<em class="property">class </em><tt class="descclassname">boolector.</tt><tt class="descname">Boolector</tt><a class="headerlink" href="#boolector.Boolector" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">builtins.object</span></tt></p>
+<p>The class representing a Boolector instance.</p>
+<dl class="method">
+<dt id="boolector.Boolector.Add">
+<tt class="descname">Add</tt><big>(</big><em>a</em>, <em>b</em><big>)</big><a class="headerlink" href="#boolector.Boolector.Add" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a bit vector addition.</p>
+<p>Parameters <tt class="docutils literal"><span class="pre">a</span></tt> and <tt class="docutils literal"><span class="pre">b</span></tt> must have the same bit width
+(see <a class="reference internal" href="pyboolector.html#const-conversion"><em>Automatic Constant Conversion</em></a>).</p>
+<p>It is also possible to create an addition as follows
+(see <a class="reference internal" href="pyboolector.html#operator-overloading"><em>Python Operator Overloading</em></a>):</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">bvadd</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>a</strong> (<a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorNode</span></tt></a>) &#8211; First bit vector operand.</li>
+<li><strong>b</strong> (<a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorNode</span></tt></a>) &#8211; Second bit vector operand.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">A bit vector node with the same bit width as <tt class="docutils literal"><span class="pre">a</span></tt> and <tt class="docutils literal"><span class="pre">b</span></tt>.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorNode</span></tt></a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="boolector.Boolector.And">
+<tt class="descname">And</tt><big>(</big><em>a</em>, <em>b</em><big>)</big><a class="headerlink" href="#boolector.Boolector.And" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a bit vector <em>and</em>.</p>
+<p>Parameters <tt class="docutils literal"><span class="pre">a</span></tt> and <tt class="docutils literal"><span class="pre">b</span></tt> must have the same bit width
+(see <a class="reference internal" href="pyboolector.html#const-conversion"><em>Automatic Constant Conversion</em></a>).</p>
+<p>It is also possible to create an <em>and</em> as follows
+(see <a class="reference internal" href="pyboolector.html#operator-overloading"><em>Python Operator Overloading</em></a>):</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">bvand</span> <span class="o">=</span> <span class="n">a</span> <span class="o">&amp;</span> <span class="n">b</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>a</strong> (<a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorNode</span></tt></a>) &#8211; First bit vector operand.</li>
+<li><strong>b</strong> (<a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorNode</span></tt></a>) &#8211; Second bit vector operand.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">A bit vector node with the same bit width as <tt class="docutils literal"><span class="pre">a</span></tt> and <tt class="docutils literal"><span class="pre">b</span></tt>.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorNode</span></tt></a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="boolector.Boolector.Apply">
+<tt class="descname">Apply</tt><big>(</big><em>args</em>, <em>fun</em><big>)</big><a class="headerlink" href="#boolector.Boolector.Apply" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a function application on function <tt class="docutils literal"><span class="pre">fun</span></tt> with arguments
+<tt class="docutils literal"><span class="pre">args</span></tt> (see <a class="reference internal" href="pyboolector.html#const-conversion"><em>Automatic Constant Conversion</em></a>).</p>
+<p>It is also possible to create a function application as follows
+(see <a class="reference internal" href="pyboolector.html#operator-overloading"><em>Python Operator Overloading</em></a>):</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">app</span> <span class="o">=</span> <span class="n">fun</span><span class="p">(</span><span class="n">arg_0</span><span class="p">,</span> <span class="o">...</span><span class="p">,</span> <span class="n">arg_n</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>See <a class="reference internal" href="#boolector.Boolector.Fun" title="boolector.Boolector.Fun"><tt class="xref py py-func docutils literal"><span class="pre">Fun()</span></tt></a>,
+<a class="reference internal" href="#boolector.Boolector.UF" title="boolector.Boolector.UF"><tt class="xref py py-func docutils literal"><span class="pre">UF()</span></tt></a>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>args</strong> (<a class="reference external" href="http://docs.python.org/3.4/library/stdtypes.html#list" title="(in Python v3.4)"><em>list</em></a>) &#8211; A list of arguments to be applied.</li>
+<li><strong>fun</strong> (<a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorNode</span></tt></a>) &#8211; Function to apply arguments <tt class="docutils literal"><span class="pre">args</span></tt> to.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">A function application on function <tt class="docutils literal"><span class="pre">fun</span></tt> with arguments <tt class="docutils literal"><span class="pre">args</span></tt>.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorNode</span></tt></a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="boolector.Boolector.Array">
+<tt class="descname">Array</tt><big>(</big><em>elem_width</em>, <em>index_width</em>, <em>symbol = None</em><big>)</big><a class="headerlink" href="#boolector.Boolector.Array" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a one-dimensional bit vector array variable of size
+<tt class="docutils literal"><span class="pre">2**index_width</span></tt> with elements of bit width <tt class="docutils literal"><span class="pre">elem_width</span></tt>.</p>
+<p>An array variable&#8217;s symbol is used as a simple means of
+identfication, either when printing a model via 
+<a class="reference internal" href="#boolector.Boolector.Print_model" title="boolector.Boolector.Print_model"><tt class="xref py py-func docutils literal"><span class="pre">Print_model()</span></tt></a>,
+or generating file dumps via 
+<a class="reference internal" href="#boolector.Boolector.Dump" title="boolector.Boolector.Dump"><tt class="xref py py-func docutils literal"><span class="pre">Dump()</span></tt></a>.
+A symbol must be unique but may be None in case that no
+symbol should be assigned.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>elem_width</strong> &#8211; Bit width of the array elements.</li>
+<li><strong>index_width</strong> &#8211; Bit width of the array indices.</li>
+<li><strong>symbol</strong> (<a class="reference external" href="http://docs.python.org/3.4/library/stdtypes.html#str" title="(in Python v3.4)"><em>str</em></a>) &#8211; Symbol of the array variable.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">An array variable of size <tt class="docutils literal"><span class="pre">2**index_width</span></tt> with elements of bit width <tt class="docutils literal"><span class="pre">elem_width</span></tt>.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorNode</span></tt></a></p>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">In contrast to composite expressions, which are 
+maintained uniquely w.r.t. to their kind, inputs (and
+consequently, bit width), array variables are not.
+Hence, each call to this function returns a fresh bit vector
+array variable.</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="boolector.Boolector.Assert">
+<tt class="descname">Assert</tt><big>(</big><em>n</em><big>)</big><a class="headerlink" href="#boolector.Boolector.Assert" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a constraint.</p>
+<p>Use this function to assert node <tt class="docutils literal"><span class="pre">n</span></tt>.
+Added constraints can not be removed.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>n</strong> (<a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorNode</span></tt></a>) &#8211; Bit vector expression with bit width 1.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="boolector.Boolector.Assume">
+<tt class="descname">Assume</tt><big>(</big><em>n</em><big>)</big><a class="headerlink" href="#boolector.Boolector.Assume" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add an assumption.</p>
+<p>Use this function to assume node <tt class="docutils literal"><span class="pre">n</span></tt>.
+You must enable Boolector&#8217;s incremental usage via 
+<a class="reference internal" href="#boolector.Boolector.Set_opt" title="boolector.Boolector.Set_opt"><tt class="xref py py-func docutils literal"><span class="pre">Set_opt()</span></tt></a> before you can add
+assumptions.
+In contrast to assertions added via 
+<a class="reference internal" href="#boolector.Boolector.Assert" title="boolector.Boolector.Assert"><tt class="xref py py-func docutils literal"><span class="pre">Assert()</span></tt></a>, assumptions
+are discarded after each call to <a class="reference internal" href="#boolector.Boolector.Sat" title="boolector.Boolector.Sat"><tt class="xref py py-func docutils literal"><span class="pre">Sat()</span></tt></a>.
+Assumptions and assertions are logicall combined via Boolean
+<em>and</em>. 
+Assumption handling in Boolector is analogous to assumptions
+in MiniSAT.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>n</strong> (<a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorNode</span></tt></a>) &#8211; Bit vector expression with bit width 1.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="boolector.Boolector.BitVecSort">
+<tt class="descname">BitVecSort</tt><big>(</big><em>width</em><big>)</big><a class="headerlink" href="#boolector.Boolector.BitVecSort" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create bit vector sort of bit width <tt class="docutils literal"><span class="pre">width</span></tt>.</p>
+<p>Currently, sorts in Boolector are used for uninterpreted functions,
+only.</p>
+<p>See <a class="reference internal" href="#boolector.Boolector.UF" title="boolector.Boolector.UF"><tt class="xref py py-func docutils literal"><span class="pre">UF()</span></tt></a>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>width</strong> (<a class="reference external" href="http://docs.python.org/3.4/library/functions.html#int" title="(in Python v3.4)"><em>int</em></a>) &#8211; Bit width.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Bit vector sort of bit width <tt class="docutils literal"><span class="pre">width</span></tt>.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="#boolector.BoolectorSort" title="boolector.BoolectorSort"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorSort</span></tt></a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="boolector.Boolector.BoolSort">
+<tt class="descname">BoolSort</tt><big>(</big><big>)</big><a class="headerlink" href="#boolector.Boolector.BoolSort" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create Boolean sort.</p>
+<p>Currently, sorts in Boolector are used for uninterpreted functions,
+only.</p>
+<p>See <a class="reference internal" href="#boolector.Boolector.UF" title="boolector.Boolector.UF"><tt class="xref py py-func docutils literal"><span class="pre">UF()</span></tt></a>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Sort of type Boolean.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="#boolector.BoolectorSort" title="boolector.BoolectorSort"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorSort</span></tt></a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="boolector.Boolector.Clone">
+<tt class="descname">Clone</tt><big>(</big><big>)</big><a class="headerlink" href="#boolector.Boolector.Clone" title="Permalink to this definition">¶</a></dt>
+<dd><p>Clone an instance of Boolector.</p>
+<p>The resulting Boolector instance is an exact (but disjunct) copy of
+its parent instance.  Consequently, in a clone and its parent,
+nodes with the same id correspond to each other.  Use
+<a class="reference internal" href="#boolector.Boolector.Match" title="boolector.Boolector.Match"><tt class="xref py py-func docutils literal"><span class="pre">Match()</span></tt></a> to match corresponding nodes.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The exact (but disjunct) copy of a Boolector instance.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="#boolector.Boolector" title="boolector.Boolector"><tt class="xref py py-class docutils literal"><span class="pre">Boolector</span></tt></a></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">If Lingeling is used as SAT solver, Boolector can be cloned at
+any time, since Lingeling also supports cloning. However, if
+you use <a class="reference internal" href="#boolector.Boolector.Clone" title="boolector.Boolector.Clone"><tt class="xref py py-func docutils literal"><span class="pre">Clone()</span></tt></a> with MiniSAT or
+PicoSAT (no cloning suppport), Boolector can only be cloned
+prior to the first <a class="reference internal" href="#boolector.Boolector.Sat" title="boolector.Boolector.Sat"><tt class="xref py py-func docutils literal"><span class="pre">Sat()</span></tt></a> call.</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="boolector.Boolector.Concat">
+<tt class="descname">Concat</tt><big>(</big><em>a</em>, <em>b</em><big>)</big><a class="headerlink" href="#boolector.Boolector.Concat" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create the concatenation of two bit vectors.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>a</strong> (<a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorNode</span></tt></a>) &#8211; First bit vector operand.</li>
+<li><strong>b</strong> (<a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorNode</span></tt></a>) &#8211; Second bit vector operand.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">A bit vector node with bitwidth <tt class="docutils literal"><span class="pre">bit</span> <span class="pre">width</span> <span class="pre">of</span> <span class="pre">a</span> <span class="pre">+</span> <span class="pre">bit</span> <span class="pre">width</span> <span class="pre">of</span> <span class="pre">b</span></tt>.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorNode</span></tt></a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="boolector.Boolector.Cond">
+<tt class="descname">Cond</tt><big>(</big><em>cond</em>, <em>a</em>, <em>b</em><big>)</big><a class="headerlink" href="#boolector.Boolector.Cond" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create an if-then-else.</p>
+<p>If condition <tt class="docutils literal"><span class="pre">cond</span></tt> is true, then <tt class="docutils literal"><span class="pre">a</span></tt> is returned, else <tt class="docutils literal"><span class="pre">b</span></tt>
+is returned.
+<tt class="docutils literal"><span class="pre">a</span></tt> and <tt class="docutils literal"><span class="pre">b</span></tt> must be either both arrays or both bit
+vectors (see <a class="reference internal" href="pyboolector.html#const-conversion"><em>Automatic Constant Conversion</em></a>).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>cond</strong> (<a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorNode</span></tt></a>) &#8211; Bit vector condition with bit width one.</li>
+<li><strong>a</strong> (<a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorNode</span></tt></a>) &#8211; Array or bit vector operand representing the <em>then</em> case.</li>
+<li><strong>b</strong> (<a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorNode</span></tt></a>) &#8211; Array or bit vector operand representing the <em>else</em> case.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Either <tt class="docutils literal"><span class="pre">a</span></tt> or <tt class="docutils literal"><span class="pre">b</span></tt>.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorNode</span></tt></a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="boolector.Boolector.Const">
+<tt class="descname">Const</tt><big>(</big><em>c</em>, <em>width = 1</em><big>)</big><a class="headerlink" href="#boolector.Boolector.Const" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a bit vector constant of value <tt class="docutils literal"><span class="pre">c</span></tt> and bit width <tt class="docutils literal"><span class="pre">width</span></tt>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>c</strong> (<em>int, bool, str</em>) &#8211; Value of the constant.</li>
+<li><strong>width</strong> (<a class="reference external" href="http://docs.python.org/3.4/library/functions.html#int" title="(in Python v3.4)"><em>int</em></a>) &#8211; Bit width of the constant.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">A bit vector constant of value <tt class="docutils literal"><span class="pre">c</span></tt> and bit width <tt class="docutils literal"><span class="pre">width</span></tt>.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorNode</span></tt></a></p>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Parameter <tt class="docutils literal"><span class="pre">width</span></tt> is only required if <tt class="docutils literal"><span class="pre">c</span></tt> is an integer.</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="boolector.Boolector.Dec">
+<tt class="descname">Dec</tt><big>(</big><em>n</em><big>)</big><a class="headerlink" href="#boolector.Boolector.Dec" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a bit vector expression that decrements bit vector <tt class="docutils literal"><span class="pre">n</span></tt>
+by one.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>n</strong> (<a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorNode</span></tt></a>) &#8211; A bit vector node.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">A bit vector with the same bit width as <tt class="docutils literal"><span class="pre">n</span></tt>, decremented by one.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorNode</span></tt></a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="boolector.Boolector.Dump">
+<tt class="descname">Dump</tt><big>(</big><em>format = &quot;btor&quot;</em>, <em>outfile = None</em><big>)</big><a class="headerlink" href="#boolector.Boolector.Dump" title="Permalink to this definition">¶</a></dt>
+<dd><p>Dump input formula to output file.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>format</strong> (<em>str.</em>) &#8211; A file format identifier string (use &#8216;btor&#8217; for <a class="reference external" href="http://fmv.jku.at/papers/BrummayerBiereLonsing-BPR08.pdf">BTOR</a>, &#8216;smt1&#8217; for <a class="reference external" href="http://smtlib.cs.uiowa.edu/papers/format-v1.2-r06.08.30.pdf">SMT-LIB v1</a>, and &#8216;smt2&#8217; for <a class="reference external" href="http://smtlib.cs.uiowa.edu/papers/smt-lib-reference-v2.0-r12.09.09.pdf">SMT-LIB v2</a>).</li>
+<li><strong>outile</strong> &#8211; Output file name (default: stdout).</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="boolector.Boolector.Eq">
+<tt class="descname">Eq</tt><big>(</big><em>a</em>, <em>b</em><big>)</big><a class="headerlink" href="#boolector.Boolector.Eq" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a bit vector or array equality.</p>
+<p>Parameters <tt class="docutils literal"><span class="pre">a</span></tt> and <tt class="docutils literal"><span class="pre">b</span></tt> are either bit vectors with the same bit
+width, or arrays of the same type (see <a class="reference internal" href="pyboolector.html#const-conversion"><em>Automatic Constant Conversion</em></a>).</p>
+<p>It is also possible to create an equality as follows
+(see <a class="reference internal" href="pyboolector.html#operator-overloading"><em>Python Operator Overloading</em></a>):</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">eq</span> <span class="o">=</span> <span class="n">a</span> <span class="o">==</span> <span class="n">b</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>a</strong> (<a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorNode</span></tt></a>) &#8211; First bit vector operand.</li>
+<li><strong>b</strong> (<a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorNode</span></tt></a>) &#8211; Second bit vector operand.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">A bit vector node with bit width one.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorNode</span></tt></a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="boolector.Boolector.Failed">
+<tt class="descname">Failed</tt><big>(</big><em>n</em><big>)</big><a class="headerlink" href="#boolector.Boolector.Failed" title="Permalink to this definition">¶</a></dt>
+<dd><p>Determine if assumption <tt class="docutils literal"><span class="pre">n</span></tt> is a failed assumption.</p>
+<p>Failed assumptions are those assumptions, that force an
+input formula to become unsatisfiable.
+Failed assumptions handling in Boolector is analogous to 
+failed assumptions in MiniSAT.</p>
+<p>See <a class="reference internal" href="#boolector.Boolector.Assume" title="boolector.Boolector.Assume"><tt class="xref py py-func docutils literal"><span class="pre">Assume()</span></tt></a>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>n</strong> (<a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorNode</span></tt></a>) &#8211; Bit vector expression with bit width 1.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">True if assumption is failed, and false otherwise.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">int</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="boolector.Boolector.Fun">
+<tt class="descname">Fun</tt><big>(</big><em>params</em>, <em>body</em><big>)</big><a class="headerlink" href="#boolector.Boolector.Fun" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a function with function body <tt class="docutils literal"><span class="pre">body</span></tt>, parameterized
+over <tt class="docutils literal"><span class="pre">params</span></tt>.</p>
+<p>This kind of node is similar to macros in the <a class="reference external" href="http://smtlib.cs.uiowa.edu/papers/smt-lib-reference-v2.0-r12.09.09.pdf">SMT-LIB v2</a>
+standard.</p>
+<p>See <a class="reference internal" href="#boolector.Boolector.Param" title="boolector.Boolector.Param"><tt class="xref py py-func docutils literal"><span class="pre">Param()</span></tt></a>,
+<a class="reference internal" href="#boolector.Boolector.Apply" title="boolector.Boolector.Apply"><tt class="xref py py-func docutils literal"><span class="pre">Apply()</span></tt></a>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>params</strong> (<a class="reference external" href="http://docs.python.org/3.4/library/stdtypes.html#list" title="(in Python v3.4)"><em>list</em></a>) &#8211; A list of function parameters.</li>
+<li><strong>body</strong> (<a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorNode</span></tt></a>) &#8211; Function body parameterized over <tt class="docutils literal"><span class="pre">params</span></tt>.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">A function over parameterized expression <tt class="docutils literal"><span class="pre">body</span></tt>.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorNode</span></tt></a></p>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">As soon as a parameter is bound to a function, it can
+not be reused in other functions. 
+Call a function via <a class="reference internal" href="#boolector.Boolector.Apply" title="boolector.Boolector.Apply"><tt class="xref py py-func docutils literal"><span class="pre">Apply()</span></tt></a>.</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="boolector.Boolector.FunSort">
+<tt class="descname">FunSort</tt><big>(</big><em>domain</em>, <em>codomain</em><big>)</big><a class="headerlink" href="#boolector.Boolector.FunSort" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create function sort.</p>
+<p>Currently, sorts in Boolector are used for uninterpreted functions,
+only.</p>
+<p>See <a class="reference internal" href="#boolector.Boolector.UF" title="boolector.Boolector.UF"><tt class="xref py py-func docutils literal"><span class="pre">UF()</span></tt></a>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>domain</strong> (<a class="reference external" href="http://docs.python.org/3.4/library/stdtypes.html#list" title="(in Python v3.4)"><em>list</em></a>) &#8211; A list of all the function arguments&#8217; sorts.</li>
+<li><strong>codomain</strong> (<a class="reference internal" href="#boolector.BoolectorSort" title="boolector.BoolectorSort"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorSort</span></tt></a>) &#8211; The sort of the function&#8217;s return value.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Function sort, which maps <tt class="docutils literal"><span class="pre">domain</span></tt> to <tt class="docutils literal"><span class="pre">codomain</span></tt>.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="#boolector.BoolectorSort" title="boolector.BoolectorSort"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorSort</span></tt></a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="boolector.Boolector.Get_opt">
+<tt class="descname">Get_opt</tt><big>(</big><em>opt</em><big>)</big><a class="headerlink" href="#boolector.Boolector.Get_opt" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the Boolector option with name <tt class="docutils literal"><span class="pre">opt</span></tt>.</p>
+<p>For a list of all available options, see 
+<a class="reference internal" href="#boolector.Boolector.Set_opt" title="boolector.Boolector.Set_opt"><tt class="xref py py-func docutils literal"><span class="pre">Set_opt()</span></tt></a>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>opt</strong> (<a class="reference external" href="http://docs.python.org/3.4/library/stdtypes.html#str" title="(in Python v3.4)"><em>str</em></a>) &#8211; Option name.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Option with name <tt class="docutils literal"><span class="pre">opt</span></tt>.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="#boolector.BoolectorOpt" title="boolector.BoolectorOpt"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorOpt</span></tt></a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="boolector.Boolector.Iff">
+<tt class="descname">Iff</tt><big>(</big><em>a</em>, <em>b</em><big>)</big><a class="headerlink" href="#boolector.Boolector.Iff" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a Boolean equivalence.</p>
+<p>Parameters <tt class="docutils literal"><span class="pre">a</span></tt> and <tt class="docutils literal"><span class="pre">b</span></tt> must have bit width one
+(see <a class="reference internal" href="pyboolector.html#const-conversion"><em>Automatic Constant Conversion</em></a>).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>a</strong> (<a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorNode</span></tt></a>) &#8211; First bit vector operand.</li>
+<li><strong>b</strong> (<a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorNode</span></tt></a>) &#8211; Second bit vector operand.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">A Boolean equivalence <tt class="docutils literal"><span class="pre">a</span></tt> &lt;=&gt; <tt class="docutils literal"><span class="pre">b</span></tt>.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorNode</span></tt></a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="boolector.Boolector.Implies">
+<tt class="descname">Implies</tt><big>(</big><em>a</em>, <em>b</em><big>)</big><a class="headerlink" href="#boolector.Boolector.Implies" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a Boolean implication.</p>
+<p>Parameters <tt class="docutils literal"><span class="pre">a</span></tt> and <tt class="docutils literal"><span class="pre">b</span></tt> must have bit width one
+(see <a class="reference internal" href="pyboolector.html#const-conversion"><em>Automatic Constant Conversion</em></a>).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>a</strong> (<a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorNode</span></tt></a>) &#8211; Bit vector node representing the premise.</li>
+<li><strong>b</strong> (<a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorNode</span></tt></a>) &#8211; Bit vector node representing the conclusion.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">A Boolean implication <tt class="docutils literal"><span class="pre">a</span></tt> =&gt; <tt class="docutils literal"><span class="pre">b</span></tt>.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorNode</span></tt></a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="boolector.Boolector.Inc">
+<tt class="descname">Inc</tt><big>(</big><em>n</em><big>)</big><a class="headerlink" href="#boolector.Boolector.Inc" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a bit vector expression that increments bit vector <tt class="docutils literal"><span class="pre">n</span></tt>
+by one.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>n</strong> (<a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorNode</span></tt></a>) &#8211; A bit vector node.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">A bit vector with the same bit width as <tt class="docutils literal"><span class="pre">n</span></tt>, incremented by one.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorNode</span></tt></a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="boolector.Boolector.Match">
+<tt class="descname">Match</tt><big>(</big><em>n</em><big>)</big><a class="headerlink" href="#boolector.Boolector.Match" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieve the node matching given node <tt class="docutils literal"><span class="pre">n</span></tt> by id.</p>
+<p>This is intended to be used for handling expressions of a 
+cloned instance (see <a class="reference internal" href="#boolector.Boolector.Clone" title="boolector.Boolector.Clone"><tt class="xref py py-func docutils literal"><span class="pre">Clone()</span></tt></a>).</p>
+<p>E.g.,</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">btor</span> <span class="o">=</span> <span class="n">Boolector</span><span class="p">()</span>
+<span class="n">v</span> <span class="o">=</span> <span class="n">btor</span><span class="o">.</span><span class="n">Var</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="s">&quot;x&quot;</span><span class="p">)</span>
+<span class="n">clone</span> <span class="o">=</span> <span class="n">btor</span><span class="o">.</span><span class="n">Clone</span><span class="p">()</span>
+<span class="n">v_cloned</span> <span class="o">=</span> <span class="n">clone</span><span class="o">.</span><span class="n">Match</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>n</strong> (<a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorNode</span></tt></a>) &#8211; Boolector node.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The Boolector node that matches given node <tt class="docutils literal"><span class="pre">n</span></tt> by id.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorNode</span></tt></a></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Only nodes created before the
+<a class="reference internal" href="#boolector.Boolector.Clone" title="boolector.Boolector.Clone"><tt class="xref py py-func docutils literal"><span class="pre">Clone()</span></tt></a> call can be matched.</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="boolector.Boolector.Mul">
+<tt class="descname">Mul</tt><big>(</big><em>a</em>, <em>b</em><big>)</big><a class="headerlink" href="#boolector.Boolector.Mul" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a bit vector multiplication.</p>
+<p>Parameters <tt class="docutils literal"><span class="pre">a</span></tt> and <tt class="docutils literal"><span class="pre">b</span></tt> must have the same bit width
+(see <a class="reference internal" href="pyboolector.html#const-conversion"><em>Automatic Constant Conversion</em></a>).</p>
+<p>It is also possible to create a multiplication as follows
+(see <a class="reference internal" href="pyboolector.html#operator-overloading"><em>Python Operator Overloading</em></a>):</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">bvmul</span> <span class="o">=</span> <span class="n">a</span> <span class="o">*</span> <span class="n">b</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>a</strong> (<a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorNode</span></tt></a>) &#8211; First bit vector operand.</li>
+<li><strong>b</strong> (<a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorNode</span></tt></a>) &#8211; Second bit vector operand.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">A bit vector node with the same bit width as <tt class="docutils literal"><span class="pre">a</span></tt> and <tt class="docutils literal"><span class="pre">b</span></tt>.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorNode</span></tt></a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="boolector.Boolector.Nand">
+<tt class="descname">Nand</tt><big>(</big><em>a</em>, <em>b</em><big>)</big><a class="headerlink" href="#boolector.Boolector.Nand" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a bit vector <em>nand</em>.</p>
+<p>Parameters <tt class="docutils literal"><span class="pre">a</span></tt> and <tt class="docutils literal"><span class="pre">b</span></tt> must have the same bit width
+(see <a class="reference internal" href="pyboolector.html#const-conversion"><em>Automatic Constant Conversion</em></a>).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>a</strong> (<a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorNode</span></tt></a>) &#8211; First bit vector operand.</li>
+<li><strong>b</strong> (<a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorNode</span></tt></a>) &#8211; Second bit vector operand.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">A bit vector node with the same bit width as <tt class="docutils literal"><span class="pre">a</span></tt> and <tt class="docutils literal"><span class="pre">b</span></tt>.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorNode</span></tt></a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="boolector.Boolector.Ne">
+<tt class="descname">Ne</tt><big>(</big><em>a</em>, <em>b</em><big>)</big><a class="headerlink" href="#boolector.Boolector.Ne" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a bit vector or array inequality.</p>
+<p>Parameters <tt class="docutils literal"><span class="pre">a</span></tt> and <tt class="docutils literal"><span class="pre">b</span></tt> are either bit vectors with the same bit
+width, or arrays of the same type (see <a class="reference internal" href="pyboolector.html#const-conversion"><em>Automatic Constant Conversion</em></a>).</p>
+<p>It is also possible to create an inequality as follows
+(see <a class="reference internal" href="pyboolector.html#operator-overloading"><em>Python Operator Overloading</em></a>):</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">ne</span> <span class="o">=</span> <span class="n">a</span> <span class="o">!=</span> <span class="n">b</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>a</strong> (<a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorNode</span></tt></a>) &#8211; First bit vector operand.</li>
+<li><strong>b</strong> (<a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorNode</span></tt></a>) &#8211; Second bit vector operand.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">A bit vector node with bit width one.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorNode</span></tt></a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="boolector.Boolector.Neg">
+<tt class="descname">Neg</tt><big>(</big><em>n</em><big>)</big><a class="headerlink" href="#boolector.Boolector.Neg" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create the two&#8217;s complement of bit vector node <tt class="docutils literal"><span class="pre">n</span></tt>.</p>
+<p>It is also possible to create the two&#8217;s complement as follows
+(see <a class="reference internal" href="pyboolector.html#operator-overloading"><em>Python Operator Overloading</em></a>):</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">bvneg</span> <span class="o">=</span> <span class="o">-</span><span class="n">n</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>n</strong> (<a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorNode</span></tt></a>) &#8211; A bit vector node.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The two&#8217;s complement of bit vector node <tt class="docutils literal"><span class="pre">n</span></tt>.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorNode</span></tt></a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="boolector.Boolector.Nor">
+<tt class="descname">Nor</tt><big>(</big><em>a</em>, <em>b</em><big>)</big><a class="headerlink" href="#boolector.Boolector.Nor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a bit vector <em>nor</em>.</p>
+<p>Parameters <tt class="docutils literal"><span class="pre">a</span></tt> and <tt class="docutils literal"><span class="pre">b</span></tt> must have the same bit width
+(see <a class="reference internal" href="pyboolector.html#const-conversion"><em>Automatic Constant Conversion</em></a>).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>a</strong> (<a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorNode</span></tt></a>) &#8211; First bit vector operand.</li>
+<li><strong>b</strong> (<a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorNode</span></tt></a>) &#8211; Second bit vector operand.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">A bit vector node with the same bit width as <tt class="docutils literal"><span class="pre">a</span></tt> and <tt class="docutils literal"><span class="pre">b</span></tt>.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorNode</span></tt></a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="boolector.Boolector.Not">
+<tt class="descname">Not</tt><big>(</big><em>n</em><big>)</big><a class="headerlink" href="#boolector.Boolector.Not" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create the one&#8217;s complement of bit vector node <tt class="docutils literal"><span class="pre">n</span></tt>.</p>
+<p>It is also possible to create the one&#8217;s complement as follows
+(see <a class="reference internal" href="pyboolector.html#operator-overloading"><em>Python Operator Overloading</em></a>):</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">bvnot</span> <span class="o">=</span> <span class="o">~</span><span class="n">n</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>n</strong> (<a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorNode</span></tt></a>) &#8211; A bit vector node.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The one&#8217;s complement of bit vector node <tt class="docutils literal"><span class="pre">n</span></tt>.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorNode</span></tt></a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="boolector.Boolector.Options">
+<tt class="descname">Options</tt><big>(</big><big>)</big><a class="headerlink" href="#boolector.Boolector.Options" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a <a class="reference internal" href="#boolector.BoolectorOptions" title="boolector.BoolectorOptions"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorOptions</span></tt></a> iterator.</p>
+<p>E.g.,</p>
+<div class="highlight-python"><div class="highlight"><pre>btor = Boolector()
+options = btor.Options()
+for o in options:
+    # do something
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">An iterator to iterate over all Boolector options.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="#boolector.BoolectorOptions" title="boolector.BoolectorOptions"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorOptions</span></tt></a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="boolector.Boolector.Or">
+<tt class="descname">Or</tt><big>(</big><em>a</em>, <em>b</em><big>)</big><a class="headerlink" href="#boolector.Boolector.Or" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a bit vector <em>or</em>.</p>
+<p>Parameters <tt class="docutils literal"><span class="pre">a</span></tt> and <tt class="docutils literal"><span class="pre">b</span></tt> must have the same bit width
+(see <a class="reference internal" href="pyboolector.html#const-conversion"><em>Automatic Constant Conversion</em></a>).</p>
+<p>It is also possible to create an <em>or</em> as follows
+(see <a class="reference internal" href="pyboolector.html#operator-overloading"><em>Python Operator Overloading</em></a>):</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">bvor</span> <span class="o">=</span> <span class="n">a</span> <span class="o">|</span> <span class="n">b</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>a</strong> (<a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorNode</span></tt></a>) &#8211; First bit vector operand.</li>
+<li><strong>b</strong> (<a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorNode</span></tt></a>) &#8211; Second bit vector operand.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">A bit vector node with the same bit width as <tt class="docutils literal"><span class="pre">a</span></tt> and <tt class="docutils literal"><span class="pre">b</span></tt>.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorNode</span></tt></a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="boolector.Boolector.Param">
+<tt class="descname">Param</tt><big>(</big><em>width</em>, <em>symbol = None</em><big>)</big><a class="headerlink" href="#boolector.Boolector.Param" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a function parameter with bit width <tt class="docutils literal"><span class="pre">width</span></tt>.</p>
+<p>This kind of node is used to create parameterized expressions,
+which in turn are used to create functions.
+Once a parameter is bound to a function, it cannot be reused in
+other functions.</p>
+<p>See <a class="reference internal" href="#boolector.Boolector.Fun" title="boolector.Boolector.Fun"><tt class="xref py py-func docutils literal"><span class="pre">Fun()</span></tt></a>, 
+<a class="reference internal" href="#boolector.Boolector.Apply" title="boolector.Boolector.Apply"><tt class="xref py py-func docutils literal"><span class="pre">Apply()</span></tt></a>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>width</strong> (<a class="reference external" href="http://docs.python.org/3.4/library/functions.html#int" title="(in Python v3.4)"><em>int</em></a>) &#8211; Bit width of the function parameter.</li>
+<li><strong>symbol</strong> (<a class="reference external" href="http://docs.python.org/3.4/library/stdtypes.html#str" title="(in Python v3.4)"><em>str</em></a>) &#8211; Symbol of the function parameter.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">A function parameter with bit width <tt class="docutils literal"><span class="pre">width</span></tt>.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorNode</span></tt></a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="boolector.Boolector.Parse">
+<tt class="descname">Parse</tt><big>(</big><em>file</em><big>)</big><a class="headerlink" href="#boolector.Boolector.Parse" title="Permalink to this definition">¶</a></dt>
+<dd><p>Parse input file.</p>
+<p>Input file format may be either <a class="reference external" href="http://fmv.jku.at/papers/BrummayerBiereLonsing-BPR08.pdf">BTOR</a>, <a class="reference external" href="http://smtlib.cs.uiowa.edu/papers/format-v1.2-r06.08.30.pdf">SMT-LIB v1</a>, or
+<a class="reference external" href="http://smtlib.cs.uiowa.edu/papers/smt-lib-reference-v2.0-r12.09.09.pdf">SMT-LIB v2</a>, the file type is detected automatically.</p>
+<p>E.g.,</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">btor</span> <span class="o">=</span> <span class="n">Boolector</span><span class="p">()</span>
+<span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">status</span><span class="p">,</span> <span class="n">error_msg</span><span class="p">)</span> <span class="o">=</span> <span class="n">btor</span><span class="o">.</span><span class="n">Parse</span><span class="p">(</span><span class="s">&quot;example.btor&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>file</strong> (<a class="reference external" href="http://docs.python.org/3.4/library/stdtypes.html#str" title="(in Python v3.4)"><em>str</em></a>) &#8211; Input file name.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">A tuple (result, status, error_msg), where return value <tt class="docutils literal"><span class="pre">result</span></tt> indicates an error (<tt class="xref py py-data docutils literal"><span class="pre">PARSE_ERROR</span></tt>) if any, and else denotes the satisfiability result (<tt class="xref py py-data docutils literal"><span class="pre">SAT</span></tt> or <tt class="xref py py-data docutils literal"><span class="pre">UNSAT</span></tt>) in the incremental case, and <tt class="xref py py-data docutils literal"><span class="pre">UNKNOWN</span></tt> otherwise. Return value <tt class="docutils literal"><span class="pre">status</span></tt> indicates a (known) status (<tt class="xref py py-data docutils literal"><span class="pre">SAT</span></tt> or <tt class="xref py py-data docutils literal"><span class="pre">UNSAT</span></tt>) as specified in the input file. In case of an error, an explanation of that error is stored in <tt class="docutils literal"><span class="pre">error_msg</span></tt>.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="boolector.Boolector.Print_model">
+<tt class="descname">Print_model</tt><big>(</big><em>outfile = None</em><big>)</big><a class="headerlink" href="#boolector.Boolector.Print_model" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print model to output file.</p>
+<p>This function prints the model for all inputs to output file
+<tt class="docutils literal"><span class="pre">outfile</span></tt>, e.g.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">btor</span><span class="o">.</span><span class="n">Print_model</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>A possible model would be:</p>
+<div class="highlight-python"><div class="highlight"><pre>2 00000100 x
+3 00010101 y
+4[00] 01 A
+</pre></div>
+</div>
+<p>which in this case prints the assignments of array variable <tt class="docutils literal"><span class="pre">A</span></tt>,
+and bit vector variables <tt class="docutils literal"><span class="pre">x</span></tt> and <tt class="docutils literal"><span class="pre">y</span></tt>.
+For bit vector variables, the first column indicates the id of an
+input, the second column its assignment, and the third column its
+name (symbol), if any. Array variable <tt class="docutils literal"><span class="pre">A</span></tt>, on the other hand,
+has id 4, is an array with index and element bit width of 2, 
+and its value at index 0 is 1.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>outfile</strong> (<a class="reference external" href="http://docs.python.org/3.4/library/stdtypes.html#str" title="(in Python v3.4)"><em>str</em></a>) &#8211; Output file name (default: stdout).</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="boolector.Boolector.Read">
+<tt class="descname">Read</tt><big>(</big><em>a</em>, <em>b</em><big>)</big><a class="headerlink" href="#boolector.Boolector.Read" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a read on array <tt class="docutils literal"><span class="pre">a</span></tt> at position <tt class="docutils literal"><span class="pre">b</span></tt>
+(see <a class="reference internal" href="pyboolector.html#const-conversion"><em>Automatic Constant Conversion</em></a>).</p>
+<p>It is also possible to create a read as follows
+(see <a class="reference internal" href="pyboolector.html#operator-overloading"><em>Python Operator Overloading</em></a>):</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">read</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">b</span><span class="p">]</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>a</strong> (<a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorNode</span></tt></a>) &#8211; Array operand.</li>
+<li><strong>b</strong> (<a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorNode</span></tt></a>) &#8211; Bit vector operand.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">A bit vector node with the same bitwidth as the elements of array <tt class="docutils literal"><span class="pre">a</span></tt>.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorNode</span></tt></a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="boolector.Boolector.Redand">
+<tt class="descname">Redand</tt><big>(</big><em>n</em><big>)</big><a class="headerlink" href="#boolector.Boolector.Redand" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create an <em>and</em> reduction of node <tt class="docutils literal"><span class="pre">n</span></tt>.</p>
+<p>All bits of node <tt class="docutils literal"><span class="pre">n</span></tt> are combined by an Boolean <em>and</em>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>n</strong> (<a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorNode</span></tt></a>) &#8211; A bit vector node.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The <em>and</em> reduction of node <tt class="docutils literal"><span class="pre">n</span></tt>.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorNode</span></tt></a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="boolector.Boolector.Redor">
+<tt class="descname">Redor</tt><big>(</big><em>n</em><big>)</big><a class="headerlink" href="#boolector.Boolector.Redor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create an <em>or</em> reduction of node <tt class="docutils literal"><span class="pre">n</span></tt>.</p>
+<p>All bits of node <tt class="docutils literal"><span class="pre">n</span></tt> are combined by an Boolean <em>or</em>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>n</strong> (<a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorNode</span></tt></a>) &#8211; A bit vector node.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The <em>or</em> reduction of node <tt class="docutils literal"><span class="pre">n</span></tt>.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorNode</span></tt></a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="boolector.Boolector.Redxor">
+<tt class="descname">Redxor</tt><big>(</big><em>n</em><big>)</big><a class="headerlink" href="#boolector.Boolector.Redxor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create an <em>xor</em> reduction of node <tt class="docutils literal"><span class="pre">n</span></tt>.</p>
+<p>All bits of node <tt class="docutils literal"><span class="pre">n</span></tt> are combined by an Boolean <em>xor</em>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>n</strong> (<a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorNode</span></tt></a>) &#8211; A bit vector node.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The <em>xor</em> reduction of node <tt class="docutils literal"><span class="pre">n</span></tt>.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorNode</span></tt></a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="boolector.Boolector.Rol">
+<tt class="descname">Rol</tt><big>(</big><em>a</em>, <em>b</em><big>)</big><a class="headerlink" href="#boolector.Boolector.Rol" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a rotate left.</p>
+<p>Given bit vector node <tt class="docutils literal"><span class="pre">b</span></tt>, the value it represents is the 
+number of bits by which node <tt class="docutils literal"><span class="pre">a</span></tt> is rotated to the left
+(see <a class="reference internal" href="pyboolector.html#const-conversion"><em>Automatic Constant Conversion</em></a>).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>a</strong> (<a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorNode</span></tt></a>) &#8211; First bit vector operand where the bit width is a power of two and greater than 1.</li>
+<li><strong>b</strong> (<a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorNode</span></tt></a>) &#8211; Second bit vector operand with bit width log2 of the bit width of <tt class="docutils literal"><span class="pre">a</span></tt>.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">A bit vector node with the same bit width as <tt class="docutils literal"><span class="pre">a</span></tt>.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorNode</span></tt></a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="boolector.Boolector.Ror">
+<tt class="descname">Ror</tt><big>(</big><em>a</em>, <em>b</em><big>)</big><a class="headerlink" href="#boolector.Boolector.Ror" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a rotate right.</p>
+<p>Given bit vector node <tt class="docutils literal"><span class="pre">b</span></tt>, the value it represents is the 
+number of bits by which node <tt class="docutils literal"><span class="pre">a</span></tt> is rotated to the right
+(see <a class="reference internal" href="pyboolector.html#const-conversion"><em>Automatic Constant Conversion</em></a>).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>a</strong> (<a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorNode</span></tt></a>) &#8211; First bit vector operand where the bit width is a power of two and greater than 1.</li>
+<li><strong>b</strong> (<a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorNode</span></tt></a>) &#8211; Second bit vector operand with bit width log2 of the bit width of <tt class="docutils literal"><span class="pre">a</span></tt>.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">A bit vector node with the same bit width as <tt class="docutils literal"><span class="pre">a</span></tt>.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorNode</span></tt></a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="boolector.Boolector.Saddo">
+<tt class="descname">Saddo</tt><big>(</big><em>a</em>, <em>b</em><big>)</big><a class="headerlink" href="#boolector.Boolector.Saddo" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a signed bit vector addition overflow detection.</p>
+<p>Parameters <tt class="docutils literal"><span class="pre">a</span></tt> and <tt class="docutils literal"><span class="pre">b</span></tt> must have the same bit width
+(see <a class="reference internal" href="pyboolector.html#const-conversion"><em>Automatic Constant Conversion</em></a>).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>a</strong> (<a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorNode</span></tt></a>) &#8211; First bit vector operand.</li>
+<li><strong>b</strong> (<a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorNode</span></tt></a>) &#8211; Second bit vector operand.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">A bit vector node with bit width one, which indicates if the addition of <tt class="docutils literal"><span class="pre">a</span></tt> and <tt class="docutils literal"><span class="pre">b</span></tt> overflows in case both operands are treated as signed.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorNode</span></tt></a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="boolector.Boolector.Sat">
+<tt class="descname">Sat</tt><big>(</big><em>lod_limit = -1</em>, <em>sat_limit = -1</em><big>)</big><a class="headerlink" href="#boolector.Boolector.Sat" title="Permalink to this definition">¶</a></dt>
+<dd><p>Solve an input formula.</p>
+<p>An input formula is defined by constraints added via
+<a class="reference internal" href="#boolector.Boolector.Assert" title="boolector.Boolector.Assert"><tt class="xref py py-func docutils literal"><span class="pre">Assert()</span></tt></a>.
+You can guide the search for a solution to an input formula by
+making assumptions via <a class="reference internal" href="#boolector.Boolector.Assume" title="boolector.Boolector.Assume"><tt class="xref py py-func docutils literal"><span class="pre">Assume()</span></tt></a>.</p>
+<p>If you want to call this function multiple times, you must
+enable Boolector&#8217;s incremental usage mode via 
+<a class="reference internal" href="#boolector.Boolector.Set_opt" title="boolector.Boolector.Set_opt"><tt class="xref py py-func docutils literal"><span class="pre">Set_opt()</span></tt></a>.
+Otherwise, this function may only be called once.</p>
+<p>You can limit the search by the number of lemmas generated
+(<tt class="docutils literal"><span class="pre">lod_limit</span></tt>) and the number of conflicts encountered by
+the underlying SAT solver (<tt class="docutils literal"><span class="pre">sat_limit</span></tt>).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>lod_limit</strong> (<a class="reference external" href="http://docs.python.org/3.4/library/functions.html#int" title="(in Python v3.4)"><em>int</em></a>) &#8211; Limit for Lemmas on Demand (-1: unlimited).</li>
+<li><strong>sat_limit</strong> (<a class="reference external" href="http://docs.python.org/3.4/library/functions.html#int" title="(in Python v3.4)"><em>int</em></a>) &#8211; Conflict limit for the SAT solver (-1: unlimited).</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><tt class="xref py py-data docutils literal"><span class="pre">SAT</span></tt> if the input formula is satisfiable (under possibly given assumptions), <tt class="xref py py-data docutils literal"><span class="pre">UNSAT</span></tt> if it is unsatisfiable, and <tt class="xref py py-data docutils literal"><span class="pre">UNKNOWN</span></tt> if the instance could not be solved within given limits.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Assertions and assumptions are combined via Boolean <em>and</em>.</p>
+</div>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><a class="reference internal" href="#boolector.BoolectorNode.assignment" title="boolector.BoolectorNode.assignment"><tt class="xref py py-data docutils literal"><span class="pre">assignment</span></tt></a></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="boolector.Boolector.Sdiv">
+<tt class="descname">Sdiv</tt><big>(</big><em>a</em>, <em>b</em><big>)</big><a class="headerlink" href="#boolector.Boolector.Sdiv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a signed  bit vector division.</p>
+<p>Parameters <tt class="docutils literal"><span class="pre">a</span></tt> and <tt class="docutils literal"><span class="pre">b</span></tt> must have the same bit width
+(see <a class="reference internal" href="pyboolector.html#const-conversion"><em>Automatic Constant Conversion</em></a>).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>a</strong> (<a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorNode</span></tt></a>) &#8211; First bit vector operand.</li>
+<li><strong>b</strong> (<a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorNode</span></tt></a>) &#8211; Second bit vector operand.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">A bit vector node with the same bit width as <tt class="docutils literal"><span class="pre">a</span></tt> and <tt class="docutils literal"><span class="pre">b</span></tt>.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorNode</span></tt></a></p>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Signed division is expressed by means of unsigned division,
+where either node is normalized in case that its sign bit is 1.
+If the sign bits of <tt class="docutils literal"><span class="pre">a</span></tt> and <tt class="docutils literal"><span class="pre">b</span></tt> do not match, two&#8217;s
+complement is performed on the result of the previous unsigned
+division.  Hence, the behavior in case of a division by zero
+depends on <a class="reference internal" href="#boolector.Boolector.Udiv" title="boolector.Boolector.Udiv"><tt class="xref py py-func docutils literal"><span class="pre">Udiv()</span></tt></a>.</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="boolector.Boolector.Sdivo">
+<tt class="descname">Sdivo</tt><big>(</big><em>a</em>, <em>b</em><big>)</big><a class="headerlink" href="#boolector.Boolector.Sdivo" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a signed  bit vector division overflow detection.</p>
+<p>Parameters <tt class="docutils literal"><span class="pre">a</span></tt> and <tt class="docutils literal"><span class="pre">b</span></tt> must have the same bit width
+(see <a class="reference internal" href="pyboolector.html#const-conversion"><em>Automatic Constant Conversion</em></a>).
+An overflow can occur if <tt class="docutils literal"><span class="pre">a</span></tt> represents INT_MIN and <tt class="docutils literal"><span class="pre">b</span></tt>
+represents -1.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>a</strong> (<a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorNode</span></tt></a>) &#8211; First bit vector operand.</li>
+<li><strong>b</strong> (<a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorNode</span></tt></a>) &#8211; Second bit vector operand.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">A bit vector node with bit width one, which indicates if the division of <tt class="docutils literal"><span class="pre">a</span></tt> and <tt class="docutils literal"><span class="pre">b</span></tt> overflows in case both operands are treated as signed.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorNode</span></tt></a></p>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Unsigned bit vector division does not overflow.</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="boolector.Boolector.Set_opt">
+<tt class="descname">Set_opt</tt><big>(</big><em>opt</em>, <em>value</em><big>)</big><a class="headerlink" href="#boolector.Boolector.Set_opt" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set option.</p>
+<p>List of available options:</p>
+<ul>
+<li><p class="first"><strong>model_gen</strong></p>
+<div class="line-block">
+<div class="line">Enable (<tt class="docutils literal"><span class="pre">value</span></tt>: 1 or 2) or disable (<tt class="docutils literal"><span class="pre">value</span></tt>: 0) generation of a model for satisfiable instances. </div>
+<div class="line">There are two modes for model generation: </div>
+</div>
+<ul class="simple">
+<li>generate model for asserted expressions only (<tt class="docutils literal"><span class="pre">value</span></tt>: 1)</li>
+<li>generate model for all expressions (<tt class="docutils literal"><span class="pre">value</span></tt>: 2)</li>
+</ul>
+</li>
+<li><p class="first"><strong>incremental</strong></p>
+<div class="line-block">
+<div class="line">Enable (<tt class="docutils literal"><span class="pre">value</span></tt>: 1) incremental mode.</div>
+<div class="line">Note that incremental usage turns off some optimization techniques. Disabling incremental usage is currently not supported.</div>
+</div>
+</li>
+<li><p class="first"><strong>incremental_all</strong></p>
+<div class="line-block">
+<div class="line">Enable (<tt class="docutils literal"><span class="pre">value</span></tt>: 1) or disable (<tt class="docutils literal"><span class="pre">value</span></tt>: 0) incremental solving of all formulas when parsin an input file.</div>
+<div class="line">Note that currently, incremental mode while parsing an input file is only supported for <a class="reference external" href="http://smtlib.cs.uiowa.edu/papers/format-v1.2-r06.08.30.pdf">SMT-LIB v1</a> input.</div>
+</div>
+</li>
+<li><p class="first"><strong>incremental_in_depth</strong></p>
+<div class="line-block">
+<div class="line">Set incremental in-depth mode width (<tt class="docutils literal"><span class="pre">value</span></tt>: int) when parsing an input file.</div>
+<div class="line">Note that currently, incremental mode while parsing an input file is only supported for <a class="reference external" href="http://smtlib.cs.uiowa.edu/papers/format-v1.2-r06.08.30.pdf">SMT-LIB v1</a> input.  </div>
+</div>
+</li>
+<li><p class="first"><strong>incremental_look_ahead</strong></p>
+<div class="line-block">
+<div class="line">Set incremental look_ahead mode width (<tt class="docutils literal"><span class="pre">value</span></tt>: int) when parsing an input file.</div>
+<div class="line">Note that currently, incremental mode while parsing an input file is only supported for <a class="reference external" href="http://smtlib.cs.uiowa.edu/papers/format-v1.2-r06.08.30.pdf">SMT-LIB v1</a> input.</div>
+</div>
+</li>
+<li><p class="first"><strong>incremental_interval</strong></p>
+<div class="line-block">
+<div class="line">Set incremental interval mode width (<tt class="docutils literal"><span class="pre">value</span></tt>: int) when parsing an input file.</div>
+<div class="line">Note that currently, incremental mode while parsing an input file is only supported for <a class="reference external" href="http://smtlib.cs.uiowa.edu/papers/format-v1.2-r06.08.30.pdf">SMT-LIB v1</a> input.</div>
+</div>
+</li>
+<li><p class="first"><strong>input_format</strong></p>
+<div class="line-block">
+<div class="line">Force input file format (<tt class="docutils literal"><span class="pre">value</span></tt>: <a class="reference external" href="http://fmv.jku.at/papers/BrummayerBiereLonsing-BPR08.pdf">BTOR</a>: -1, <a class="reference external" href="http://smtlib.cs.uiowa.edu/papers/format-v1.2-r06.08.30.pdf">SMT-LIB v1</a>: 1, <a class="reference external" href="http://smtlib.cs.uiowa.edu/papers/smt-lib-reference-v2.0-r12.09.09.pdf">SMT-LIB v2</a>: 2) when parsing an input file.</div>
+<div class="line">If unspecified, Boolector automatically detects the input file format while parsing.</div>
+</div>
+</li>
+<li><p class="first"><strong>output_number_format</strong></p>
+<div class="line-block">
+<div class="line">Force output number format (<tt class="docutils literal"><span class="pre">value</span></tt>: binary: 0, hexadecimal: 1, decimal: 2):</div>
+<div class="line">Boolector uses binary by default.</div>
+</div>
+</li>
+<li><p class="first"><strong>output_format</strong></p>
+<div class="line-block">
+<div class="line">Force output file format (<tt class="docutils literal"><span class="pre">value</span></tt>: <a class="reference external" href="http://fmv.jku.at/papers/BrummayerBiereLonsing-BPR08.pdf">BTOR</a>: -1, <a class="reference external" href="http://smtlib.cs.uiowa.edu/papers/format-v1.2-r06.08.30.pdf">SMT-LIB v1</a>: 1, <a class="reference external" href="http://smtlib.cs.uiowa.edu/papers/smt-lib-reference-v2.0-r12.09.09.pdf">SMT-LIB v2</a>: 2).</div>
+<div class="line">Boolector uses <a class="reference external" href="http://fmv.jku.at/papers/BrummayerBiereLonsing-BPR08.pdf">BTOR</a> by default.</div>
+</div>
+</li>
+<li><p class="first"><strong>rewrite_level</strong></p>
+<div class="line-block">
+<div class="line">Set the rewrite level (<tt class="docutils literal"><span class="pre">value</span></tt>: 0-3) of the rewriting engine.</div>
+<div class="line">Boolector uses rewrite level 3 by default, rewrite levels are classified as follows:</div>
+</div>
+<ul class="simple">
+<li>0: no rewriting</li>
+<li>1: term level rewriting</li>
+<li>2: more simplification techniques</li>
+<li>3: full rewriting/simplification</li>
+</ul>
+<div class="line-block">
+<div class="line">Do not alter the rewrite level of the rewriting engine after creating expressions.</div>
+</div>
+</li>
+<li><p class="first"><strong>rewrite_level_pbr</strong></p>
+<div class="line-block">
+<div class="line">Set the rewrite level (<tt class="docutils literal"><span class="pre">value</span></tt>: 0-3) for partial beta reduction.</div>
+<div class="line">Boolector uses rewrite level 1 by default. Rewrite levels are classified as above.</div>
+</div>
+</li>
+<li><p class="first"><strong>beta_reduce_all</strong></p>
+<p>Enable (<tt class="docutils literal"><span class="pre">value</span></tt>: 1) or disable (<tt class="docutils literal"><span class="pre">value</span></tt>: 0) the eager
+elimination of lambda expressions via beta reduction.</p>
+</li>
+<li><p class="first"><strong>probe_beta_reduce_all</strong></p>
+<p>Enable (<tt class="docutils literal"><span class="pre">value</span></tt>: 1) or disable (<tt class="docutils literal"><span class="pre">value</span></tt>: 0) probing of
+<em>beta_reduce_all</em> until a given lemmas on demand
+(<em>pbr_lod_limit</em>) or SAT conflicts limit (<em>pbra_sat_limit</em>).</p>
+</li>
+<li><p class="first"><strong>pbra_lod_limit</strong></p>
+<p>Set lemmas on demand limit for <em>probe_beta_reduce_all</em>.</p>
+</li>
+<li><p class="first"><strong>pbra_sat_limit</strong></p>
+<p>Set SAT conflicts limit for <em>probe_beta_reduce_all</em>.</p>
+</li>
+<li><p class="first"><strong>pbra_ops_factor</strong></p>
+<p>Set factor by which the size of the beta reduced formula may be
+greater than the original formula (for <em>probe_beta_reduce_all</em>).</p>
+</li>
+<li><p class="first"><strong>dual_prop</strong></p>
+<p>Enable (<tt class="docutils literal"><span class="pre">value</span></tt>: 1) or disable (<tt class="docutils literal"><span class="pre">value</span></tt>: 0) dual propagation
+optimization.</p>
+</li>
+<li><p class="first"><strong>just</strong></p>
+<p>Enable (<tt class="docutils literal"><span class="pre">value</span></tt>: 1) or disable (<tt class="docutils literal"><span class="pre">value</span></tt>: 0) justification
+optimization.</p>
+</li>
+<li><p class="first"><strong>ucopt</strong></p>
+<p>Enable (<tt class="docutils literal"><span class="pre">value</span></tt>: 1) or disable (<tt class="docutils literal"><span class="pre">value</span></tt>: 0) unconstrained
+optimization.</p>
+</li>
+<li><p class="first"><strong>lazy_synthesize</strong></p>
+<p>Enable (<tt class="docutils literal"><span class="pre">value</span></tt>: 1) or disable (<tt class="docutils literal"><span class="pre">value</span></tt>: 0) lazy synthesis of
+bit vector expressions.</p>
+</li>
+<li><p class="first"><strong>eliminate_slices</strong></p>
+<p>Enable (<tt class="docutils literal"><span class="pre">value</span></tt>: 1) or disable (<tt class="docutils literal"><span class="pre">value</span></tt>: 0) slice elimination
+on bit vector variables.</p>
+</li>
+<li><p class="first"><strong>pretty_print</strong></p>
+<p>Enable (<tt class="docutils literal"><span class="pre">value</span></tt>: 1) or disable (<tt class="docutils literal"><span class="pre">value</span></tt>: 0) pretty printing
+when dumping.</p>
+</li>
+<li><p class="first"><strong>verbosity</strong></p>
+<p>Set the level of verbosity.</p>
+</li>
+</ul>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>opt</strong> (<a class="reference external" href="http://docs.python.org/3.4/library/stdtypes.html#str" title="(in Python v3.4)"><em>str</em></a>) &#8211; Option name.</li>
+<li><strong>value</strong> (<a class="reference external" href="http://docs.python.org/3.4/library/functions.html#int" title="(in Python v3.4)"><em>int</em></a>) &#8211; Option value.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="boolector.Boolector.Set_sat_solver">
+<tt class="descname">Set_sat_solver</tt><big>(</big><em>solver</em>, <em>optstr = None</em>, <em>clone = True</em><big>)</big><a class="headerlink" href="#boolector.Boolector.Set_sat_solver" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the SAT solver to use.</p>
+<p>E.g.,</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">btor</span> <span class="o">=</span> <span class="n">Boolector</span><span class="p">()</span>
+<span class="n">btor</span><span class="o">.</span><span class="n">Set_sat_solver</span><span class="p">(</span><span class="s">&quot;MiniSAT&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Option <tt class="docutils literal"><span class="pre">clone</span></tt> enables non-incremental SAT solver usage
+(for every SAT call) by means of internal SAT solver cloning. 
+Use this option with caution (might have a positive or negative
+impact on overall performance).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>solver</strong> (<a class="reference external" href="http://docs.python.org/3.4/library/stdtypes.html#str" title="(in Python v3.4)"><em>str</em></a>) &#8211; Solver identifier string.</li>
+<li><strong>optstr</strong> (<a class="reference external" href="http://docs.python.org/3.4/library/stdtypes.html#str" title="(in Python v3.4)"><em>str</em></a>) &#8211; Solver option string.</li>
+<li><strong>clone</strong> (<a class="reference external" href="http://docs.python.org/3.4/library/functions.html#bool" title="(in Python v3.4)"><em>bool</em></a>) &#8211; Force non-incremental SAT solver usage.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">True if setting the SAT solver was successful and False otherwise.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">bool</p>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Parameters <tt class="docutils literal"><span class="pre">optstr</span></tt> and <tt class="docutils literal"><span class="pre">clone</span></tt> are currently only supported
+by Lingeling.</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="boolector.Boolector.Sext">
+<tt class="descname">Sext</tt><big>(</big><em>n</em>, <em>width</em><big>)</big><a class="headerlink" href="#boolector.Boolector.Sext" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create signed extension.</p>
+<p>Bit vector node <tt class="docutils literal"><span class="pre">n</span></tt> is padded with <tt class="docutils literal"><span class="pre">width</span></tt> bits, where the 
+padded value depends on the value of the most significant bit
+of node <tt class="docutils literal"><span class="pre">n</span></tt>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>n</strong> (<a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorNode</span></tt></a>) &#8211; A bit vector node.</li>
+<li><strong>width</strong> (<a class="reference external" href="http://docs.python.org/3.4/library/functions.html#int" title="(in Python v3.4)"><em>int</em></a>) &#8211; Number of bits to pad.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">A bit vector extended by <tt class="docutils literal"><span class="pre">width</span></tt> bits.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorNode</span></tt></a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="boolector.Boolector.Sgt">
+<tt class="descname">Sgt</tt><big>(</big><em>a</em>, <em>b</em><big>)</big><a class="headerlink" href="#boolector.Boolector.Sgt" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a signed greater than.</p>
+<p>Parameters <tt class="docutils literal"><span class="pre">a</span></tt> and <tt class="docutils literal"><span class="pre">b</span></tt> must have the same bit width
+(see <a class="reference internal" href="pyboolector.html#const-conversion"><em>Automatic Constant Conversion</em></a>).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>a</strong> (<a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorNode</span></tt></a>) &#8211; First bit vector operand.</li>
+<li><strong>b</strong> (<a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorNode</span></tt></a>) &#8211; Second bit vector operand.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">A bit vector node with bit width one.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorNode</span></tt></a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="boolector.Boolector.Sgte">
+<tt class="descname">Sgte</tt><big>(</big><em>a</em>, <em>b</em><big>)</big><a class="headerlink" href="#boolector.Boolector.Sgte" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a signed greater than or equal.</p>
+<p>Parameters <tt class="docutils literal"><span class="pre">a</span></tt> and <tt class="docutils literal"><span class="pre">b</span></tt> must have the same bit width
+(see <a class="reference internal" href="pyboolector.html#const-conversion"><em>Automatic Constant Conversion</em></a>).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>a</strong> (<a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorNode</span></tt></a>) &#8211; First bit vector operand.</li>
+<li><strong>b</strong> (<a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorNode</span></tt></a>) &#8211; Second bit vector operand.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">A bit vector node with bit width one.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorNode</span></tt></a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="boolector.Boolector.Simplify">
+<tt class="descname">Simplify</tt><big>(</big><big>)</big><a class="headerlink" href="#boolector.Boolector.Simplify" title="Permalink to this definition">¶</a></dt>
+<dd><p>Simplify current input formula.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><tt class="xref py py-data docutils literal"><span class="pre">SAT</span></tt> if the input formula was simplified to true, <tt class="xref py py-data docutils literal"><span class="pre">UNSAT</span></tt> if it was simplified to false, and <tt class="xref py py-data docutils literal"><span class="pre">UNKNOWN</span></tt>, otherwise.</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Each call to <a class="reference internal" href="#boolector.Boolector.Sat" title="boolector.Boolector.Sat"><tt class="xref py py-func docutils literal"><span class="pre">Sat()</span></tt></a> 
+simplifies the input formula as a preprocessing step.</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="boolector.Boolector.Slice">
+<tt class="descname">Slice</tt><big>(</big><em>n</em>, <em>upper</em>, <em>lower</em><big>)</big><a class="headerlink" href="#boolector.Boolector.Slice" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a bit vector slice of node <tt class="docutils literal"><span class="pre">n</span></tt> from index <tt class="docutils literal"><span class="pre">upper</span></tt>
+to index <tt class="docutils literal"><span class="pre">lower</span></tt>.</p>
+<p>It is also possible to use Python slices on bit vectors as
+follows:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">n</span><span class="p">[</span><span class="n">upper</span><span class="p">:</span><span class="n">lower</span><span class="p">]</span>  <span class="c"># creates slice with upper limit &#39;upper&#39; and lower limit &#39;lower&#39;</span>
+<span class="n">n</span><span class="p">[</span><span class="n">upper</span><span class="p">:]</span>       <span class="c"># creates slice with upper limit &#39;upper&#39; and lower limit 0</span>
+<span class="n">n</span><span class="p">[:</span><span class="n">lower</span><span class="p">]</span>       <span class="c"># creates slice with upper limit &#39;n.width - 1&#39; and lower limit &#39;lower&#39;</span>
+<span class="n">n</span><span class="p">[:]</span>            <span class="c"># creates copy of node &#39;n&#39; </span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>n</strong> (<a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorNode</span></tt></a>) &#8211; A bit vector node.</li>
+<li><strong>upper</strong> (<a class="reference external" href="http://docs.python.org/3.4/library/functions.html#int" title="(in Python v3.4)"><em>int</em></a>) &#8211; Upper index, which must be greater than or equal to zero, and less than the bit width of node <tt class="docutils literal"><span class="pre">n</span></tt>.</li>
+<li><strong>lower</strong> (<a class="reference external" href="http://docs.python.org/3.4/library/functions.html#int" title="(in Python v3.4)"><em>int</em></a>) &#8211; Lower index, which must be greater than or equal to zero, and less than or equal to <tt class="docutils literal"><span class="pre">upper</span></tt>.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">A Bit vector with bit width <tt class="docutils literal"><span class="pre">upper</span></tt> - <tt class="docutils literal"><span class="pre">lower</span></tt> + 1.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorNode</span></tt></a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="boolector.Boolector.Sll">
+<tt class="descname">Sll</tt><big>(</big><em>a</em>, <em>b</em><big>)</big><a class="headerlink" href="#boolector.Boolector.Sll" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a logical shift left.</p>
+<p>Given bit vector node <tt class="docutils literal"><span class="pre">b</span></tt>, the value it represents is the 
+number of zeroes shifted into node <tt class="docutils literal"><span class="pre">a</span></tt> from the right
+(see <a class="reference internal" href="pyboolector.html#const-conversion"><em>Automatic Constant Conversion</em></a>).</p>
+<p>It is also possible to create a logical shift left as follows
+(see <a class="reference internal" href="pyboolector.html#operator-overloading"><em>Python Operator Overloading</em></a>):</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">bvshl</span> <span class="o">=</span> <span class="n">a</span> <span class="o">&lt;&lt;</span> <span class="n">b</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>a</strong> (<a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorNode</span></tt></a>) &#8211; First bit vector operand where the bit width is a power of two and greater than 1.</li>
+<li><strong>b</strong> (<a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorNode</span></tt></a>) &#8211; Second bit vector operand with bit width log2 of the bit width of <tt class="docutils literal"><span class="pre">a</span></tt>.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">A bit vector node with the same bit width as <tt class="docutils literal"><span class="pre">a</span></tt>.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorNode</span></tt></a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="boolector.Boolector.Slt">
+<tt class="descname">Slt</tt><big>(</big><em>a</em>, <em>b</em><big>)</big><a class="headerlink" href="#boolector.Boolector.Slt" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a signed less than.</p>
+<p>Parameters <tt class="docutils literal"><span class="pre">a</span></tt> and <tt class="docutils literal"><span class="pre">b</span></tt> must have the same bit width
+(see <a class="reference internal" href="pyboolector.html#const-conversion"><em>Automatic Constant Conversion</em></a>).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>a</strong> (<a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorNode</span></tt></a>) &#8211; First bit vector operand.</li>
+<li><strong>b</strong> (<a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorNode</span></tt></a>) &#8211; Second bit vector operand.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">A bit vector node with bit width one.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorNode</span></tt></a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="boolector.Boolector.Slte">
+<tt class="descname">Slte</tt><big>(</big><em>a</em>, <em>b</em><big>)</big><a class="headerlink" href="#boolector.Boolector.Slte" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a signed less than or equal.</p>
+<p>Parameters <tt class="docutils literal"><span class="pre">a</span></tt> and <tt class="docutils literal"><span class="pre">b</span></tt> must have the same bit width
+(see <a class="reference internal" href="pyboolector.html#const-conversion"><em>Automatic Constant Conversion</em></a>).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>a</strong> (<a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorNode</span></tt></a>) &#8211; First bit vector operand.</li>
+<li><strong>b</strong> (<a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorNode</span></tt></a>) &#8211; Second bit vector operand.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">A bit vector node with bit width one.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorNode</span></tt></a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="boolector.Boolector.Smod">
+<tt class="descname">Smod</tt><big>(</big><em>a</em>, <em>b</em><big>)</big><a class="headerlink" href="#boolector.Boolector.Smod" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a signed remainder where its sign matches the sign of the
+divisor.</p>
+<p>Parameters <tt class="docutils literal"><span class="pre">a</span></tt> and <tt class="docutils literal"><span class="pre">b</span></tt> must have the same bit width
+(see <a class="reference internal" href="pyboolector.html#const-conversion"><em>Automatic Constant Conversion</em></a>).</p>
+<p>If <tt class="docutils literal"><span class="pre">b</span></tt> is zero, the result depends on 
+<a class="reference internal" href="#boolector.Boolector.Urem" title="boolector.Boolector.Urem"><tt class="xref py py-func docutils literal"><span class="pre">Urem()</span></tt></a>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>a</strong> (<a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorNode</span></tt></a>) &#8211; First bit vector operand.</li>
+<li><strong>b</strong> (<a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorNode</span></tt></a>) &#8211; Second bit vector operand.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">A bit vector node with the same bit width as <tt class="docutils literal"><span class="pre">a</span></tt> and <tt class="docutils literal"><span class="pre">b</span></tt>.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorNode</span></tt></a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="boolector.Boolector.Smulo">
+<tt class="descname">Smulo</tt><big>(</big><em>a</em>, <em>b</em><big>)</big><a class="headerlink" href="#boolector.Boolector.Smulo" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a signed bit vector multiplication overflow detection.</p>
+<p>Parameters <tt class="docutils literal"><span class="pre">a</span></tt> and <tt class="docutils literal"><span class="pre">b</span></tt> must have the same bit width
+(see <a class="reference internal" href="pyboolector.html#const-conversion"><em>Automatic Constant Conversion</em></a>).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>a</strong> (<a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorNode</span></tt></a>) &#8211; First bit vector operand.</li>
+<li><strong>b</strong> (<a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorNode</span></tt></a>) &#8211; Second bit vector operand.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">A bit vector node with bit width one, which indicates if the multiplication of <tt class="docutils literal"><span class="pre">a</span></tt> and <tt class="docutils literal"><span class="pre">b</span></tt> overflows in case both operands are treated as signed.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorNode</span></tt></a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="boolector.Boolector.Sra">
+<tt class="descname">Sra</tt><big>(</big><em>a</em>, <em>b</em><big>)</big><a class="headerlink" href="#boolector.Boolector.Sra" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create an arithmetic shift right.</p>
+<p>Analogously to <a class="reference internal" href="#boolector.Boolector.Srl" title="boolector.Boolector.Srl"><tt class="xref py py-func docutils literal"><span class="pre">Srl()</span></tt></a>, but whether
+zeroes or ones are shifted in depends on the most significant
+bit of node <tt class="docutils literal"><span class="pre">a</span></tt> (see <a class="reference internal" href="pyboolector.html#const-conversion"><em>Automatic Constant Conversion</em></a>).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>a</strong> (<a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorNode</span></tt></a>) &#8211; First bit vector operand where the bit width is a power of two and greater than 1.</li>
+<li><strong>b</strong> (<a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorNode</span></tt></a>) &#8211; Second bit vector operand with bit width log2 of the bit width of <tt class="docutils literal"><span class="pre">a</span></tt>.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">A bit vector node with the same bit width as <tt class="docutils literal"><span class="pre">a</span></tt>.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorNode</span></tt></a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="boolector.Boolector.Srem">
+<tt class="descname">Srem</tt><big>(</big><em>a</em>, <em>b</em><big>)</big><a class="headerlink" href="#boolector.Boolector.Srem" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a signed remainder.</p>
+<p>Parameters <tt class="docutils literal"><span class="pre">a</span></tt> and <tt class="docutils literal"><span class="pre">b</span></tt> must have the same bit width
+(see <a class="reference internal" href="pyboolector.html#const-conversion"><em>Automatic Constant Conversion</em></a>).
+If <tt class="docutils literal"><span class="pre">b</span></tt> is 0, the result of the unsigned remainder is <tt class="docutils literal"><span class="pre">a</span></tt>.
+If <tt class="docutils literal"><span class="pre">b</span></tt> is 0, the result of the unsigned remainder is <tt class="docutils literal"><span class="pre">a</span></tt>.</p>
+<p>Analogously to <a class="reference internal" href="#boolector.Boolector.Sdiv" title="boolector.Boolector.Sdiv"><tt class="xref py py-func docutils literal"><span class="pre">Sdiv()</span></tt></a>, the signed
+remainder is expressed by means of the unsigned remainder,
+where either node is normalized in case that its sign bit is 1. 
+Hence, in case that <tt class="docutils literal"><span class="pre">b</span></tt> is zero, the result depends on
+<a class="reference internal" href="#boolector.Boolector.Urem" title="boolector.Boolector.Urem"><tt class="xref py py-func docutils literal"><span class="pre">Urem()</span></tt></a>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>a</strong> (<a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorNode</span></tt></a>) &#8211; First bit vector operand.</li>
+<li><strong>b</strong> (<a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorNode</span></tt></a>) &#8211; Second bit vector operand.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">A bit vector node with the same bit width as <tt class="docutils literal"><span class="pre">a</span></tt> and <tt class="docutils literal"><span class="pre">b</span></tt>.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorNode</span></tt></a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="boolector.Boolector.Srl">
+<tt class="descname">Srl</tt><big>(</big><em>a</em>, <em>b</em><big>)</big><a class="headerlink" href="#boolector.Boolector.Srl" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a logical shift right.</p>
+<p>Given bit vector node <tt class="docutils literal"><span class="pre">b</span></tt>, the value it represents is the 
+number of zeroes shifted into node <tt class="docutils literal"><span class="pre">a</span></tt> from the left
+(see <a class="reference internal" href="pyboolector.html#const-conversion"><em>Automatic Constant Conversion</em></a>).</p>
+<p>It is also possible to create a logical shift right as follows
+(see <a class="reference internal" href="pyboolector.html#operator-overloading"><em>Python Operator Overloading</em></a>):</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">bvshr</span> <span class="o">=</span> <span class="n">a</span> <span class="o">&gt;&gt;</span> <span class="n">b</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>a</strong> (<a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorNode</span></tt></a>) &#8211; First bit vector operand where the bit width is a power of two and greater than 1.</li>
+<li><strong>b</strong> (<a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorNode</span></tt></a>) &#8211; Second bit vector operand with bit width log2 of the bit width of <tt class="docutils literal"><span class="pre">a</span></tt>.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">A bit vector node with the same bit width as <tt class="docutils literal"><span class="pre">a</span></tt>.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorNode</span></tt></a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="boolector.Boolector.Ssubo">
+<tt class="descname">Ssubo</tt><big>(</big><em>a</em>, <em>b</em><big>)</big><a class="headerlink" href="#boolector.Boolector.Ssubo" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a signed  bit vector subtraction overflow detection.</p>
+<p>Parameters <tt class="docutils literal"><span class="pre">a</span></tt> and <tt class="docutils literal"><span class="pre">b</span></tt> must have the same bit width
+(see <a class="reference internal" href="pyboolector.html#const-conversion"><em>Automatic Constant Conversion</em></a>).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>a</strong> (<a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorNode</span></tt></a>) &#8211; First bit vector operand.</li>
+<li><strong>b</strong> (<a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorNode</span></tt></a>) &#8211; Second bit vector operand.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">A bit vector node with bit width one, which indicates if the subtraction of <tt class="docutils literal"><span class="pre">a</span></tt> and <tt class="docutils literal"><span class="pre">b</span></tt> overflows in case both operands are treated as signed.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorNode</span></tt></a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="boolector.Boolector.Sub">
+<tt class="descname">Sub</tt><big>(</big><em>a</em>, <em>b</em><big>)</big><a class="headerlink" href="#boolector.Boolector.Sub" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a bit vector subtraction.</p>
+<p>Parameters <tt class="docutils literal"><span class="pre">a</span></tt> and <tt class="docutils literal"><span class="pre">b</span></tt> must have the same bit width
+(see <a class="reference internal" href="pyboolector.html#const-conversion"><em>Automatic Constant Conversion</em></a>).</p>
+<p>It is also possible to create a subtraction as follows
+(see <a class="reference internal" href="pyboolector.html#operator-overloading"><em>Python Operator Overloading</em></a>):</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">bvsub</span> <span class="o">=</span> <span class="n">a</span> <span class="o">-</span> <span class="n">b</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>a</strong> (<a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorNode</span></tt></a>) &#8211; First bit vector operand.</li>
+<li><strong>b</strong> (<a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorNode</span></tt></a>) &#8211; Second bit vector operand.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">A bit vector node with the same bit width as <tt class="docutils literal"><span class="pre">a</span></tt> and <tt class="docutils literal"><span class="pre">b</span></tt>.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorNode</span></tt></a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="boolector.Boolector.UF">
+<tt class="descname">UF</tt><big>(</big><em>sort</em>, <em>symbol</em><big>)</big><a class="headerlink" href="#boolector.Boolector.UF" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create an uninterpreted function with sort <tt class="docutils literal"><span class="pre">sort</span></tt> and symbol
+<tt class="docutils literal"><span class="pre">symbol</span></tt>.</p>
+<p>An uninterpreted function&#8217;s symbol is used as a simple means of 
+identfication, either when printing a model via 
+<a class="reference internal" href="#boolector.Boolector.Print_model" title="boolector.Boolector.Print_model"><tt class="xref py py-func docutils literal"><span class="pre">Print_model()</span></tt></a>,
+or generating file dumps via 
+<a class="reference internal" href="#boolector.Boolector.Dump" title="boolector.Boolector.Dump"><tt class="xref py py-func docutils literal"><span class="pre">Dump()</span></tt></a>.
+A symbol must be unique but may be None in case that no
+symbol should be assigned.</p>
+<p>See <a class="reference internal" href="#boolector.Boolector.Apply" title="boolector.Boolector.Apply"><tt class="xref py py-func docutils literal"><span class="pre">Apply()</span></tt></a>,
+<a class="reference internal" href="#boolector.Boolector.FunSort" title="boolector.Boolector.FunSort"><tt class="xref py py-func docutils literal"><span class="pre">FunSort()</span></tt></a>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>sort</strong> (<em>BoolectorSort</em>) &#8211; Sort of the uninterpreted function.</li>
+<li><strong>symbol</strong> (<a class="reference external" href="http://docs.python.org/3.4/library/stdtypes.html#str" title="(in Python v3.4)"><em>str</em></a>) &#8211; Name of the uninterpreted function.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">A function over parameterized expression <tt class="docutils literal"><span class="pre">body</span></tt>.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorNode</span></tt></a></p>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">In contrast to composite expressions, which are maintained
+uniquely w.r.t. to their kind, inputs (and consequently, bit
+width), uninterpreted functions are not.  Hence, each
+call to this function returns a fresh uninterpreted function.</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="boolector.Boolector.Uaddo">
+<tt class="descname">Uaddo</tt><big>(</big><em>a</em>, <em>b</em><big>)</big><a class="headerlink" href="#boolector.Boolector.Uaddo" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create an unsigned  bit vector addition overflow detection.</p>
+<p>Parameters <tt class="docutils literal"><span class="pre">a</span></tt> and <tt class="docutils literal"><span class="pre">b</span></tt> must have the same bit width
+(see <a class="reference internal" href="pyboolector.html#const-conversion"><em>Automatic Constant Conversion</em></a>).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>a</strong> (<a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorNode</span></tt></a>) &#8211; First bit vector operand.</li>
+<li><strong>b</strong> (<a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorNode</span></tt></a>) &#8211; Second bit vector operand.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">A bit vector node with bit width one, which indicates if the addition of <tt class="docutils literal"><span class="pre">a</span></tt> and <tt class="docutils literal"><span class="pre">b</span></tt> overflows in case both operands are treated as unsigned.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorNode</span></tt></a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="boolector.Boolector.Udiv">
+<tt class="descname">Udiv</tt><big>(</big><em>a</em>, <em>b</em><big>)</big><a class="headerlink" href="#boolector.Boolector.Udiv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create an unsigned  bit vector division.</p>
+<p>Parameters <tt class="docutils literal"><span class="pre">a</span></tt> and <tt class="docutils literal"><span class="pre">b</span></tt> must have the same bit width
+(see <a class="reference internal" href="pyboolector.html#const-conversion"><em>Automatic Constant Conversion</em></a>).
+If <tt class="docutils literal"><span class="pre">a</span></tt> is 0, the division&#8217;s result is -1.</p>
+<p>It is also possible to create an unsigned division as follows
+(see <a class="reference internal" href="pyboolector.html#operator-overloading"><em>Python Operator Overloading</em></a>):</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">bvudiv</span> <span class="o">=</span> <span class="n">a</span> <span class="o">/</span> <span class="n">b</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>a</strong> (<a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorNode</span></tt></a>) &#8211; First bit vector operand.</li>
+<li><strong>b</strong> (<a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorNode</span></tt></a>) &#8211; Second bit vector operand.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">A bit vector node with the same bit width as <tt class="docutils literal"><span class="pre">a</span></tt> and <tt class="docutils literal"><span class="pre">b</span></tt>.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorNode</span></tt></a></p>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This behavior (division by zero returns -1) does not exactly
+comply with the SMT-LIB v1 and v2 standards, where division by
+zero is handled as an uninterpreted function.  Our semantics
+are motivated by real circuits where division by zero cannot be
+uninterpreted and consequently returns a result.</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="boolector.Boolector.Uext">
+<tt class="descname">Uext</tt><big>(</big><em>n</em>, <em>width</em><big>)</big><a class="headerlink" href="#boolector.Boolector.Uext" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create unsigned extension.</p>
+<p>Bit vector node <tt class="docutils literal"><span class="pre">n</span></tt> is padded with <tt class="docutils literal"><span class="pre">width</span></tt> zeroes.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>n</strong> (<a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorNode</span></tt></a>) &#8211; A bit vector node.</li>
+<li><strong>width</strong> (<a class="reference external" href="http://docs.python.org/3.4/library/functions.html#int" title="(in Python v3.4)"><em>int</em></a>) &#8211; Number of zeros to pad.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">A bit vector extended by <tt class="docutils literal"><span class="pre">width</span></tt> zeroes.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorNode</span></tt></a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="boolector.Boolector.Ugt">
+<tt class="descname">Ugt</tt><big>(</big><em>a</em>, <em>b</em><big>)</big><a class="headerlink" href="#boolector.Boolector.Ugt" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create an unsigned greater than.</p>
+<p>Parameters <tt class="docutils literal"><span class="pre">a</span></tt> and <tt class="docutils literal"><span class="pre">b</span></tt> must have the same bit width
+(see <a class="reference internal" href="pyboolector.html#const-conversion"><em>Automatic Constant Conversion</em></a>).</p>
+<p>It is also possible to create an unsigned greater than as follows
+(see <a class="reference internal" href="pyboolector.html#operator-overloading"><em>Python Operator Overloading</em></a>):</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">ugt</span> <span class="o">=</span> <span class="n">a</span> <span class="o">&gt;</span> <span class="n">b</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>a</strong> (<a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorNode</span></tt></a>) &#8211; First bit vector operand.</li>
+<li><strong>b</strong> (<a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorNode</span></tt></a>) &#8211; Second bit vector operand.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">A bit vector node with bit width one.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorNode</span></tt></a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="boolector.Boolector.Ugte">
+<tt class="descname">Ugte</tt><big>(</big><em>a</em>, <em>b</em><big>)</big><a class="headerlink" href="#boolector.Boolector.Ugte" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create an unsigned greater than or equal.</p>
+<p>Parameters <tt class="docutils literal"><span class="pre">a</span></tt> and <tt class="docutils literal"><span class="pre">b</span></tt> must have the same bit width
+(see <a class="reference internal" href="pyboolector.html#const-conversion"><em>Automatic Constant Conversion</em></a>).</p>
+<p>It is also possible to create an unsigned greater than or equal as
+follows (see <a class="reference internal" href="pyboolector.html#operator-overloading"><em>Python Operator Overloading</em></a>):</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">ugte</span> <span class="o">=</span> <span class="n">a</span> <span class="o">&gt;=</span> <span class="n">b</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>a</strong> (<a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorNode</span></tt></a>) &#8211; First bit vector operand.</li>
+<li><strong>b</strong> (<a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorNode</span></tt></a>) &#8211; Second bit vector operand.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">A bit vector node with bit width one.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorNode</span></tt></a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="boolector.Boolector.Ult">
+<tt class="descname">Ult</tt><big>(</big><em>a</em>, <em>b</em><big>)</big><a class="headerlink" href="#boolector.Boolector.Ult" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create an unsigned less than.</p>
+<p>Parameters <tt class="docutils literal"><span class="pre">a</span></tt> and <tt class="docutils literal"><span class="pre">b</span></tt> must have the same bit width
+(see <a class="reference internal" href="pyboolector.html#const-conversion"><em>Automatic Constant Conversion</em></a>).</p>
+<p>It is also possible to create an unsigned less than as follows
+(see <a class="reference internal" href="pyboolector.html#operator-overloading"><em>Python Operator Overloading</em></a>):</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">lt</span> <span class="o">=</span> <span class="n">a</span> <span class="o">&lt;</span> <span class="n">b</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>a</strong> (<a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorNode</span></tt></a>) &#8211; First bit vector operand.</li>
+<li><strong>b</strong> (<a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorNode</span></tt></a>) &#8211; Second bit vector operand.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">A bit vector node with bit width one.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorNode</span></tt></a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="boolector.Boolector.Ulte">
+<tt class="descname">Ulte</tt><big>(</big><em>a</em>, <em>b</em><big>)</big><a class="headerlink" href="#boolector.Boolector.Ulte" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create an unsigned less than or equal.</p>
+<p>Parameters <tt class="docutils literal"><span class="pre">a</span></tt> and <tt class="docutils literal"><span class="pre">b</span></tt> must have the same bit width
+(see <a class="reference internal" href="pyboolector.html#const-conversion"><em>Automatic Constant Conversion</em></a>).</p>
+<p>It is also possible to create an unsigned less than or equal as
+follows (see <a class="reference internal" href="pyboolector.html#operator-overloading"><em>Python Operator Overloading</em></a>):</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">lte</span> <span class="o">=</span> <span class="n">a</span> <span class="o">&lt;=</span> <span class="n">b</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>a</strong> (<a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorNode</span></tt></a>) &#8211; First bit vector operand.</li>
+<li><strong>b</strong> (<a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorNode</span></tt></a>) &#8211; Second bit vector operand.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">A bit vector node with bit width one.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorNode</span></tt></a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="boolector.Boolector.Umulo">
+<tt class="descname">Umulo</tt><big>(</big><em>a</em>, <em>b</em><big>)</big><a class="headerlink" href="#boolector.Boolector.Umulo" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create an unsigned  bit vector multiplication overflow detection.</p>
+<p>Parameters <tt class="docutils literal"><span class="pre">a</span></tt> and <tt class="docutils literal"><span class="pre">b</span></tt> must have the same bit width
+(see <a class="reference internal" href="pyboolector.html#const-conversion"><em>Automatic Constant Conversion</em></a>).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>a</strong> (<a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorNode</span></tt></a>) &#8211; First bit vector operand.</li>
+<li><strong>b</strong> (<a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorNode</span></tt></a>) &#8211; Second bit vector operand.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">A bit vector node with bit width one, which indicates if the multiplication of <tt class="docutils literal"><span class="pre">a</span></tt> and <tt class="docutils literal"><span class="pre">b</span></tt> overflows in case both operands are treated as unsigned.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorNode</span></tt></a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="boolector.Boolector.Urem">
+<tt class="descname">Urem</tt><big>(</big><em>a</em>, <em>b</em><big>)</big><a class="headerlink" href="#boolector.Boolector.Urem" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create an unsigned remainder.</p>
+<p>Parameters <tt class="docutils literal"><span class="pre">a</span></tt> and <tt class="docutils literal"><span class="pre">b</span></tt> must have the same bit width
+(see <a class="reference internal" href="pyboolector.html#const-conversion"><em>Automatic Constant Conversion</em></a>).
+If <tt class="docutils literal"><span class="pre">b</span></tt> is 0, the result of the unsigned remainder is <tt class="docutils literal"><span class="pre">a</span></tt>.</p>
+<p>It is also possible to create an unsigned remainder as follows
+(see <a class="reference internal" href="pyboolector.html#operator-overloading"><em>Python Operator Overloading</em></a>):</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">bvurem</span> <span class="o">=</span> <span class="n">a</span> <span class="o">%</span> <span class="n">b</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>a</strong> (<a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorNode</span></tt></a>) &#8211; First bit vector operand.</li>
+<li><strong>b</strong> (<a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorNode</span></tt></a>) &#8211; Second bit vector operand.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">A bit vector node with the same bit width as <tt class="docutils literal"><span class="pre">a</span></tt> and <tt class="docutils literal"><span class="pre">b</span></tt>.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorNode</span></tt></a></p>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">As in <a class="reference internal" href="#boolector.Boolector.Udiv" title="boolector.Boolector.Udiv"><tt class="xref py py-func docutils literal"><span class="pre">Udiv()</span></tt></a>, the behavior if <tt class="docutils literal"><span class="pre">b</span></tt>
+is 0 does not exactly comply to the SMT-LIB v1 and v2 standards,
+where the result ist handled as uninterpreted function.
+Our semantics are motivated by real circuits, where result 
+can not be uninterpreted.</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="boolector.Boolector.Usubo">
+<tt class="descname">Usubo</tt><big>(</big><em>a</em>, <em>b</em><big>)</big><a class="headerlink" href="#boolector.Boolector.Usubo" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create an unsigned  bit vector subtraction overflow detection.</p>
+<p>Parameters <tt class="docutils literal"><span class="pre">a</span></tt> and <tt class="docutils literal"><span class="pre">b</span></tt> must have the same bit width
+(see <a class="reference internal" href="pyboolector.html#const-conversion"><em>Automatic Constant Conversion</em></a>).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>a</strong> (<a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorNode</span></tt></a>) &#8211; First bit vector operand.</li>
+<li><strong>b</strong> (<a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorNode</span></tt></a>) &#8211; Second bit vector operand.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">A bit vector node with bit width one, which indicates if the subtraction of <tt class="docutils literal"><span class="pre">a</span></tt> and <tt class="docutils literal"><span class="pre">b</span></tt> overflows in case both operands are treated as unsigned.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorNode</span></tt></a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="boolector.Boolector.Var">
+<tt class="descname">Var</tt><big>(</big><em>width</em>, <em>symbol = None</em><big>)</big><a class="headerlink" href="#boolector.Boolector.Var" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a bit vector variable with bit width <tt class="docutils literal"><span class="pre">width</span></tt>.</p>
+<p>A variable&#8217;s symbol is used as a simple means of identfication,
+either when printing a model via 
+<a class="reference internal" href="#boolector.Boolector.Print_model" title="boolector.Boolector.Print_model"><tt class="xref py py-func docutils literal"><span class="pre">Print_model()</span></tt></a>,
+or generating file dumps via 
+<a class="reference internal" href="#boolector.Boolector.Dump" title="boolector.Boolector.Dump"><tt class="xref py py-func docutils literal"><span class="pre">Dump()</span></tt></a>.
+A symbol must be unique but may be None in case that no
+symbol should be assigned.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>width</strong> (<a class="reference external" href="http://docs.python.org/3.4/library/functions.html#int" title="(in Python v3.4)"><em>int</em></a>) &#8211; Bit width of the variable.</li>
+<li><strong>symbol</strong> (<a class="reference external" href="http://docs.python.org/3.4/library/stdtypes.html#str" title="(in Python v3.4)"><em>str</em></a>) &#8211; Symbol of the variable.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">A bit vector variable with bit width <tt class="docutils literal"><span class="pre">width</span></tt>.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorNode</span></tt></a></p>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">In contrast to composite expressions, which are maintained
+uniquely w.r.t. to their kind, inputs (and consequently, bit
+width), variables are not.  Hence, each call to this
+function returns a fresh bit vector variable.</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="boolector.Boolector.Write">
+<tt class="descname">Write</tt><big>(</big><em>array</em>, <em>index</em>, <em>value</em><big>)</big><a class="headerlink" href="#boolector.Boolector.Write" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a write on array <tt class="docutils literal"><span class="pre">array</span></tt> at position <tt class="docutils literal"><span class="pre">index</span></tt> with value
+<tt class="docutils literal"><span class="pre">value</span></tt> (see <a class="reference internal" href="pyboolector.html#const-conversion"><em>Automatic Constant Conversion</em></a>).</p>
+<p>The array is updated at exactly one position, all other elements
+remain unchanged.
+The bit width of <tt class="docutils literal"><span class="pre">index</span></tt> must be the same as the bit width of 
+the indices of <tt class="docutils literal"><span class="pre">array</span></tt>.
+The bit width of <tt class="docutils literal"><span class="pre">value</span></tt> must be the same as the bit width of
+the elements of <tt class="docutils literal"><span class="pre">array</span></tt>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>array</strong> (<a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorNode</span></tt></a>) &#8211; Array operand.</li>
+<li><strong>index</strong> (<a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorNode</span></tt></a>) &#8211; Bit vector index.</li>
+<li><strong>value</strong> (<a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorNode</span></tt></a>) &#8211; Bit vector value.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">An array where the value at <tt class="docutils literal"><span class="pre">index</span></tt> has been updated with <tt class="docutils literal"><span class="pre">value</span></tt>.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorNode</span></tt></a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="boolector.Boolector.Xnor">
+<tt class="descname">Xnor</tt><big>(</big><em>a</em>, <em>b</em><big>)</big><a class="headerlink" href="#boolector.Boolector.Xnor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a bit vector <em>xnor</em>.</p>
+<p>Parameters <tt class="docutils literal"><span class="pre">a</span></tt> and <tt class="docutils literal"><span class="pre">b</span></tt> must have the same bit width
+(see <a class="reference internal" href="pyboolector.html#const-conversion"><em>Automatic Constant Conversion</em></a>).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>a</strong> (<a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorNode</span></tt></a>) &#8211; First bit vector operand.</li>
+<li><strong>b</strong> (<a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorNode</span></tt></a>) &#8211; Second bit vector operand.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">A bit vector node with the same bit width as <tt class="docutils literal"><span class="pre">a</span></tt> and <tt class="docutils literal"><span class="pre">b</span></tt>.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorNode</span></tt></a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="boolector.Boolector.Xor">
+<tt class="descname">Xor</tt><big>(</big><em>a</em>, <em>b</em><big>)</big><a class="headerlink" href="#boolector.Boolector.Xor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a bit vector <em>xor</em>.</p>
+<p>Parameters <tt class="docutils literal"><span class="pre">a</span></tt> and <tt class="docutils literal"><span class="pre">b</span></tt> must have the same bit width
+(see <a class="reference internal" href="pyboolector.html#const-conversion"><em>Automatic Constant Conversion</em></a>).</p>
+<p>It is also possible to create an <em>xor</em> as follows
+(see <a class="reference internal" href="pyboolector.html#operator-overloading"><em>Python Operator Overloading</em></a>):</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">bvxor</span> <span class="o">=</span> <span class="n">a</span> <span class="o">^</span> <span class="n">b</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>a</strong> (<a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorNode</span></tt></a>) &#8211; First bit vector operand.</li>
+<li><strong>b</strong> (<a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorNode</span></tt></a>) &#8211; Second bit vector operand.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">A bit vector node with the same bit width as <tt class="docutils literal"><span class="pre">a</span></tt> and <tt class="docutils literal"><span class="pre">b</span></tt>.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">BoolectorNode</span></tt></a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="boolector.BoolectorArrayNode">
+<em class="property">class </em><tt class="descclassname">boolector.</tt><tt class="descname">BoolectorArrayNode</tt><a class="headerlink" href="#boolector.BoolectorArrayNode" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">boolector.BoolectorNode</span></tt></a></p>
+<p>The class representing a Boolector array node.</p>
+<dl class="attribute">
+<dt id="boolector.BoolectorArrayNode.index_width">
+<tt class="descname">index_width</tt><a class="headerlink" href="#boolector.BoolectorArrayNode.index_width" title="Permalink to this definition">¶</a></dt>
+<dd><p>The bit with of the Boolector array node indices.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="boolector.BoolectorBVNode">
+<em class="property">class </em><tt class="descclassname">boolector.</tt><tt class="descname">BoolectorBVNode</tt><a class="headerlink" href="#boolector.BoolectorBVNode" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">boolector.BoolectorNode</span></tt></a></p>
+<p>The class representing a Boolector bit vector node.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="boolector.BoolectorConstNode">
+<em class="property">class </em><tt class="descclassname">boolector.</tt><tt class="descname">BoolectorConstNode</tt><a class="headerlink" href="#boolector.BoolectorConstNode" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#boolector.BoolectorBVNode" title="boolector.BoolectorBVNode"><tt class="xref py py-class docutils literal"><span class="pre">boolector.BoolectorBVNode</span></tt></a></p>
+<p>The class representing Boolector constant nodes.</p>
+<dl class="attribute">
+<dt id="boolector.BoolectorConstNode.bits">
+<tt class="descname">bits</tt><a class="headerlink" href="#boolector.BoolectorConstNode.bits" title="Permalink to this definition">¶</a></dt>
+<dd><p>The bit string of a Boolector constant node.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="exception">
+<dt id="boolector.BoolectorException">
+<em class="property">exception </em><tt class="descclassname">boolector.</tt><tt class="descname">BoolectorException</tt><a class="headerlink" href="#boolector.BoolectorException" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">builtins.Exception</span></tt></p>
+<p>The class representing a Boolector exception.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="boolector.BoolectorFunNode">
+<em class="property">class </em><tt class="descclassname">boolector.</tt><tt class="descname">BoolectorFunNode</tt><a class="headerlink" href="#boolector.BoolectorFunNode" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#boolector.BoolectorNode" title="boolector.BoolectorNode"><tt class="xref py py-class docutils literal"><span class="pre">boolector.BoolectorNode</span></tt></a></p>
+<p>The class representing a Boolector function node.</p>
+<dl class="attribute">
+<dt id="boolector.BoolectorFunNode.arity">
+<tt class="descname">arity</tt><a class="headerlink" href="#boolector.BoolectorFunNode.arity" title="Permalink to this definition">¶</a></dt>
+<dd><p>The arity of a Boolector function node.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="boolector.BoolectorNode">
+<em class="property">class </em><tt class="descclassname">boolector.</tt><tt class="descname">BoolectorNode</tt><a class="headerlink" href="#boolector.BoolectorNode" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">builtins.object</span></tt></p>
+<p>The class representing a Boolector node.</p>
+<dl class="method">
+<dt id="boolector.BoolectorNode.Dump">
+<tt class="descname">Dump</tt><big>(</big><em>format = &quot;btor&quot;</em>, <em>outfile = None</em><big>)</big><a class="headerlink" href="#boolector.BoolectorNode.Dump" title="Permalink to this definition">¶</a></dt>
+<dd><p>Dump node to output file.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>format</strong> (<a class="reference external" href="http://docs.python.org/3.4/library/stdtypes.html#str" title="(in Python v3.4)"><em>str</em></a>) &#8211; A file format identifier string (use &#8216;btor&#8217; for <a class="reference external" href="http://fmv.jku.at/papers/BrummayerBiereLonsing-BPR08.pdf">BTOR</a>, &#8216;smt1&#8217; for <a class="reference external" href="http://smtlib.cs.uiowa.edu/papers/format-v1.2-r06.08.30.pdf">SMT-LIB v1</a>, and &#8216;smt2&#8217; for <a class="reference external" href="http://smtlib.cs.uiowa.edu/papers/smt-lib-reference-v2.0-r12.09.09.pdf">SMT-LIB v2</a>).</li>
+<li><strong>outfile</strong> (<a class="reference external" href="http://docs.python.org/3.4/library/stdtypes.html#str" title="(in Python v3.4)"><em>str</em></a>) &#8211; Output file name (default: stdout).</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="boolector.BoolectorNode.assignment">
+<tt class="descname">assignment</tt><a class="headerlink" href="#boolector.BoolectorNode.assignment" title="Permalink to this definition">¶</a></dt>
+<dd><p>The assignment of a Boolector node.</p>
+<p>May be queried only after a preceding call to
+<a class="reference internal" href="#boolector.Boolector.Sat" title="boolector.Boolector.Sat"><tt class="xref py py-func docutils literal"><span class="pre">Sat()</span></tt></a> returned 
+<tt class="xref py py-data docutils literal"><span class="pre">SAT</span></tt>.</p>
+<p>If the queried node is a bit vector, its assignment is 
+represented as string.
+If it is an array, its assignment is represented as a list
+of tuples <tt class="docutils literal"><span class="pre">(index,</span> <span class="pre">value)</span></tt>.
+If it is a function, its assignment is represented as a list
+of tuples <tt class="docutils literal"><span class="pre">(arg_0,</span> <span class="pre">...,</span> <span class="pre">arg_n,</span> <span class="pre">value)</span></tt>.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="boolector.BoolectorNode.symbol">
+<tt class="descname">symbol</tt><a class="headerlink" href="#boolector.BoolectorNode.symbol" title="Permalink to this definition">¶</a></dt>
+<dd><p>The symbol of a Boolector node.</p>
+<p>A node&#8217;s symbol is used as a simple means of identfication,
+either when printing a model via 
+<a class="reference internal" href="#boolector.Boolector.Print_model" title="boolector.Boolector.Print_model"><tt class="xref py py-func docutils literal"><span class="pre">Print_model()</span></tt></a>,
+or generating file dumps via 
+<a class="reference internal" href="#boolector.Boolector.Dump" title="boolector.Boolector.Dump"><tt class="xref py py-func docutils literal"><span class="pre">Dump()</span></tt></a>.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="boolector.BoolectorNode.width">
+<tt class="descname">width</tt><a class="headerlink" href="#boolector.BoolectorNode.width" title="Permalink to this definition">¶</a></dt>
+<dd><p>The bit width of a Boolector node.</p>
+<p>If the node is an array,
+this indicates the bit width of the array elements.
+If the node is a function,
+this indicates the bit with of the function&#8217;s return value.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="boolector.BoolectorOpt">
+<em class="property">class </em><tt class="descclassname">boolector.</tt><tt class="descname">BoolectorOpt</tt><a class="headerlink" href="#boolector.BoolectorOpt" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">builtins.object</span></tt></p>
+<p>The class representing a Boolector option.</p>
+<dl class="attribute">
+<dt id="boolector.BoolectorOpt.desc">
+<tt class="descname">desc</tt><a class="headerlink" href="#boolector.BoolectorOpt.desc" title="Permalink to this definition">¶</a></dt>
+<dd><p>The description of a Boolector option.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="boolector.BoolectorOpt.dflt">
+<tt class="descname">dflt</tt><a class="headerlink" href="#boolector.BoolectorOpt.dflt" title="Permalink to this definition">¶</a></dt>
+<dd><p>The default value of a Boolector option.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="boolector.BoolectorOpt.lng">
+<tt class="descname">lng</tt><a class="headerlink" href="#boolector.BoolectorOpt.lng" title="Permalink to this definition">¶</a></dt>
+<dd><p>The long name of a Boolector option.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="boolector.BoolectorOpt.max">
+<tt class="descname">max</tt><a class="headerlink" href="#boolector.BoolectorOpt.max" title="Permalink to this definition">¶</a></dt>
+<dd><p>The maximum value of a Boolector option.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="boolector.BoolectorOpt.min">
+<tt class="descname">min</tt><a class="headerlink" href="#boolector.BoolectorOpt.min" title="Permalink to this definition">¶</a></dt>
+<dd><p>The minimum value of a Boolector option.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="boolector.BoolectorOpt.shrt">
+<tt class="descname">shrt</tt><a class="headerlink" href="#boolector.BoolectorOpt.shrt" title="Permalink to this definition">¶</a></dt>
+<dd><p>The short name of a Boolector option.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="boolector.BoolectorOpt.val">
+<tt class="descname">val</tt><a class="headerlink" href="#boolector.BoolectorOpt.val" title="Permalink to this definition">¶</a></dt>
+<dd><p>The current value of a Boolector option.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="boolector.BoolectorOptions">
+<em class="property">class </em><tt class="descclassname">boolector.</tt><tt class="descname">BoolectorOptions</tt><a class="headerlink" href="#boolector.BoolectorOptions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">builtins.object</span></tt></p>
+<p>The class representing a Boolector option iterator (see 
+<a class="reference internal" href="#boolector.Boolector.Options" title="boolector.Boolector.Options"><tt class="xref py py-func docutils literal"><span class="pre">Options()</span></tt></a>).</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="boolector.BoolectorSort">
+<em class="property">class </em><tt class="descclassname">boolector.</tt><tt class="descname">BoolectorSort</tt><a class="headerlink" href="#boolector.BoolectorSort" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">builtins.object</span></tt></p>
+<p>The class representing a Boolector sort.</p>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="pyboolector.html" title="Boolector Python API documentation"
+             >previous</a> |</li>
+        <li><a href="index.html">Boolector 2.0 documentation</a> &raquo;</li>
+          <li><a href="pyboolector.html" >Boolector Python API documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2007-2014, Institute for Formal Models and Verification, Johannes Kepler University, Linz, Austria.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+    </div>
+  </body>
+</html>

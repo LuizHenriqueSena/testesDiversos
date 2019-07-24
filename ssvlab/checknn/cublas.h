@@ -1678,9 +1678,10 @@
 		memcpy(AV2layer3, x2layer3, fc3*sizeof(float));
 		printLayerValues(AV1layer3, AV2layer3, fc3, 3);
 		printSSCover(AV1layer2, AV2layer2, AV1layer3, AV2layer3, fc2, fc3, 2);
-		printCoverageSS();
+		//printCoverageSS();
 		activeSigmoidLUT(x2layer3, fc3);
-		__ESBMC_assert(neuronCoverageSS() > 0.8, "At least 80% of all neurons must be SS-Covered.");
+		printLayerValues(x1layer3, x2layer3, fc3, 3);
+		//__ESBMC_assert(neuronCoverageSS() > 0.8, "At least 80% of all neurons must be SS-Covered.");
 		}
 
 
@@ -1892,9 +1893,9 @@
 			memcpy(AV2layer3, x2layer3, fc3*sizeof(float));
 			printLayerValues(AV1layer3, AV2layer3, fc3, 3);
 			printSSCover(AV1layer2, AV2layer2, AV1layer3, AV2layer3, fc2, fc3, 2);
-			printCoverageSS();
+			//printCoverageSS();
 			activeSigmoidLUT(x2layer3, fc3);
-			__ESBMC_assert(neuronCoverageSS() > 0.8, "At least 80% of all neurons must be SS-Covered.");
+			//__ESBMC_assert(neuronCoverageSS() > 0.8, "At least 80% of all neurons must be SS-Covered.");
 			}
 
 
@@ -2106,9 +2107,9 @@
 				memcpy(AV2layer3, x2layer3, fc3*sizeof(float));
 				printLayerValues(AV1layer3, AV2layer3, fc3, 3);
 				printSSCover(AV1layer2, AV2layer2, AV1layer3, AV2layer3, fc2, fc3, 2);
-				printCoverageSS();
+				//printCoverageSS();
 				activeSigmoidLUT(x2layer3, fc3);
-				__ESBMC_assert(neuronCoverageSS() > 0.8, "At least 80% of all neurons must be SS-Covered.");
+				//__ESBMC_assert(neuronCoverageSS() > 0.8, "At least 80% of all neurons must be SS-Covered.");
 				}
 
 				void checkNNDVCover(float* wfc1, float* bfc1, float* wfc2, float* bfc2, float* wfc3, float* bfc3, float* img, float* img2) {
@@ -2319,7 +2320,7 @@
 					memcpy(AV2layer3, x2layer3, fc3*sizeof(float));
 					printLayerValues(AV1layer3, AV2layer3, fc3, 3);
 					printSSCover(AV1layer2, AV2layer2, AV1layer3, AV2layer3, fc2, fc3, 2);
-					printCoverageSS();
+					//printCoverageSS();
 					activeSigmoidLUT(x2layer3, fc3);
-					__ESBMC_assert(neuronCoverageSS() > 0.8, "At least 80% of all neurons must be SS-Covered.");
+					//__ESBMC_assert(neuronCoverageSS() > 0.8, "At least 80% of all neurons must be SS-Covered.");
 					}

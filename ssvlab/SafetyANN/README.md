@@ -33,10 +33,15 @@ with support to Ubuntu OS 16.04.
 
 ## All benchmark folders have the information inside their name, Ex: iao03 means that the vocalic "a" will be verified with respect to the vocalic "o" with 0.3 as proximity parameter.
 
-###### 1. Firstly, go to the benchmark folder inside the repository folder:
+###### 1. Firstly, go to the benchmark folder inside the repository folder provide permission to the script:
 
-	cd benchmark
+	cd benchmarks
+	chmod +x runBenchmarks.sh
 
-###### 2. After this process, any benchmark can be run with the command:
+###### 2. After this process run script runBenchmarks.sh with "esbmc" as argument:
+
+	./runBenchmarks.sh esbmc
+
+###### 3. Any benchmark can be run with the command:
 
 ./../esbmc-gpu "benchmarkfolder"/verifynn.c -I ~/library/ --force-malloc-success --state-hashing --no-div-by-zero-check --no-pointer-check

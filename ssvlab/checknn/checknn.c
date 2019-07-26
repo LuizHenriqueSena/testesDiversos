@@ -37,38 +37,13 @@ float imgU[25] = {255,0,0,0,255,255,0,0,0,255,255,0,0,0,255,255,0,0,0,255,255,25
 
 
 int main() {
-	float img2[25];
-	img2[0] = 20;
-	img2[1] = 115;
-	img2[2] = 255;
-	img2[3] = 147;
-	img2[4] = 5;
-	img2[5] = 72;
-	img2[6] = 0;
-	img2[7] = 214;
-	img2[8] = 44;
-	img2[9] = 172;
-	img2[10] = 4;
-	img2[11] = 240;
-	img2[12] = 252;
-	img2[13] = 0;
-	img2[14] = 108;
-	img2[15] = 143;
-	img2[16] = 253;
-	img2[17] = 0;
-	img2[18] = 254;
-	img2[19] = 0;
-	img2[20] = 11;
-	img2[21] = 51;
-	img2[22] = 236;
-	img2[23] = 211;
-	img2[24] = 0;
-	checkNNSSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3,img, imgU);
-	//float layer1out1[5] = {1, 0, 0, 0, 0};
-	//float layer1out2[5] = {-1, 0, 0, 0, 0};
-	//float layer2out1[3] = {1, 1, 1};
-	//float layer2out2[3] = {1.5, -1.5, -1.5};
-	//printSSCover(layer1out1, layer1out2, layer2out1, layer2out2, 5, 3);
-	//printf("RESULTADO DO SSCOVER: %d", SSCover(layer1out1,layer1out2, layer2out1[1], layer2out2[1], 5, ) )
+checkDatasetSSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3);
+checkDatasetDSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3);
+checkDatasetSVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3);
+checkDatasetDVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3);
+//	checkNNSSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3,img, imgU);
+//	checkNNDSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3,img, imgU);
+//	checkNNSVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3,img, imgU);
+//	checkNNDVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3,img, imgU);
 
 }

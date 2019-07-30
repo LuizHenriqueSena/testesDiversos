@@ -1774,7 +1774,7 @@ float neuronCoverageDV(){
 
 
 
-void checkNNSSCover(float* wfc1, float* bfc1, float* wfc2, float* bfc2, float* wfc3, float* bfc3, float* imgx, float* imgy) {
+void checkNNSSCover(float* wfc1, float* bfc1, float* wfc2, float* bfc2, float* wfc3, float* bfc3, float* img, float* img2) {
 
     float *x1layer1;
     float *x1layer2;
@@ -1835,17 +1835,17 @@ void checkNNSSCover(float* wfc1, float* bfc1, float* wfc2, float* bfc2, float* w
     AV2layer3 = (float*)malloc(fc3*sizeof(float));
 
 
-    float *img;
-    float *img2;
-
-
-    img = (float*)malloc(25*sizeof(float));
-
-    img2 = (float*)malloc(25*sizeof(float));
-
-
-    memcpy(img, imgx, 25*sizeof(float));
-    memcpy(img2, imgy, 25*sizeof(float));
+    // float *img;
+    // float *img2;
+    //
+    //
+    // img = (float*)malloc(25*sizeof(float));
+    //
+    // img2 = (float*)malloc(25*sizeof(float));
+    //
+    //
+    // memcpy(img, imgx, 25*sizeof(float));
+    // memcpy(img2, imgy, 25*sizeof(float));
 
     normalizef(img, 25); // input pointer and image size
     normalizef(img2, 25); // input pointer and image size
@@ -1994,7 +1994,7 @@ void checkNNSSCover(float* wfc1, float* bfc1, float* wfc2, float* bfc2, float* w
   }
 
 
-  void checkNNDSCover(float* wfc1, float* bfc1, float* wfc2, float* bfc2, float* wfc3, float* bfc3, float* imgx, float* imgy) {
+  void checkNNDSCover(float* wfc1, float* bfc1, float* wfc2, float* bfc2, float* wfc3, float* bfc3, float* img, float* img2) {
 
       float *x1layer1;
       float *x1layer2;
@@ -2055,17 +2055,17 @@ void checkNNSSCover(float* wfc1, float* bfc1, float* wfc2, float* bfc2, float* w
       AV2layer3 = (float*)malloc(fc3*sizeof(float));
 
 
-      float *img;
-      float *img2;
-
-
-      img = (float*)malloc(25*sizeof(float));
-
-      img2 = (float*)malloc(25*sizeof(float));
-
-
-      memcpy(img, imgx, 25*sizeof(float));
-      memcpy(img2, imgy, 25*sizeof(float));
+      // float *img;
+      // float *img2;
+      //
+      //
+      // img = (float*)malloc(25*sizeof(float));
+      //
+      // img2 = (float*)malloc(25*sizeof(float));
+      //
+      //
+      // memcpy(img, imgx, 25*sizeof(float));
+      // memcpy(img2, imgy, 25*sizeof(float));
 
 
       normalizef(img, 25); // input pointer and image size
@@ -2215,7 +2215,7 @@ void checkNNSSCover(float* wfc1, float* bfc1, float* wfc2, float* bfc2, float* w
     }
 
 
-    void checkNNSVCover(float* wfc1, float* bfc1, float* wfc2, float* bfc2, float* wfc3, float* bfc3, float* imgx, float* imgy) {
+    void checkNNSVCover(float* wfc1, float* bfc1, float* wfc2, float* bfc2, float* wfc3, float* bfc3, float* img, float* img2) {
 
         float *x1layer1;
         float *x1layer2;
@@ -2275,17 +2275,17 @@ void checkNNSSCover(float* wfc1, float* bfc1, float* wfc2, float* bfc2, float* w
 
         AV2layer3 = (float*)malloc(fc3*sizeof(float));
 
-        float *img;
-        float *img2;
-
-
-        img = (float*)malloc(25*sizeof(float));
-
-        img2 = (float*)malloc(25*sizeof(float));
-
-
-        memcpy(img, imgx, 25*sizeof(float));
-        memcpy(img2, imgy, 25*sizeof(float));
+        // float *img;
+        // float *img2;
+        //
+        //
+        // img = (float*)malloc(25*sizeof(float));
+        //
+        // img2 = (float*)malloc(25*sizeof(float));
+        //
+        //
+        // memcpy(img, imgx, 25*sizeof(float));
+        // memcpy(img2, imgy, 25*sizeof(float));
 
 
         normalizef(img, 25); // input pointer and image size
@@ -2438,7 +2438,7 @@ void checkNNSSCover(float* wfc1, float* bfc1, float* wfc2, float* bfc2, float* w
       //__ESBMC_assert(neuronCoverageSS() > 0.8, "At least 80% of all neurons must be SS-Covered.");
       }
 
-      void checkNNDVCover(float* wfc1, float* bfc1, float* wfc2, float* bfc2, float* wfc3, float* bfc3, float* imgx, float* imgy) {
+      void checkNNDVCover(float* wfc1, float* bfc1, float* wfc2, float* bfc2, float* wfc3, float* bfc3, float* img, float* img2) {
 
           float *x1layer1;
           float *x1layer2;
@@ -2498,17 +2498,17 @@ void checkNNSSCover(float* wfc1, float* bfc1, float* wfc2, float* bfc2, float* w
 
           AV2layer3 = (float*)malloc(fc3*sizeof(float));
 
-          float *img;
-          float *img2;
-
-
-          img = (float*)malloc(25*sizeof(float));
-
-          img2 = (float*)malloc(25*sizeof(float));
-
-
-          memcpy(img, imgx, 25*sizeof(float));
-          memcpy(img2, imgy, 25*sizeof(float));
+          // float *img;
+          // float *img2;
+          //
+          //
+          // img = (float*)malloc(25*sizeof(float));
+          //
+          // img2 = (float*)malloc(25*sizeof(float));
+          //
+          //
+          // memcpy(img, imgx, 25*sizeof(float));
+          // memcpy(img2, imgy, 25*sizeof(float));
 
 
           normalizef(img, 25); // input pointer and image size

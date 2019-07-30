@@ -2658,6 +2658,7 @@ void checkNNSSCover(float* wfc1, float* bfc1, float* wfc2, float* bfc2, float* w
         checkDatasetSSCover(float* wfc1, float* bfc1, float* wfc2, float* bfc2, float* wfc3, float* bfc3){
           int imageIterator = 0;
           for (imageIterator = 0; imageIterator < 200; imageIterator++) {
+            printf("image iterator: %d  \n", imageIterator);
               checkNNSSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[imageIterator*25], &dataset[(imageIterator+1)*25]);
               imageIterator++;
           }

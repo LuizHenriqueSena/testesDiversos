@@ -7,21 +7,21 @@ float sigmoidFunction(float u) {
 	return retorno;
 }
 
-void printLookUpTableForCVectorSigmoid(int number, int decimalNumber, int simetric) {
+void printLookUpTableForCVectorSigmoid(int number, int decimalPlaces) {
 	int sizetable = 0;
 	int shift = 0;
-	if(simetric)
-		shift = number/2;
-	if(decimalNumber==0) {
-		sizetable = number;
+	int decimalNumber = (int)pow(10, decimalPlaces);
+	shift = number/2;
+	if(decimalPlaces==0) {
+		sizetable = number+1;
 	} else {
-		sizetable= number*((int)pow(10, decimalNumber));
+		sizetable= number*decimalNumber + 1;
 	}
 	int i = 1;
 	printf("float lookup[%d] = {", sizetable);
 	printf("%.6f ,", sigmoidFunction(-shift));
 	for(i=1;i<sizetable;i++) {
-			printf("%.6f ,", sigmoidFunction(((i/100)-shift)));
+			printf("%.6f ,", sigmoidFunction(((i/decimalNumber)-shift)));
 			if(i==sizetable-1) {
 				printf("};\n");
 			}
@@ -33,6 +33,6 @@ void printLookUpTableForCVectorSigmoid(int number, int decimalNumber, int simetr
 
 
 int main(){
-	printLookUpTableForCVectorSigmoid(40, 2, 1);
+	printLookUpTableForCVectorSigmoid(40, 3);
 
 }

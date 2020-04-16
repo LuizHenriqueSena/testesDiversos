@@ -4188,6 +4188,15 @@ void normalizef(float *image, int size) {
   }
 }
 
+float* normalizefVec(float *image, int size) {
+  float *out = (float*)malloc(size*sizeof(float));
+  int i;
+  for (i = 0; i < size; i++) {
+    out[i] = (image[i])/255;
+  }
+  return out;
+}
+
 float sigmoidFunction(float u) {
 	float retorno;
 	retorno = (1/(1 + powf(2.718281,(u*(-1)))));
@@ -4208,26 +4217,22 @@ else {
 }
 }
 
-float* sigmoidVector(float* vec, int size) {
-  float *out = (float*)calloc(size, sizeof(float));
+void sigmoidVector(float* vec, int size, float* out) {
   int i = 0;
 	for(i = 0; i<size; i++) {
 		out[i] = sigmoidFunctionLut(vec[i]);
   }
-  return out;
 }
 
-float* diag(float* vec, int size) {
-  float *out = (float*)calloc(size, sizeof(float));
+void diag(float* vec, int size, float* out) {
   int i = 0;
   for(i = 0; i<size; i++) {
     out[i] = vec[i*size + i];
   }
-  return out;
 }
 
 int* sign(float* w, int size) {
-  int* out = (int*)calloc(size, sizeof(int));
+  int* out = (int*)malloc(size* sizeof(int));
   int i = 0;
   for(i = 0; i < size; i++) {
     if(w[i] < 0) {
@@ -4258,7 +4263,6 @@ void inferiorIntervalMapping(float* I, float* W, int rows, int columns, float* o
       }
     }
   }
-  free(signMatrix);
 }
 
 void superiorIntervalMapping(float* I, float* W, int rows, int columns, float* out) {
@@ -4298,6 +4302,75 @@ void generateIntervalFromInputLabelAndRange(int* label,int labelSize, int range,
     }
 }
 
+void generateIntervalFromInputLabelAndRangeAndArea(float* label,int rows, int columns, int range, int position, int sizeOfWindow, float * outputLabel) {
+    int i = 0;
+    int j = 0;
+    int isInsideWindow = 0;
+    int numberOfWindows = ((rows-sizeOfWindow)+1)*((columns-sizeOfWindow)+1);
+    if(position >= numberOfWindows || sizeOfWindow == 0 || rows-sizeOfWindow < 0 || columns-sizeOfWindow < 0) {
+        printf("Wrong setting parameters for sizeWindow: %d and rows: %d and columns: %d or position: %d \n",sizeOfWindow,rows, columns, position);
+        exit(0);
+    }
+    int y = position/((columns-sizeOfWindow)+1);
+    int x = position%((columns-sizeOfWindow)+1);
+    for(i = 0; i< rows; i++) {
+      for(j = 0; j<columns; j++) {
+        isInsideWindow = 0;
+        if((j < x+sizeOfWindow) && (j >= x)) {
+          if((i < y+sizeOfWindow) && (i >= y)) {
+            isInsideWindow = 1;
+
+            if((label[i*columns + j] + range) > 255) {
+              outputLabel[((i*columns + j)*2)+1] = (float)255;
+            }
+            else {
+              outputLabel[((i*columns + j)*2)+1] = (float)(label[(i*columns + j)] + range);
+            }
+
+            if((label[i*columns + j] - range) < 0) {
+              outputLabel[(i*columns + j)*2] = (float)0;
+            }
+            else {
+              outputLabel[(i*columns + j)*2] = (float)(label[(i*columns + j)] - range);
+            }
+          }
+        }
+        if(!isInsideWindow) {
+          outputLabel[(i*columns + j)*2] = label[(i*columns + j)];
+          outputLabel[((i*columns + j)*2)+1] = label[(i*columns + j)];
+        }
+      }
+    }
+}
+
+
+void printIntervalFromInputLabelAndRangeAndArea(int* label,int rows, int columns, int range, int position, int sizeOfWindow) {
+    int i = 0;
+    int j = 0;
+    int isInsideWindow = 0;
+    int numberOfWindows = ((rows-sizeOfWindow)+1)*((columns-sizeOfWindow)+1);
+    if(position >= numberOfWindows) {
+        return;
+    }
+    int y = position/((columns-sizeOfWindow)+1);
+    int x = position%((columns-sizeOfWindow)+1);
+    for(i = 0; i< rows; i++) {
+      for(j = 0; j<columns; j++) {
+        isInsideWindow = 0;
+        if((j < x+sizeOfWindow) && (j >= x)) {
+          if((i < y+sizeOfWindow) && (i >= y)) {
+            isInsideWindow = 1;
+            printf("  %.6f", (float)100);
+          }
+        }
+        if(!isInsideWindow) {
+          printf("  %.6f", (float) 0);
+        }
+      }
+      printf("\n");
+    }
+}
+
 int probableAdversarialExample(float* outputInterval, int outputNeuronNumber, int label) {
   int i =0;
   int indexOfBiggestMaxInterval = -1;
@@ -4315,7 +4388,6 @@ for(i = 0; i<outputNeuronNumber; i++) {
   }
 }
   if(outputInterval[label*2] < auxBiggest) {
-    printf("cheguei \n");
     return indexOfBiggestMaxInterval;
   }
   else
@@ -4442,19 +4514,35 @@ void imageInterval(float* domainInterval, float* outputInterval) {
   float* diagonalSup1;
   float* intervalInf1;
   float* intervalSup1;
+  intervalInf1 = (float*)malloc(5*5* sizeof(float));
+  intervalSup1 = (float*)malloc(5*5* sizeof(float));
+  diagonalInf1 = (float*)malloc(5* sizeof(float));
+  diagonalSup1 = (float*)malloc(5* sizeof(float));
 
    float inferiorLayer1Map[25*5];
    float superiorLayer1Map[25*5];
    float inferiorLayer1[5*5];
    float superiorLayer1[5*5];
+   // inferiorLayer1Map = (float*)malloc(25*5* sizeof(float));
+   // superiorLayer1Map = (float*)malloc(25*5* sizeof(float));
+   // inferiorLayer1 = (float*)malloc(5*5* sizeof(float));
+   // superiorLayer1 = (float*)malloc(5*5* sizeof(float));
+
+   // printf("DEBUG INTERVALO \n");
+   // printfMatrix(domainInterval, 25, 2);
+   // printf("DEBUG \n");
    inferiorIntervalMapping(domainInterval, w1, 5, 25, inferiorLayer1Map);
    superiorIntervalMapping(domainInterval, w1, 5, 25, superiorLayer1Map);
    cublasSgemm(cublasHandle, CUBLAS_OP_N, CUBLAS_OP_T, 5, 5, 25, &alpha,
                w1, 25, inferiorLayer1Map , 1, &beta, inferiorLayer1, 1);
    cublasSgemm(cublasHandle, CUBLAS_OP_N, CUBLAS_OP_T, 5, 5, 1, &alpha, bias1,
                1, onevec, 1, &alpha, inferiorLayer1, 1);
+               //
+               // printf("DEBUG LAYER \n");
+               // printfMatrix(inferiorLayer1, 5, 5);
+               // printf("DEBUG \n");
 
-   diagonalInf1 = diag(inferiorLayer1, 5);
+   diag(inferiorLayer1, 5,diagonalInf1);
 
 
    cublasSgemm(cublasHandle, CUBLAS_OP_N, CUBLAS_OP_T, 5, 5, 25, &alpha,
@@ -4462,54 +4550,110 @@ void imageInterval(float* domainInterval, float* outputInterval) {
    cublasSgemm(cublasHandle, CUBLAS_OP_N, CUBLAS_OP_T, 5, 5, 1, &alpha, bias1,
                1, onevec, 1, &alpha, superiorLayer1, 1);
 
-   diagonalSup1 = diag(superiorLayer1, 5);
+   diag(superiorLayer1, 5,diagonalSup1);
 
-  intervalInf1  = sigmoidVector(diagonalInf1, 5);
-  intervalSup1  = sigmoidVector(diagonalSup1, 5);
+
+  sigmoidVector(diagonalInf1, 5,intervalInf1);
+  sigmoidVector(diagonalSup1, 5,intervalSup1);
+
+  // printf("DEBUG diagsup \n");
+  // printfMatrix(intervalInf1, 5, 1);
+  // printf("DEBUG \n");
+  //
+  // printf("DEBUG diagsup \n");
+  // printfMatrix(intervalSup1, 5, 1);
+  // printf("DEBUG \n");
 
    float* intervalLayer1;
    float *intervalLayer2;
    float *intervalLayer3;
    float *intervalClass;
-   intervalLayer1 = (float*)calloc(5*2, sizeof(float));
-   intervalLayer2 = (float*)calloc(4*2, sizeof(float));
-   intervalLayer3 = (float*)calloc(5*2, sizeof(float));
-   intervalClass = (float*)calloc(5*2, sizeof(float));
+   intervalLayer1 = (float*)malloc(5*2* sizeof(float));
+   intervalLayer2 = (float*)malloc(4*2* sizeof(float));
+   intervalLayer3 = (float*)malloc(5*2* sizeof(float));
+   intervalClass = (float*)malloc(5*2* sizeof(float));
 
    concatVectorsAsColumns(intervalInf1, intervalSup1, 5, intervalLayer1);
    //printf("SAIDA 1 \n ");
    //printfMatrix(intervalLayer1, 5, 2);
 
-   float inferiorLayer2Map[5*4];
-   float superiorLayer2Map[5*4];
-   float inferiorLayer2[4*4];
-   float superiorLayer2[4*4];
+   float *inferiorLayer2Map;
+   float *superiorLayer2Map;
+   float *inferiorLayer2;
+   float *superiorLayer2;
+   inferiorLayer2Map = (float*)malloc(5*4* sizeof(float));
+   superiorLayer2Map = (float*)malloc(5*4* sizeof(float));
+   inferiorLayer2 = (float*)malloc(4*4* sizeof(float));
+   superiorLayer2 = (float*)malloc(4*4* sizeof(float));
+
    inferiorIntervalMapping(intervalLayer1, w2, 4, 5, inferiorLayer2Map);
    superiorIntervalMapping(intervalLayer1, w2, 4, 5, superiorLayer2Map);
 
+   //
+   // printf("DEBUG ENTRADA \n");
+   // printfMatrix(inferiorLayer2Map, 4, 5);
+   // printf("DEBUG \n");
+   //
+   // printf("DEBUG ENTRADA2 \n");
+   // printfMatrix(w2, 4, 5);
+   // printf("DEBUG \n");
+
    cublasSgemm(cublasHandle, CUBLAS_OP_N, CUBLAS_OP_T, 4, 4, 5, &alpha,
                w2, 1, inferiorLayer2Map , 1, &beta, inferiorLayer2, 1);
+               // printf("DEBUG SEM BIAS \n");
+               // printfMatrix(&inferiorLayer2[0], 4, 4);
+               // printf("DEBUG \n");
    cublasSgemm(cublasHandle, CUBLAS_OP_N, CUBLAS_OP_T, 4, 4, 1, &alpha, bias2,
                1, onevec, 1, &alpha, inferiorLayer2, 1);
 
+
   cublasSgemm(cublasHandle, CUBLAS_OP_N, CUBLAS_OP_T, 4, 4, 5, &alpha,
               w2, 1, superiorLayer2Map , 1, &beta, superiorLayer2, 1);
+              // printf("DEBUG COM BIAS \n");
   cublasSgemm(cublasHandle, CUBLAS_OP_N, CUBLAS_OP_T, 4, 4, 1, &alpha, bias2,
               1, onevec, 1, &alpha, superiorLayer2, 1);
+              // printf("DEBUG COM BIAS \n");
+              // printfMatrix(inferiorLayer2, 4, 4);
+              // printf("DEBUG \n");
+              //
+              //
+              // printf("DEBUG RESULTADO \n");
+              // printfMatrix(inferiorLayer2, 4, 4);
+              // printf("DEBUG \n");
+              //
+              // printf("DEBUG RESULTADO \n");
+              // printfMatrix(superiorLayer2, 4, 4);
+              // printf("DEBUG \n");
 
   float* diagonalInf2, *diagonalSup2, * intervalInf2, * intervalSup2;
-  diagonalInf2 = diag(inferiorLayer2, 4);
-  diagonalSup2 = diag(superiorLayer2, 4);
-  intervalInf2  = sigmoidVector(diagonalInf2, 4);
-  intervalSup2  = sigmoidVector(diagonalSup2, 4);
+  diagonalInf2 = (float*)malloc(4* sizeof(float));
+  diagonalSup2 = (float*)malloc(4* sizeof(float));
+  intervalInf2 = (float*)malloc(4* sizeof(float));
+  intervalSup2 = (float*)malloc(4* sizeof(float));
+  diag(inferiorLayer2, 4, diagonalInf2);
+  diag(superiorLayer2, 4, diagonalSup2);
+  sigmoidVector(diagonalInf2, 4, intervalInf2);
+  sigmoidVector(diagonalSup2, 4, intervalSup2);
   concatVectorsAsColumns(intervalInf2, intervalSup2, 4, intervalLayer2);
 
+  // printf("DEBUG LAYER2 \n");
+  // printfMatrix(inferiorLayer2, 4, 4);
+  // printf("DEBUG \n");
+  //
+  // printf("DEBUG LAYER2 \n");
+  // printfMatrix(inferiorLayer2, 4, 4);
+  // printf("DEBUG \n");
 
 
-  float inferiorLayer3Map[5*4];
-  float superiorLayer3Map[5*4];
-  float inferiorLayer3[5*5];
-  float superiorLayer3[5*5];
+  float* inferiorLayer3Map;
+  float* superiorLayer3Map;
+  float* inferiorLayer3;
+  float* superiorLayer3;
+  inferiorLayer3Map = (float*)malloc(5*4* sizeof(float));
+  superiorLayer3Map = (float*)malloc(5*4* sizeof(float));
+  inferiorLayer3 = (float*)malloc(5*5* sizeof(float));
+  superiorLayer3 = (float*)malloc(5*5* sizeof(float));
+
   inferiorIntervalMapping(intervalLayer2, w3, 5, 4, inferiorLayer3Map);
   superiorIntervalMapping(intervalLayer2, w3, 5, 4, superiorLayer3Map);
 
@@ -4524,13 +4668,25 @@ void imageInterval(float* domainInterval, float* outputInterval) {
              1, onevec, 1, &alpha, superiorLayer3, 1);
 
  float* diagonalInf3, *diagonalSup3, * intervalInf3, * intervalSup3;
- diagonalInf3 = diag(inferiorLayer3, 5);
- diagonalSup3 = diag(superiorLayer3, 5);
- intervalInf3  = sigmoidVector(diagonalInf3, 5);
- intervalSup3  = sigmoidVector(diagonalSup3, 5);
+ diagonalInf3 = (float*)malloc(5* sizeof(float));
+ diagonalSup3 = (float*)malloc(5* sizeof(float));
+ intervalInf3 = (float*)malloc(5* sizeof(float));
+ intervalSup3 = (float*)malloc(5* sizeof(float));
+ diag(inferiorLayer3, 5, diagonalInf3);
+ diag(superiorLayer3, 5, diagonalSup3);
+ sigmoidVector(diagonalInf3, 5, intervalInf3);
+ sigmoidVector(diagonalSup3, 5, intervalSup3);
+
+ // printf("DEBUG diagsup3 \n");
+ // printfMatrix(diagonalSup3, 5, 1);
+ // printf("DEBUG \n");
+ //
+ // printf("DEBUG diagsup3 \n");
+ // printfMatrix(diagonalInf3, 5, 1);
+ // printf("DEBUG \n");
  concatVectorsAsColumns(intervalInf3, intervalSup3, 5, intervalLayer3);
  concatVectorsAsColumns(intervalInf3, intervalSup3, 5, outputInterval);
- //float* classiInf = (float*)calloc(5,sizeof(float));
+ //float* classiInf = (float*)malloc(5,sizeof(float));
  //float* classSup = (float*)calloc(5,sizeof(float));
  //softMax(intervalInf3, 5,classiInf);
  //softMax(intervalSup3, 5,classSup);
@@ -4538,83 +4694,327 @@ void imageInterval(float* domainInterval, float* outputInterval) {
  //printfMatrix(intervalClass,5,2);
 
 
+ // free(inferiorLayer1Map);
+ // free(superiorLayer1Map);
+ // free(inferiorLayer1);
+ // free(superiorLayer1);
+ free(intervalInf1);
+ free(intervalSup1);
+ free(diagonalInf1);
+ free(diagonalSup1);
+ free(intervalLayer1);
+ free(intervalLayer2);
+ free(intervalLayer3);
+ free(intervalClass);
+
+ free(inferiorLayer2Map);
+ free(superiorLayer2Map);
+ free(inferiorLayer2);
+ free(superiorLayer2);
+
+ free(diagonalInf2);
+ free(diagonalSup2);
+ free(intervalInf2);
+ free(intervalSup2);
+
+ free(inferiorLayer3Map);
+ free(superiorLayer3Map);
+ free(inferiorLayer3);
+ free(superiorLayer3);
+
+ free(diagonalInf3);
+ free(diagonalSup3);
+ free(intervalInf3);
+ free(intervalSup3);
+}
+
+void activeSigmoidLUT(float *layer, int sizeLayer) {
+  ushort i;
+  for (i = 0; i < sizeLayer; i++) {
+    layer[i] = sigmoidFunctionLut(layer[i]);
+  }
+}
+int biggest(float* vec, int size) {
+  int i = 0;
+  float biggest = vec[0];
+  int biggestIndex = 0;
+  for(i=1; i<size;i++) {
+    if(vec[i] > biggest) {
+      printf("1: %.6f e 2: %.6f e index: %d \n",vec[i], biggest, i);
+      biggestIndex = i;
+      biggest = vec[i];
+    }
+  }
+  return biggestIndex;
+}
+
+void checkNNLUT(float wfc1[125], float bfc1[5], float wfc2[20], float bfc2[4],
+                float wfc3[20], float bfc3[5], float img[25]) {
+
+  //	float *x1layer1;
+  //	float *x1layer2;
+  //	float *x1layer3;
+  //	float *x2layer1;
+  //	float *x2layer2;
+  //	float *x2layer3;
+  float alpha;
+  float beta;
+  // float* dev_result;
+  int fc1 = 5;
+  int fc2 = 4;
+  int fc3 = 5;
+  int data = 25;
+  // initializing cublas handle
+  cublasHandle_t cublasHandle;
+  cublasCreate(&cublasHandle);
+
+  alpha = 1;
+  beta = 0;
+  /* sets the size of v */
+  // data = (float*)malloc(data*sizeof(float));
+  float onevec[25] = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+                      1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
+
+  // wfc1 = (float*)malloc(data*fc1*sizeof(float));
+
+  // x1layer1 = (float*)malloc(fc1*sizeof(float));
+  // x1layer2 = (float*)malloc(fc2*sizeof(float));
+  // x1layer3 = (float*)malloc(fc3*sizeof(float));
+
+  // x2layer1 = (float*)malloc(fc1*sizeof(float));
+  // x2layer2 = (float*)malloc(fc2*sizeof(float));
+  // x2layer3 = (float*)malloc(fc3*sizeof(float));
+
+  float x1layer1[5] = {0, 0, 0, 0, 0};
+  float x1layer2[4] = {0, 0, 0, 0};
+  float x1layer3[5] = {0, 0, 0, 0, 0};
+
+  cublasSgemm(cublasHandle, CUBLAS_OP_N, CUBLAS_OP_N, fc1, 1, data, &alpha,
+              wfc1, data, img, 1, &beta, x1layer1, 1);
+
+
+  cublasSgemm(cublasHandle, CUBLAS_OP_N, CUBLAS_OP_N, fc1, 1, 1, &alpha, bfc1,
+              1, onevec, 1, &alpha, x1layer1, 1);
+
+  // imprimeResultante(x1layer1, fc1);
+  activeSigmoidLUT(x1layer1, fc1);
+  //	imprimeResultante(x1layer1, fc1);
+
+  // Computing the first layer of the second image x2 on the same Neural Network
+
+  cublasSgemm(cublasHandle, CUBLAS_OP_N, CUBLAS_OP_N, fc2, 1, fc1, &alpha, wfc2,
+              fc1, x1layer1, 1, &beta, x1layer2, 1);
+
+  cublasSgemm(cublasHandle, CUBLAS_OP_N, CUBLAS_OP_N, fc2, 1, 1, &alpha, bfc2,
+              1, onevec, 1, &alpha, x1layer2, 1);
+
+  // imprimeResultante(x1layer2, fc2);
+  activeSigmoidLUT(x1layer2, fc2);
+  //	imprimeResultante(x1layer2, fc2);
+
+  // Computing the second layer of the second image on the same Neural network
+
+  cublasSgemm(cublasHandle, CUBLAS_OP_N, CUBLAS_OP_N, fc3, 1, fc2, &alpha, wfc3,
+              fc2, x1layer2, 1, &beta, x1layer3, 1);
+
+  cublasSgemm(cublasHandle, CUBLAS_OP_N, CUBLAS_OP_N, fc3, 1, 1, &alpha, bfc3,
+              1, onevec, 1, &alpha, x1layer3, 1);
+
+  // imprimeResultante(x1layer3, fc3);
+  activeSigmoidLUT(x1layer3, fc3);
+  printfMatrix(x1layer3, 5, 1);
+  printf("BIGGEST: %d \n", biggest(x1layer3, 5));
+//  printfMatrix(x1layer3, 5, 1);
+  // imprimeResultante(x1layer3, fc3);
+  //	float a[3] = {0.8, 0.8, 0.8};
+  // Computing the third layer of the second image on the same Neural network
+  //__ESBMC_assert(x1layer3[vogal] > 0.5 || x1layer3[unsafe] < 0.5,
+  //               "Image is unexpected");
 }
 
 
-
 int main(){
-  float bias1[5] = {-1.391982, -3.072579, -1.939275, 2.767071, 1.220037};
+  // float bias1[5] = {-1.391982, -3.072579, -1.939275, 2.767071, 1.220037};
+  //
+  // float w1[125] = {1.747817,  2.078215,  1.525674,  2.068568,  -1.229014,  0.096640,  1.373888,  -1.629306,  0.364461,  0.015546,  -0.487300,  -1.058555,  -0.007535,  -2.282920,  -0.921622,  -0.796065,  -2.911950,  0.410396,  -3.916576,  3.228107,  0.979340,  -0.437140,  -2.585713,  -1.588195,  0.614454,
+  // 0.096640,  1.373888,  -1.629306,  0.364461,  0.015546,  -0.487300,  -1.058555,  -0.007535,  -2.282920,  -0.921622,  -0.796065,  -2.911950,  0.410396,  -3.916576,  3.228107,  0.979340,  -0.437140,  -2.585713,  -1.588195,  0.614454,  -1.391982,  1.676011,  0.300922,  -0.260411,  1.649863,
+  // -0.487300,  -1.058555,  -0.007535,  -2.282920,  -0.921622,  -0.796065,  -2.911950,  0.410396,  -3.916576,  3.228107,  0.979340,  -0.437140,  -2.585713,  -1.588195,  0.614454,  -1.391982,  1.676011,  0.300922,  -0.260411,  1.649863,  -3.072579,  0.432040,  0.027175,  0.626344,  -0.111208,
+  // -0.796065,  -2.911950,  0.410396,  -3.916576,  3.228107,  0.979340,  -0.437140,  -2.585713,  -1.588195,  0.614454,  -1.391982,  1.676011,  0.300922,  -0.260411,  1.649863,  -3.072579,  0.432040,  0.027175,  0.626344,  -0.111208,  -1.939275,  -0.147955,  1.194864,  -0.840401,  -0.479575,
+  // 0.979340,  -0.437140,  -2.585713,  -1.588195,  0.614454,  -1.391982,  1.676011,  0.300922,  -0.260411,  1.649863,  -3.072579,  0.432040,  0.027175,  0.626344,  -0.111208,  -1.939275,  -0.147955,  1.194864,  -0.840401,  -0.479575,  2.767071,  0.506253,  0.660930,  0.893657,  -0.365246};
+  //
+  // float bias2[4] = {5.270865, -2.297887, 3.419328, 1.721100};
+  //
+  // float w2[20]={-7.533677,  -1.473646,  0.474584,  0.692077,  3.606815,
+  // 5.270865,  -5.977878,  -1.299591,  0.274884,  5.052619,
+  // -2.297887,  -5.343464,  -0.671682,  2.775591,  -5.070639,
+  // 3.419328,  -3.875100,  -2.314803,  -4.254568,  0.203830};
+  //
+  // float bias3[5]={-5.420448, -7.647144, -7.993252, 3.888156, 3.253492};
+  //
+  // float w3[20] = {-9.077102,  6.026314,  2.987803,  1.921376,
+  // 3.633275,  -8.355824,  7.451096,  1.382562,
+  // 3.352142,  4.548234,  -8.615975,  4.114339,
+  // -7.865677,  -4.624271,  -4.619353,  0.750661,
+  // 1.141060,  -5.205578,  -3.401493,  -9.008119};
 
-  float w1[125] = {1.747817,  2.078215,  1.525674,  2.068568,  -1.229014,  0.096640,  1.373888,  -1.629306,  0.364461,  0.015546,  -0.487300,  -1.058555,  -0.007535,  -2.282920,  -0.921622,  -0.796065,  -2.911950,  0.410396,  -3.916576,  3.228107,  0.979340,  -0.437140,  -2.585713,  -1.588195,  0.614454,
-  0.096640,  1.373888,  -1.629306,  0.364461,  0.015546,  -0.487300,  -1.058555,  -0.007535,  -2.282920,  -0.921622,  -0.796065,  -2.911950,  0.410396,  -3.916576,  3.228107,  0.979340,  -0.437140,  -2.585713,  -1.588195,  0.614454,  -1.391982,  1.676011,  0.300922,  -0.260411,  1.649863,
-  -0.487300,  -1.058555,  -0.007535,  -2.282920,  -0.921622,  -0.796065,  -2.911950,  0.410396,  -3.916576,  3.228107,  0.979340,  -0.437140,  -2.585713,  -1.588195,  0.614454,  -1.391982,  1.676011,  0.300922,  -0.260411,  1.649863,  -3.072579,  0.432040,  0.027175,  0.626344,  -0.111208,
-  -0.796065,  -2.911950,  0.410396,  -3.916576,  3.228107,  0.979340,  -0.437140,  -2.585713,  -1.588195,  0.614454,  -1.391982,  1.676011,  0.300922,  -0.260411,  1.649863,  -3.072579,  0.432040,  0.027175,  0.626344,  -0.111208,  -1.939275,  -0.147955,  1.194864,  -0.840401,  -0.479575,
-  0.979340,  -0.437140,  -2.585713,  -1.588195,  0.614454,  -1.391982,  1.676011,  0.300922,  -0.260411,  1.649863,  -3.072579,  0.432040,  0.027175,  0.626344,  -0.111208,  -1.939275,  -0.147955,  1.194864,  -0.840401,  -0.479575,  2.767071,  0.506253,  0.660930,  0.893657,  -0.365246};
-
-  float bias2[4] = {5.270865, -2.297887, 3.419328, 1.721100};
-
-  float w2[20]={-7.533677,  -1.473646,  0.474584,  0.692077,  3.606815,
-  5.270865,  -5.977878,  -1.299591,  0.274884,  5.052619,
-  -2.297887,  -5.343464,  -0.671682,  2.775591,  -5.070639,
-  3.419328,  -3.875100,  -2.314803,  -4.254568,  0.203830};
-
-  float bias3[5]={-5.420448, -7.647144, -7.993252, 3.888156, 3.253492};
-
-  float w3[20] = {-9.077102,  6.026314,  2.987803,  1.921376,
-  3.633275,  -8.355824,  7.451096,  1.382562,
-  3.352142,  4.548234,  -8.615975,  4.114339,
-  -7.865677,  -4.624271,  -4.619353,  0.750661,
-  1.141060,  -5.205578,  -3.401493,  -9.008119};
-
- int vocalicA[25] = {255, 255, 255, 255, 255, 255, 0, 0, 0, 255, 255, 255, 255, 255, 255, 255, 0, 0, 0, 255, 255, 0, 0, 0, 255};
+ float vocalicA[25] = {255, 255, 255, 255, 255, 255, 0, 0, 0, 255, 255, 255, 255, 255, 255, 255, 0, 0, 0, 255, 255, 0, 0, 0, 255};
  int label = 0;
 
  float *intervalDomain;
- intervalDomain = (float*)calloc(50,sizeof(float));
+ intervalDomain = (float*)malloc(50*sizeof(float));
+ float *intervalDomainN;
+ intervalDomainN = (float*)malloc(50*sizeof(float));
  float *outputInterval;
- outputInterval = (float*)calloc(10,sizeof(float));
+ outputInterval = (float*)malloc(10*sizeof(float));
  float interval[25][2] = {
-  {225, 255},
-  {225, 255},
-  {225, 255},
-  {225, 255},
-  {225, 255},
-  {225, 255},
-  {0, 30},
-  {0, 30},
-  {0, 30},
-  {225, 255},
-  {225, 255},
-  {225, 255},
-  {225, 255},
-  {225, 255},
-  {225, 255},
-  {225, 255},
-  {0, 30},
-  {0, 30},
-  {0, 30},
-  {225, 255},
-  {225, 255},
-  {0, 30},
-  {0, 30},
-  {0, 30},
-  {225, 255}
+   {255, 255},
+   {255, 255},
+   {255, 255},
+   {255, 255},
+   {255, 255},
+   {255, 255},
+   {0, 0},
+   {0, 0},
+   {0, 0},
+   {255, 255},
+   {255, 255},
+   {255, 255},
+   {255, 255},
+   {255, 255},
+   {255, 255},
+   {255, 255},
+   {0, 0},
+   {0, 0},
+   {0, 242},
+   {255, 255},
+   {255, 255},
+   {0, 0},
+   {0, 0},
+   {0, 0},
+   {255, 255}
 };
-//  generateIntervalFromInputLabelAndRange(vocalicA, 25, 31, intervalDomain);
-  //printfMatrix(interval,25,2);
-  //normalizef(intervalDomain,50);
-  //normalizef(interval,50);
-  //imageInterval(intervalDomain, outputInterval);
-  //printfMatrix(outputInterval,5,2);
-  int i = 0;
-  for(i=0; i < 100; i++) {
-    generateIntervalFromInputLabelAndRange(vocalicA, 25, i, intervalDomain);
-    normalizef(intervalDomain,50);
-    imageInterval(intervalDomain, outputInterval);
-    if(probableAdversarialExample(outputInterval, 5, 0) > 0){
-      printf("range %d \n", i);
-      break;
-    }
-  }
-  printf(" provavel : %d \n ", probableAdversarialExample(outputInterval, 5, 0));
+
+float imgA[25] = {255, 255, 255, 255, 255, 255, 0,   0,   0, 255, 255, 255, 255,
+                  255, 255, 255, 0,   0,   0,   255, 255, 0, 0,   0,   255};
+float imgE[25] = {255, 255, 255, 255, 255, 255, 0, 0,   0,   0,   255, 255, 255,
+                  255, 255, 255, 0,   0,   0,   0, 255, 255, 255, 255, 255};
+float imgI[25] = {255, 255, 255, 255, 255, 0, 0, 255, 0,   0,   0,   0,  255,
+                  0,   0,   0,   0,   255, 0, 0, 255, 255, 255, 255, 255};
+float imgO[25] = {255, 255, 255, 255, 255, 255, 0,   0,   0,   255, 255, 0,  0,
+                  0,   255, 255, 0,   0,   0,   255, 255, 255, 255, 255, 255};
+float imgU[25] = {255, 0,   0,   0, 255, 255, 0,   0,   0,   255, 255, 0,  0,
+                  0,   255, 255, 0, 0,   0,   255, 255, 255, 255, 255, 255};
+//normalizef(imgA,25);
+//normalizef(imgE,25);
+//normalizef(imgI,25);
+//normalizef(imgO,25);
+//normalizef(imgU,25);
+ int sizeWindow = 0;
+ int positionOfWindow;
+ int range = 0;
+ int numberOfPossibleWindows = 0;
+printf("\nVOCALIC A: \n\n");
+ for(sizeWindow = 1; sizeWindow <= 5; sizeWindow++) {
+   numberOfPossibleWindows = (((5 - sizeWindow)+1)*((5 - sizeWindow)+1));
+   for(positionOfWindow = 0; positionOfWindow < numberOfPossibleWindows; positionOfWindow++) {
+     for(range = 0; range < 255; range++) {
+       generateIntervalFromInputLabelAndRangeAndArea(imgA,5, 5, range, positionOfWindow, sizeWindow ,intervalDomain);
+       intervalDomainN = normalizefVec(intervalDomain,50);
+       imageInterval(intervalDomainN, outputInterval);
+       if(probableAdversarialExample(outputInterval, 5, 0) > 0){
+         printf("ANN is safe w.r.t a %dx%d Window, at position %d, with a interval range of %d \n", sizeWindow, sizeWindow, positionOfWindow, range);
+         printf("\nDomainInterval: \n\n");
+         printfMatrix(intervalDomain, 25, 2);
+         printf("\nImageInterval: \n\n");
+         printfMatrix(outputInterval,5,2);
+         range = 255;
+       }
+     }
+   }
+ }
+
+printf("\nVOCALIC E: \n\n");
+ for(sizeWindow = 1; sizeWindow <= 5; sizeWindow++) {
+   numberOfPossibleWindows = (((5 - sizeWindow)+1)*((5 - sizeWindow)+1));
+   for(positionOfWindow = 0; positionOfWindow < numberOfPossibleWindows; positionOfWindow++) {
+     for(range = 0; range < 255; range++) {
+       generateIntervalFromInputLabelAndRangeAndArea(imgE,5, 5, range, positionOfWindow, sizeWindow ,intervalDomain);
+       intervalDomainN = normalizefVec(intervalDomain,50);
+       imageInterval(intervalDomainN, outputInterval);
+       if(probableAdversarialExample(outputInterval, 5, 1) > 0){
+         printf("ANN is safe w.r.t a %dx%d Window, at position %d, with a interval range of %d \n", sizeWindow, sizeWindow, positionOfWindow, range);
+         printf("\nDomainInterval: \n\n");
+         printfMatrix(intervalDomain, 25, 2);
+         printf("\nImageInterval: \n\n");
+         printfMatrix(outputInterval,5,2);
+         range = 255;
+       }
+     }
+   }
+ }
+
+printf("\nVOCALIC I: \n\n");
+ for(sizeWindow = 1; sizeWindow <= 5; sizeWindow++) {
+   numberOfPossibleWindows = (((5 - sizeWindow)+1)*((5 - sizeWindow)+1));
+   for(positionOfWindow = 0; positionOfWindow < numberOfPossibleWindows; positionOfWindow++) {
+     for(range = 0; range < 255; range++) {
+       generateIntervalFromInputLabelAndRangeAndArea(imgI,5, 5, range, positionOfWindow, sizeWindow ,intervalDomain);
+       intervalDomainN = normalizefVec(intervalDomain,50);
+       imageInterval(intervalDomainN, outputInterval);
+       if(probableAdversarialExample(outputInterval, 5, 2) > 0){
+         printf("ANN is safe w.r.t a %dx%d Window, at position %d, with a interval range of %d \n", sizeWindow, sizeWindow, positionOfWindow, range);
+         printf("\nDomainInterval: \n\n");
+         printfMatrix(intervalDomain, 25, 2);
+         printf("\nImageInterval: \n\n");
+         printfMatrix(outputInterval,5,2);
+         range = 255;
+       }
+     }
+   }
+ }
+
+printf("\nVOCALIC O: \n\n");
+ for(sizeWindow = 1; sizeWindow <= 5; sizeWindow++) {
+   numberOfPossibleWindows = (((5 - sizeWindow)+1)*((5 - sizeWindow)+1));
+   for(positionOfWindow = 0; positionOfWindow < numberOfPossibleWindows; positionOfWindow++) {
+     for(range = 0; range < 255; range++) {
+       generateIntervalFromInputLabelAndRangeAndArea(imgO,5, 5, range, positionOfWindow, sizeWindow ,intervalDomain);
+       intervalDomainN = normalizefVec(intervalDomain,50);
+       imageInterval(intervalDomainN, outputInterval);
+       if(probableAdversarialExample(outputInterval, 5, 3) > 0){
+         printf("ANN is safe w.r.t a %dx%d Window, at position %d, with a interval range of %d \n", sizeWindow, sizeWindow, positionOfWindow, range);
+         printf("\nDomainInterval: \n\n");
+         printfMatrix(intervalDomain, 25, 2);
+         printf("\nImageInterval: \n\n");
+         printfMatrix(outputInterval,5,2);
+         range = 255;
+       }
+     }
+   }
+ }
+
+printf("\nVOCALIC U: \n\n");
+ for(sizeWindow = 1; sizeWindow <= 5; sizeWindow++) {
+   numberOfPossibleWindows = (((5 - sizeWindow)+1)*((5 - sizeWindow)+1));
+   for(positionOfWindow = 0; positionOfWindow < numberOfPossibleWindows; positionOfWindow++) {
+     for(range = 0; range < 255; range++) {
+       generateIntervalFromInputLabelAndRangeAndArea(imgU,5, 5, range, positionOfWindow, sizeWindow ,intervalDomain);
+       intervalDomainN = normalizefVec(intervalDomain,50);
+       imageInterval(intervalDomainN, outputInterval);
+       if(probableAdversarialExample(outputInterval, 5, 4) > 0){
+         printf("ANN is safe w.r.t a %dx%d Window, at position %d, with a interval range of %d \n", sizeWindow, sizeWindow, positionOfWindow, range);
+         printf("\nDomainInterval: \n\n");
+         printfMatrix(intervalDomain, 25, 2);
+         printf("\nImageInterval: \n\n");
+         printfMatrix(outputInterval,5,2);
+         range = 255;
+       }
+     }
+   }
+ }
+
+  // normalizef(interval,50);
+  // imageInterval(interval, outputInterval);
+  // printfMatrix(outputInterval,5,2);
+
 }

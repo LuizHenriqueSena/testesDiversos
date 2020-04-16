@@ -318,15 +318,18 @@ cublasStatus_t cublasSgemm(cublasHandle_t handle, cublasOperation_t transa,
                            const float *alpha, const float *A, int lda,
                            const float *B, int ldb, const float *beta, float *C,
                            int ldc) {
-  int counterX, counterY, counterZ;
+  int counterX = 0;
+  int counterY = 0;
+  int counterZ = 0;
   float result = 0;
   if ((transa == CUBLAS_OP_N) && (transb == CUBLAS_OP_N)) {
     result = 0;
     for (counterZ = 0; counterZ < m; counterZ++) {
+      result = 0;
       for (counterY = 0; counterY < n; counterY++) {
         result = 0;
         for (counterX = 0; counterX < k; counterX++) {
-          result = (A[counterX + counterZ * k] * B[counterX*k +counterY]) + result;
+          result = (A[counterX + counterZ * k] * B[counterX*n +counterY]) + result;
         }
         C[counterZ*n + counterY] = alpha[0] * result + beta[0] * C[counterZ*n + counterY];
       }

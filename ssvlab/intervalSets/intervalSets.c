@@ -1,8 +1,10 @@
 #include <stdio.h>
 #include <math.h>
 #include <stdlib.h>
+#include <time.h>
 #include "cuda_operational_model.h"
 
+//sudo gcc -o main6 intervalSets.c -I . -lm
 
 float lookup[40001] = {0.000000 ,0.000000 ,0.000000 ,0.000000 ,0.000000 ,0.000000 ,0.000000 ,0.000000 ,0.000000 ,0.000000 ,
 0.000000 ,0.000000 ,0.000000 ,0.000000 ,0.000000 ,0.000000 ,0.000000 ,0.000000 ,0.000000 ,0.000000 ,
@@ -4729,7 +4731,7 @@ void imageInterval(float* domainInterval, float* outputInterval) {
 }
 
 void activeSigmoidLUT(float *layer, int sizeLayer) {
-  ushort i;
+  int i;
   for (i = 0; i < sizeLayer; i++) {
     layer[i] = sigmoidFunctionLut(layer[i]);
   }
@@ -4856,6 +4858,8 @@ int main(){
   // 3.352142,  4.548234,  -8.615975,  4.114339,
   // -7.865677,  -4.624271,  -4.619353,  0.750661,
   // 1.141060,  -5.205578,  -3.401493,  -9.008119};
+  clock_t t;
+  t = clock();
 
  float vocalicA[25] = {255, 255, 255, 255, 255, 255, 0, 0, 0, 255, 255, 255, 255, 255, 255, 255, 0, 0, 0, 255, 255, 0, 0, 0, 255};
  int label = 0;
@@ -4922,11 +4926,12 @@ printf("\nVOCALIC A: \n\n");
        intervalDomainN = normalizefVec(intervalDomain,50);
        imageInterval(intervalDomainN, outputInterval);
        if(probableAdversarialExample(outputInterval, 5, 0) > 0){
-         printf("ANN is safe w.r.t a %dx%d Window, at position %d, with a interval range of %d \n", sizeWindow, sizeWindow, positionOfWindow, range);
-         printf("\nDomainInterval: \n\n");
-         printfMatrix(intervalDomain, 25, 2);
-         printf("\nImageInterval: \n\n");
-         printfMatrix(outputInterval,5,2);
+         //printf("ANN is safe w.r.t a %dx%d Window, at position %d, with a interval range of %d \n", sizeWindow, sizeWindow, positionOfWindow, range);
+         //printf("\nDomainInterval: \n\n");
+         //printfMatrix(intervalDomain, 25, 2);
+         //printf("\nImageInterval: \n\n");
+         //printfMatrix(outputInterval,5,2);
+         printf("1 & %d & %d & %d \\\\ \\hline \n", sizeWindow, positionOfWindow,range);
          range = 255;
        }
      }
@@ -4942,11 +4947,12 @@ printf("\nVOCALIC E: \n\n");
        intervalDomainN = normalizefVec(intervalDomain,50);
        imageInterval(intervalDomainN, outputInterval);
        if(probableAdversarialExample(outputInterval, 5, 1) > 0){
-         printf("ANN is safe w.r.t a %dx%d Window, at position %d, with a interval range of %d \n", sizeWindow, sizeWindow, positionOfWindow, range);
-         printf("\nDomainInterval: \n\n");
-         printfMatrix(intervalDomain, 25, 2);
-         printf("\nImageInterval: \n\n");
-         printfMatrix(outputInterval,5,2);
+         // printf("ANN is safe w.r.t a %dx%d Window, at position %d, with a interval range of %d \n", sizeWindow, sizeWindow, positionOfWindow, range);
+         // printf("\nDomainInterval: \n\n");
+         // printfMatrix(intervalDomain, 25, 2);
+         // printf("\nImageInterval: \n\n");
+         // printfMatrix(outputInterval,5,2);
+         printf("2 & %d & %d & %d \\\\ \\hline \n", sizeWindow, positionOfWindow,range);
          range = 255;
        }
      }
@@ -4962,11 +4968,12 @@ printf("\nVOCALIC I: \n\n");
        intervalDomainN = normalizefVec(intervalDomain,50);
        imageInterval(intervalDomainN, outputInterval);
        if(probableAdversarialExample(outputInterval, 5, 2) > 0){
-         printf("ANN is safe w.r.t a %dx%d Window, at position %d, with a interval range of %d \n", sizeWindow, sizeWindow, positionOfWindow, range);
-         printf("\nDomainInterval: \n\n");
-         printfMatrix(intervalDomain, 25, 2);
-         printf("\nImageInterval: \n\n");
-         printfMatrix(outputInterval,5,2);
+         // printf("ANN is safe w.r.t a %dx%d Window, at position %d, with a interval range of %d \n", sizeWindow, sizeWindow, positionOfWindow, range);
+         // printf("\nDomainInterval: \n\n");
+         // printfMatrix(intervalDomain, 25, 2);
+         // printf("\nImageInterval: \n\n");
+         // printfMatrix(outputInterval,5,2);
+         printf("3 & %d & %d & %d \\\\ \\hline \n", sizeWindow, positionOfWindow,range);
          range = 255;
        }
      }
@@ -4982,11 +4989,12 @@ printf("\nVOCALIC O: \n\n");
        intervalDomainN = normalizefVec(intervalDomain,50);
        imageInterval(intervalDomainN, outputInterval);
        if(probableAdversarialExample(outputInterval, 5, 3) > 0){
-         printf("ANN is safe w.r.t a %dx%d Window, at position %d, with a interval range of %d \n", sizeWindow, sizeWindow, positionOfWindow, range);
-         printf("\nDomainInterval: \n\n");
-         printfMatrix(intervalDomain, 25, 2);
-         printf("\nImageInterval: \n\n");
-         printfMatrix(outputInterval,5,2);
+         // printf("ANN is safe w.r.t a %dx%d Window, at position %d, with a interval range of %d \n", sizeWindow, sizeWindow, positionOfWindow, range);
+         // printf("\nDomainInterval: \n\n");
+         // printfMatrix(intervalDomain, 25, 2);
+         // printf("\nImageInterval: \n\n");
+         // printfMatrix(outputInterval,5,2);
+         printf("4 & %d & %d & %d \\\\ \\hline \n", sizeWindow, positionOfWindow,range);
          range = 255;
        }
      }
@@ -5002,16 +5010,21 @@ printf("\nVOCALIC U: \n\n");
        intervalDomainN = normalizefVec(intervalDomain,50);
        imageInterval(intervalDomainN, outputInterval);
        if(probableAdversarialExample(outputInterval, 5, 4) > 0){
-         printf("ANN is safe w.r.t a %dx%d Window, at position %d, with a interval range of %d \n", sizeWindow, sizeWindow, positionOfWindow, range);
-         printf("\nDomainInterval: \n\n");
-         printfMatrix(intervalDomain, 25, 2);
-         printf("\nImageInterval: \n\n");
-         printfMatrix(outputInterval,5,2);
+         // printf("ANN is safe w.r.t a %dx%d Window, at position %d, with a interval range of %d \n", sizeWindow, sizeWindow, positionOfWindow, range);
+         // printf("\nDomainInterval: \n\n");
+         // printfMatrix(intervalDomain, 25, 2);
+         // printf("\nImageInterval: \n\n");
+         // printfMatrix(outputInterval,5,2);
+         printf("5 & %d & %d & %d \\\\ \\hline \n", sizeWindow, positionOfWindow,range);
          range = 255;
        }
      }
    }
  }
+ t = clock() - t;
+ double time_taken = ((double)t)/CLOCKS_PER_SEC; // calculate the elapsed time
+printf("The program took %f seconds to execute", time_taken);
+
 
   // normalizef(interval,50);
   // imageInterval(interval, outputInterval);

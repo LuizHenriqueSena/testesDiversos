@@ -434,6 +434,11 @@ int main(){
     tries++;
     increaseLattices(intervalBreaksVec, tries*2);
   }
+  if (safe == 1) {
+    printf("safe\n");
+  }
+  else
+    printf("unsafe interval for n tries \n");
  t = clock() - t;
  double time_taken = ((double)t)/CLOCKS_PER_SEC; // calculate the elapsed time
 printf("The program took %f seconds to execute\n", time_taken);

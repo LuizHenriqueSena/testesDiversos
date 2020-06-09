@@ -404,12 +404,13 @@ void getSimbolicPropagationOfNN(float* w1, float* bias1, float* w2, float* bias2
       layer1Aux[i*(inputs+1)+(inputs) ] = bias1[i]*w2[k*neuronsIn + i];
     }
   }
-  //printfMatrix(layer1Aux, 2, 3);
+  printf("Restrictions\n");
+  printfMatrix(layer1Aux, 2, 3);
   float* layer2Simbolic;
   layer2Simbolic = (float*)malloc((inputs+1)* sizeof(int));
   computeLayerSimbolicPropagation(layer1Aux, bias2, inputSize[0], inputSize[1], layer2Simbolic);
-  // printf("SIMBOLIC OUTPUT:\n");
-  // printfMatrix(layer2Simbolic, 3, 1);
+  printf("Simbolic Propagation:\n");
+  printfMatrix(layer2Simbolic, 1, 3);
 }
 
 int imageIntervalFromLattices(float* interval, int* intervalBreaksVec, float safeLimit) {
@@ -505,9 +506,7 @@ int imageIntervalFromLattices(float* interval, int* intervalBreaksVec, float saf
                 1, onevec, 1, &alpha, superiorLayer1, 1);
 
     diag(inferiorLayer1, 2, diagonalInf1);
-    activationRELU(diagonalInf1, 2, diagonalInf1);
     diag(superiorLayer1, 2,diagonalSup1);
-    activationRELU(diagonalSup1, 2, diagonalSup1);
 
     concatVectorsAsColumns(diagonalInf1, diagonalSup1, 2, intervalLayer1);
 
@@ -528,9 +527,7 @@ int imageIntervalFromLattices(float* interval, int* intervalBreaksVec, float saf
                 1, onevec, 1, &alpha, superiorLayer2, 1);
 
     diag(inferiorLayer2, 1, diagonalInf2);
-    activationRELU(diagonalInf2, 1, diagonalInf2);
     diag(superiorLayer2, 1,diagonalSup2);
-    activationRELU(diagonalSup2, 1, diagonalSup2);
 
     concatVectorsAsColumns(diagonalInf2, diagonalSup2, 2, intervalLayer2);
     performUnion(unitedSets, &unionsSize, intervalLayer2);
@@ -561,24 +558,22 @@ int main(){
   clock_t t;
   t = clock();
 
-  float interval[2][2] = {
-    {0, 1}, //y
-    {0, 1}, //x
-  };
-  int intervalBreaksVec[2] = {4, 4};
   int safe = 0;
-  int tries = 0;
 
-  while(safe == 0 && tries<5){
-      safe = imageIntervalFromLattices(interval, intervalBreaksVec, 4.5);
-    tries++;
-    increaseLattices(intervalBreaksVec, tries*2);
-  }
-  if (safe == 1) {
-    printf("safe\n");
-  }
-  else
-  printf("unsafe interval for n tries \n");
+  float w1[4]= {-3, 2,
+                4, 1};
+
+  float bias1[2] = {0, 0};
+
+  float w2[2] = {1, 1};
+
+  float bias2[1] = {0};
+
+  int inputSize[3] = {2, 2, 1};
+  float* simbolicOperator;
+  simbolicOperator = (float*)malloc((inputSize[0]+1)* sizeof(int));
+
+  getSimbolicPropagationOfNN(w1, bias1, w2, bias2, inputSize, simbolicOperator);
   t = clock() - t;
   double time_taken = ((double)t)/CLOCKS_PER_SEC; // calculate the elapsed time
   printf("The program took %f seconds to execute\n", time_taken);

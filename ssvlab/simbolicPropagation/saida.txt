@@ -1,0 +1,6 @@
+Restrictions
+  -3.000000  2.000000  0.000000
+  4.000000  1.000000  0.000000
+Simbolic Propagation:
+  1.000000  3.000000  0.000000
+The program took 0.000053 seconds to execute

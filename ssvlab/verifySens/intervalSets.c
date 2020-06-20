@@ -33,16 +33,6 @@ void concatVectorsAsColumns(float* vec1, float* vec2, int size, float* out) {
   }
 }
 
-void activationRELU(float* input, int size, float* output){
-  for(int i =0; i< size; i++){
-    if(input[i] > 0){
-      output[i] = input[i];
-    }
-    else
-      output[i] = 0;
-  }
-}
-
 void printIMatrix(int * mat, int rows, int column) {
 int i =0, j = 0;
 for(i = 0; i< rows; i++) {
@@ -280,7 +270,7 @@ void printLattices(float* intputBreaksIntervals,int* intervalBreaksVec){
         printf("%.6f  ",intputBreaksIntervals[outIndex]);
         outIndex++;
   }
-  printf("\n");
+  printf("\n",intputBreaksIntervals[outIndex]);
 }
 }
 
@@ -317,41 +307,6 @@ void generateBeginningIndex(int* intervalBreaksVec, int*beginningIndexVec) {
   }
 }
 
-void performUnion(float* unionVec, int* size, float* setInclude) {
-  if(*size==0) {
-    unionVec[0] = setInclude[0];
-    unionVec[1] = setInclude[1];
-    *size = *size + 1;
-    return;
-  }
-    for(int i = *size-1; i >= 0; i--) {
-      if(unionVec[i*2] <= setInclude[0] && unionVec[(i*2)+1] >= setInclude[1]) {
-          return;
-      } else if(unionVec[i*2] >= setInclude[0] && unionVec[(i*2)+1] <= setInclude[1]) {
-          unionVec[i*2] = setInclude[0];
-          unionVec[(i*2)+1] = setInclude[1];
-          return;
-      }
-      else {
-          if(unionVec[i*2] <= setInclude[0]) {
-            if(unionVec[(i*2)+1] >= setInclude[0]) {
-              unionVec[(i*2)+1] = setInclude[1];
-              return;
-            }
-          }
-          else if(unionVec[i*2] >= setInclude[0]){
-            if(unionVec[i*2] <= setInclude[1]) {
-              unionVec[i*2] = setInclude[0];
-              return;
-            }
-          }
-        }
-      }
-        unionVec[*size*2] = setInclude[0];
-        unionVec[(*size*2)+1] = setInclude[1];
-        *size = *size+1;
-}
-
 void getOneIntervalFromLattices(float* intputBreaksIntervals,int index, int* beginningIndexVec, int* invertedAcumulated, float* intervalDomain) {
   int intVecSize = (int) sizeof(beginningIndexVec)/sizeof(beginningIndexVec[0]);
   int currentNeuronIndex = 0;
@@ -377,58 +332,11 @@ void increaseLattices( int* intervalBreaksVec, int number){
   }
 }
 
-void computeLayerSimbolicPropagation(float* layerAux, float* bias, int size, int neuronsPrevious, float* simbolicOutput){
-  for(int i = 0; i < size+1; i++) {
-    for(int j = 0; j < neuronsPrevious; j++){
-      if(j==0){
-        simbolicOutput[i] = layerAux[i+(j*(size+1))];
-      } else{
-        simbolicOutput[i] += layerAux[i+(j*(size+1))];
-      }
-    }
-  }
-}
-
-void getSimbolicPropagationOfNN(float* w1, float* bias1, float* w2, float* bias2, int* inputSize, float* simbolicOperator){
-  int dimension1 = (inputSize[0]+1)*inputSize[1];
-  int inputs = inputSize[0];
-  int neuronsIn = inputSize[1];
-  int neuronsOut = inputSize[2];
-  float* layer1Aux;
-  layer1Aux = (float*)malloc((dimension1)* sizeof(int));
-  for(int k = 0; k < neuronsOut; k++) {
-    for(int i = 0; i < neuronsIn; i++) {
-      for(int j = 0; j < inputs; j++) {
-        layer1Aux[i*(inputs+1) + j] = w1[i*inputs + j] * w2[k*neuronsIn + i];
-      }
-      layer1Aux[i*(inputs+1)+(inputs) ] = bias1[i]*w2[k*neuronsIn + i];
-    }
-  }
-  //printfMatrix(layer1Aux, 2, 3);
-  float* layer2Simbolic;
-  layer2Simbolic = (float*)malloc((inputs+1)* sizeof(int));
-  computeLayerSimbolicPropagation(layer1Aux, bias2, inputSize[0], inputSize[1], layer2Simbolic);
-  // printf("SIMBOLIC OUTPUT:\n");
-  // printfMatrix(layer2Simbolic, 3, 1);
-}
-
 int imageIntervalFromLattices(float* interval, int* intervalBreaksVec, float safeLimit) {
   int safe = 0;
+  float bias1[1] = {0};
 
-  float w1[4]= {-3, 2,
-                4, 1};
-
-  float bias1[2] = {0, 0};
-
-  float w2[2] = {1, 1};
-
-  float bias2[1] = {0};
-
-  int inputSize[3] = {2, 2, 1};
-  float* simbolicOperator;
-  simbolicOperator = (float*)malloc((inputSize[0]+1)* sizeof(int));
-
-  getSimbolicPropagationOfNN(w1, bias1, w2, bias2, inputSize, simbolicOperator);
+  float w1[2] = {3, 1};
 
   cublasHandle_t cublasHandle;
   cublasCreate(&cublasHandle);
@@ -438,6 +346,7 @@ int imageIntervalFromLattices(float* interval, int* intervalBreaksVec, float saf
   alpha = 1;
   beta = 0;
   float onevec[1] = {1};
+
 
   int intputBreaksIntervalsSize = sizeOfOutputMatrix(intervalBreaksVec);
   float* intputBreaksIntervals;
@@ -457,101 +366,53 @@ int imageIntervalFromLattices(float* interval, int* intervalBreaksVec, float saf
   float* domainInterval;
   domainInterval = (float*)malloc(intputBreaksIntervalsSize*2* sizeof(float));
 
-   float* diagonalInf1;
-   float* diagonalSup1;
-   diagonalInf1 = (float*)malloc(2* sizeof(float));
-   diagonalSup1 = (float*)malloc(2* sizeof(float));
+   float* intervalInf1;
+   float* intervalSup1;
+   intervalInf1 = (float*)malloc(1* sizeof(float));
+   intervalSup1 = (float*)malloc(1* sizeof(float));
 
-    float inferiorLayer1Map[4];
-    float superiorLayer1Map[4];
-    float inferiorLayer1[4];
-    float superiorLayer1[4];
-    float intervalLayer1[4];
-
-    float* diagonalInf2;
-    float* diagonalSup2;
-    diagonalInf2 = (float*)malloc(1* sizeof(float));
-    diagonalSup2 = (float*)malloc(1* sizeof(float));
-
-    float inferiorLayer2Map[2];
-    float superiorLayer2Map[2];
-    float inferiorLayer2[1];
-    float superiorLayer2[1];
-    float intervalLayer2[2];
-
-    int unionsSize = 0;
-    float* unitedSets;
-    unitedSets = (float*)malloc(2*invertedAcumulated[0]*sizeof(float));
+    float inferiorLayer1Map[2*1];
+    float superiorLayer1Map[2*1];
+    float inferiorLayer1[1];
+    float superiorLayer1[1];
+    float intervalLayer1[2];
     for(int i =0; i<invertedAcumulated[0]; i++){
       getOneIntervalFromLattices(intputBreaksIntervals, i,beginningIndexVec, invertedAcumulated, domainInterval);
-      printf("ENTRADA \n");
-      printfMatrix(domainInterval, 2, 2);
+      //printfMatrix(domainInterval, 2, 2);
 
-    inferiorIntervalMapping(domainInterval, w1, 2, 2, inferiorLayer1Map);
-
-    superiorIntervalMapping(domainInterval, w1, 2, 2, superiorLayer1Map);
-
-    cublasSgemm(cublasHandle, CUBLAS_OP_N, CUBLAS_OP_T, 2, 2, 2, &alpha,
+    inferiorIntervalMapping(domainInterval, w1, 1, 2, inferiorLayer1Map);
+    //printfMatrix(inferiorLayer1Map, 2, 1);
+    superiorIntervalMapping(domainInterval, w1, 1, 2, superiorLayer1Map);
+    //printfMatrix(superiorLayer1Map, 2, 1);
+    cublasSgemm(cublasHandle, CUBLAS_OP_N, CUBLAS_OP_T, 1, 1, 2, &alpha,
                 w1, 2, inferiorLayer1Map , 1, &beta, inferiorLayer1, 1);
-
-    cublasSgemm(cublasHandle, CUBLAS_OP_N, CUBLAS_OP_T, 2, 2, 1, &alpha, bias1,
+    //printfMatrix(inferiorLayer1, 1, 1);
+    cublasSgemm(cublasHandle, CUBLAS_OP_N, CUBLAS_OP_T, 1, 1, 1, &alpha, bias1,
                 1, onevec, 1, &alpha, inferiorLayer1, 1);
+    //printfMatrix(inferiorLayer1, 1, 1);
 
-
-    cublasSgemm(cublasHandle, CUBLAS_OP_N, CUBLAS_OP_T, 2, 2, 2, &alpha,
+    cublasSgemm(cublasHandle, CUBLAS_OP_N, CUBLAS_OP_T, 1, 1, 2, &alpha,
                 w1, 2, superiorLayer1Map , 1, &beta, superiorLayer1, 1);
-
-    cublasSgemm(cublasHandle, CUBLAS_OP_N, CUBLAS_OP_T, 2, 2, 1, &alpha, bias1,
+    //printfMatrix(superiorLayer1, 1, 1);
+    cublasSgemm(cublasHandle, CUBLAS_OP_N, CUBLAS_OP_T, 1, 1, 1, &alpha, bias1,
                 1, onevec, 1, &alpha, superiorLayer1, 1);
+    //printfMatrix(superiorLayer1, 1, 1);
 
-    diag(inferiorLayer1, 2, diagonalInf1);
-    //activationRELU(diagonalInf1, 2, diagonalInf1);
-    diag(superiorLayer1, 2,diagonalSup1);
-    //activationRELU(diagonalSup1, 2, diagonalSup1);
-
-    concatVectorsAsColumns(diagonalInf1, diagonalSup1, 2, intervalLayer1);
-
-    inferiorIntervalMapping(intervalLayer1, w2, 1, 2, inferiorLayer2Map);
-
-    superiorIntervalMapping(intervalLayer1, w2, 1, 2, superiorLayer2Map);
-
-    cublasSgemm(cublasHandle, CUBLAS_OP_N, CUBLAS_OP_T, 1, 1, 2, &alpha,
-                w2, 2, inferiorLayer2Map , 1, &beta, inferiorLayer2, 1);
-
-    cublasSgemm(cublasHandle, CUBLAS_OP_N, CUBLAS_OP_T, 1, 1, 1, &alpha, bias2,
-                1, onevec, 1, &alpha, inferiorLayer2, 1);
-
-    cublasSgemm(cublasHandle, CUBLAS_OP_N, CUBLAS_OP_T, 1, 1, 2, &alpha,
-                w2, 2, superiorLayer2Map , 1, &beta, superiorLayer2, 1);
-
-    cublasSgemm(cublasHandle, CUBLAS_OP_N, CUBLAS_OP_T, 1, 1, 1, &alpha, bias2,
-                1, onevec, 1, &alpha, superiorLayer2, 1);
-
-    diag(inferiorLayer2, 1, diagonalInf2);
-    //activationRELU(diagonalInf2, 1, diagonalInf2);
-    diag(superiorLayer2, 1,diagonalSup2);
-    //activationRELU(diagonalSup2, 1, diagonalSup2);
-
-    concatVectorsAsColumns(diagonalInf2, diagonalSup2, 2, intervalLayer2);
-    performUnion(unitedSets, &unionsSize, intervalLayer2);
-
-    if(intervalLayer2[0] > safeLimit || intervalLayer2[1] > safeLimit) {
+    concatVectorsAsColumns(inferiorLayer1, superiorLayer1, 1, intervalLayer1);
+    printfMatrix(intervalLayer1, 1, 2);
+    if(intervalLayer1[0] > safeLimit || intervalLayer1[1] > safeLimit) {
       safe = 0;
-      printf("Output Set Union \n");
-      printfMatrix(unitedSets, unionsSize*2, 1);
       printf("UNSAFE \n");
       return 0;
     }
     else{
+      //printf("SAFE \n");
       safe = 1;
     }
   }
-  printf("Output Set Union \n");
-  printfMatrix(unitedSets, unionsSize*2, 1);
-  free(diagonalInf1);
-  free(diagonalSup1);
-  free(diagonalInf2);
-  free(diagonalSup2);
+
+  free(intervalInf1);
+  free(intervalSup1);
   return safe;
 }
 
@@ -562,15 +423,15 @@ int main(){
   t = clock();
 
   float interval[2][2] = {
-    {0, 1}, //y
     {0, 1}, //x
-  };
-  int intervalBreaksVec[2] = {40, 40};
+    {0, 1}, //y
+ };
+  int intervalBreaksVec[2] = {6, 6};
   int safe = 0;
   int tries = 0;
-
   while(safe == 0 && tries<5){
-      safe = imageIntervalFromLattices(interval, intervalBreaksVec, 3.7);
+    safe = imageIntervalFromLattices(interval, intervalBreaksVec, 3.0);
+    __ESBMC_assert(safe == 1, "interval not safe");
     tries++;
     increaseLattices(intervalBreaksVec, tries*2);
   }
@@ -578,8 +439,10 @@ int main(){
     printf("safe\n");
   }
   else
-  printf("unsafe interval for n tries \n");
-  t = clock() - t;
-  double time_taken = ((double)t)/CLOCKS_PER_SEC; // calculate the elapsed time
-  printf("The program took %f seconds to execute\n", time_taken);
+    printf("unsafe interval for n tries \n");
+ t = clock() - t;
+ double time_taken = ((double)t)/CLOCKS_PER_SEC; // calculate the elapsed time
+printf("The program took %f seconds to execute\n", time_taken);
+
+
 }

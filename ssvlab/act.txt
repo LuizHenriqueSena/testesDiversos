@@ -1,0 +1,3 @@
+incorporar a relaxação linear feita no neurify com a rede inteira definida.
+realizar a união (explicitar) do conjunto de saida
+minimizar o modelo para permitir verificação do ESBMC

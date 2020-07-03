@@ -26,10 +26,10 @@ int main(){
   //   4.000000  1.000000  0.000000
   // Simbolic Propagation:
   //   1.000000  3.000000  0.000000
-  __ESBMC_assume(-3*x + 2*y > 0);
-  __ESBMC_assume(4*x + 1*y > 0);
-  //__ESBMC_assume((-3*x + 2*y) > LowLinearRelaxation(-3*x + 2*y, 1, 0) && (-3*x + 2*y) < UpLinearRelaxation(-3*x + 2*y, 1, 0));
-  //__ESBMC_assume((4*x + 1*y) > LowLinearRelaxation(4*x + 1*y, 1, 0) && (4*x + 1*y) <LowLinearRelaxation(4*x + 1*y, 1, 0));
+  //__ESBMC_assume(-3*x + 2*y > 0);
+  //__ESBMC_assume(4*x + 1*y > 0);
+  __ESBMC_assume((-3*x + 2*y) > LowLinearRelaxation(-3*x + 2*y, 1, 0) && (-3*x + 2*y) < UpLinearRelaxation(-3*x + 2*y, 1, 0));
+  __ESBMC_assume((4*x + 1*y) > LowLinearRelaxation(4*x + 1*y, 1, 0) && (4*x + 1*y) <LowLinearRelaxation(4*x + 1*y, 1, 0));
 
   __ESBMC_assert(x + 3*y - safeLimit < 0, "Unsafe");
 }

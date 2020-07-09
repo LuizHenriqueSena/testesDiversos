@@ -6,6 +6,8 @@
 #define arraySize(x)  (int)(sizeof(x) / sizeof((x)[0]))
 
 float* neuronsSimbolicRestrictions;
+int restrictionNeuronsWidth;
+
 
 typedef struct{
   int neurons;
@@ -102,7 +104,6 @@ esbmc_nnet* initializeNN(int *layersDescription, int layersNumber){
   nnet->layersNumber = layersNumber+2;
   for(int i = 1; i <= layersNumber; i++) {
     nnet->layers[i].neurons = layersDescription[i-1];
-    printf("cheguei \n");
   }
   return nnet;
 }
@@ -147,17 +148,16 @@ void addLayer(esbmc_nnet* net, esbmc_layer layer){
 }
 
 void computeLayerSimbolicPropagation(float* restrictions, int restrictionsSize, float bias, int neuronsPrevious, float* simbolicOutput){
-  printfMatrix(restrictions, 2, 3);
   for(int i = 0; i < restrictionsSize; i++) {
     for(int j = 0; j < neuronsPrevious; j++){
       if(j==0){
         simbolicOutput[i] = restrictions[i+(j*(restrictionsSize))];
-        printf("SAIDA %d : %.6f \n",i+(j*(restrictionsSize)), restrictions[i+(j*(restrictionsSize))]);
+        //printf("SAIDA %d : %.6f \n",i+(j*(restrictionsSize)), restrictions[i+(j*(restrictionsSize))]);
       } else{
         simbolicOutput[i] += restrictions[i+(j*(restrictionsSize))];
-        printf("SAIDA %d : %.6f \n",i+(j*(restrictionsSize)), restrictions[i+(j*(restrictionsSize))]);
+        //printf("SAIDA %d : %.6f \n",i+(j*(restrictionsSize)), restrictions[i+(j*(restrictionsSize))]);
         if(j == neuronsPrevious - 1) {
-          printf("SAIDA: %.6f \n",simbolicOutput[i]);
+          //printf("SAIDA: %.6f \n",simbolicOutput[i]);
         }
       }
     }
@@ -168,11 +168,11 @@ void computeLayerSimbolicPropagation(float* restrictions, int restrictionsSize, 
 
 void getSimbolicNNPropagation(esbmc_nnet* net){
   int inputs = net->layers[0].neurons;
-  printf("INPUTS %d \n",inputs);
+  //printf("INPUTS %d \n",inputs);
   int layers = net->layersNumber;
-  printf("LAYERS %d \n",layers);
-  //Luiz - 20200701 - restrictionNeuronsSize represents the input size plus bias, that is the restriction elements.
-  int restrictionNeuronsSize = inputs + 1;
+  //printf("LAYERS %d \n",layers);
+  //Luiz - 20200701 - restrictionNeuronsWidth represents the input size plus bias, that is the restriction elements.
+  restrictionNeuronsWidth = inputs + 1;
   int totalNumberOfNeurons = 0;
   int neuronsSimbolicIndexVec[layers];
   neuronsSimbolicIndexVec[0] = 0;
@@ -180,48 +180,153 @@ void getSimbolicNNPropagation(esbmc_nnet* net){
     totalNumberOfNeurons += net->layers[i].neurons;
     neuronsSimbolicIndexVec[i] = neuronsSimbolicIndexVec[i-1] + net->layers[i].neurons;
   }
-  printf("TOTAL NEURONS %d \n",totalNumberOfNeurons);
-  printIVector(neuronsSimbolicIndexVec, layers);
+  //printf("TOTAL NEURONS %d \n",totalNumberOfNeurons);
+  //printIVector(neuronsSimbolicIndexVec, layers);
 
-  neuronsSimbolicRestrictions = (float*) malloc(sizeof(float)*restrictionNeuronsSize*totalNumberOfNeurons);
+  neuronsSimbolicRestrictions = (float*) malloc(sizeof(float)*restrictionNeuronsWidth*totalNumberOfNeurons);
   float* restrictionsAux;
   int currentLayerNeurons;
   int previousLayerNeurons;
   int layersNeuronIndex;
   int previousLayersNeuronIndex;
   for(int l = 1; l < layers; l++){
-    printf("RESTRICTIONS OF LAYER1: \n");
+    //printf("RESTRICTIONS OF LAYER1: \n");
     currentLayerNeurons = net->layers[l].neurons;
     if(l==1){
       for(int j = 0; j < currentLayerNeurons; j++){
         for(int i = 0; i < inputs; i++){
-          neuronsSimbolicRestrictions[i + j*(inputs+1)] = net->layers[l].weights[i + j*inputs];
-          printf("RESTRICTION %d : %.6f \n",i + j*(inputs+1), neuronsSimbolicRestrictions[i + j*(inputs+1)]);
+          neuronsSimbolicRestrictions[i + j*(restrictionNeuronsWidth)] = net->layers[l].weights[i + j*inputs];
+          //printf("RESTRICTION %d : %.6f \n",i + j*(inputs+1), neuronsSimbolicRestrictions[i + j*(inputs+1)]);
         }
-        neuronsSimbolicRestrictions[j*(inputs+1) + inputs] = net->layers[l].bias[j];
-        printf("RESTRICTION %d : %.6f \n",j*(inputs+1) + inputs, neuronsSimbolicRestrictions[j*(inputs+1) + inputs]);
+        neuronsSimbolicRestrictions[j*(restrictionNeuronsWidth) + inputs] = net->layers[l].bias[j];
+        //printf("RESTRICTION %d : %.6f \n",j*(inputs+1) + inputs, neuronsSimbolicRestrictions[j*(inputs+1) + inputs]);
       }
     } else{
-      printf("RESTRICTIONS OF LAYER%d: \n", l);
+      //printf("RESTRICTIONS OF LAYER%d: \n", l);
       currentLayerNeurons = net->layers[l].neurons;
       previousLayerNeurons = net->layers[l-1].neurons;
-      layersNeuronIndex = neuronsSimbolicIndexVec[l-1]*(inputs+1);
-      previousLayersNeuronIndex = neuronsSimbolicIndexVec[l-2]*(inputs+1);
-      printf("previousLayersNeuronIndex %d: \n", previousLayersNeuronIndex);
-      restrictionsAux = (float*) malloc(sizeof(float)*previousLayerNeurons*(inputs+1));
+      layersNeuronIndex = neuronsSimbolicIndexVec[l-1]*(restrictionNeuronsWidth);
+      previousLayersNeuronIndex = neuronsSimbolicIndexVec[l-2]*(restrictionNeuronsWidth);
+      //printf("previousLayersNeuronIndex %d: \n", previousLayersNeuronIndex);
+      restrictionsAux = (float*) malloc(sizeof(float)*previousLayerNeurons*(restrictionNeuronsWidth));
       for(int j = 0; j < currentLayerNeurons; j++){
         for(int k = 0; k < previousLayerNeurons; k++){
           for(int i = 0; i <= inputs; i++){
-            restrictionsAux[i + k*(inputs+1)] = net->layers[l].weights[k + j*previousLayerNeurons]*neuronsSimbolicRestrictions[previousLayersNeuronIndex + (i + k*(inputs+1))];
-            printf("RESTRICTION %d : %.6f \n",i + j*(inputs+1), restrictionsAux[i + j*(inputs+1)]);
+            restrictionsAux[i + k*(restrictionNeuronsWidth)] = net->layers[l].weights[k + j*previousLayerNeurons]*neuronsSimbolicRestrictions[previousLayersNeuronIndex + (i + k*(restrictionNeuronsWidth))];
+            //printf("RESTRICTION %d : %.6f \n",i + j*(inputs+1), restrictionsAux[i + j*(inputs+1)]);
           }
         }
-        printfMatrix(restrictionsAux, 2, 3);
+        //printfMatrix(restrictionsAux, 2, 3);
         computeLayerSimbolicPropagation(restrictionsAux, inputs+1 ,net->layers[l].bias[j], previousLayerNeurons, &neuronsSimbolicRestrictions[layersNeuronIndex + j*(inputs+1)]);
       }
     }
   }
-  printfMatrix(neuronsSimbolicRestrictions, 3, 3);
+  //printfMatrix(neuronsSimbolicRestrictions, 3, 3);
+}
+
+void printIntervals(float* inputsInterval){
+  int inputsSize = restrictionNeuronsWidth -1;
+  for(int i=0; i<inputsSize; i++){
+    printf("  float x%d = nondet_float();\n", i);
+    printf("  __ESBMC_assume(x%d >= %.6f && x%d <= %.6f);\n", i, inputsInterval[i*2],i, inputsInterval[(i*2)+1]);
+  }
+}
+
+void printRestrictions(esbmc_nnet* net){
+  int inputs = net->layers[0].neurons;
+  int layers = net->layersNumber;
+  int neuronsSimbolicIndexVec[layers];
+  neuronsSimbolicIndexVec[0]=0;
+  if (layers <= 2)
+    return;
+  for(int i =1; i < layers; i++) {
+    neuronsSimbolicIndexVec[i] = neuronsSimbolicIndexVec[i-1] + net->layers[i].neurons;
+  }
+  int lastNeuronIndex = neuronsSimbolicIndexVec[layers-2];
+  for(int i = 0; i < lastNeuronIndex; i++){
+    printf("  __ESBMC_assume(");
+    for(int j = 0; j < restrictionNeuronsWidth; j++) {
+      if(j==0){
+          printf("%.6f*x%d ", neuronsSimbolicRestrictions[i*restrictionNeuronsWidth + j], j);
+      }
+      else if(j < restrictionNeuronsWidth-1){
+        if(neuronsSimbolicRestrictions[i*restrictionNeuronsWidth + j] < 0){
+          printf("- %.6f*x%d ", (-1)*neuronsSimbolicRestrictions[i*restrictionNeuronsWidth + j], j);
+        }
+        else if(neuronsSimbolicRestrictions[i*restrictionNeuronsWidth + j] > 0){
+          printf("+ %.6f*x%d ", neuronsSimbolicRestrictions[i*restrictionNeuronsWidth + j], j);
+        }
+      }
+      else{
+        if(neuronsSimbolicRestrictions[i*restrictionNeuronsWidth + j] < 0){
+          printf("- %.6f > 0);\n", (-1)*neuronsSimbolicRestrictions[i*restrictionNeuronsWidth + j]);
+        }
+        else if(neuronsSimbolicRestrictions[i*restrictionNeuronsWidth + j] > 0){
+          printf("+ %.6f > 0);\n", neuronsSimbolicRestrictions[i*restrictionNeuronsWidth + j]);
+        }
+        else{
+          printf("> 0);\n");
+        }
+      }
+    }
+  }
+}
+
+void printProperties(esbmc_nnet* net, float safeLimit){
+  int layers = net->layersNumber;
+  int neuronsSimbolicIndexVec[layers];
+  neuronsSimbolicIndexVec[0]=0;
+  for(int i =1; i < layers; i++) {
+    neuronsSimbolicIndexVec[i] = neuronsSimbolicIndexVec[i-1] + net->layers[i].neurons;
+  }
+  int startIndex;
+  int lastNeuronIndex;
+  if(net->layersNumber < 2) {
+    startIndex = 0;
+    lastNeuronIndex = neuronsSimbolicIndexVec[layers-1];
+  } else {
+    startIndex = neuronsSimbolicIndexVec[layers-2];
+    lastNeuronIndex = neuronsSimbolicIndexVec[layers-1];
+  }
+  printf("  __ESBMC_assert(");
+  for(int i = startIndex; i < lastNeuronIndex; i++) {
+    for(int j = 0; j < restrictionNeuronsWidth; j++){
+      if(j==0){
+          printf("%.6f*x%d ", neuronsSimbolicRestrictions[i*restrictionNeuronsWidth + j], j);
+      }
+      else if(j < restrictionNeuronsWidth-1){
+        if(neuronsSimbolicRestrictions[i*restrictionNeuronsWidth + j] < 0){
+          printf("- %.6f*x%d ", (-1)*neuronsSimbolicRestrictions[i*restrictionNeuronsWidth + j], j);
+        }
+        else if(neuronsSimbolicRestrictions[i*restrictionNeuronsWidth + j] > 0){
+          printf("+ %.6f*x%d ", neuronsSimbolicRestrictions[i*restrictionNeuronsWidth + j], j);
+        }
+      }
+      else{
+        if(neuronsSimbolicRestrictions[i*restrictionNeuronsWidth + j] < 0){
+          printf("- %.6f > %.6f);\n", (-1)*neuronsSimbolicRestrictions[i*restrictionNeuronsWidth + j], safeLimit);
+        }
+        else if(neuronsSimbolicRestrictions[i*restrictionNeuronsWidth + j] > 0){
+          printf("+ %.6f > %.6f);\n", neuronsSimbolicRestrictions[i*restrictionNeuronsWidth + j], safeLimit);
+        }
+        else{
+          printf("> %.6f);\n", safeLimit);
+        }
+      }
+    }
+  }
+}
+
+void printSimbolicPropagationCode(esbmc_nnet* net, float* inputsInterval){
+  printf("#include <stdio.h>\n#include <math.h>\n#include <stdlib.h>\n#include <time.h>\n  float UpLinearRelaxation(float input, float up, float low) {\n    float relaxation = (up/(up-low))*(input-low);\n    return relaxation;\n  }\n\n  float LowLinearRelaxation(float input, float up, float low) {\n    float relaxation = up/(up-low)*(input);\n    return relaxation;\n  }\n\n");
+  printf("int main(){\n");
+  //printing intervals;
+  printIntervals(inputsInterval);
+  printf("//RESTRICTIONS \n");
+  printRestrictions(net);
+  printf("//PROPERTIES \n");
+  printProperties(net, 5.5);
+  printf("}\n");
 }
 
 int main(){
@@ -243,15 +348,17 @@ int main(){
   //   3, 4, 5, 7,
   //   7, 8, 9, 10};
   // float bias4[10] = {1, 2, 3, 4, 5, 7, 7, 8, 9, 10};
+  float inputIntervals[4] = {0, 1,
+    0, 1};
 
   float w1[4]= {-3, 2,
                 4, 1};
 
-  float bias1[2] = {1, 0};
+  float bias1[2] = {0, 0};
 
   float w2[2] = {1, 1};
 
-  float bias2[1] = {5};
+  float bias2[1] = {0};
 
    esbmc_nnet* nnet = initializeNN(hiddenLayers, arraySize(hiddenLayers));
    configNet(nnet,2,1);
@@ -259,8 +366,8 @@ int main(){
     addLayerDescription(nnet, 2, w2, bias2);
    // addLayerDescription(nnet, 3, w3, bias3);
    // addLayerDescription(nnet, 4, w4, bias4);
-   printfLayers(nnet);
-  printNeuralNetworkDescriptors(nnet);
+   //printfLayers(nnet);
+  //printNeuralNetworkDescriptors(nnet);
   getSimbolicNNPropagation(nnet);
-
+  printSimbolicPropagationCode(nnet, inputIntervals);
 }

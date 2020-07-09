@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-
+//gcc -o main esbmcnn.c
 #define arraySize(x)  (int)(sizeof(x) / sizeof((x)[0]))
 
 float* neuronsSimbolicRestrictions;
@@ -304,13 +304,13 @@ void printProperties(esbmc_nnet* net, float safeLimit){
       }
       else{
         if(neuronsSimbolicRestrictions[i*restrictionNeuronsWidth + j] < 0){
-          printf("- %.6f > %.6f);\n", (-1)*neuronsSimbolicRestrictions[i*restrictionNeuronsWidth + j], safeLimit);
+          printf("- %.6f < %.6f, \"Safety property violated\");\n", (-1)*neuronsSimbolicRestrictions[i*restrictionNeuronsWidth + j], safeLimit);
         }
         else if(neuronsSimbolicRestrictions[i*restrictionNeuronsWidth + j] > 0){
-          printf("+ %.6f > %.6f);\n", neuronsSimbolicRestrictions[i*restrictionNeuronsWidth + j], safeLimit);
+          printf("+ %.6f < %.6f, \"Safety property violated\");\n", neuronsSimbolicRestrictions[i*restrictionNeuronsWidth + j], safeLimit);
         }
         else{
-          printf("> %.6f);\n", safeLimit);
+          printf("< %.6f, \"Safety property violated\");\n", safeLimit);
         }
       }
     }

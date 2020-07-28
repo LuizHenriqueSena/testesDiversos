@@ -7,5 +7,5 @@ else
   ./importNN > importNN.c
   rm importNN
   esbmc importNN.c --force-malloc-success --no-bounds-check --no-div-by-zero-check --no-pointer-check --incremental-bmc --interval-analysis | tee output.txt
-  rm importNN.c
+  #rm importNN.c
 fi

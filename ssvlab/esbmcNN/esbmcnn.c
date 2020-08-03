@@ -11,11 +11,12 @@ int restrictionNeuronsWidth;
 
 typedef struct{
   int neurons;
-  int teste1;
   float* weights;
-  int teste2;
   float* bias;
-  int teste3;
+  float* restrictionsHIGHER;
+  float* restrictionsLOWER;
+  float* concretization;
+  unsigned short* allowsSimbolic;
 }layer;
 
 typedef layer* esbmc_layer;
@@ -111,11 +112,16 @@ esbmc_nnet* initializeNN(int *layersDescription, int layersNumber){
 void configNet(esbmc_nnet* net, int inputs, int outputs) {
   net->layers[0].neurons = inputs;
   net->layers[net->layersNumber-1].neurons = outputs;
+  restrictionNeuronsWidth = inputs + 1;
   for(int i = 1; i < net->layersNumber; i++) {
     int neurons = net->layers[i].neurons;
     int previous = net->layers[i-1].neurons;
     net->layers[i].weights = (float*) malloc(sizeof(float)*neurons*previous);
     net->layers[i].bias = (float*) malloc(sizeof(float)*neurons);
+    net->layers[i].restrictionsHIGHER = (float*) malloc(sizeof(float)*neurons*(inputs+1));
+    net->layers[i].restrictionsLOWER = (float*) malloc(sizeof(float)*neurons*(inputs+1));
+    net->layers[i].concretization = (float*) malloc(sizeof(float)*neurons*2);
+    net->layers[i].allowsSimbolic = (unsigned short*) malloc(sizeof(unsigned short)*neurons*2);
   }
 }
 
@@ -165,14 +171,103 @@ void computeLayerSimbolicPropagation(float* restrictions, int restrictionsSize, 
   simbolicOutput[restrictionsSize-1] += bias;
 }
 
+void positiveWeights(float* coefficients, float* positiveWeights){
+  for(int i = 0; i < restrictionNeuronsWidth-1; i++) {
+    if(coefficients[i] > 0)
+      positiveWeights[i] = coefficients[i];
+    else
+      positiveWeights[i] = 0;
+  }
+}
 
-void getSimbolicNNPropagation(esbmc_nnet* net){
+void negativeWeights(float* coefficients, float* negativeWeights){
+  for(int i = 0; i < restrictionNeuronsWidth-1; i++) {
+    if(coefficients[i] < 0)
+      negativeWeights[i] = coefficients[i];
+    else
+      negativeWeights[i] = 0;
+  }
+}
+
+void maximumVector(float* intervals, float* maximumVector) {
+  for(int i = 0; i < restrictionNeuronsWidth-1; i++) {
+    maximumVector[i] = intervals[(i*2)+1];
+  }
+}
+
+void minimumVector(float* intervals, float* minimumVector) {
+  for(int i = 0; i < restrictionNeuronsWidth-1; i++) {
+    minimumVector[i] = intervals[i*2];
+  }
+}
+
+void concretization(float* interval, float* restrictions, int layer, int neuron, esbmc_nnet* net){
+  float resultUp = 0;
+  float resultLow = 0;
+  float* positives;
+  positives = (float*) malloc(sizeof(float)*(restrictionNeuronsWidth-1));
+  float* negatives;
+  negatives = (float*) malloc(sizeof(float)*(restrictionNeuronsWidth-1));
+  float* maximum;
+  maximum = (float*) malloc(sizeof(float)*(restrictionNeuronsWidth-1));
+  float* minimum;
+  minimum = (float*) malloc(sizeof(float)*(restrictionNeuronsWidth-1));
+  positiveWeights(restrictions, positives);
+  negativeWeights(restrictions, negatives);
+  maximumVector(interval, maximum);
+  minimumVector(interval, minimum);
+  printfVector(positives, restrictionNeuronsWidth-1);
+  printfVector(negatives, restrictionNeuronsWidth-1);
+  printfVector(maximum, restrictionNeuronsWidth-1);
+  printfVector(minimum, restrictionNeuronsWidth-1);
+  for(int i =0; i < restrictionNeuronsWidth-1; i++) {
+    resultUp += positives[i]*maximum[i] + negatives[i]*minimum[i];
+    resultLow += positives[i]*minimum[i] + negatives[i]*maximum[i];
+  }
+  if(resultUp<=0){
+    net->layers[layer].allowsSimbolic[neuron*2]= 0;
+    net->layers[layer].allowsSimbolic[(neuron*2)+1]= 0;
+    net->layers[layer].concretization[neuron*2] = 0;
+    net->layers[layer].concretization[(neuron*2)+1]= 0;
+  }
+  else if(resultUp > 0 && resultLow < 0) {
+    net->layers[layer].allowsSimbolic[neuron*2]= 0;
+    net->layers[layer].allowsSimbolic[(neuron*2)+1]= 1;
+    net->layers[layer].concretization[neuron*2] = 0;
+    net->layers[layer].concretization[(neuron*2)+1]= resultUp;
+  }
+  else {
+    net->layers[layer].allowsSimbolic[neuron*2]= 1;
+    net->layers[layer].allowsSimbolic[(neuron*2)+1]= 1;
+    net->layers[layer].concretization[neuron*2] = resultLow;
+    net->layers[layer].concretization[(neuron*2)+1]= resultUp;
+  }
+  free(positives);
+  free(negatives);
+  free(maximum);
+  free(minimum);
+}
+
+void printConcretizations(esbmc_nnet* net){
+  int layers = net->layersNumber;
+  printf("LAYER NUMBER %d \n", layers);
+  for(int i = 1; i<layers; i++){
+    printf("LAYER %d \n", i);
+    int currentLayer = net->layers[i].neurons;
+    for(int j = 0; j < currentLayer; j++) {
+      printf("Allows simbolic: %d   %d Concretization: %.6f   %.6f \n", net->layers[i].allowsSimbolic[j*2],
+      net->layers[i].allowsSimbolic[(j*2)+1], net->layers[i].concretization[j*2],
+      net->layers[i].concretization[(j*2)+1]);
+    }
+  }
+}
+
+void getSimbolicNNPropagation(esbmc_nnet* net, float* intervals){
   int inputs = net->layers[0].neurons;
   //printf("INPUTS %d \n",inputs);
   int layers = net->layersNumber;
   //printf("LAYERS %d \n",layers);
   //Luiz - 20200701 - restrictionNeuronsWidth represents the input size plus bias, that is the restriction elements.
-  restrictionNeuronsWidth = inputs + 1;
   int totalNumberOfNeurons = 0;
   int neuronsSimbolicIndexVec[layers];
   neuronsSimbolicIndexVec[0] = 0;
@@ -199,6 +294,7 @@ void getSimbolicNNPropagation(esbmc_nnet* net){
           //printf("RESTRICTION %d : %.6f \n",i + j*(inputs+1), neuronsSimbolicRestrictions[i + j*(inputs+1)]);
         }
         neuronsSimbolicRestrictions[j*(restrictionNeuronsWidth) + inputs] = net->layers[l].bias[j];
+        concretization(intervals, &neuronsSimbolicRestrictions[j*restrictionNeuronsWidth], l, j, net);
         //printf("RESTRICTION %d : %.6f \n",j*(inputs+1) + inputs, neuronsSimbolicRestrictions[j*(inputs+1) + inputs]);
       }
     } else{
@@ -368,6 +464,7 @@ int main(){
    // addLayerDescription(nnet, 4, w4, bias4);
    //printfLayers(nnet);
   //printNeuralNetworkDescriptors(nnet);
-  getSimbolicNNPropagation(nnet);
+  getSimbolicNNPropagation(nnet, inputIntervals);
   printSimbolicPropagationCode(nnet, inputIntervals);
+  printConcretizations(nnet);
 }

@@ -1,12 +1,16 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
 
 //gcc -o main esbmcnn.c
 #define arraySize(x)  (int)(sizeof(x) / sizeof((x)[0]))
 
 float* neuronsSimbolicRestrictions;
 int restrictionNeuronsWidth;
+FILE *outputFile;
+char outPutPath[100];
+char fileName[22] = "/adversarialChecking.c";
 
 
 typedef struct{
@@ -20,15 +24,6 @@ typedef struct{
 }layer;
 
 typedef layer* esbmc_layer;
-
-typedef struct{
-  esbmc_layer layer;
-  esbmc_layer prev;
-  esbmc_layer next;
-} layers;
-
-
-typedef layers* esbmc_layers;
 
 typedef struct nnet{
   float* inputs;
@@ -112,7 +107,12 @@ esbmc_nnet* initializeNN(int *layersDescription, int layersNumber){
 
 void configNet(esbmc_nnet* net, int inputs, int outputs) {
   net->layers[0].neurons = inputs;
-  net->layers[net->layersNumber-1].neurons = outputs;
+  if(net->layersNumber > 2){
+    net->layers[net->layersNumber-1].neurons = outputs;
+  } else {
+    net->layersNumber = 2;
+    net->layers[1].neurons = outputs;
+  }
   net->isPatternNet = 0;
   restrictionNeuronsWidth = inputs + 1;
   for(int i = 1; i < net->layersNumber; i++) {
@@ -384,6 +384,14 @@ void printIntervals(float* inputsInterval){
   }
 }
 
+void exportIntervals(float* inputsInterval){
+  int inputsSize = restrictionNeuronsWidth -1;
+  for(int i=0; i<inputsSize; i++){
+    fprintf(outputFile,"  float x%d = nondet_float();\n", i);
+    fprintf(outputFile,"  __ESBMC_assume(x%d >= %.6f && x%d <= %.6f);\n", i, inputsInterval[i*2],i, inputsInterval[(i*2)+1]);
+  }
+}
+
 void printRestrictions(esbmc_nnet* net){
   int inputs = net->layers[0].neurons;
   int layers = net->layersNumber;
@@ -418,6 +426,81 @@ void printRestrictions(esbmc_nnet* net){
         }
         else{
           printf("> 0);\n");
+        }
+      }
+    }
+  }
+}
+
+void exportRestrictions(esbmc_nnet* net){
+  int inputs = net->layers[0].neurons;
+  int layers = net->layersNumber;
+  int currentNeurons;
+  if (layers <= 2)
+    return;
+  for(int l = 1; l < layers-1; l++){
+    currentNeurons = net->layers[l].neurons;
+    for(int i = 0; i < currentNeurons; i++){
+      fprintf(outputFile,"//Low  __ESBMC_assume(");
+      for(int j = 0; j < restrictionNeuronsWidth; j++) {
+        if(j==0){
+            //fprintf(outputFile,"%.6f*x%d ", neuronsSimbolicRestrictions[i*restrictionNeuronsWidth + j], j);
+            fprintf(outputFile,"%.6f*x%d ", net->layers[l].restrictionsLOWER[i*restrictionNeuronsWidth + j], j);
+        }
+        else if(j < restrictionNeuronsWidth-1){
+          if(net->layers[l].restrictionsLOWER[i*restrictionNeuronsWidth + j] < 0){
+            //fprintf(outputFile,"- %.6f*x%d ", (-1)*neuronsSimbolicRestrictions[i*restrictionNeuronsWidth + j], j);
+            fprintf(outputFile,"- %.6f*x%d ", (-1)*net->layers[l].restrictionsLOWER[i*restrictionNeuronsWidth + j], j);
+          }
+          else if(net->layers[l].restrictionsLOWER[i*restrictionNeuronsWidth + j] > 0){
+            //fprintf(outputFile,"+ %.6f*x%d ", neuronsSimbolicRestrictions[i*restrictionNeuronsWidth + j], j);
+            fprintf(outputFile,"+ %.6f*x%d ", net->layers[l].restrictionsLOWER[i*restrictionNeuronsWidth + j], j);
+          }
+        }
+        else{
+          if(net->layers[l].restrictionsLOWER[i*restrictionNeuronsWidth + j] < 0){
+            //fprintf(outputFile,"- %.6f > 0);\n", (-1)*neuronsSimbolicRestrictions[i*restrictionNeuronsWidth + j]);
+            fprintf(outputFile,"- %.6f > 0);\n", (-1)*net->layers[l].restrictionsLOWER[i*restrictionNeuronsWidth + j]);
+          }
+          else if(net->layers[l].restrictionsLOWER[i*restrictionNeuronsWidth + j] > 0){
+            //fprintf(outputFile,"+ %.6f > 0);\n", neuronsSimbolicRestrictions[i*restrictionNeuronsWidth + j]);
+            fprintf(outputFile,"+ %.6f > 0);\n", net->layers[l].restrictionsLOWER[i*restrictionNeuronsWidth + j]);
+          }
+          else{
+            fprintf(outputFile,"> 0);\n");
+          }
+        }
+      }
+    }
+    for(int i = 0; i < currentNeurons; i++){
+      fprintf(outputFile,"//High  __ESBMC_assume(");
+      for(int j = 0; j < restrictionNeuronsWidth; j++) {
+        if(j==0){
+            //fprintf(outputFile,"%.6f*x%d ", neuronsSimbolicRestrictions[i*restrictionNeuronsWidth + j], j);
+            fprintf(outputFile,"%.6f*x%d ", net->layers[l].restrictionsHIGHER[i*restrictionNeuronsWidth + j], j);
+        }
+        else if(j < restrictionNeuronsWidth-1){
+          if(net->layers[l].restrictionsHIGHER[i*restrictionNeuronsWidth + j] < 0){
+            //fprintf(outputFile,"- %.6f*x%d ", (-1)*neuronsSimbolicRestrictions[i*restrictionNeuronsWidth + j], j);
+            fprintf(outputFile,"- %.6f*x%d ", (-1)*net->layers[l].restrictionsHIGHER[i*restrictionNeuronsWidth + j], j);
+          }
+          else if(net->layers[l].restrictionsHIGHER[i*restrictionNeuronsWidth + j] > 0){
+            //fprintf(outputFile,"+ %.6f*x%d ", neuronsSimbolicRestrictions[i*restrictionNeuronsWidth + j], j);
+            fprintf(outputFile,"+ %.6f*x%d ", net->layers[l].restrictionsHIGHER[i*restrictionNeuronsWidth + j], j);
+          }
+        }
+        else{
+          if(net->layers[l].restrictionsHIGHER[i*restrictionNeuronsWidth + j] < 0){
+            //fprintf(outputFile,"- %.6f > 0);\n", (-1)*neuronsSimbolicRestrictions[i*restrictionNeuronsWidth + j]);
+            fprintf(outputFile,"- %.6f > 0);\n", (-1)*net->layers[l].restrictionsHIGHER[i*restrictionNeuronsWidth + j]);
+          }
+          else if(net->layers[l].restrictionsHIGHER[i*restrictionNeuronsWidth + j] > 0){
+            //fprintf(outputFile,"+ %.6f > 0);\n", neuronsSimbolicRestrictions[i*restrictionNeuronsWidth + j]);
+            fprintf(outputFile,"+ %.6f > 0);\n", net->layers[l].restrictionsHIGHER[i*restrictionNeuronsWidth + j]);
+          }
+          else{
+            fprintf(outputFile,"> 0);\n");
+          }
         }
       }
     }
@@ -469,6 +552,66 @@ void printProperties(esbmc_nnet* net, float safeLimit){
   }
 }
 
+void exportProperties(esbmc_nnet* net, float safeLimit){
+  int layers = net->layersNumber - 1;
+  int currentNeurons = net->layers[layers].neurons;
+  for(int i = 0; i < currentNeurons; i++) {
+    fprintf(outputFile,"  __ESBMC_assert(");
+    for(int j = 0; j < restrictionNeuronsWidth; j++){
+      if(j==0){
+          fprintf(outputFile,"%.6f*x%d ", net->layers[layers].restrictionsLOWER[i*restrictionNeuronsWidth + j], j);
+      }
+      else if(j < restrictionNeuronsWidth-1){
+        if(net->layers[layers].restrictionsLOWER[i*restrictionNeuronsWidth + j] < 0){
+          fprintf(outputFile,"- %.6f*x%d ", (-1)*net->layers[layers].restrictionsLOWER[i*restrictionNeuronsWidth + j], j);
+        }
+        else if(net->layers[layers].restrictionsLOWER[i*restrictionNeuronsWidth + j] > 0){
+          fprintf(outputFile,"+ %.6f*x%d ", net->layers[layers].restrictionsLOWER[i*restrictionNeuronsWidth + j], j);
+        }
+      }
+      else{
+        if(net->layers[layers].restrictionsLOWER[i*restrictionNeuronsWidth + j] < 0){
+          fprintf(outputFile,"- %.6f <= %.6f, \"Safety property violated\");\n", (-1)*net->layers[layers].restrictionsLOWER[i*restrictionNeuronsWidth + j], safeLimit);
+        }
+        else if(net->layers[layers].restrictionsLOWER[i*restrictionNeuronsWidth + j] > 0){
+          fprintf(outputFile,"+ %.6f <= %.6f, \"Safety property violated\");\n", net->layers[layers].restrictionsLOWER[i*restrictionNeuronsWidth + j], safeLimit);
+        }
+        else{
+          fprintf(outputFile,"<= %.6f, \"Safety property violated\");\n", safeLimit);
+        }
+      }
+    }
+  }
+
+  for(int i = 0; i < currentNeurons; i++) {
+    fprintf(outputFile,"  __ESBMC_assert(");
+    for(int j = 0; j < restrictionNeuronsWidth; j++){
+      if(j==0){
+          fprintf(outputFile,"%.6f*x%d ", net->layers[layers].restrictionsHIGHER[i*restrictionNeuronsWidth + j], j);
+      }
+      else if(j < restrictionNeuronsWidth-1){
+        if(net->layers[layers].restrictionsHIGHER[i*restrictionNeuronsWidth + j] < 0){
+          fprintf(outputFile,"- %.6f*x%d ", (-1)*net->layers[layers].restrictionsHIGHER[i*restrictionNeuronsWidth + j], j);
+        }
+        else if(net->layers[layers].restrictionsHIGHER[i*restrictionNeuronsWidth + j] > 0){
+          fprintf(outputFile,"+ %.6f*x%d ", net->layers[layers].restrictionsHIGHER[i*restrictionNeuronsWidth + j], j);
+        }
+      }
+      else{
+        if(net->layers[layers].restrictionsHIGHER[i*restrictionNeuronsWidth + j] < 0){
+          fprintf(outputFile,"- %.6f <= %.6f, \"Safety property violated\");\n", (-1)*net->layers[layers].restrictionsHIGHER[i*restrictionNeuronsWidth + j], safeLimit);
+        }
+        else if(net->layers[layers].restrictionsHIGHER[i*restrictionNeuronsWidth + j] > 0){
+          fprintf(outputFile,"+ %.6f <= %.6f, \"Safety property violated\");\n", net->layers[layers].restrictionsHIGHER[i*restrictionNeuronsWidth + j], safeLimit);
+        }
+        else{
+          fprintf(outputFile,"<= %.6f, \"Safety property violated\");\n", safeLimit);
+        }
+      }
+    }
+  }
+}
+
 void printSimbolicPropagationCode(esbmc_nnet* net, float* inputsInterval){
   printf("#include <stdio.h>\n#include <math.h>\n#include <stdlib.h>\n#include <time.h>\n  float UpLinearRelaxation(float input, float up, float low) {\n    float relaxation = (up/(up-low))*(input-low);\n    return relaxation;\n  }\n\n  float LowLinearRelaxation(float input, float up, float low) {\n    float relaxation = up/(up-low)*(input);\n    return relaxation;\n  }\n\n");
   printf("int main(){\n");
@@ -481,8 +624,43 @@ void printSimbolicPropagationCode(esbmc_nnet* net, float* inputsInterval){
   printf("}\n");
 }
 
-int main(){
-  int hiddenLayers[1] = {2};
+void exportSimbolicPropagationCode(esbmc_nnet* net, float* inputsInterval){
+  fprintf(outputFile,"#include <stdio.h>\n#include <math.h>\n#include <stdlib.h>\n#include <time.h>\n\n");
+  //fprintf(outputFile,"float UpLinearRelaxation(float input, float up, float low) {\n    float relaxation = (up/(up-low))*(input-low);\n    return relaxation;\n  }\n\n  float LowLinearRelaxation(float input, float up, float low) {\n    float relaxation = up/(up-low)*(input);\n    return relaxation;\n  }\n\n");
+  fprintf(outputFile,"int main(){\n");
+  exportIntervals(inputsInterval);
+  fprintf(outputFile,"//RESTRICTIONS \n");
+  exportRestrictions(net);
+  fprintf(outputFile,"//PROPERTIES \n");
+  exportProperties(net, 5.5);
+  fprintf(outputFile,"}\n");
+}
+
+void generateOutputFileForESBMC(esbmc_nnet* net, float* inputsInterval){
+  outputFile = fopen(outPutPath, "w");
+  exportSimbolicPropagationCode(net, inputsInterval);
+  fclose(outputFile);
+}
+
+
+int main(int argc,char* argv[]){
+  clock_t t;
+  t = clock();
+
+  if(argc < 2){
+    printf("Error. Atleast the output path must be passed to the program.\n");
+    exit(-1);
+  } else {
+    strcpy(outPutPath, argv[1]);
+    strcat(outPutPath, fileName);
+  }
+
+  // if(argc == 2){
+  //   outputFile = fopen(argv[1], "w");
+  //   fprintf(outputFile,"correto \n");
+  // } else {
+  //
+  // }
   // float w1[10] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
   // float bias1[10] = {1, 2, 3, 4, 5, 7, 7, 8, 9, 10};
   // float w2[20] = {1, 2, 3, 4, 5, 7, 7, 8, 9, 10, 1, 2, 3, 4, 5, 7, 7, 8, 9, 10};
@@ -500,6 +678,8 @@ int main(){
   //   3, 4, 5, 7,
   //   7, 8, 9, 10};
   // float bias4[10] = {1, 2, 3, 4, 5, 7, 7, 8, 9, 10};
+  int hiddenLayers[1] = {2};
+
   float inputIntervals[4] = {0, 1,
     0, 1};
 
@@ -514,14 +694,18 @@ int main(){
 
    esbmc_nnet* nnet = initializeNN(hiddenLayers, arraySize(hiddenLayers));
    configNet(nnet,2,1);
-    addLayerDescription(nnet, 1, w1, bias1);
-    addLayerDescription(nnet, 2, w2, bias2);
+   addLayerDescription(nnet, 1, w1, bias1);
+   addLayerDescription(nnet, 2, w2, bias2);
    // addLayerDescription(nnet, 3, w3, bias3);
    // addLayerDescription(nnet, 4, w4, bias4);
    //printfLayers(nnet);
   //printNeuralNetworkDescriptors(nnet);
-  getSimbolicNNPropagation(nnet, inputIntervals);
-
-  //printSimbolicPropagationCode(nnet, inputIntervals);
+    getSimbolicNNPropagation(nnet, inputIntervals);
+    generateOutputFileForESBMC(nnet, inputIntervals);
+    //printSimbolicPropagationCode(nnet, inputIntervals);
   //printConcretizations(nnet);
+
+  t = clock() - t;
+  double time_taken = ((double)t)/CLOCKS_PER_SEC; // calculate the elapsed time
+  printf("The program took %f seconds to execute\n", time_taken);
 }

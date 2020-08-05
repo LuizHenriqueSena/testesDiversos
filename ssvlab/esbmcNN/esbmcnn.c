@@ -9,8 +9,11 @@
 float* neuronsSimbolicRestrictions;
 int restrictionNeuronsWidth;
 FILE *outputFile;
-char outPutPath[100];
+FILE *nnetFile;
+char outPutPath[200];
+char nnetFilePath[200];
 char fileName[22] = "/adversarialChecking.c";
+char nnetExt[20] = ".nnet";
 
 
 typedef struct{
@@ -33,6 +36,7 @@ typedef struct nnet{
   int layersInstanciatedIndex;
   int layersNumber;
 } esbmc_nnet;
+
 
 void printfVector(float* pointer, int size){
   for(int i=0; i<size; i++) {
@@ -65,6 +69,7 @@ for(i = 0; i< rows; i++) {
 void printNeuralNetworkDescriptors(esbmc_nnet* net) {
   //printf("#include <stdio.h> \n#include <math.h>\n#include <stdlib.h>\n#include <time.h>\nfloat UpLinearRelaxation(float input, float up, float low) {\n  float relaxation = (up/(up-low))*(input-low);\n  return relaxation;\n}\nfloat LowLinearRelaxation(float input, float up, float low) {\n  float relaxation = up/(up-low)*(input);\n  return relaxation;\n}\nint main(){\n    clock_t t;\n    t = clock();\n    float y = nondet_float();\n    __ESBMC_assume(y >= 0 && y <= 1);\n    float x = nondet_float();\n    __ESBMC_assume(x >= 0 && x <= 1);\n    float safeLimit = 3.8;\n");
   for(int n = 1; n < net->layersNumber; n++) {
+    printf("LAYER: %d. Neurons: %d \n", n, net->layers[n].neurons);
     printf("W[%d] = {", n);
     int rows = net->layers[n].neurons;
     int columns = net->layers[n-1].neurons;
@@ -101,6 +106,27 @@ esbmc_nnet* initializeNN(int *layersDescription, int layersNumber){
   nnet->layersNumber = layersNumber+2;
   for(int i = 1; i <= layersNumber; i++) {
     nnet->layers[i].neurons = layersDescription[i-1];
+  }
+  return nnet;
+}
+
+esbmc_nnet* initializeNNFromNNet(int *layersDescription, int layersNumber){
+  esbmc_nnet* nnet = (esbmc_nnet*)malloc(sizeof(esbmc_nnet)+ (layersNumber)*sizeof(layer));
+  nnet->layersNumber = layersNumber;
+  for(int i = 0; i < layersNumber; i++) {
+    nnet->layers[i].neurons = layersDescription[i];
+  }
+  int inputs = nnet->layers[0].neurons;
+  restrictionNeuronsWidth = inputs + 1;
+  for(int i = 1; i < nnet->layersNumber; i++) {
+    int neurons = nnet->layers[i].neurons;
+    int previous = nnet->layers[i-1].neurons;
+    nnet->layers[i].weights = (float*) malloc(sizeof(float)*neurons*previous);
+    nnet->layers[i].bias = (float*) malloc(sizeof(float)*neurons);
+    nnet->layers[i].restrictionsHIGHER = (float*) malloc(sizeof(float)*neurons*(inputs+1));
+    nnet->layers[i].restrictionsLOWER = (float*) malloc(sizeof(float)*neurons*(inputs+1));
+    nnet->layers[i].concretization = (float*) malloc(sizeof(float)*neurons*2);
+    nnet->layers[i].allowsSimbolic = (unsigned short*) malloc(sizeof(unsigned short)*neurons*2);
   }
   return nnet;
 }
@@ -642,24 +668,133 @@ void generateOutputFileForESBMC(esbmc_nnet* net, float* inputsInterval){
   fclose(outputFile);
 }
 
+void importNNet(esbmc_nnet* nnet){
+  nnetFile = fopen(nnetFilePath, "r");
+  char str[80000];
+  char line[80000];
+  char *nnetElement;
+  int lineIndex = 0;
+  int layersNumber = 0;
+  int layerIndex = 1;
+  int input = 0;
+  int output = 0;
+  int * layersDescriptor;
+  float * weightsBuffer;
+  float * biasBuffer;
+  int weightDim = 0;
+  int biasDim = 0;
+  int counter = 0;
+  unsigned short isLayerBeginning = 0;
+  unsigned short isBiasBeginning = 0;
+  if(nnetFile == NULL) {
+    perror("Error opening file");
+    exit(-1);
+  }
+  while(fgets (str, 80000, nnetFile)!=NULL){
+    //Reading 1st line containing header
+    if(strstr(str, "//") != NULL && lineIndex == 0) {
+      //Reading 2nd line containing NumberOfLayers,InputSize,OutputSize,MaximumLayerSize
+      fgets (str, 80000, nnetFile);
+      lineIndex++;
+      strcpy(line, str);
+      nnetElement = strtok(line, ",");
+      layersNumber = atof(nnetElement);
+      nnetElement = strtok(NULL, ",");
+      input = atof(nnetElement);
+      nnetElement = strtok(NULL, ",");
+      output = atof(nnetElement);
+      //Reading 3rd line containing LayerDimnesions
+      fgets (str, 80000, nnetFile);
+      strcpy(line, str);
+      layersDescriptor = (int*) malloc(sizeof(int)*(layersNumber+1));
+      nnetElement = strtok(line, ",");
+      for(int i = 0; i <= layersNumber; i++){
+        layersDescriptor[i] = atof(nnetElement);
+        nnetElement = strtok(NULL, ",");
+      }
+      nnet = initializeNNFromNNet(layersDescriptor, layersNumber+1);
+      isLayerBeginning = 1;
+      //Reading 4th line containing deprecated flags
+      fgets (str, 80000, nnetFile);
+    } else {
+      strcpy(line, str);
+      if(isLayerBeginning){
+        isLayerBeginning = 0;
+        weightDim = nnet->layers[layerIndex-1].neurons*nnet->layers[layerIndex].neurons;
+        biasDim = nnet->layers[layerIndex].neurons;
+        weightsBuffer = (float*) malloc(sizeof(float)*weightDim);
+        biasBuffer = (float*) malloc(sizeof(float)*biasDim);
+        nnetElement = strtok(line, ",");
+        while(nnetElement!=NULL){
+          if(strcmp(nnetElement, "") != 0 && strlen(nnetElement) > 0 && strcmp(nnetElement, "\n") != 0){
+            weightsBuffer[counter] = atof(nnetElement);
+            printf("LI na posicao o peso :%d %d   %.6f \n",layerIndex, counter, atof(nnetElement));
+            counter++;
+          }
+          nnetElement = strtok(NULL, ",");
+        }
+        if(counter >= weightDim) {
+          isBiasBeginning = 1;
+          counter = 0;
+        }
+      } else{
+        if(isBiasBeginning){
+          nnetElement = strtok(line, ",");
+          while(nnetElement!=NULL){
+            if(strcmp(nnetElement, "") != 0 && strlen(nnetElement) > 0 && strcmp(nnetElement, "\n") != 0){
+              biasBuffer[counter] = atof(nnetElement);
+              printf("LI na posicao o bias : %d   %.6f \n",counter, atof(nnetElement));
+              counter++;
+            }
+            nnetElement = strtok(NULL, ",");
+          }
+          if(counter >= biasDim){
+            counter = 0;
+            isBiasBeginning = 0;
+            isLayerBeginning = 1;
+            addLayerDescription(nnet, layerIndex, weightsBuffer, biasBuffer);
+            free(weightsBuffer);
+            free(biasBuffer);
+            layerIndex++;
+          }
+        } else{
+          nnetElement = strtok(line, ",");
+          while(nnetElement!=NULL){
+            if(strcmp(nnetElement, "") != 0 && strlen(nnetElement) > 0 && strcmp(nnetElement, "\n") != 0){
+              weightsBuffer[counter] = atof(nnetElement);
+              printf("LI na posicao o peso :%d %d   %.6f \n",layerIndex, counter, atof(nnetElement));
+              counter++;
+            }
+            nnetElement = strtok(NULL, ",");
+          }
+          if(counter >= weightDim) {
+            isBiasBeginning = 1;
+            counter = 0;
+          }
+        }
+      }
+    }
+  }
+  fclose(nnetFile);
+}
+
 
 int main(int argc,char* argv[]){
   clock_t t;
   t = clock();
+  esbmc_nnet* nnet;
 
-  if(argc < 2){
-    printf("Error. Atleast the output path must be passed to the program.\n");
+  if(argc < 3){
+    printf("Error. Atleast the output path and .nnet file must be passed to the program.\n");
     exit(-1);
   } else {
     strcpy(outPutPath, argv[1]);
     strcat(outPutPath, fileName);
+    if(strstr(argv[2], nnetExt) != NULL) {
+      strcpy(nnetFilePath, argv[2]);
+      importNNet(nnet);
+    }
   }
-
-  // if(argc == 2){
-  //   outputFile = fopen(argv[1], "w");
-  //   fprintf(outputFile,"correto \n");
-  // } else {
-  //
   // }
   // float w1[10] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
   // float bias1[10] = {1, 2, 3, 4, 5, 7, 7, 8, 9, 10};
@@ -692,17 +827,16 @@ int main(int argc,char* argv[]){
 
   float bias2[1] = {0};
 
-   esbmc_nnet* nnet = initializeNN(hiddenLayers, arraySize(hiddenLayers));
-   configNet(nnet,2,1);
-   addLayerDescription(nnet, 1, w1, bias1);
-   addLayerDescription(nnet, 2, w2, bias2);
+   //nnet = initializeNN(hiddenLayers, arraySize(hiddenLayers));
+   //configNet(nnet,2,1);
+   //addLayerDescription(nnet, 1, w1, bias1);
+   //addLayerDescription(nnet, 2, w2, bias2);
    // addLayerDescription(nnet, 3, w3, bias3);
    // addLayerDescription(nnet, 4, w4, bias4);
-   //printfLayers(nnet);
   //printNeuralNetworkDescriptors(nnet);
-    getSimbolicNNPropagation(nnet, inputIntervals);
-    generateOutputFileForESBMC(nnet, inputIntervals);
-    //printSimbolicPropagationCode(nnet, inputIntervals);
+    //getSimbolicNNPropagation(nnet, inputIntervals);
+    //generateOutputFileForESBMC(nnet, inputIntervals);
+  //printSimbolicPropagationCode(nnet, inputIntervals);
   //printConcretizations(nnet);
 
   t = clock() - t;

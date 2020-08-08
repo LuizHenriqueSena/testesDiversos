@@ -330,6 +330,7 @@ cublasStatus_t cublasSgemm(cublasHandle_t handle, cublasOperation_t transa,
         result = 0;
         for (counterX = 0; counterX < k; counterX++) {
           result = (A[counterX + counterZ * k] * B[counterX*n +counterY]) + result;
+          //printf("result: %.6f A: %.6f B: %.6f indexA: %d indexB: %d \n", result, A[counterX + counterZ * k], B[counterX*n +counterY], counterX + counterZ * k, counterX*n +counterY);
         }
         C[counterZ*n + counterY] = alpha[0] * result + beta[0] * C[counterZ*n + counterY];
       }
@@ -349,12 +350,14 @@ cublasStatus_t cublasSgemm(cublasHandle_t handle, cublasOperation_t transa,
   } else if ((transa == CUBLAS_OP_T) && (transb == CUBLAS_OP_N)) {
     result = 0;
     for (counterZ = 0; counterZ < m; counterZ++) {
+      result = 0;
       for (counterY = 0; counterY < n; counterY++) {
         result = 0;
         for (counterX = 0; counterX < k; counterX++) {
-          result = (A[counterX * k + counterZ] * B[counterX]) + result;
+          result = (A[counterX * m + counterZ] * B[counterX*n + counterY]) + result;
+          //printf("result: %.6f A: %.6f B: %.6f indexA: %d indexB: %d \n", result, A[counterX + counterZ * k], B[counterX*n +counterY], counterX + counterZ * k, counterX*n +counterY);
         }
-        C[counterZ * m] = alpha[0] * result + beta[0] * C[counterZ * m];
+        C[counterZ *n + counterY] = alpha[0] * result + beta[0] * C[counterZ*n + counterY];
       }
     }
   } else if ((transa == CUBLAS_OP_T) && (transb == CUBLAS_OP_T)) {

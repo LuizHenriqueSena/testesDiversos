@@ -8,17 +8,6 @@
 //gcc -o main esbmcnn.c
 #define arraySize(x)  (int)(sizeof(x) / sizeof((x)[0]))
 
-float* neuronsSimbolicRestrictions;
-int restrictionNeuronsWidth;
-FILE *outputFile;
-FILE *nnetFile;
-char outPutPath[200];
-char nnetFilePath[200];
-char fileName[22] = "/adversarialChecking.c";
-char nnetExt[20] = ".nnet";
-
-
-
 void setImg(esbmc_nnet** nnet, float* img) {
   int inputs = (*nnet)->layers[0].neurons;
   for(int i=0; i< inputs; i++){

@@ -96,6 +96,8 @@ void configNet(esbmc_nnet* net, int inputs, int outputs) {
     net->layers[1].neurons = outputs;
   }
   net->isPatternNet = 0;
+  net->inputs = (float*) malloc(sizeof(float)*inputs);
+  net->outputs = (float*) malloc(sizeof(float)*outputs);
   restrictionNeuronsWidth = inputs + 1;
   for(int i = 1; i < net->layersNumber; i++) {
     int neurons = net->layers[i].neurons;
@@ -858,7 +860,7 @@ int main(int argc,char* argv[]){
    //addLayerDescription(nnet, 2, w2, bias2);
    // addLayerDescription(nnet, 3, w3, bias3);
    // addLayerDescription(nnet, 4, w4, bias4);
-  //printNeuralNetworkDescriptors(nnet);
+  printNeuralNetworkDescriptors(nnet);
     //getSimbolicNNPropagation(nnet, inputIntervals);
     //generateOutputFileForESBMC(nnet, inputIntervals);
   //printSimbolicPropagationCode(nnet, inputIntervals);

@@ -2447,5 +2447,5 @@ int main(int argc,char* argv[]){
   setImg(&nnet, img2);
   int classification = 0;
   classification = neuralNetPrediction(&nnet);
-  __ESBMC_assert(classification != 7, "Is not a 7 anymore.");
+  __ESBMC_assert(classification == 7, "Is not a 7 anymore.");
 }

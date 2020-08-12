@@ -812,7 +812,7 @@ void exportAssumes(int * input, int range, int size) {
   }
   fprintf(ann2cFile,"float i[%d];\n", size);
   for(int j = 0; j< size;j++){
-    fprintf(ann2cFile,"i[%d] = ((float) x%d)*norm;\n", j, j);
+    fprintf(ann2cFile,"i[%d] = x%d*norm;\n", j, j);
   }
   fprintf(ann2cFile,"\n\n");
 }
@@ -920,7 +920,7 @@ int main(int argc,char* argv[]){
     }
   }
 
-  setImg(&nnet, img4);
+  setImg(&nnet, img0);
 
 
   int classification = 0;
@@ -929,6 +929,7 @@ int main(int argc,char* argv[]){
   for(int i = 0; i < arraySize(range); i++){
     exportANNC(&nnet, classification, range[i]);
   }
+
   //printNeuralNetworkDescriptors(nnet);
 
   t = clock() - t;

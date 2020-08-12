@@ -1,5 +1,7 @@
 #ifndef STRUCTS_H
 #define STRUCTS_H
+#include <limits.h>
+#include <libgen.h>
 
 float* neuronsSimbolicRestrictions;
 int restrictionNeuronsWidth;
@@ -7,9 +9,12 @@ FILE *outputFile;
 FILE *nnetFile;
 char outPutPath[200];
 char nnetFilePath[200];
+char ANN2C[6] = "/ann";
 char fileName[22] = "/adversarialChecking.c";
 char nnetExt[20] = ".nnet";
-
+char nnetFileName[100] = "/";
+char ANN2CPath[PATH_MAX];
+FILE *ann2cFile;
 
 typedef struct{
   int neurons;
@@ -26,6 +31,7 @@ typedef layer* esbmc_layer;
 
 typedef struct nnet{
   float* inputs;
+  int* nonNormInputs;
   float* outputs;
   unsigned short isPatternNet;
   layer layers[0];

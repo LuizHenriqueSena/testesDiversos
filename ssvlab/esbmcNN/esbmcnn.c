@@ -1,6 +1,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
+#include <unistd.h>
+#include <limits.h>
 #include "cuda_operational_model.h"
 #include "structs.h"
 #include "utils.h"
@@ -12,6 +14,7 @@ void setImg(esbmc_nnet** nnet, float* img) {
   int inputs = (*nnet)->layers[0].neurons;
   for(int i=0; i< inputs; i++){
     (*nnet)->inputs[i] = img[i];
+    (*nnet)->nonNormInputs[i] = (int) img[i];
   }
 }
 
@@ -71,6 +74,7 @@ esbmc_nnet* initializeNNFromNNet(int *layersDescription, int layersNumber){
   int inputs = nnet->layers[0].neurons;
   int outputs = nnet->layers[layersNumber-1].neurons;
   nnet->inputs = (float*) malloc(sizeof(float)*inputs);
+  nnet->nonNormInputs = (int*) malloc(sizeof(int)*inputs);
   nnet->outputs = (float*) malloc(sizeof(float)*outputs);
   restrictionNeuronsWidth = inputs + 1;
   for(int i = 1; i < nnet->layersNumber; i++) {
@@ -97,6 +101,7 @@ void configNet(esbmc_nnet* net, int inputs, int outputs) {
   }
   net->isPatternNet = 0;
   net->inputs = (float*) malloc(sizeof(float)*inputs);
+  net->nonNormInputs = (int*) malloc(sizeof(int)*inputs);
   net->outputs = (float*) malloc(sizeof(float)*outputs);
   restrictionNeuronsWidth = inputs + 1;
   for(int i = 1; i < net->layersNumber; i++) {
@@ -781,6 +786,93 @@ int neuralNetPrediction(esbmc_nnet** nnet){
   //printf("CLASSIFICATION %d \n", biggest(nnet->layers[nnet->layersNumber - 1].outputLayer, outputs));
 }
 
+void exportAssumes(int * input, int range, int size) {
+  int min = 0;
+  int max = 0;
+  for(int i = 0; i < size; i++) {
+    fprintf(ann2cFile,"int x%d = nondet_int();\n", i);
+    max = input[i] + range;
+    min = input[i] - range;
+    if((input[i] + range) > 255){
+      max = 255;
+    } else {
+      max = input[i] + range;
+    }
+    if((input[i] - range) < 0){
+      min = 0;
+    } else {
+      min = input[i] - range;
+    }
+    fprintf(ann2cFile,"__ESBMC_assume((x%d >= %d)&&(x%d <=%d));\n",i, min,i, max);
+  }
+  fprintf(ann2cFile,"float i[%d];\n", size);
+  for(int j = 0; j< size;j++){
+    fprintf(ann2cFile,"i[%d] = ((float) x%d)*norm;\n", j, j);
+  }
+  fprintf(ann2cFile,"\n\n");
+}
+
+void exportANNC(esbmc_nnet** nnet, int classification, int range){
+  int layers = (*nnet)->layersNumber;
+  int inputs = (*nnet)->layers[0].neurons;
+  int outputs = (*nnet)->layers[(*nnet)->layersNumber - 1].neurons;
+  char sufix[100];
+  int neurons;
+  int previous;
+  char cwd[PATH_MAX];
+  if (getcwd(cwd, sizeof(cwd)) != NULL) {
+    printf("Current working dir: %s\n", cwd);
+  } else {
+    perror("Unable to get current path. getcwd() error");
+    exit(1);
+  }
+  strcpy(ANN2CPath, cwd);
+  strcat(ANN2CPath, nnetFileName);
+  sprintf(sufix, "_L%d_R%d.c", classification, range);
+  strcat(ANN2CPath, sufix);
+  ann2cFile = fopen(ANN2CPath, "w");
+  fprintf(ann2cFile,"#include <stdio.h>\n#include <math.h>\n#include <stdlib.h>\n#include <time.h>\n\n");
+  //fprintf(outputFile,"float UpLinearRelaxation(float input, float up, float low) {\n    float relaxation = (up/(up-low))*(input-low);\n    return relaxation;\n  }\n\n  float LowLinearRelaxation(float input, float up, float low) {\n    float relaxation = up/(up-low)*(input);\n    return relaxation;\n  }\n\n");
+  fprintf(ann2cFile,"int main(){\n");
+  fprintf(ann2cFile,"float norm = 1/255;\n");
+  exportAssumes((*nnet)->nonNormInputs, range, inputs);
+
+  for(int i=1; i < layers; i++) {
+    neurons = (*nnet)->layers[i].neurons;
+    previous = (*nnet)->layers[i-1].neurons;
+    fprintf(ann2cFile, "float layer%d[%d];\n", i, neurons);
+    if(i==1) {
+      for(int j = 0; j < neurons; j++) {
+        fprintf(ann2cFile, "layer%d[%d]= ", i, j);
+        for(int k =0; k < previous; k++){
+          fprintf(ann2cFile, "%.6f*i[%d] + ", (*nnet)->layers[i].weights[j*inputs + k], k);
+        }
+          fprintf(ann2cFile, "%.6f;\n", (*nnet)->layers[i].bias[j]);
+          fprintf(ann2cFile, "if (layer%d[%d] < 0) layer%d[%d];\n", i, j, i, j);
+      }
+    } else {
+      for(int j = 0; j < neurons; j++) {
+        fprintf(ann2cFile, "layer%d[%d]= ", i, j);
+        for(int k =0; k < previous; k++){
+          fprintf(ann2cFile, "%.6f*layer%d[%d] + ", (*nnet)->layers[i].weights[j*inputs + k],i-1, k);
+        }
+          fprintf(ann2cFile, "%.6f;\n", (*nnet)->layers[i].bias[j]);
+
+      if(i != layers -1){
+        fprintf(ann2cFile, "if (layer%d[%d] < 0) layer%d[%d];\n", i, j, i, j);
+      }
+    }
+     }
+  }
+  for(int n =0; n < outputs; n++){
+    if(n != classification)
+      fprintf(ann2cFile, "__ESBMC_assert(layer%d[%d] > layer%d[%d], \"Classification is not a %d anymore. It is %d.\");\n", layers-1, classification, layers-1, n, classification, n);
+  }
+  fprintf(ann2cFile, "}\n");
+  fclose(ann2cFile);
+}
+
+
 int main(int argc,char* argv[]){
   clock_t t;
   t = clock();
@@ -806,8 +898,14 @@ int main(int argc,char* argv[]){
     strcpy(outPutPath, argv[1]);
     strcat(outPutPath, fileName);
     if(strstr(argv[2], nnetExt) != NULL) {
+      char buff[100] = "/";
       strcpy(nnetFilePath, argv[2]);
+      strcat(buff, basename(argv[2]));
+      strncpy(nnetFileName, buff, strlen(buff)-5);
+      printf("FILE NAME %s \n", nnetFileName);
       importNNet(&nnet);
+    } else {
+      strcpy(nnetFileName, ANN2C);
     }
   }
 
@@ -818,6 +916,8 @@ int main(int argc,char* argv[]){
   int classification = 0;
   classification = neuralNetPrediction(&nnet);
   printf("CLASSIFICATION : %d.\n", classification);
+
+  exportANNC(&nnet, classification, 20);
   // memcpy(nnet->inputs, img1, 784);
   // neuralNetPrediction(nnet);
   // memcpy(nnet->inputs, img2, 784);

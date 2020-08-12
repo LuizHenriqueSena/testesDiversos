@@ -840,7 +840,7 @@ void exportANNC(esbmc_nnet** nnet, int classification, int range){
   fprintf(ann2cFile,"#include <stdio.h>\n#include <math.h>\n#include <stdlib.h>\n#include <time.h>\n\n");
   //fprintf(outputFile,"float UpLinearRelaxation(float input, float up, float low) {\n    float relaxation = (up/(up-low))*(input-low);\n    return relaxation;\n  }\n\n  float LowLinearRelaxation(float input, float up, float low) {\n    float relaxation = up/(up-low)*(input);\n    return relaxation;\n  }\n\n");
   fprintf(ann2cFile,"int main(){\n");
-  fprintf(ann2cFile,"float norm = 1/255;\n");
+  fprintf(ann2cFile,"float norm = (float)1/(float)255;\n");
   exportAssumes((*nnet)->nonNormInputs, range, inputs);
 
   for(int i=1; i < layers; i++) {
@@ -920,10 +920,9 @@ int main(int argc,char* argv[]){
     }
   }
 
-  //printNeuralNetworkDescriptors(nnet);
-  //memcpy(nnet->inputs, img0, 784);
   setImg(&nnet, img4);
-  //printfVector(nnet->inputs, 784);
+
+
   int classification = 0;
   classification = neuralNetPrediction(&nnet);
   printf("CLASSIFICATION : %d.\n", classification);

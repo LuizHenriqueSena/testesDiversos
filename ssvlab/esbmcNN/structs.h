@@ -12,7 +12,7 @@ char nnetFilePath[200];
 char ANN2C[6] = "/ann";
 char fileName[22] = "/adversarialChecking.c";
 char nnetExt[20] = ".nnet";
-char nnetFileName[100] = "/";
+char nnetFileName[100] = "/model/";
 char ANN2CPath[PATH_MAX];
 FILE *ann2cFile;
 

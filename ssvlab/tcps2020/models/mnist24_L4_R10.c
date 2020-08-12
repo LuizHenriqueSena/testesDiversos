@@ -4,7 +4,7 @@
 #include <time.h>
 
 int main(){
-float norm = 1/255;
+float norm = (float)1/(float)255;
 int x0 = nondet_int();
 __ESBMC_assume((x0 >= 0)&&(x0 <=20));
 int x1 = nondet_int();

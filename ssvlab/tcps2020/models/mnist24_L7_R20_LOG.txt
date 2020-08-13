@@ -1,0 +1,17 @@
+ESBMC version 6.4.0 64-bit x86_64 linux
+file mnist24_L7_R20.c: Parsing
+Converting
+Generating GOTO Program
+GOTO program creation time: 3.118s
+GOTO program processing time: 0.021s
+
+*** Iteration number 1 ***
+*** Checking base case
+Starting Bounded Model Checking
+Symex completed in: 700.090s (3358 assignments)
+Slicing time: 0.028s (removed 11 assignments)
+Generated 9 VCC(s), 9 remaining after simplification (3347 assignments)
+Encoding remaining VCC(s) using bit-vector arithmetic
+Encoding to solver time: 20.865s
+Solving with solver Boolector 3.2.0
+*** internal error in 'lglib.c': more than 134217724 variables

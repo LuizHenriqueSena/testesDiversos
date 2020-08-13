@@ -860,9 +860,9 @@ void exportANNC(esbmc_nnet** nnet, int classification, int range){
       for(int j = 0; j < neurons; j++) {
         fprintf(ann2cFile, "layer%d[%d]= ", i, j);
         for(int k =0; k < previous; k++){
-          fprintf(ann2cFile, "%.6f*layer%d[%d] + ", (*nnet)->layers[i].weights[j*previous + k],i-1, k);
+          fprintf(ann2cFile, "(%.6f)*layer%d[%d] + ", (*nnet)->layers[i].weights[j*previous + k],i-1, k);
         }
-          fprintf(ann2cFile, "%.6f;\n", (*nnet)->layers[i].bias[j]);
+          fprintf(ann2cFile, "(%.6f);\n", (*nnet)->layers[i].bias[j]);
 
       if(i != layers -1){
         fprintf(ann2cFile, "if (layer%d[%d] < 0) layer%d[%d]=0;\n", i, j, i, j);

@@ -50,7 +50,7 @@ int distanceChange(float* out1, float* out2, float normDistance, int size) {
         return 0;
       }
   }
-  if(sqrtf(normbasedDistance) < normDistance) {
+  if(normDistance < sqrtf(normbasedDistance)) {
     return 1;
   }
   else {
@@ -236,7 +236,7 @@ void fullDVCover(float* layeri1, float* layeri2, float* layerj1, float* layerj2,
   int i = 0;
   int j = 0;
   int find = 0;
-  if(!distanceChange(layeri1, layeri2, 1, l1)) {
+  if(!distanceChange(layeri1, layeri2, 0.1, l1)) {
     return;
   }
 

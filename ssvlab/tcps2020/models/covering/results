@@ -1,0 +1,23 @@
+Benchmark runner v0.1
+Found 4 benchmark(s)
+Preparing benchmark 1 out of 4
+Preparing benchmark 2 out of 4
+Preparing benchmark 3 out of 4
+Preparing benchmark 4 out of 4
+Ready to execute benchmarks
+[START] Benchmark <dscover_floatingbv>
+[START] Benchmark <dscover_fixedbv>
+[START] Benchmark <dvcover_fixedbv>
+[START] Benchmark <sscover_fixedbv>
+[START] Benchmark <dvcover_floatingbv>
+[START] Benchmark <sscover_floatingbv>
+[START] Benchmark <svcover_fixedbv>
+[START] Benchmark <svcover_floatingbv>
+[FINISH] Benchmark <svcover_fixedbv> took 429 [ms]
+[FINISH] Benchmark <sscover_fixedbv> took 531 [ms]
+[FINISH] Benchmark <svcover_floatingbv> took 593 [ms]
+[FINISH] Benchmark <sscover_floatingbv> took 714 [ms]
+[FINISH] Benchmark <dvcover_floatingbv> took 27197 [ms]
+[FINISH] Benchmark <dscover_fixedbv> took 28676 [ms]
+[FINISH] Benchmark <dvcover_fixedbv> took 28706 [ms]
+[FINISH] Benchmark <dscover_floatingbv> took 30625 [ms]

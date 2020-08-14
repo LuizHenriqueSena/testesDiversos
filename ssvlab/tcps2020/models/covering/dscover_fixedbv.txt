@@ -2,28 +2,21 @@ ESBMC version 6.4.0 64-bit x86_64 linux
 file dscover/neural.c: Parsing
 Converting
 Generating GOTO Program
-GOTO program creation time: 0.286s
-GOTO program processing time: 0.003s
+GOTO program creation time: 0.288s
+GOTO program processing time: 0.004s
 Starting Bounded Model Checking
-Unwinding loop 26 iteration 1 file coveringMethods.h line 47 function distanceChange
-Unwinding loop 26 iteration 2 file coveringMethods.h line 47 function distanceChange
-Unwinding loop 30 iteration 1 file coveringMethods.h line 147 function fullDSCover
-Unwinding loop 30 iteration 2 file coveringMethods.h line 147 function fullDSCover
-Unwinding loop 31 iteration 1 file coveringMethods.h line 144 function fullDSCover
-Unwinding loop 39 iteration 1 file coveringMethods.h line 307 function neuronCoverageDS
-Unwinding loop 39 iteration 2 file coveringMethods.h line 307 function neuronCoverageDS
-Unwinding loop 39 iteration 3 file coveringMethods.h line 307 function neuronCoverageDS
-Unwinding loop 39 iteration 1 file coveringMethods.h line 307 function neuronCoverageDS
-Unwinding loop 39 iteration 2 file coveringMethods.h line 307 function neuronCoverageDS
-Unwinding loop 39 iteration 3 file coveringMethods.h line 307 function neuronCoverageDS
+Unwinding loop 27 iteration 1 file coveringMethods.h line 47 function distanceChange
+Unwinding loop 27 iteration 2 file coveringMethods.h line 47 function distanceChange
+Unwinding loop 31 iteration 1 file coveringMethods.h line 147 function fullDSCover
+Unwinding loop 31 iteration 2 file coveringMethods.h line 147 function fullDSCover
+Unwinding loop 32 iteration 1 file coveringMethods.h line 144 function fullDSCover
+Unwinding loop 40 iteration 1 file coveringMethods.h line 307 function neuronCoverageDS
+Unwinding loop 40 iteration 2 file coveringMethods.h line 307 function neuronCoverageDS
+Unwinding loop 40 iteration 3 file coveringMethods.h line 307 function neuronCoverageDS
+Unwinding loop 40 iteration 1 file coveringMethods.h line 307 function neuronCoverageDS
+Unwinding loop 40 iteration 2 file coveringMethods.h line 307 function neuronCoverageDS
+Unwinding loop 40 iteration 3 file coveringMethods.h line 307 function neuronCoverageDS
 Symex completed in: 0.007s (186 assignments)
 Slicing time: 0.000s (removed 107 assignments)
 Generated 1 VCC(s), 1 remaining after simplification (79 assignments)
-Encoding remaining VCC(s) using bit-vector/floating-point arithmetic
-Encoding to solver time: 0.068s
-Solving with solver Boolector 3.2.0
-Encoding to solver time: 0.068s
-Runtime decision procedure: 4.669s
-BMC program time: 4.745s
-
-VERIFICATION SUCCESSFUL
+Encoding remaining VCC(s) using bit-vector arithmetic

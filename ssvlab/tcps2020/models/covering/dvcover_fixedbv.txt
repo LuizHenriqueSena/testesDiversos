@@ -1,0 +1,52 @@
+ESBMC version 6.4.0 64-bit x86_64 linux
+file dvcover/neural.c: Parsing
+Converting
+Generating GOTO Program
+GOTO program creation time: 0.227s
+GOTO program processing time: 0.004s
+Starting Bounded Model Checking
+Unwinding loop 26 iteration 1 file coveringMethods.h line 47 function distanceChange
+Unwinding loop 26 iteration 2 file coveringMethods.h line 47 function distanceChange
+Unwinding loop 35 iteration 1 file coveringMethods.h line 246 function fullDVCover
+Unwinding loop 35 iteration 2 file coveringMethods.h line 246 function fullDVCover
+Unwinding loop 36 iteration 1 file coveringMethods.h line 243 function fullDVCover
+Unwinding loop 41 iteration 1 file coveringMethods.h line 331 function neuronCoverageDV
+Unwinding loop 41 iteration 2 file coveringMethods.h line 331 function neuronCoverageDV
+Unwinding loop 41 iteration 3 file coveringMethods.h line 331 function neuronCoverageDV
+Unwinding loop 41 iteration 1 file coveringMethods.h line 331 function neuronCoverageDV
+Unwinding loop 41 iteration 2 file coveringMethods.h line 331 function neuronCoverageDV
+Unwinding loop 41 iteration 3 file coveringMethods.h line 331 function neuronCoverageDV
+Symex completed in: 0.007s (204 assignments)
+Slicing time: 0.000s (removed 115 assignments)
+Generated 1 VCC(s), 1 remaining after simplification (89 assignments)
+Encoding remaining VCC(s) using bit-vector/floating-point arithmetic
+Encoding to solver time: 0.069s
+Solving with solver Boolector 3.2.0
+Encoding to solver time: 0.069s
+Runtime decision procedure: 5.655s
+Building error trace
+
+Counterexample:
+
+State 3 file neural.c line 73 function main thread 0
+----------------------------------------------------
+  finput[0] = 2.000000f (01000000 00000000 00000000 00000000)
+
+State 4 file neural.c line 74 function main thread 0
+----------------------------------------------------
+  finput[1] = 2.000000f (01000000 00000000 00000000 00000000)
+
+State 5 file neural.c line 76 function main thread 0
+----------------------------------------------------
+  finput2[0] = 1.262177e-29f (00001111 10000000 00000000 00000000)
+
+State 7 file neural.c line 78 function main thread 0
+----------------------------------------------------
+  finput2[1] = 1.192093e-7f (00110100 00000000 00000000 00000000)
+
+State 9 file neural.c line 17 function network thread 0
+----------------------------------------------------
+  layer0[0] = +NaN (01111111 10000000 00000000 00000001)
+
+State 10 file neural.c line 18 function network thread 0
+----------------------------------------------------

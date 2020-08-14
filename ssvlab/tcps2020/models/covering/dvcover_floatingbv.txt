@@ -1,0 +1,143 @@
+ESBMC version 6.4.0 64-bit x86_64 linux
+file dvcover/neural.c: Parsing
+Converting
+Generating GOTO Program
+GOTO program creation time: 0.288s
+GOTO program processing time: 0.005s
+
+*** Iteration number 1 ***
+*** Checking base case
+Starting Bounded Model Checking
+Not unwinding loop 26 iteration 1 file coveringMethods.h line 47 function distanceChange
+Not unwinding loop 41 iteration 1 file coveringMethods.h line 331 function neuronCoverageDV
+Symex completed in: 0.004s (112 assignments)
+Slicing time: 0.000s (removed 80 assignments)
+Generated 0 VCC(s), 0 remaining after simplification (32 assignments)
+BMC program time: 0.004s
+No bug has been found in the base case
+*** Checking forward condition
+Starting Bounded Model Checking
+Not unwinding loop 26 iteration 1 file coveringMethods.h line 47 function distanceChange
+Not unwinding loop 41 iteration 1 file coveringMethods.h line 331 function neuronCoverageDV
+Symex completed in: 0.003s (112 assignments)
+Slicing time: 0.000s (removed 80 assignments)
+Generated 2 VCC(s), 2 remaining after simplification (32 assignments)
+Encoding remaining VCC(s) using bit-vector/floating-point arithmetic
+Encoding to solver time: 0.039s
+Solving with solver Boolector 3.2.0
+Encoding to solver time: 0.039s
+Runtime decision procedure: 0.874s
+The forward condition is unable to prove the property
+
+*** Iteration number 2 ***
+*** Checking base case
+Starting Bounded Model Checking
+Unwinding loop 26 iteration 1 file coveringMethods.h line 47 function distanceChange
+Not unwinding loop 26 iteration 2 file coveringMethods.h line 47 function distanceChange
+Unwinding loop 41 iteration 1 file coveringMethods.h line 331 function neuronCoverageDV
+Not unwinding loop 41 iteration 2 file coveringMethods.h line 331 function neuronCoverageDV
+Symex completed in: 0.004s (133 assignments)
+Slicing time: 0.000s (removed 94 assignments)
+Generated 0 VCC(s), 0 remaining after simplification (39 assignments)
+BMC program time: 0.004s
+No bug has been found in the base case
+*** Checking forward condition
+Starting Bounded Model Checking
+Unwinding loop 26 iteration 1 file coveringMethods.h line 47 function distanceChange
+Not unwinding loop 26 iteration 2 file coveringMethods.h line 47 function distanceChange
+Unwinding loop 41 iteration 1 file coveringMethods.h line 331 function neuronCoverageDV
+Not unwinding loop 41 iteration 2 file coveringMethods.h line 331 function neuronCoverageDV
+Symex completed in: 0.004s (133 assignments)
+Slicing time: 0.000s (removed 94 assignments)
+Generated 2 VCC(s), 2 remaining after simplification (39 assignments)
+Encoding remaining VCC(s) using bit-vector/floating-point arithmetic
+Encoding to solver time: 0.028s
+Solving with solver Boolector 3.2.0
+Encoding to solver time: 0.028s
+Runtime decision procedure: 0.721s
+The forward condition is unable to prove the property
+
+*** Iteration number 3 ***
+*** Checking base case
+Starting Bounded Model Checking
+Unwinding loop 26 iteration 1 file coveringMethods.h line 47 function distanceChange
+Unwinding loop 26 iteration 2 file coveringMethods.h line 47 function distanceChange
+Unwinding loop 35 iteration 1 file coveringMethods.h line 246 function fullDVCover
+Unwinding loop 35 iteration 2 file coveringMethods.h line 246 function fullDVCover
+Unwinding loop 36 iteration 1 file coveringMethods.h line 243 function fullDVCover
+Unwinding loop 41 iteration 1 file coveringMethods.h line 331 function neuronCoverageDV
+Unwinding loop 41 iteration 2 file coveringMethods.h line 331 function neuronCoverageDV
+Not unwinding loop 41 iteration 3 file coveringMethods.h line 331 function neuronCoverageDV
+Symex completed in: 0.008s (186 assignments)
+Slicing time: 0.001s (removed 172 assignments)
+Generated 0 VCC(s), 0 remaining after simplification (14 assignments)
+BMC program time: 0.009s
+No bug has been found in the base case
+*** Checking forward condition
+Starting Bounded Model Checking
+Unwinding loop 26 iteration 1 file coveringMethods.h line 47 function distanceChange
+Unwinding loop 26 iteration 2 file coveringMethods.h line 47 function distanceChange
+Unwinding loop 35 iteration 1 file coveringMethods.h line 246 function fullDVCover
+Unwinding loop 35 iteration 2 file coveringMethods.h line 246 function fullDVCover
+Unwinding loop 36 iteration 1 file coveringMethods.h line 243 function fullDVCover
+Unwinding loop 41 iteration 1 file coveringMethods.h line 331 function neuronCoverageDV
+Unwinding loop 41 iteration 2 file coveringMethods.h line 331 function neuronCoverageDV
+Not unwinding loop 41 iteration 3 file coveringMethods.h line 331 function neuronCoverageDV
+Symex completed in: 0.008s (186 assignments)
+Slicing time: 0.000s (removed 172 assignments)
+Generated 1 VCC(s), 1 remaining after simplification (14 assignments)
+Encoding remaining VCC(s) using bit-vector/floating-point arithmetic
+Encoding to solver time: 0.012s
+Solving with solver Boolector 3.2.0
+Encoding to solver time: 0.012s
+Runtime decision procedure: 0.559s
+The forward condition is unable to prove the property
+
+*** Iteration number 4 ***
+*** Checking base case
+Starting Bounded Model Checking
+Unwinding loop 26 iteration 1 file coveringMethods.h line 47 function distanceChange
+Unwinding loop 26 iteration 2 file coveringMethods.h line 47 function distanceChange
+Unwinding loop 35 iteration 1 file coveringMethods.h line 246 function fullDVCover
+Unwinding loop 35 iteration 2 file coveringMethods.h line 246 function fullDVCover
+Unwinding loop 36 iteration 1 file coveringMethods.h line 243 function fullDVCover
+Unwinding loop 41 iteration 1 file coveringMethods.h line 331 function neuronCoverageDV
+Unwinding loop 41 iteration 2 file coveringMethods.h line 331 function neuronCoverageDV
+Unwinding loop 41 iteration 3 file coveringMethods.h line 331 function neuronCoverageDV
+Unwinding loop 41 iteration 1 file coveringMethods.h line 331 function neuronCoverageDV
+Unwinding loop 41 iteration 2 file coveringMethods.h line 331 function neuronCoverageDV
+Unwinding loop 41 iteration 3 file coveringMethods.h line 331 function neuronCoverageDV
+Symex completed in: 0.009s (204 assignments)
+Slicing time: 0.000s (removed 115 assignments)
+Generated 1 VCC(s), 1 remaining after simplification (89 assignments)
+Encoding remaining VCC(s) using bit-vector/floating-point arithmetic
+Encoding to solver time: 0.084s
+Solving with solver Boolector 3.2.0
+Encoding to solver time: 0.084s
+Runtime decision procedure: 5.231s
+Building error trace
+
+Counterexample:
+
+State 3 file neural.c line 73 function main thread 0
+----------------------------------------------------
+  finput[0] = 2.000000f (01000000 00000000 00000000 00000000)
+
+State 4 file neural.c line 74 function main thread 0
+----------------------------------------------------
+  finput[1] = 2.000000f (01000000 00000000 00000000 00000000)
+
+State 5 file neural.c line 76 function main thread 0
+----------------------------------------------------
+  finput2[0] = 1.262177e-29f (00001111 10000000 00000000 00000000)
+
+State 7 file neural.c line 78 function main thread 0
+----------------------------------------------------
+  finput2[1] = 1.192093e-7f (00110100 00000000 00000000 00000000)
+
+State 9 file neural.c line 17 function network thread 0
+----------------------------------------------------
+  layer0[0] = +NaN (01111111 10000000 00000000 00000001)
+
+State 10 file neural.c line 18 function network thread 0
+----------------------------------------------------

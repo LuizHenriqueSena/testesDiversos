@@ -17,22 +17,22 @@
 #include <unistd.h>
 
 #define BASE_ESBMC_COMMAND_FIXED_POINT                                         \
-  "/home/erickson.alves/esbmc/v6.4.0/bin/esbmc"                                \
+  "/home/erickson.alves/esbmc/v6.4.0/bin/esbmc "                                \
   "--force-malloc-success "                                                    \
   "--no-bounds-check "                                                         \
   "--no-div-by-zero-check "                                                    \
   "--no-pointer-check "                                                        \
   "--floatbv "                                                                 \
-  "-I ."
+  "-I . "
 #define BASE_ESBMC_COMMAND_FLOATING_POINT                                      \
-  "/home/erickson.alves/esbmc/v6.4.0/bin/esbmc"                                \
+  "/home/erickson.alves/esbmc/v6.4.0/bin/esbmc "                                \
   "--force-malloc-success "                                                    \
   "--no-bounds-check "                                                         \
   "--no-div-by-zero-check "                                                    \
   "--no-pointer-check "                                                        \
   "--incremental-bmc "                                                         \
   "--floatbv "                                                                 \
-  "-I ."
+  "-I . "
 #define BENCHMARK_FILENAME "neural.c"
 #define BUFFER_SIZE 128
 #define CURRENT_FOLDER_SYMLINK "."
@@ -307,7 +307,7 @@ int main(int argc, char *argv[]) {
 
   std::cout << "Found " << size << " benchmark(s)" << std::endl;
 
-  benchmark_executor executor(5);
+  benchmark_executor executor(8);
 
   for (size_t i = 0; i < size; ++i) {
     std::string dir = dirs[i];

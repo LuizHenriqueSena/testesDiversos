@@ -1,0 +1,130 @@
+ESBMC version 6.4.0 64-bit x86_64 linux
+file networkSSCover.c: Parsing
+Converting
+Generating GOTO Program
+GOTO program creation time: 0.192s
+GOTO program processing time: 0.003s
+
+*** Iteration number 1 ***
+*** Checking base case
+Starting Bounded Model Checking
+Not unwinding loop 29 iteration 1 file coveringMethods.h line 86 function fullSSCover
+Symex completed in: 0.004s (117 assignments)
+Slicing time: 0.000s (removed 104 assignments)
+Generated 0 VCC(s), 0 remaining after simplification (13 assignments)
+BMC program time: 0.004s
+No bug has been found in the base case
+*** Checking forward condition
+Starting Bounded Model Checking
+Not unwinding loop 29 iteration 1 file coveringMethods.h line 86 function fullSSCover
+Symex completed in: 0.004s (117 assignments)
+Slicing time: 0.000s (removed 104 assignments)
+Generated 1 VCC(s), 1 remaining after simplification (13 assignments)
+Encoding remaining VCC(s) using bit-vector arithmetic
+Encoding to solver time: 0.000s
+Solving with solver Boolector 3.2.0
+Encoding to solver time: 0.000s
+Runtime decision procedure: 0.002s
+The forward condition is unable to prove the property
+
+*** Iteration number 2 ***
+*** Checking base case
+Starting Bounded Model Checking
+Unwinding loop 29 iteration 1 file coveringMethods.h line 86 function fullSSCover
+Not unwinding loop 29 iteration 2 file coveringMethods.h line 86 function fullSSCover
+Unwinding loop 39 iteration 1 file coveringMethods.h line 296 function neuronCoverageSS
+Not unwinding loop 39 iteration 2 file coveringMethods.h line 296 function neuronCoverageSS
+Symex completed in: 0.005s (155 assignments)
+Slicing time: 0.000s (removed 86 assignments)
+Generated 0 VCC(s), 0 remaining after simplification (69 assignments)
+BMC program time: 0.005s
+No bug has been found in the base case
+*** Checking forward condition
+Starting Bounded Model Checking
+Unwinding loop 29 iteration 1 file coveringMethods.h line 86 function fullSSCover
+Not unwinding loop 29 iteration 2 file coveringMethods.h line 86 function fullSSCover
+Unwinding loop 39 iteration 1 file coveringMethods.h line 296 function neuronCoverageSS
+Not unwinding loop 39 iteration 2 file coveringMethods.h line 296 function neuronCoverageSS
+Symex completed in: 0.005s (155 assignments)
+Slicing time: 0.000s (removed 86 assignments)
+Generated 2 VCC(s), 2 remaining after simplification (69 assignments)
+Encoding remaining VCC(s) using bit-vector arithmetic
+Encoding to solver time: 0.001s
+Solving with solver Boolector 3.2.0
+Encoding to solver time: 0.001s
+Runtime decision procedure: 0.037s
+The forward condition is unable to prove the property
+
+*** Iteration number 3 ***
+*** Checking base case
+Starting Bounded Model Checking
+Unwinding loop 29 iteration 1 file coveringMethods.h line 86 function fullSSCover
+Unwinding loop 29 iteration 2 file coveringMethods.h line 86 function fullSSCover
+Unwinding loop 30 iteration 1 file coveringMethods.h line 98 function fullSSCover
+Unwinding loop 39 iteration 1 file coveringMethods.h line 296 function neuronCoverageSS
+Unwinding loop 39 iteration 2 file coveringMethods.h line 296 function neuronCoverageSS
+Not unwinding loop 39 iteration 3 file coveringMethods.h line 296 function neuronCoverageSS
+Symex completed in: 0.007s (189 assignments)
+Slicing time: 0.000s (removed 176 assignments)
+Generated 0 VCC(s), 0 remaining after simplification (13 assignments)
+BMC program time: 0.007s
+No bug has been found in the base case
+*** Checking forward condition
+Starting Bounded Model Checking
+Unwinding loop 29 iteration 1 file coveringMethods.h line 86 function fullSSCover
+Unwinding loop 29 iteration 2 file coveringMethods.h line 86 function fullSSCover
+Unwinding loop 30 iteration 1 file coveringMethods.h line 98 function fullSSCover
+Unwinding loop 39 iteration 1 file coveringMethods.h line 296 function neuronCoverageSS
+Unwinding loop 39 iteration 2 file coveringMethods.h line 296 function neuronCoverageSS
+Not unwinding loop 39 iteration 3 file coveringMethods.h line 296 function neuronCoverageSS
+Symex completed in: 0.007s (189 assignments)
+Slicing time: 0.000s (removed 176 assignments)
+Generated 1 VCC(s), 1 remaining after simplification (13 assignments)
+Encoding remaining VCC(s) using bit-vector arithmetic
+Encoding to solver time: 0.001s
+Solving with solver Boolector 3.2.0
+Encoding to solver time: 0.001s
+Runtime decision procedure: 0.002s
+The forward condition is unable to prove the property
+
+*** Iteration number 4 ***
+*** Checking base case
+Starting Bounded Model Checking
+Unwinding loop 29 iteration 1 file coveringMethods.h line 86 function fullSSCover
+Unwinding loop 29 iteration 2 file coveringMethods.h line 86 function fullSSCover
+Unwinding loop 30 iteration 1 file coveringMethods.h line 98 function fullSSCover
+Unwinding loop 39 iteration 1 file coveringMethods.h line 296 function neuronCoverageSS
+Unwinding loop 39 iteration 2 file coveringMethods.h line 296 function neuronCoverageSS
+Unwinding loop 39 iteration 3 file coveringMethods.h line 296 function neuronCoverageSS
+Unwinding loop 39 iteration 1 file coveringMethods.h line 296 function neuronCoverageSS
+Unwinding loop 39 iteration 2 file coveringMethods.h line 296 function neuronCoverageSS
+Unwinding loop 39 iteration 3 file coveringMethods.h line 296 function neuronCoverageSS
+Symex completed in: 0.008s (207 assignments)
+Slicing time: 0.000s (removed 93 assignments)
+Generated 1 VCC(s), 1 remaining after simplification (114 assignments)
+Encoding remaining VCC(s) using bit-vector arithmetic
+Encoding to solver time: 0.001s
+Solving with solver Boolector 3.2.0
+Encoding to solver time: 0.001s
+Runtime decision procedure: 0.106s
+BMC program time: 0.116s
+No bug has been found in the base case
+*** Checking forward condition
+Starting Bounded Model Checking
+Unwinding loop 29 iteration 1 file coveringMethods.h line 86 function fullSSCover
+Unwinding loop 29 iteration 2 file coveringMethods.h line 86 function fullSSCover
+Unwinding loop 30 iteration 1 file coveringMethods.h line 98 function fullSSCover
+Unwinding loop 39 iteration 1 file coveringMethods.h line 296 function neuronCoverageSS
+Unwinding loop 39 iteration 2 file coveringMethods.h line 296 function neuronCoverageSS
+Unwinding loop 39 iteration 3 file coveringMethods.h line 296 function neuronCoverageSS
+Unwinding loop 39 iteration 1 file coveringMethods.h line 296 function neuronCoverageSS
+Unwinding loop 39 iteration 2 file coveringMethods.h line 296 function neuronCoverageSS
+Unwinding loop 39 iteration 3 file coveringMethods.h line 296 function neuronCoverageSS
+Symex completed in: 0.008s (206 assignments)
+Slicing time: 0.000s (removed 192 assignments)
+Generated 0 VCC(s), 0 remaining after simplification (14 assignments)
+BMC program time: 0.008s
+
+VERIFICATION SUCCESSFUL
+
+Solution found by the forward condition; all states are reachable (k = 4)

@@ -74,9 +74,9 @@ int main(int argc, char* argv[]) {
   finput[1]=2;
   float finput2[2];
   finput2[0] = nondet_float();
-  __ESBMC_assume(finput2[0] <= 5 && finput2[0] >= -5)
+  __ESBMC_assume(finput2[0] <= 5 && finput2[0] >= -5);
   finput2[1] = nondet_float();
-  __ESBMC_assume(finput2[1] <= 5 && finput2[1] >= -5)
+  __ESBMC_assume(finput2[1] <= 5 && finput2[1] >= -5);
 
   printf("%d",network(finput, finput2));
 }

@@ -866,14 +866,22 @@ void exportANNC(esbmc_nnet** nnet, int classification, int range){
 
       if(i != layers -1){
         fprintf(ann2cFile, "if (layer%d[%d] < 0) layer%d[%d]=0;\n", i, j, i, j);
+      } else {
+        if(j!=0) {
+          fprintf(ann2cFile, "if (layer%d[%d] > layer%d[%d]) r = %d;\n", i, j, i, j-1, j);
+        }
+        else{
+          fprintf(ann2cFile, "int r = 0;\n");
+        }
       }
     }
      }
   }
-  for(int n =0; n < outputs; n++){
-    if(n != classification)
-      fprintf(ann2cFile, "__ESBMC_assert(layer%d[%d] > layer%d[%d], \"Classification is not a %d anymore. It is %d.\");\n", layers-1, classification, layers-1, n, classification, n);
-  }
+  fprintf(ann2cFile, "__ESBMC_assert(r == %d, \"Classification is not a %d anymore.\");\n", classification, classification);
+  // for(int n =0; n < outputs; n++){
+  //   if(n != classification)
+  //     fprintf(ann2cFile, "__ESBMC_assert(layer%d[%d] > layer%d[%d], \"Classification is not a %d anymore. It is %d.\");\n", layers-1, classification, layers-1, n, classification, n);
+  // }
   fprintf(ann2cFile, "}\n");
   fclose(ann2cFile);
 }

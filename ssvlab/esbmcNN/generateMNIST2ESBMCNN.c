@@ -51,14 +51,14 @@ int main(int argc,char* argv[]){
     }
   }
 
-  setImg(&nnet, img1);
+  setImg(&nnet, img0);
 
   int classification = 0;
   classification = neuralNetPrediction(&nnet);
   printf("CLASSIFICATION : %d.\n", classification);
-  // for(int i = 0; i < arraySize(range); i++){
-  //   exportANNC(&nnet, classification, range[i]);
-  // }
+  for(int i = 0; i < arraySize(range); i++){
+    exportANNC(&nnet, classification, range[i]);
+  }
   //printNeuralNetworkDescriptors(nnet);
 
   t = clock() - t;

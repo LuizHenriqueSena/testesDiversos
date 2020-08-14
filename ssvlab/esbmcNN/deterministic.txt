@@ -1,15 +1,1108 @@
 ESBMC version 6.4.0 64-bit x86_64 linux
-Enabling --no-slice due to presence of --smt-during-symex
 file mnist24_L7_R120teste.c: Parsing
 Converting
 Generating GOTO Program
-GOTO program creation time: 2.515s
-GOTO program processing time: 0.012s
-
-*** Iteration number 1 ***
-No solver specified; defaulting to Boolector
-*** Checking base case
+GOTO program creation time: 9.254s
+GOTO program processing time: 0.014s
 Starting Bounded Model Checking
-Boolector error encountered
-[boolector] boolector_sat: incremental usage has not been enabled.'boolector_sat' may only be called once
+Unwinding loop 3 iteration 1 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 2 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 3 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 4 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 5 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 6 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 7 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 8 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 9 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 10 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 11 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 12 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 13 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 14 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 15 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 16 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 17 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 18 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 19 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 20 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 21 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 22 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 23 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 24 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 25 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 26 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 27 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 28 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 29 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 30 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 31 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 32 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 33 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 34 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 35 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 36 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 37 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 38 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 39 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 40 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 41 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 42 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 43 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 44 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 45 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 46 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 47 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 48 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 49 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 50 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 51 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 52 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 53 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 54 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 55 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 56 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 57 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 58 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 59 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 60 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 61 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 62 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 63 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 64 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 65 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 66 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 67 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 68 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 69 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 70 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 71 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 72 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 73 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 74 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 75 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 76 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 77 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 78 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 79 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 80 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 81 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 82 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 83 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 84 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 85 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 86 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 87 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 88 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 89 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 90 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 91 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 92 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 93 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 94 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 95 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 96 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 97 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 98 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 99 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 100 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 101 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 102 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 103 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 104 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 105 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 106 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 107 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 108 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 109 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 110 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 111 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 112 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 113 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 114 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 115 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 116 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 117 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 118 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 119 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 120 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 121 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 122 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 123 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 124 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 125 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 126 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 127 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 128 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 129 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 130 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 131 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 132 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 133 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 134 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 135 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 136 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 137 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 138 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 139 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 140 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 141 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 142 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 143 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 144 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 145 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 146 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 147 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 148 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 149 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 150 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 151 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 152 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 153 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 154 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 155 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 156 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 157 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 158 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 159 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 160 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 161 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 162 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 163 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 164 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 165 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 166 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 167 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 168 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 169 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 170 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 171 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 172 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 173 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 174 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 175 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 176 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 177 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 178 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 179 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 180 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 181 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 182 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 183 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 184 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 185 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 186 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 187 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 188 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 189 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 190 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 191 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 192 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 193 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 194 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 195 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 196 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 197 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 198 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 199 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 200 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 201 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 202 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 203 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 204 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 205 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 206 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 207 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 208 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 209 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 210 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 211 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 212 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 213 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 214 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 215 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 216 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 217 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 218 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 219 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 220 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 221 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 222 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 223 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 224 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 225 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 226 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 227 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 228 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 229 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 230 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 231 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 232 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 233 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 234 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 235 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 236 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 237 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 238 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 239 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 240 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 241 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 242 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 243 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 244 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 245 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 246 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 247 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 248 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 249 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 250 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 251 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 252 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 253 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 254 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 255 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 256 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 257 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 258 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 259 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 260 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 261 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 262 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 263 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 264 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 265 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 266 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 267 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 268 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 269 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 270 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 271 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 272 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 273 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 274 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 275 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 276 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 277 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 278 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 279 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 280 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 281 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 282 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 283 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 284 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 285 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 286 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 287 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 288 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 289 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 290 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 291 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 292 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 293 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 294 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 295 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 296 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 297 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 298 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 299 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 300 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 301 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 302 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 303 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 304 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 305 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 306 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 307 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 308 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 309 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 310 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 311 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 312 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 313 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 314 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 315 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 316 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 317 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 318 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 319 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 320 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 321 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 322 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 323 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 324 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 325 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 326 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 327 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 328 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 329 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 330 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 331 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 332 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 333 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 334 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 335 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 336 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 337 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 338 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 339 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 340 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 341 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 342 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 343 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 344 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 345 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 346 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 347 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 348 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 349 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 350 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 351 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 352 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 353 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 354 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 355 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 356 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 357 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 358 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 359 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 360 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 361 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 362 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 363 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 364 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 365 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 366 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 367 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 368 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 369 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 370 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 371 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 372 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 373 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 374 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 375 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 376 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 377 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 378 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 379 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 380 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 381 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 382 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 383 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 384 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 385 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 386 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 387 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 388 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 389 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 390 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 391 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 392 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 393 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 394 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 395 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 396 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 397 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 398 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 399 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 400 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 401 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 402 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 403 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 404 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 405 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 406 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 407 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 408 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 409 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 410 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 411 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 412 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 413 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 414 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 415 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 416 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 417 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 418 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 419 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 420 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 421 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 422 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 423 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 424 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 425 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 426 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 427 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 428 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 429 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 430 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 431 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 432 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 433 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 434 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 435 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 436 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 437 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 438 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 439 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 440 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 441 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 442 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 443 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 444 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 445 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 446 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 447 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 448 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 449 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 450 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 451 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 452 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 453 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 454 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 455 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 456 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 457 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 458 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 459 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 460 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 461 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 462 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 463 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 464 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 465 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 466 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 467 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 468 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 469 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 470 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 471 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 472 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 473 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 474 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 475 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 476 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 477 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 478 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 479 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 480 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 481 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 482 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 483 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 484 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 485 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 486 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 487 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 488 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 489 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 490 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 491 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 492 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 493 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 494 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 495 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 496 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 497 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 498 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 499 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 500 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 501 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 502 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 503 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 504 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 505 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 506 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 507 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 508 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 509 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 510 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 511 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 512 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 513 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 514 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 515 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 516 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 517 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 518 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 519 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 520 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 521 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 522 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 523 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 524 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 525 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 526 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 527 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 528 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 529 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 530 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 531 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 532 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 533 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 534 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 535 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 536 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 537 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 538 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 539 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 540 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 541 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 542 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 543 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 544 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 545 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 546 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 547 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 548 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 549 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 550 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 551 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 552 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 553 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 554 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 555 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 556 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 557 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 558 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 559 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 560 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 561 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 562 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 563 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 564 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 565 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 566 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 567 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 568 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 569 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 570 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 571 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 572 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 573 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 574 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 575 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 576 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 577 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 578 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 579 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 580 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 581 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 582 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 583 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 584 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 585 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 586 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 587 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 588 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 589 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 590 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 591 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 592 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 593 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 594 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 595 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 596 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 597 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 598 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 599 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 600 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 601 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 602 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 603 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 604 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 605 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 606 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 607 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 608 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 609 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 610 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 611 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 612 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 613 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 614 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 615 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 616 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 617 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 618 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 619 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 620 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 621 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 622 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 623 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 624 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 625 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 626 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 627 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 628 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 629 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 630 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 631 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 632 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 633 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 634 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 635 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 636 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 637 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 638 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 639 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 640 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 641 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 642 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 643 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 644 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 645 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 646 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 647 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 648 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 649 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 650 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 651 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 652 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 653 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 654 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 655 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 656 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 657 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 658 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 659 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 660 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 661 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 662 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 663 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 664 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 665 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 666 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 667 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 668 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 669 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 670 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 671 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 672 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 673 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 674 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 675 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 676 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 677 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 678 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 679 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 680 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 681 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 682 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 683 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 684 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 685 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 686 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 687 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 688 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 689 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 690 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 691 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 692 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 693 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 694 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 695 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 696 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 697 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 698 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 699 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 700 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 701 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 702 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 703 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 704 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 705 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 706 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 707 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 708 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 709 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 710 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 711 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 712 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 713 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 714 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 715 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 716 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 717 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 718 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 719 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 720 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 721 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 722 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 723 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 724 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 725 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 726 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 727 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 728 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 729 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 730 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 731 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 732 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 733 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 734 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 735 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 736 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 737 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 738 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 739 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 740 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 741 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 742 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 743 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 744 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 745 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 746 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 747 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 748 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 749 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 750 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 751 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 752 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 753 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 754 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 755 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 756 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 757 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 758 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 759 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 760 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 761 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 762 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 763 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 764 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 765 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 766 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 767 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 768 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 769 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 770 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 771 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 772 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 773 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 774 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 775 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 776 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 777 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 778 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 779 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 780 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 781 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 782 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 783 file mnist24_L7_R120teste.c line 9 function main
+Unwinding loop 3 iteration 784 file mnist24_L7_R120teste.c line 9 function main
+Symex completed in: 1.340s (1784 assignments)
+Slicing time: 0.003s (removed 1581 assignments)
+Generated 1 VCC(s), 1 remaining after simplification (203 assignments)
+No solver specified; defaulting to Boolector
+Encoding remaining VCC(s) using bit-vector/floating-point arithmetic
+Encoding to solver time: 3.060s
+Solving with solver Boolector 3.2.0
+Encoding to solver time: 3.060s
+Runtime decision procedure: 1.283s
+Building error trace
 
+Counterexample:
+
+State 1 file mnist24_L7_R120teste.c line 14 function main thread 0
+----------------------------------------------------
+  layer1[0] = 5.334450e+0f (01000000 10101010 10110011 11010000)
+
+State 2 file mnist24_L7_R120teste.c line 16 function main thread 0
+----------------------------------------------------
+  layer1[1] = 5.356638e+0f (01000000 10101011 01101001 10010101)
+
+State 3 file mnist24_L7_R120teste.c line 18 function main thread 0
+----------------------------------------------------
+  layer1[2] = -4.601703e+0f (11000000 10010011 01000001 00100111)
+
+State 4 file mnist24_L7_R120teste.c line 19 function main thread 0
+----------------------------------------------------
+  layer1[2] = 0.000000f (00000000 00000000 00000000 00000000)
+
+State 5 file mnist24_L7_R120teste.c line 20 function main thread 0
+----------------------------------------------------
+  layer1[3] = 9.511100e-1f (00111111 01110011 01111011 11110010)
+
+State 6 file mnist24_L7_R120teste.c line 22 function main thread 0
+----------------------------------------------------
+  layer1[4] = 2.989821e+0f (01000000 00111111 01011001 00111010)
+
+State 7 file mnist24_L7_R120teste.c line 24 function main thread 0
+----------------------------------------------------
+  layer1[5] = 7.477015e+0f (01000000 11101111 01000011 10110110)
+
+State 8 file mnist24_L7_R120teste.c line 26 function main thread 0
+----------------------------------------------------
+  layer1[6] = -6.532787e+0f (11000000 11010001 00001100 10011000)
+
+State 9 file mnist24_L7_R120teste.c line 27 function main thread 0
+----------------------------------------------------
+  layer1[6] = 0.000000f (00000000 00000000 00000000 00000000)
+
+State 10 file mnist24_L7_R120teste.c line 28 function main thread 0
+----------------------------------------------------
+  layer1[7] = -1.119445e+0f (10111111 10001111 01001001 11110111)
+
+State 11 file mnist24_L7_R120teste.c line 29 function main thread 0
+----------------------------------------------------
+  layer1[7] = 0.000000f (00000000 00000000 00000000 00000000)
+
+State 12 file mnist24_L7_R120teste.c line 30 function main thread 0
+----------------------------------------------------
+  layer1[8] = 2.551533e+0f (01000000 00100011 01001100 01010011)
+
+State 13 file mnist24_L7_R120teste.c line 32 function main thread 0
+----------------------------------------------------
+  layer1[9] = -3.196764e-1f (10111110 10100011 10101100 10100000)
+
+State 14 file mnist24_L7_R120teste.c line 33 function main thread 0
+----------------------------------------------------
+  layer1[9] = 0.000000f (00000000 00000000 00000000 00000000)
+
+State 15 file mnist24_L7_R120teste.c line 34 function main thread 0
+----------------------------------------------------
+  layer1[10] = 3.238712e+0f (01000000 01001111 01000111 00010000)
+
+State 16 file mnist24_L7_R120teste.c line 36 function main thread 0
+----------------------------------------------------
+  layer1[11] = 5.394086e+0f (01000000 10101100 10011100 01011011)
+
+State 17 file mnist24_L7_R120teste.c line 38 function main thread 0
+----------------------------------------------------
+  layer1[12] = -1.072830e+0f (10111111 10001001 01010010 01111101)
+
+State 18 file mnist24_L7_R120teste.c line 39 function main thread 0
+----------------------------------------------------
+  layer1[12] = 0.000000f (00000000 00000000 00000000 00000000)
+
+State 19 file mnist24_L7_R120teste.c line 40 function main thread 0
+----------------------------------------------------
+  layer1[13] = 1.768152e+0f (00111111 11100010 01010010 11010000)
+
+State 20 file mnist24_L7_R120teste.c line 42 function main thread 0
+----------------------------------------------------
+  layer1[14] = 2.303862e+0f (01000000 00010011 01110010 01111000)
+
+State 21 file mnist24_L7_R120teste.c line 44 function main thread 0
+----------------------------------------------------
+  layer1[15] = 2.241115e+0f (01000000 00001111 01101110 01101100)
+
+State 22 file mnist24_L7_R120teste.c line 46 function main thread 0
+----------------------------------------------------
+  layer1[16] = 4.926846e-1f (00111110 11111100 01000001 00101001)
+
+State 23 file mnist24_L7_R120teste.c line 48 function main thread 0
+----------------------------------------------------
+  layer1[17] = -1.468979e+0f (10111111 10111100 00000111 01111110)
+
+State 24 file mnist24_L7_R120teste.c line 49 function main thread 0
+----------------------------------------------------
+  layer1[17] = 0.000000f (00000000 00000000 00000000 00000000)
+
+State 25 file mnist24_L7_R120teste.c line 50 function main thread 0
+----------------------------------------------------
+  layer1[18] = -6.787460e-2f (10111101 10001011 00000001 11010110)
+
+State 26 file mnist24_L7_R120teste.c line 51 function main thread 0
+----------------------------------------------------
+  layer1[18] = 0.000000f (00000000 00000000 00000000 00000000)
+
+State 27 file mnist24_L7_R120teste.c line 52 function main thread 0
+----------------------------------------------------
+  layer1[19] = 3.519664e+0f (01000000 01100001 01000010 00101101)
+
+State 28 file mnist24_L7_R120teste.c line 54 function main thread 0
+----------------------------------------------------
+  layer1[20] = 3.546956e+0f (01000000 01100011 00000001 01010101)
+
+State 29 file mnist24_L7_R120teste.c line 56 function main thread 0
+----------------------------------------------------
+  layer1[21] = -3.071010e+0f (11000000 01000100 10001011 01101100)
+
+State 30 file mnist24_L7_R120teste.c line 57 function main thread 0
+----------------------------------------------------
+  layer1[21] = 0.000000f (00000000 00000000 00000000 00000000)
+
+State 31 file mnist24_L7_R120teste.c line 58 function main thread 0
+----------------------------------------------------
+  layer1[22] = 2.760157e+0f (01000000 00110000 10100110 01101011)
+
+State 32 file mnist24_L7_R120teste.c line 60 function main thread 0
+----------------------------------------------------
+  layer1[23] = 2.687829e+0f (01000000 00101100 00000101 01100110)
+
+State 33 file mnist24_L7_R120teste.c line 63 function main thread 0
+----------------------------------------------------
+  layer2[0] = +NaN (01111111 10000000 00000000 00000001)
+
+State 34 file mnist24_L7_R120teste.c line 65 function main thread 0
+----------------------------------------------------
+  layer2[1] = +NaN (01111111 10000000 00000000 00000001)
+
+State 35 file mnist24_L7_R120teste.c line 67 function main thread 0
+----------------------------------------------------
+  layer2[2] = +NaN (01111111 10000000 00000000 00000001)
+
+State 36 file mnist24_L7_R120teste.c line 69 function main thread 0
+----------------------------------------------------
+  layer2[3] = +NaN (01111111 10000000 00000000 00000001)
+
+State 37 file mnist24_L7_R120teste.c line 70 function main thread 0
+----------------------------------------------------
+  layer2[3] = 0.000000f (00000000 00000000 00000000 00000000)
+
+State 38 file mnist24_L7_R120teste.c line 71 function main thread 0
+----------------------------------------------------
+  layer2[4] = +NaN (01111111 10000000 00000000 00000001)
+
+State 39 file mnist24_L7_R120teste.c line 73 function main thread 0
+----------------------------------------------------
+  layer2[5] = +NaN (01111111 10000000 00000000 00000001)
+
+State 40 file mnist24_L7_R120teste.c line 75 function main thread 0
+----------------------------------------------------
+  layer2[6] = +NaN (01111111 10000000 00000000 00000001)
+
+State 41 file mnist24_L7_R120teste.c line 77 function main thread 0
+----------------------------------------------------
+  layer2[7] = +NaN (01111111 10000000 00000000 00000001)
+
+State 42 file mnist24_L7_R120teste.c line 79 function main thread 0
+----------------------------------------------------
+  layer2[8] = +NaN (01111111 10000000 00000000 00000001)
+
+State 43 file mnist24_L7_R120teste.c line 81 function main thread 0
+----------------------------------------------------
+  layer2[9] = +NaN (01111111 10000000 00000000 00000001)
+
+State 44 file mnist24_L7_R120teste.c line 83 function main thread 0
+----------------------------------------------------
+  layer2[10] = 1.179900e-2f (00111100 01000001 01010000 10011000)
+
+State 45 file mnist24_L7_R120teste.c line 85 function main thread 0
+----------------------------------------------------
+  layer2[11] = -8.856700e-2f (10111101 10110101 01100010 10011110)
+
+State 46 file mnist24_L7_R120teste.c line 86 function main thread 0
+----------------------------------------------------
+  layer2[11] = 0.000000f (00000000 00000000 00000000 00000000)
+
+State 47 file mnist24_L7_R120teste.c line 87 function main thread 0
+----------------------------------------------------
+  layer2[12] = 1.377200e-2f (00111100 01100001 10100011 11110100)
+
+State 48 file mnist24_L7_R120teste.c line 88 function main thread 0
+----------------------------------------------------
+  layer2[12] = 0.000000f (00000000 00000000 00000000 00000000)
+
+State 49 file mnist24_L7_R120teste.c line 89 function main thread 0
+----------------------------------------------------
+  layer2[13] = 2.843270e-1f (00111110 10010001 10010011 01001111)
+
+State 50 file mnist24_L7_R120teste.c line 91 function main thread 0
+----------------------------------------------------
+  layer2[14] = 7.387200e-2f (00111101 10010111 01001010 00110100)
+
+State 51 file mnist24_L7_R120teste.c line 92 function main thread 0
+----------------------------------------------------
+  layer2[14] = 0.000000f (00000000 00000000 00000000 00000000)
+
+State 52 file mnist24_L7_R120teste.c line 93 function main thread 0
+----------------------------------------------------
+  layer2[15] = 1.863820e-1f (00111110 00111110 11011010 11101100)
+
+State 53 file mnist24_L7_R120teste.c line 94 function main thread 0
+----------------------------------------------------
+  layer2[15] = 0.000000f (00000000 00000000 00000000 00000000)
+
+State 54 file mnist24_L7_R120teste.c line 95 function main thread 0
+----------------------------------------------------
+  layer2[16] = 1.039490e-1f (00111101 11010100 11100011 00110111)
+
+State 55 file mnist24_L7_R120teste.c line 97 function main thread 0
+----------------------------------------------------
+  layer2[17] = 1.008530e-1f (00111101 11001110 10001100 00000101)
+
+State 56 file mnist24_L7_R120teste.c line 99 function main thread 0
+----------------------------------------------------
+  layer2[18] = 2.516810e-1f (00111110 10000000 11011100 01010101)
+
+State 57 file mnist24_L7_R120teste.c line 100 function main thread 0
+----------------------------------------------------
+  layer2[18] = 0.000000f (00000000 00000000 00000000 00000000)
+
+State 58 file mnist24_L7_R120teste.c line 101 function main thread 0
+----------------------------------------------------
+  layer2[19] = 2.697990e-1f (00111110 10001010 00100011 00011000)
+
+State 59 file mnist24_L7_R120teste.c line 102 function main thread 0
+----------------------------------------------------
+  layer2[19] = 0.000000f (00000000 00000000 00000000 00000000)
+
+State 60 file mnist24_L7_R120teste.c line 103 function main thread 0
+----------------------------------------------------
+  layer2[20] = 1.623760e-1f (00111110 00100110 01000101 11100101)
+
+State 61 file mnist24_L7_R120teste.c line 105 function main thread 0
+----------------------------------------------------
+  layer2[21] = -4.270400e-2f (10111101 00101110 11101010 01100100)
+
+State 62 file mnist24_L7_R120teste.c line 106 function main thread 0
+----------------------------------------------------
+  layer2[21] = 0.000000f (00000000 00000000 00000000 00000000)
+
+State 63 file mnist24_L7_R120teste.c line 107 function main thread 0
+----------------------------------------------------
+  layer2[22] = 3.006280e-1f (00111110 10011001 11101011 11101010)
+
+State 64 file mnist24_L7_R120teste.c line 109 function main thread 0
+----------------------------------------------------
+  layer2[23] = 2.099920e-1f (00111110 01010111 00001000 00100101)
+
+State 65 file mnist24_L7_R120teste.c line 112 function main thread 0
+----------------------------------------------------
+  layer3[0] = -1.751840e-1f (10111110 00110011 01100011 01101111)
+
+State 66 file mnist24_L7_R120teste.c line 113 function main thread 0
+----------------------------------------------------
+  layer3[1] = -7.214600e-2f (10111101 10010011 11000001 01001000)
+
+State 67 file mnist24_L7_R120teste.c line 114 function main thread 0
+----------------------------------------------------
+  layer3[2] = 8.816000e-3f (00111100 00010000 01110000 11111100)
+
+State 68 file mnist24_L7_R120teste.c line 115 function main thread 0
+----------------------------------------------------
+  layer3[3] = -2.072790e-1f (10111110 01010100 01000000 11110010)
+
+State 69 file mnist24_L7_R120teste.c line 116 function main thread 0
+----------------------------------------------------
+  layer3[4] = 1.379830e-1f (00111110 00001101 01001011 01101010)
+
+State 70 file mnist24_L7_R120teste.c line 117 function main thread 0
+----------------------------------------------------
+  layer3[5] = 6.372700e-2f (00111101 10000010 10000011 01001101)
+
+State 71 file mnist24_L7_R120teste.c line 118 function main thread 0
+----------------------------------------------------
+  layer3[6] = -1.851190e-1f (10111110 00111101 10001111 11010110)
+
+State 72 file mnist24_L7_R120teste.c line 119 function main thread 0
+----------------------------------------------------
+  layer3[7] = +NaN (01111111 10000000 00000000 00000001)
+
+State 73 file mnist24_L7_R120teste.c line 120 function main thread 0
+----------------------------------------------------
+  layer3[8] = +NaN (01111111 10000000 00000000 00000001)
+
+State 74 file mnist24_L7_R120teste.c line 121 function main thread 0
+----------------------------------------------------
+  layer3[9] = +NaN (01111111 10000000 00000000 00000001)
+
+State 75 file mnist24_L7_R120teste.c line 126 function main thread 0
+----------------------------------------------------
+Violated property:
+  file mnist24_L7_R120teste.c line 126 function main
+  ERROR
+  (_Bool)(layer3[7] < layer3[0])
+
+VERIFICATION FAILED

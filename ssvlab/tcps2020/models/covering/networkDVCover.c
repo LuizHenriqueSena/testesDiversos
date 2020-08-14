@@ -64,7 +64,7 @@ unsigned network(float input[2], float inputNdet[2])
   }
   fullDVCover(layer0Ac, layer0CmAc,  layer1, layer1Cm, 2, 1, 1, 1);
   printf("COVERAGE: %.6f\n", neuronCoverageDV());
-  __ESBMC_assert(neuronCoverageDV() < 0.5);
+  __ESBMC_assert(neuronCoverageDV() < 0.5, "not DV covered enough);
 
   return ret;
 }
@@ -73,9 +73,9 @@ int main(int argc, char* argv[]) {
   finput[0]=2;
   finput[1]=2;
   float finput2[2];
-  finput2[0] = nondet_float;
+  finput2[0] = nondet_float();
   __ESBMC_assume(finput2[0] <= 5 && finput2[0] >= -5)
-  finput2[1] = nondet_float;
+  finput2[1] = nondet_float();
   __ESBMC_assume(finput2[1] <= 5 && finput2[1] >= -5)
 
   printf("%d",network(finput, finput2));

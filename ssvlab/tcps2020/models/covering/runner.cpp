@@ -22,7 +22,7 @@
   "--no-bounds-check "                                                         \
   "--no-div-by-zero-check "                                                    \
   "--no-pointer-check "                                                        \
-  "--floatbv "                                                                 \
+  "--fixedbv "                                                                 \
   "-I . "
 #define BASE_ESBMC_COMMAND_FLOATING_POINT                                      \
   "/home/erickson.alves/esbmc/v6.4.0/bin/esbmc "                                \
@@ -31,7 +31,7 @@
   "--no-div-by-zero-check "                                                    \
   "--no-pointer-check "                                                        \
   "--incremental-bmc "                                                         \
-  "--floatbv "                                                                 \
+  "--fixedbv "                                                                 \
   "-I . "
 #define BENCHMARK_FILENAME "neural.c"
 #define BUFFER_SIZE 128

@@ -7,9 +7,9 @@
 #include "struct.h"
 
 #define data 25
-#define fc1 5
-#define fc2 4
-#define fc3 5
+#define fc1 2
+#define fc2 1
+#define fc3 0
 #define layerNumber 3
 int coverageSS[fc1 + fc2 + fc3];
 int coverageDS[fc1 + fc2 + fc3];

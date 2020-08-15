@@ -33,7 +33,7 @@
   "--no-pointer-check "                                                        \
   "--incremental-bmc "                                                         \
   "--fixedbv "                                                                 \
-  "--interval-analysis"                                                        \
+  "--interval-analysis "                                                        \
   "-I . "
 #define BENCHMARK_FILENAME "neural.c"
 #define BUFFER_SIZE 128

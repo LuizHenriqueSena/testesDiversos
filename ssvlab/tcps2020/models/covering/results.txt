@@ -5,19 +5,19 @@ Preparing benchmark 2 out of 4
 Preparing benchmark 3 out of 4
 Preparing benchmark 4 out of 4
 Ready to execute benchmarks
+[START] Benchmark <dscover_floatingbv>
 [START] Benchmark <dscover_fixedbv>
 [START] Benchmark <dvcover_fixedbv>
-[START] Benchmark <dscover_floatingbv>
 [START] Benchmark <dvcover_floatingbv>
 [START] Benchmark <sscover_fixedbv>
+[START] Benchmark <svcover_fixedbv>
 [START] Benchmark <sscover_floatingbv>
 [START] Benchmark <svcover_floatingbv>
-[START] Benchmark <svcover_fixedbv>
-[FINISH] Benchmark <dscover_floatingbv> took 11 [ms]
-[FINISH] Benchmark <dvcover_floatingbv> took 11 [ms]
-[FINISH] Benchmark <sscover_floatingbv> took 10 [ms]
-[FINISH] Benchmark <svcover_floatingbv> took 10 [ms]
-[FINISH] Benchmark <svcover_fixedbv> took 491 [ms]
-[FINISH] Benchmark <sscover_fixedbv> took 571 [ms]
-[FINISH] Benchmark <dvcover_fixedbv> took 26534 [ms]
-[FINISH] Benchmark <dscover_fixedbv> took 27150 [ms]
+[FINISH] Benchmark <svcover_floatingbv> took 614 [ms]
+[FINISH] Benchmark <svcover_fixedbv> took 640 [ms]
+[FINISH] Benchmark <sscover_fixedbv> took 667 [ms]
+[FINISH] Benchmark <sscover_floatingbv> took 710 [ms]
+[FINISH] Benchmark <dscover_floatingbv> took 25995 [ms]
+[FINISH] Benchmark <dvcover_fixedbv> took 27469 [ms]
+[FINISH] Benchmark <dvcover_floatingbv> took 28700 [ms]
+[FINISH] Benchmark <dscover_fixedbv> took 29438 [ms]

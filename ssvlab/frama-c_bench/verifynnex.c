@@ -3,6 +3,7 @@
 #include <math.h>
 #include <stdlib.h>
 #include <string.h>
+#include "__fc_builtin.h"
 
 #define data 25
 #define fc1 5
@@ -5030,60 +5031,58 @@ float imgU[25] = {255, 0,   0,   0, 255, 255, 0,   0,   0,   255, 255, 0,  0,
                   0,   255, 255, 0, 0,   0,   255, 255, 255, 255, 255, 255};
 
 int main() {
-#ifdef FIXED_POINT
-  initialization(INT_BITS, FRAC_BITS);
-#endif
 
-unsigned int x1 = nondet_uint();
-if (!(x1 <= 255 && x1 >= 0)) return 0;
-unsigned int x2 = nondet_uint();
-if (!(x2 <= 255 && x2 >= 0)) return 0;
-unsigned int x3 = nondet_uint();
-if (!(x3 <= 255 && x3 >= 0)) return 0;
-unsigned int x4 = nondet_uint();
-if (!(x4 <= 255 && x4 >= 0)) return 0;
-unsigned int x5 = nondet_uint();
-if (!(x5 <= 255 && x5 >= 0)) return 0;
-unsigned int x6 = nondet_uint();
-if (!(x6 <= 255 && x6 >= 0)) return 0;
-unsigned int x7 = nondet_uint();
-if (!(x7 <= 255 && x7 >= 0)) return 0;
-unsigned int x8 = nondet_uint();
-if (!(x8 <= 255 && x8 >= 0)) return 0;
-unsigned int x9 = nondet_uint();
-if (!(x9 <= 255 && x9 >= 0)) return 0;
-unsigned int x10 = nondet_uint();
-if (!(x10 <= 255 && x10 >= 0)) return 0;
-unsigned int x11 = nondet_uint();
-if (!(x11 <= 255 && x11 >= 0)) return 0;
-unsigned int x12 = nondet_uint();
-if (!(x12 <= 255 && x12 >= 0)) return 0;
-unsigned int x13 = nondet_uint();
-if (!(x13 <= 255 && x13 >= 0)) return 0;
-unsigned int x14 = nondet_uint();
-if (!(x14 <= 255 && x14 >= 0)) return 0;
-unsigned int x15 = nondet_uint();
-if (!(x15 <= 255 && x15 >= 0)) return 0;
-unsigned int x16 = nondet_uint();
-if (!(x16 <= 255 && x16 >= 0)) return 0;
-unsigned int x17 = nondet_uint();
-if (!(x17 <= 255 && x17 >= 0)) return 0;
-unsigned int x18 = nondet_uint();
-if (!(x18 <= 255 && x18 >= 0)) return 0;
-unsigned int x19 = nondet_uint();
-if (!(x19 <= 255 && x19 >= 0)) return 0;
-unsigned int x20 = nondet_uint();
-if (!(x20 <= 255 && x20 >= 0)) return 0;
-unsigned int x21 = nondet_uint();
-if (!(x21 <= 255 && x21 >= 0)) return 0;
-unsigned int x22 = nondet_uint();
-if (!(x22 <= 255 && x22 >= 0)) return 0;
-unsigned int x23 = nondet_uint();
-if (!(x23 <= 255 && x23 >= 0)) return 0;
-unsigned int x24 = nondet_uint();
-if (!(x24 <= 255 && x24 >= 0)) return 0;
-unsigned int x25 = nondet_uint();
-if (!(x25 <= 255 && x25 >= 0)) return 0;
+  unsigned int x1 = Frama_C_interval(0, 255);
+  //__ESBMC_assume((x1 <= 255) && (x1 >= 0));
+  unsigned int x2 = Frama_C_interval(0, 255);
+  //__ESBMC_assume((x2 <= 255) && (x2 >= 0));
+  unsigned int x3 = Frama_C_interval(0, 255);
+  //__ESBMC_assume((x3 <= 255) && (x3 >= 0));
+  unsigned int x4 = Frama_C_interval(0, 255);
+  //__ESBMC_assume((x4 <= 255) && (x4 >= 0));
+  unsigned int x5 = Frama_C_interval(0, 255);
+  //__ESBMC_assume((x5 <= 255) && (x5 >= 0));
+  unsigned int x6 = Frama_C_interval(0, 255);
+  //__ESBMC_assume((x6 <= 255) && (x6 >= 0));
+  unsigned int x7 = Frama_C_interval(0, 255);
+  //__ESBMC_assume((x7 <= 255) && (x7 >= 0));
+  unsigned int x8 = Frama_C_interval(0, 255);
+  //__ESBMC_assume((x8 <= 255) && (x8 >= 0));
+  unsigned int x9 = Frama_C_interval(0, 255);
+  //__ESBMC_assume((x9 <= 255) && (x9 >= 0));
+  unsigned int x10 = Frama_C_interval(0, 255);
+  //__ESBMC_assume((x10 <= 255) && (x10 >= 0));
+  unsigned int x11 = Frama_C_interval(0, 255);
+  //__ESBMC_assume((x11 <= 255) && (x11 >= 0));
+  unsigned int x12 = Frama_C_interval(0, 255);
+  //__ESBMC_assume((x12 <= 255) && (x12 >= 0));
+  unsigned int x13 = Frama_C_interval(0, 255);
+  //__ESBMC_assume((x13 <= 255) && (x13 >= 0));
+  unsigned int x14 = Frama_C_interval(0, 255);
+  //__ESBMC_assume((x14 <= 255) && (x14 >= 0));
+  unsigned int x15 = Frama_C_interval(0, 255);
+  //__ESBMC_assume((x15 <= 255) && (x15 >= 0));
+  unsigned int x16 = Frama_C_interval(0, 255);
+  //__ESBMC_assume((x16 <= 255) && (x16 >= 0));
+  unsigned int x17 = Frama_C_interval(0, 255);
+  //__ESBMC_assume((x17 <= 255) && (x17 >= 0));
+  unsigned int x18 = Frama_C_interval(0, 255);
+  //__ESBMC_assume((x18 <= 255) && (x18 >= 0));
+  unsigned int x19 = Frama_C_interval(0, 255);
+  //__ESBMC_assume((x19 <= 255) && (x19 >= 0));
+  unsigned int x20 = Frama_C_interval(0, 255);
+  //__ESBMC_assume((x20 <= 255) && (x20 >= 0));
+  unsigned int x21 = Frama_C_interval(0, 255);
+  //__ESBMC_assume((x21 <= 255) && (x21 >= 0));
+  unsigned int x22 = Frama_C_interval(0, 255);
+  //__ESBMC_assume((x22 <= 255) && (x22 >= 0));
+  unsigned int x23 = Frama_C_interval(0, 255);
+  //__ESBMC_assume((x23 <= 255) && (x23 >= 0));
+  unsigned int x24 = Frama_C_interval(0, 255);
+  //__ESBMC_assume((x24 <= 255) && (x24 >= 0));
+  unsigned int x25 = Frama_C_interval(0, 255);
+  //__ESBMC_assume((x25 <= 255) && (x25 >= 0));
+
 
   float img2[25];
   img2[0] = (float)x1;
@@ -5119,7 +5118,7 @@ if (!(x25 <= 255 && x25 >= 0)) return 0;
   normalizef(imgU, 25);
   normalizef(img2, 25);
   //	unsigned int i = isCloseEnough(img,img2,10,25);
-  if (!isCloseEnough(imgA, img2, 0.3, 25) == 1) return 0;
+  if (!(isCloseEnough(imgA, img2, 0.3, 25) == 1)) return 0;
   //	assert(isCloseEnough(img, 1), "Image is near");
   checkNNLUT(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, img2, 0, 1);
 }

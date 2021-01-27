@@ -4547,52 +4547,46 @@ cublasStatus_t cublasSgemm(cublasHandle_t handle, cublasOperation_t transa,
                            const float *alpha, const float *A, int lda,
                            const float *B, int ldb, const float *beta, float *C,
                            int ldc) {
-  int counterX, counterY, counterZ;
+  int counterX = 0;
+  int counterY = 0;
+  int counterZ = 0;
   float result = 0;
-
   if ((transa == CUBLAS_OP_N) && (transb == CUBLAS_OP_N)) {
     result = 0;
     for (counterZ = 0; counterZ < m; counterZ++) {
+      result = 0;
       for (counterY = 0; counterY < n; counterY++) {
         result = 0;
         for (counterX = 0; counterX < k; counterX++) {
-          // result = (A[counterX + counterZ * lda] * B[counterX * ldb +
-          // counterY]) + result;
-          result = (A[counterX + counterZ * lda] * B[counterX]) + result;
+          result = (A[counterX + counterZ * k] * B[counterX*n +counterY]) + result;
+          //printf("result: %.6f A: %.6f B: %.6f indexA: %d indexB: %d \n", result, A[counterX + counterZ * k], B[counterX*n +counterY], counterX + counterZ * k, counterX*n +counterY);
         }
-        // C[counterY + counterZ * ldc] = alpha[0] * result + beta[0] *
-        // C[counterY + counterZ * ldc];
-        C[counterZ] = alpha[0] * result + beta[0] * C[counterZ];
+        C[counterZ*n + counterY] = alpha[0] * result + beta[0] * C[counterZ*n + counterY];
       }
     }
   } else if ((transa == CUBLAS_OP_N) && (transb == CUBLAS_OP_T)) {
     result = 0;
     for (counterZ = 0; counterZ < m; counterZ++) {
+      result = 0;
       for (counterY = 0; counterY < n; counterY++) {
         result = 0;
         for (counterX = 0; counterX < k; counterX++) {
-          // result = (A[counterX + counterZ * k] * B[counterX + counterY * n])
-          // + result;
-          result = (A[counterX + counterZ * k] * B[counterX]) + result;
+          result = (A[counterX + counterZ*k] * B[counterX + counterY*k]) + result;
         }
-        // C[counterY + counterZ * m] = alpha[0] * result + beta[0] * C[counterY
-        // + counterZ * m];
-        C[counterZ * m] = alpha[0] * result + beta[0] * C[counterZ * m];
+        C[counterZ*n + counterY] = alpha[0] * result + beta[0] * C[counterZ*n + counterY];
       }
     }
   } else if ((transa == CUBLAS_OP_T) && (transb == CUBLAS_OP_N)) {
     result = 0;
     for (counterZ = 0; counterZ < m; counterZ++) {
+      result = 0;
       for (counterY = 0; counterY < n; counterY++) {
         result = 0;
         for (counterX = 0; counterX < k; counterX++) {
-          //  result = (A[counterX * k + counterZ] * B[counterX * n + counterY])
-          // + result;
-          result = (A[counterX * k + counterZ] * B[counterX]) + result;
+          result = (A[counterX * m + counterZ] * B[counterX*n + counterY]) + result;
+          //printf("result: %.6f A: %.6f B: %.6f indexA: %d indexB: %d \n", result, A[counterX + counterZ * k], B[counterX*n +counterY], counterX + counterZ * k, counterX*n +counterY);
         }
-        //  C[counterY + counterZ * m] = alpha[0] * result + beta[0] *
-        // C[counterY + counterZ * m];
-        C[counterZ * m] = alpha[0] * result + beta[0] * C[counterZ * m];
+        C[counterZ *n + counterY] = alpha[0] * result + beta[0] * C[counterZ*n + counterY];
       }
     }
   } else if ((transa == CUBLAS_OP_T) && (transb == CUBLAS_OP_T)) {
@@ -4601,84 +4595,9 @@ cublasStatus_t cublasSgemm(cublasHandle_t handle, cublasOperation_t transa,
       for (counterY = 0; counterY < n; counterY++) {
         result = 0;
         for (counterX = 0; counterX < k; counterX++) {
-          // result = (A[counterX * k + counterZ] * B[counterX + counterY * n])
-          // + result;
           result = (A[counterX * k + counterZ] * B[counterX]) + result;
         }
-        // C[counterZ * m] = alpha[0] * result + beta[0] * C[counterZ * m];
         C[counterZ * m] = alpha[0] * result + beta[0] * C[counterZ * m];
-      }
-    }
-  }
-  return CUBLAS_STATUS_SUCCESS;
-}
-
-cublasStatus_t cublasDgemm(cublasHandle_t handle, cublasOperation_t transa,
-                           cublasOperation_t transb, int m, int n, int k,
-                           const double *alpha, const double *A, int lda,
-                           const double *B, int ldb, const double *beta,
-                           double *C, int ldc) {
-  int counterX, counterY, counterZ;
-  double result = 0;
-
-  if ((transa == CUBLAS_OP_N) && (transb == CUBLAS_OP_N)) {
-    result = 0;
-    for (counterZ = 0; counterZ < m; counterZ++) {
-      for (counterY = 0; counterY < n; counterY++) {
-        result = 0;
-        for (counterX = 0; counterX < k; counterX++) {
-          // result =  (A[counterX + counterY*k] * B[counterX*n + counterY]) +
-          // result;
-          result = (A[counterX + counterZ * k] * B[counterX * n + counterY]) +
-                   result;
-        }
-        C[counterY + counterZ * m] =
-            alpha[0] * result + beta[0] * C[counterY + counterZ * m];
-      }
-    }
-  } else if ((transa == CUBLAS_OP_N) && (transb == CUBLAS_OP_T)) {
-    result = 0;
-    for (counterZ = 0; counterZ < m; counterZ++) {
-      for (counterY = 0; counterY < n; counterY++) {
-        result = 0;
-        for (counterX = 0; counterX < k; counterX++) {
-          // result =  (A[counterX + counterY*k] * B[counterX*n + counterY]) +
-          // result;
-          result = (A[counterX + counterZ * k] * B[counterX + counterY * n]) +
-                   result;
-        }
-        C[counterY + counterZ * m] =
-            alpha[0] * result + beta[0] * C[counterY + counterZ * m];
-      }
-    }
-  } else if ((transa == CUBLAS_OP_T) && (transb == CUBLAS_OP_N)) {
-    result = 0;
-    for (counterZ = 0; counterZ < m; counterZ++) {
-      for (counterY = 0; counterY < n; counterY++) {
-        result = 0;
-        for (counterX = 0; counterX < k; counterX++) {
-          // result =  (A[counterX + counterY*k] * B[counterX*n + counterY]) +
-          // result;
-          result = (A[counterX * k + counterZ] * B[counterX * n + counterY]) +
-                   result;
-        }
-        C[counterY + counterZ * m] =
-            alpha[0] * result + beta[0] * C[counterY + counterZ * m];
-      }
-    }
-  } else if ((transa == CUBLAS_OP_T) && (transb == CUBLAS_OP_T)) {
-    result = 0;
-    for (counterZ = 0; counterZ < m; counterZ++) {
-      for (counterY = 0; counterY < n; counterY++) {
-        result = 0;
-        for (counterX = 0; counterX < k; counterX++) {
-          // result =  (A[counterX + counterY*k] * B[counterX*n + counterY]) +
-          // result;
-          result = (A[counterX * k + counterZ] * B[counterX + counterY * n]) +
-                   result;
-        }
-        C[counterY + counterZ * m] =
-            alpha[0] * result + beta[0] * C[counterY + counterZ * m];
       }
     }
   }

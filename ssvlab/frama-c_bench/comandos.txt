@@ -1,0 +1,359 @@
+Plug-in name: Eva
+Plug-in shortname: eva
+Description:
+automatically computes variation domains for the variables of the program
+
+Most options of the form '-eva-option-name' and without any parameter
+have an opposite with the name '-eva-no-option-name'.
+
+Most options of the form '-option-name' and without any parameter
+have an opposite with the name '-no-option-name'.
+
+Options taking a string as argument should preferably be written
+-option-name="argument".
+
+***** LIST OF AVAILABLE OPTIONS:
+
+-eva                compute values (opposite option is -no-eva)
+-val                alias for option -eva
+
+*** ABSTRACT DOMAINS
+
+-eva-apron-box      Experimental binding of the numerical domains provided by
+                    the APRON library: http://apron.cri.ensmp.fr/library 
+                    Use the box domain of apron. (opposite option is
+                    -eva-no-apron-box)
+-eva-apron-oct      Experimental binding of the numerical domains provided by
+                    the APRON library: http://apron.cri.ensmp.fr/library 
+                    Use the octagon domain of apron. (opposite option is
+                    -eva-no-apron-oct)
+-eva-bitwise-domain  Use the bitwise abstractions of Eva. (opposite option is
+                    -eva-no-bitwise-domain)
+-eva-cvalue-domain  Use the default domain of eva. (set by default, opposite
+                    option is -eva-no-cvalue-domain)
+-eva-equality-domain  Use the equality domain of Eva. (opposite option is
+                    -eva-no-equality-domain)
+-eva-equality-through-calls <none|formals|all>  Equalities propagated through
+                    function calls (from the caller to the called function):
+                    none, only equalities between formal parameters and
+                    concrete arguments, or all. 
+-eva-equality-through-calls-function <f:none|formals|all>  Equalities
+                    propagated through calls to specific functions. Overrides
+                    -eva-equality-call.
+-eva-gauges-domain  Use the gauges domain of Eva. (opposite option is
+                    -eva-no-gauges-domain)
+-eva-inout-domain   Compute inputs and outputs within Eva. Experimental.
+                    (opposite option is -eva-no-inout-domain)
+-eva-numerors-domain  Experimental. Use the numerors domain of Eva. This
+                    domain computes rounding error bounds for the floating
+                    point computations (opposite option is
+                    -eva-no-numerors-domain)
+-eva-numerors-interaction <relative|absolute|none|both>  defines how the
+                    numerors domain infers the absolute and the relative
+                    errors:
+                    - relative: the relative is deduced from the absolute;
+                    - absolute: the absolute is deduced from the relative;
+                    - none: absolute and relative are computed separately;
+                    - both: reduced product between absolute and relative.
+-eva-numerors-real-size <n>  set <n> as the significand size of the MPFR
+                    representation of reals used by the numerors domain
+                    (defaults to 128)
+-eva-polka-equalities  Experimental binding of the numerical domains provided
+                    by the APRON library: http://apron.cri.ensmp.fr/library
+                    
+                    Use the linear equalities domain of apron. (opposite
+                    option is -eva-no-polka-equalities)
+-eva-polka-loose    Experimental binding of the numerical domains provided by
+                    the APRON library: http://apron.cri.ensmp.fr/library 
+                    Use the loose polyhedra domain of apron. (opposite option
+                    is -eva-no-polka-loose)
+-eva-polka-strict   Experimental binding of the numerical domains provided by
+                    the APRON library: http://apron.cri.ensmp.fr/library 
+                    Use the strict polyhedra domain of apron. (opposite
+                    option is -eva-no-polka-strict)
+-eva-printer-domain  Use the printer domain of eva. Useful for the
+                    developpers of new abstract domains, as it prints the
+                    domain functions that are called by Eva during an
+                    analysis. (opposite option is -eva-no-printer-domain)
+-eva-sign-domain    Use the sign domain of Eva. For demonstration purposes
+                    only. (opposite option is -eva-no-sign-domain)
+-eva-symbolic-locations-domain  Use a dedicated domain for symbolic
+                    equalities. (opposite option is
+                    -eva-no-symbolic-locations-domain)
+
+*** DETERMINISTIC PROGRAMS
+
+-eva-interpreter-mode  Stop at first call to a library function, if main()
+                    has arguments, on undecided branches (opposite option is
+                    -eva-no-interpreter-mode)
+-val-interpreter-mode  alias for option -eva-interpreter-mode
+-eva-stop-at-nth-alarm <n>  Aborts the analysis when the nth alarm is
+                    emitted.
+-val-stop-at-nth-alarm <n>  alias for option -eva-stop-at-nth-alarm
+
+*** DYNAMIC ALLOCATION
+
+-eva-alloc-returns-null  Memory allocation built-ins (malloc, calloc,
+                    realloc) are modeled as nondeterministically returning a
+                    null pointer (set by default, opposite option is
+                    -eva-no-alloc-returns-null)
+-val-alloc-returns-null  alias for option -eva-alloc-returns-null
+-eva-malloc-functions <f1,...,fn>  The malloc builtins use the call site of
+                    malloc() to know where to create new bases. This
+                    detection does not work for custom allocators or wrappers
+                    on top of malloc, unless they are listed here. By
+                    default, only contains malloc.
+-val-malloc-functions <f1,...,fn>  alias for option -eva-malloc-functions
+-eva-mlevel <m>     sets to [m] the number of precise dynamic allocation for
+                    any given callstack
+-val-mlevel <m>     alias for option -eva-mlevel
+
+*** GETTING INFORMATION
+
+-eva-help           help of plug-in Eva
+-value-help         alias for option -eva-help
+-value-h            alias for option -eva-help
+-val-h              alias for option -eva-help
+-eva-h              alias for option -eva-help
+
+*** INITIAL CONTEXT
+
+-eva-context-depth <n>  use <n> as the depth of the default context for Eva.
+                    (defaults to 2)
+-context-depth <n>  alias for option -eva-context-depth
+-eva-context-valid-pointers  only allocate valid pointers until
+                    context-depth, and then use NULL (defaults to false)
+                    (opposite option is -eva-no-context-valid-pointers)
+-context-valid-pointers  alias for option -eva-context-valid-pointers
+-eva-context-width <n>  use <n> as the width of the default context for Eva.
+                    (defaults to 2)
+-context-width <n>  alias for option -eva-context-width
+-eva-initialization-padding-globals <yes|no|maybe>  Specify how padding bits
+                    are initialized inside global variables. Possible values
+                    are <yes> (padding is fully initialized), <no> (padding
+                    is completely uninitialized), or <maybe> (padding may be
+                    uninitialized). Default is <yes>.
+-val-initialization-padding-globals <yes|no|maybe>  alias for option
+                    -eva-initialization-padding-globals
+-eva-load-fun-state <function:filename>  load state of function <function>
+                    from file <filename>
+-val-load-fun-state <function:filename>  alias for option -eva-load-fun-state
+-eva-save-fun-state <function:filename>  save state of function <function> in
+                    file <filename>
+-val-save-fun-state <function:filename>  alias for option -eva-save-fun-state
+
+*** OUTPUT MESSAGES
+
+-eva-debug <n>      level of debug for plug-in Eva (default to 0)
+-eva-flamegraph <file>  Dumps a summary of the time spent analyzing function
+                    calls in a format suitable for the Flamegraph tool
+                    (http://www.brendangregg.com/flamegraphs.html)
+-val-flamegraph <file>  alias for option -eva-flamegraph
+-eva-log <K_1:file_1,...>  copy log messages from Eva to a file. <K> is a
+                    combination of these characters:
+                    a: ALL messages (equivalent to 'dfiruw')
+                    d: debug       e: user or internal error (same as 'iu')
+                    f: feedback    i: internal error
+                    r: result      u: user error    w: warning
+                    An empty <K> (e.g. ":file.txt") defaults to 'iruw'. One
+                    plug-in can output to several files and vice-versa.
+-value-log <K_1:file_1,...>  alias for option -eva-log
+-eva-msg-key <k1[,...,kn]>  enables message display for categories
+                    <k1>,...,<kn>. Use -eva-msg-key help to get a list of
+                    available categories, and * to enable all categories
+-value-msg-key <k1[,...,kn]>  alias for option -eva-msg-key
+-eva-numerors-log-file <file>  The Numerors Domain will save each call to the
+                    DPRINT function in the given file
+-eva-print          print results for option -eva (set by default, opposite
+                    option is -eva-no-print)
+-val-print          alias for option -eva-print
+-eva-print-callstacks  When printing a message, also show the current call
+                    stack (opposite option is -eva-no-print-callstacks)
+-val-print-callstacks  alias for option -eva-print-callstacks
+-eva-report-red-statuses <filename>  output the list of "red properties" in a
+                    csv file of the given name. These are the properties
+                    which were invalid for some states. Their consolidated
+                    status may not be invalid, but they should often be
+                    investigated first.
+-eva-show-perf      Compute and shows a summary of the time spent analyzing
+                    function calls (opposite option is -eva-no-show-perf)
+-val-show-perf      alias for option -eva-show-perf
+-eva-show-progress  Show progression messages during analysis (opposite
+                    option is -eva-no-show-progress)
+-val-show-progress  alias for option -eva-show-progress
+-eva-show-slevel <n>  Period for showing consumption of the alloted slevel
+                    during analysis
+-val-show-slevel <n>  alias for option -eva-show-slevel
+-eva-verbose <n>    level of verbosity for plug-in Eva (default to 1)
+-value-verbose <n>  alias for option -eva-verbose
+-eva-warn-key <k1[=s1][,...,kn[=sn]]>  set warning status for category <k1>
+                    to <s1>,...,<kn> to <sn>. Use -eva-msg-key help to get a
+                    list of available categories, and * to enable all
+                    categories. Possible statuses are inactive,
+                    feedback-once, once, active, error-once, error, and
+                    abort. Defaults to active
+-value-warn-key <k1[=s1][,...,kn[=sn]]>  alias for option -eva-warn-key
+
+*** PRECISION VS. TIME
+
+-eva-builtin <f:ffc>  when analyzing function <f>, try to use Frama-C builtin
+                    <ffc> instead. Fall back to <f> if <ffc> cannot handle
+                    its arguments.
+-val-builtin <f:ffc>  alias for option -eva-builtin
+-eva-builtins-auto  When set, builtins will be used automatically to replace
+                    known C functions (set by default, opposite option is
+                    -eva-no-builtins-auto)
+-val-builtins-auto  alias for option -eva-builtins-auto
+-eva-builtins-list  Lists the existing builtins, and which functions they are
+                    automatically associated to (if any) (opposite option is
+                    -eva-no-builtins-list)
+-val-builtins-list  alias for option -eva-builtins-list
+-eva-enumerate-cond  Activate reduce_by_cond_enumerate. (set by default,
+                    opposite option is -eva-no-enumerate-cond)
+-eva-ilevel <n>     Sets of integers are represented as sets up to <n>
+                    elements. Above, intervals with congruence information
+                    are used (defaults to 8, must be between 4 and 128)
+-val-ilevel <n>     alias for option -eva-ilevel
+-eva-memexec        Speed up analysis by not recomputing functions already
+                    analyzed in the same context. Forces -inout-callwise.
+                    Callstacks for which the analysis has not been recomputed
+                    are incorrectly shown as dead in the GUI. (set by
+                    default, opposite option is -eva-no-memexec)
+-memexec-all        alias for option -eva-memexec
+-eva-min-loop-unroll <n>  unroll <n> loop iterations for each loop,
+                    regardless of the slevel settings and the number of
+                    states already propagated. Can be overwritten on a case
+                    by case basis by loop unroll annotations.
+-eva-oracle-depth <n>  Maximum number of successive uses of the oracle by the
+                    domain for the evaluation of an expression. Set 0 to
+                    disable the oracle.
+-eva-plevel <n>     use <n> as the precision level for arrays accesses. Array
+                    accesses are precise as long as the interval for the
+                    index contains less than n values. (defaults to 200)
+-plevel <n>         alias for option -eva-plevel
+-eva-reduction-depth <n>  Maximum number of successive backward reductions
+                    that the domain may initiate.
+-eva-remove-redundant-alarms  after the analysis, try to remove redundant
+                    alarms, so that the user needs inspect fewer of them (set
+                    by default, opposite option is
+                    -eva-no-remove-redundant-alarms)
+-remove-redundant-alarms  alias for option -eva-remove-redundant-alarms
+-eva-skip-stdlib-specs  skip ACSL specifications on functions originating
+                    from the standard library of Frama-C, when their bodies
+                    are evaluated (set by default, opposite option is
+                    -eva-no-skip-stdlib-specs)
+-val-skip-stdlib-specs  alias for option -eva-skip-stdlib-specs
+-eva-slevel <n>     superpose up to <n> states when unrolling control flow.
+                    The larger n, the more precise and expensive the analysis
+                    (defaults to 0)
+-slevel <n>         alias for option -eva-slevel
+-eva-slevel-function <f:n>  override slevel with <n> when analyzing <f>
+-slevel-function <f:n>  alias for option -eva-slevel-function
+-eva-slevel-merge-after-loop <f | @all>  when set, the different execution
+                    paths that originate from the body of a loop are merged
+                    before entering the next excution.
+-val-slevel-merge-after-loop <f | @all>  alias for option
+                    -eva-slevel-merge-after-loop
+-eva-split-return <mode>  when 'mode' is a number, or 'full', this is
+                    equivalent to -val-split-return-function f:mode for all
+                    functions f. When mode is 'auto', automatically split
+                    states at the end of all functions, according to the
+                    function return code
+-val-split-return <mode>  alias for option -eva-split-return
+-eva-split-return-function <f:n>  split return states of function <f>
+                    according to \result == n and \result != n
+-val-split-return-function <f:n>  alias for option -eva-split-return-function
+-eva-subdivide-non-linear <n>  Improve precision when evaluating expressions
+                    in which a variable appears multiple times, by splitting
+                    its value at most n times. Defaults to 0.
+-val-subdivide-non-linear <n>  alias for option -eva-subdivide-non-linear
+-eva-use-spec <f1,..,fn>  use the ACSL specification of the functions instead
+                    of their definitions
+-val-use-spec <f1,..,fn>  alias for option -eva-use-spec
+-eva-widening-delay <n>  do not widen before the <n>-th iteration (defaults
+                    to 3)
+-wlevel <n>         alias for option -eva-widening-delay
+-eva-widening-period <n>  after the first widening, widen each <n> iterations
+                    (defaults to 2)
+
+*** PROPAGATION AND ALARMS 
+
+-eva-all-rounding-modes-constants  Take into account the possibility of
+                    constants not being converted to the nearest
+                    representable value, or being converted to higher
+                    precision (opposite option is
+                    -eva-no-all-rounding-modes-constants)
+-all-rounding-modes-constants  alias for option
+                    -eva-all-rounding-modes-constants
+-eva-ignore-recursive-calls  Pretend function calls that would be recursive
+                    do not happen. Causes unsoundness (opposite option is
+                    -eva-no-ignore-recursive-calls)
+-val-ignore-recursive-calls  alias for option -eva-ignore-recursive-calls
+-eva-initialized-locals  Local variables enter in scope fully initialized.
+                    Only useful for the analysis of programs buggy w.r.t.
+                    initialization. (opposite option is
+                    -eva-no-initialized-locals)
+-val-initialized-locals  alias for option -eva-initialized-locals
+-eva-reduce-on-logic-alarms  Force reductions by a predicate to ignore logic
+                    alarms emitted while the predicated is evaluated
+                    (experimental) (opposite option is
+                    -eva-no-reduce-on-logic-alarms)
+-val-reduce-on-logic-alarms  alias for option -eva-reduce-on-logic-alarms
+-eva-undefined-pointer-comparison-propagate-all  if the target program
+                    appears to contain undefined pointer comparisons,
+                    propagate both outcomes {0; 1} in addition to the
+                    emission of an alarm (opposite option is
+                    -eva-no-undefined-pointer-comparison-propagate-all)
+-undefined-pointer-comparison-propagate-all  alias for option
+                    -eva-undefined-pointer-comparison-propagate-all
+-eva-warn-copy-indeterminate <f | @all>  warn when a statement of the
+                    specified functions copies a value that may be
+                    indeterminate (uninitialized or containing escaping
+                    address). Set by default; can be deactivated for function
+                    'f' by '=-f', or for all functions by '=-@all'.
+-val-warn-copy-indeterminate <f | @all>  alias for option
+                    -eva-warn-copy-indeterminate
+-eva-warn-pointer-subtraction  Warn when subtracting two pointers that may
+                    not be in the same allocated block, and return the
+                    pointwise difference between the offsets. When unset, do
+                    not warn but generate imprecise offsets. (set by default,
+                    opposite option is -eva-no-warn-pointer-subtraction)
+-val-warn-pointer-subtraction  alias for option -eva-warn-pointer-subtraction
+-eva-warn-signed-converted-downcast  Signed downcasts are decomposed into two
+                    operations: a conversion to the signed type of the
+                    original width, then a downcast. Warn when the downcast
+                    may exceed the destination range. (opposite option is
+                    -eva-no-warn-signed-converted-downcast)
+-val-warn-signed-converted-downcast  alias for option
+                    -eva-warn-signed-converted-downcast
+-eva-warn-undefined-pointer-comparison <all|pointer|none>  warn on all
+                    pointer comparisons, on comparisons where the arguments
+                    have pointer type (default), or never warn
+-val-warn-undefined-pointer-comparison <all|pointer|none>  alias for option
+                    -eva-warn-undefined-pointer-comparison
+
+*** RESULTS MEMOIZATION VS. TIME
+
+-eva-apron-storage  Stores the states of the apron domains during the
+                    analysis. (opposite option is -eva-no-apron-storage)
+-eva-bitwise-storage  Stores the states of the bitwise domain during the
+                    analysis. (set by default, opposite option is
+                    -eva-no-bitwise-storage)
+-eva-equality-storage  Stores the states of the equality domain during the
+                    analysis. (set by default, opposite option is
+                    -eva-no-equality-storage)
+-eva-gauges-storage  Stores the states of the gauges domain during the
+                    analysis. (set by default, opposite option is
+                    -eva-no-gauges-storage)
+-eva-join-results   precompute consolidated states once value is computed
+                    (set by default, opposite option is -eva-no-join-results)
+-val-join-results   alias for option -eva-join-results
+-eva-no-results-function <f>  do not record the values obtained for the
+                    statements of function f
+-no-results-function <f>  alias for option -eva-no-results-function
+-eva-results        record values for any of the statements of the program.
+                    (set by default, opposite option is -eva-no-results)
+-results            alias for option -eva-results
+-eva-symbolic-locations-storage  Stores the states of the symbolic locations
+                    domain during the analysis. (set by default, opposite
+                    option is -eva-no-symbolic-locations-storage)

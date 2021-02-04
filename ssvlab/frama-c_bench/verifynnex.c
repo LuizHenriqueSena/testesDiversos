@@ -4558,10 +4558,10 @@ cublasStatus_t cublasSgemm(cublasHandle_t handle, cublasOperation_t transa,
       for (counterY = 0; counterY < n; counterY++) {
         result = 0;
         for (counterX = 0; counterX < k; counterX++) {
-          result = (A[counterX + counterZ * k] * B[counterX*n +counterY]) + result;
+          result = (A[counterX + counterZ * k] * B[counterX +counterY]) + result;
           //printf("result: %.6f A: %.6f B: %.6f indexA: %d indexB: %d \n", result, A[counterX + counterZ * k], B[counterX*n +counterY], counterX + counterZ * k, counterX*n +counterY);
         }
-        C[counterZ*n + counterY] = alpha[0] * result + beta[0] * C[counterZ*n + counterY];
+        C[counterZ + counterY] = alpha[0] * result + beta[0] * C[counterZ + counterY];
       }
     }
   } else if ((transa == CUBLAS_OP_N) && (transb == CUBLAS_OP_T)) {
@@ -4598,6 +4598,78 @@ cublasStatus_t cublasSgemm(cublasHandle_t handle, cublasOperation_t transa,
           result = (A[counterX * k + counterZ] * B[counterX]) + result;
         }
         C[counterZ * m] = alpha[0] * result + beta[0] * C[counterZ * m];
+      }
+    }
+  }
+  return CUBLAS_STATUS_SUCCESS;
+}
+
+cublasStatus_t cublasDgemm(cublasHandle_t handle, cublasOperation_t transa,
+                           cublasOperation_t transb, int m, int n, int k,
+                           const double *alpha, const double *A, int lda,
+                           const double *B, int ldb, const double *beta,
+                           double *C, int ldc) {
+  int counterX, counterY, counterZ;
+  double result = 0;
+
+  if ((transa == CUBLAS_OP_N) && (transb == CUBLAS_OP_N)) {
+    result = 0;
+    for (counterZ = 0; counterZ < m; counterZ++) {
+      for (counterY = 0; counterY < n; counterY++) {
+        result = 0;
+        for (counterX = 0; counterX < k; counterX++) {
+          // result =  (A[counterX + counterY*k] * B[counterX*n + counterY]) +
+          // result;
+          result = (A[counterX + counterZ * k] * B[counterX * n + counterY]) +
+                   result;
+        }
+        C[counterY + counterZ * m] =
+            alpha[0] * result + beta[0] * C[counterY + counterZ * m];
+      }
+    }
+  } else if ((transa == CUBLAS_OP_N) && (transb == CUBLAS_OP_T)) {
+    result = 0;
+    for (counterZ = 0; counterZ < m; counterZ++) {
+      for (counterY = 0; counterY < n; counterY++) {
+        result = 0;
+        for (counterX = 0; counterX < k; counterX++) {
+          // result =  (A[counterX + counterY*k] * B[counterX*n + counterY]) +
+          // result;
+          result = (A[counterX + counterZ * k] * B[counterX + counterY * n]) +
+                   result;
+        }
+        C[counterY + counterZ * m] =
+            alpha[0] * result + beta[0] * C[counterY + counterZ * m];
+      }
+    }
+  } else if ((transa == CUBLAS_OP_T) && (transb == CUBLAS_OP_N)) {
+    result = 0;
+    for (counterZ = 0; counterZ < m; counterZ++) {
+      for (counterY = 0; counterY < n; counterY++) {
+        result = 0;
+        for (counterX = 0; counterX < k; counterX++) {
+          // result =  (A[counterX + counterY*k] * B[counterX*n + counterY]) +
+          // result;
+          result = (A[counterX * k + counterZ] * B[counterX * n + counterY]) +
+                   result;
+        }
+        C[counterY + counterZ * m] =
+            alpha[0] * result + beta[0] * C[counterY + counterZ * m];
+      }
+    }
+  } else if ((transa == CUBLAS_OP_T) && (transb == CUBLAS_OP_T)) {
+    result = 0;
+    for (counterZ = 0; counterZ < m; counterZ++) {
+      for (counterY = 0; counterY < n; counterY++) {
+        result = 0;
+        for (counterX = 0; counterX < k; counterX++) {
+          // result =  (A[counterX + counterY*k] * B[counterX*n + counterY]) +
+          // result;
+          result = (A[counterX * k + counterZ] * B[counterX + counterY * n]) +
+                   result;
+        }
+        C[counterY + counterZ * m] =
+            alpha[0] * result + beta[0] * C[counterY + counterZ * m];
       }
     }
   }
@@ -5031,13 +5103,10 @@ int main() {
   img2[24] = (float)x25;
 
   normalizef(imgA, 25);
-  normalizef(imgE, 25);
-  normalizef(imgI, 25);
-  normalizef(imgO, 25);
-  normalizef(imgU, 25);
   normalizef(img2, 25);
+  Frama_C_show_each(img2[0]);
   //	unsigned int i = isCloseEnough(img,img2,10,25);
-  if (!(isCloseEnough(imgA, img2, 0.3, 25) == 1)) return 0;
+  if (!(isCloseEnough(imgA, img2, 0.3, 25))) return 0;
   //	assert(isCloseEnough(img, 1), "Image is near");
   checkNNLUT(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, img2, 0, 1);
 }

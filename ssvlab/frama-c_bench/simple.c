@@ -3,11 +3,10 @@
 #include "__fc_builtin.h"
 
 int main(){
-	int n = Frama_C_interval(0, 255);
-	//int n = nondet_int();
-	int i = 200;
-	//assert(n <= 255 && n >=0);
-	//@assert((i+n) < 255);
-	//if(!(i <= 255 && i >=0)) return 0;
-	return 1;
+	unsigned int n = Frama_C_interval(0, 255);
+	int i = 0;
+	//assert(n <= 256 && n >=0);
+	int y = i + n;
+	Frama_C_show_each(y);
+	//@assert(y < 255);
 }

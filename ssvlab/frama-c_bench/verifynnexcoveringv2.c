@@ -1,8 +1,8 @@
 //#include <cuda.h>
-//#include <stdio.h>
-//#include <math.h>
-//#include <stdlib.h>
-//#include <string.h>
+#include <stdio.h>
+#include <math.h>
+#include <stdlib.h>
+#include <string.h>
 
 #define data 25
 #define fc1 5
@@ -37,6 +37,10 @@ typedef enum cublasoperation {
 
 typedef enum cublasoperation cublasOperation_t;
 
+int coverageSS[fc1 + fc2 + fc3];
+int coverageDS[fc1 + fc2 + fc3];
+int coverageSV[fc1 + fc2 + fc3];
+int coverageDV[fc1 + fc2 + fc3];
 
 int layerSizes[layerNumber] = { fc1, fc2, fc3 };
 
@@ -4240,16 +4244,6 @@ float lookup[40001] = {0.000000 ,0.000000 ,0.000000 ,0.000000 ,0.000000 ,0.00000
 1.000000 ,1.000000 ,1.000000 ,1.000000 ,1.000000 ,1.000000 ,1.000000 ,1.000000 ,1.000000 ,1.000000 ,
 1.000000};
 
-void printfMatrix(float * mat, int rows, int column) {
-int i =0, j = 0;
-for(i = 0; i< rows; i++) {
-  for(j = 0; j<column; j++) {
-    printf("  %.6f", mat[i*column + j]);
-  }
-  printf("\n");
-}
-}
-
 float sigmoidLUT(float input) {
   int lookTableIndex = (int)(input * 1000);
   lookTableIndex = lookTableIndex + 20000;
@@ -4613,6 +4607,7 @@ cublasStatus_t cublasSgemm(cublasHandle_t handle, cublasOperation_t transa,
   return CUBLAS_STATUS_SUCCESS;
 }
 
+
 cublasStatus_t cublasDgemm(cublasHandle_t handle, cublasOperation_t transa,
                            cublasOperation_t transb, int m, int n, int k,
                            const double *alpha, const double *A, int lda,
@@ -4728,7 +4723,6 @@ int neuronLayerIndexSum(int layerIndex) {
 float sigmoidFunction(float u) {
   float value;
   value = (1 / (1 + powf(2.718281, (u * (-1)))));
-//  assume(value >= 0 && value <= 1);
   return value;
 }
 
@@ -4736,6 +4730,375 @@ void activeSigmoid(float *output, int size) {
   int i;
   for (i = 0; i < size; i++) {
     output[i] = sigmoidFunction(output[i]);
+  }
+}
+
+_Bool signalChange(float v1, float v2) {
+  if (v1 > 0 && v2 < 0)
+    return 1;
+  else if (v1 < 0 && v2 > 0)
+    return 1;
+  else
+    return 0;
+}
+
+_Bool distanceAbsoluteFunction(float v1, float v2, float d) {
+  // precisa de validacao
+  if (fabs(v1 - v2) > d)
+    return 1;
+  else
+    return 0;
+}
+
+_Bool valueChange(float v1, float v2, float d) {
+  if ((!signalChange(v1, v2) && distanceAbsoluteFunction(v1, v2, d)))
+    return 1;
+  else
+    return 0;
+}
+
+_Bool distanceChange(float *out1, float *out2, float normDistance, int size) {
+  int i;
+  float normbasedDistance = 0;
+  for (i = 0; i < size; i++) {
+    normbasedDistance =
+        (out1[i] - out2[i]) * (out1[i] - out2[i]) + normbasedDistance;
+    if (signalChange(out1[i], out2[i])) {
+      return 0;
+    }
+  }
+  return (sqrtf(normbasedDistance) < normDistance) ? 1 : 0;
+}
+
+// Covering method
+// Sign-sign Cover, or SSCover
+int SSCover(float *layer1x1, float *layer1x2, float n2x1, float n2x2, int size1,
+            int n1) {
+  int i;
+  if (!signalChange(layer1x1[n1], layer1x2[n1]))
+    return 0;
+  for (i = 0; i < size1; i++) {
+    if (i == n1)
+      continue;
+    else if (signalChange(layer1x1[i], layer1x2[i]))
+      return 0;
+  }
+  if (signalChange(n2x1, n2x2))
+    return 1;
+  else
+    return 0;
+}
+
+// The method that prints the covered neurons
+void printSSCover(float *layeri1, float *layeri2, float *layerj1,
+                  float *layerj2, int l1, int l2, int layerIndex) {
+  unsigned int i;
+  int n1 = -1;
+  int n2 = -1;
+  int *sc1, *sc2;
+  sc1 = malloc(l1 * sizeof(int));
+  sc2 = malloc(l2 * sizeof(int));
+  for (i = 0; i < l1; i++) {
+    sc1[i] = signalChange(layeri1[i], layeri2[i]);
+    if ((n1 != -1) && (sc1[i] == 1)) {
+      printf("There exists no SSCover neurons for these 2 test cases \n");
+      return;
+    }
+    if ((sc1[i] == 1) && (n1 == -1)) {
+      n1 = i;
+    }
+    if (i == (l1 - 1) && (n1 == -1)) {
+      printf("There exists no SSCover neurons for these 2 test cases \n");
+      return;
+    }
+  }
+  for (i = 0; i < l2; i++) {
+    sc2[i] = signalChange(layerj1[i], layerj2[i]);
+    if (sc2[i]) {
+      coverageSS[neuronLayerIndexSum(layerIndex) + n1] = 1;
+      coverageSS[neuronLayerIndexSum(layerIndex + 1) + i] = 1;
+      //printf("The neuron pair ni%d, nj%d is SSCovered by the 2 test cases.\n",
+      //       n1, i);
+      n2 = i;
+    }
+    if ((n2 == -1) && (i == (l2 - 1))) {
+      printf("There exists no SSCover neurons for these 2 test cases \n");
+      return;
+    }
+  }
+}
+
+void fullSSCover(float *layeri1, float *layeri2, float *layerj1, float *layerj2,
+                 int l1, int l2, int layerIndex) {
+  int i;
+  int n1 = -1;
+  int n2 = -1;
+  unsigned char *sc1, *sc2;
+  sc1 = malloc(l1 * sizeof(unsigned char));
+  sc2 = malloc(l2 * sizeof(unsigned char));
+  for (i = 0; i < l1; i++) {
+    sc1[i] = signalChange(layeri1[i], layeri2[i]);
+    if ((n1 != -1) && (sc1[i] == 0x01)) {
+      return;
+    }
+    if ((sc1[i] == 0x01) && (n1 == -1)) {
+      n1 = i;
+    }
+    if (i == (l1 - 1) && (n1 == -1)) {
+      return;
+    }
+  }
+  for (i = 0; i < l2; i++) {
+    sc2[i] = signalChange(layerj1[i], layerj2[i]);
+    if (sc2[i]) {
+      if (layerIndex == 1) {
+        coverageSS[n1] = 1;
+        coverageSS[fc1 + i] = 1;
+        n2 = i;
+      } else {
+        coverageSS[fc1 + n1] = 1;
+        coverageSS[fc1 + fc2 + i] = 1;
+        n2 = i;
+      }
+    }
+    if ((n2 == -1) && (i == (l2 - 1))) {
+      return;
+    }
+  }
+}
+
+// Covering method
+// Distance-Sign Cover, or DSCover
+_Bool DSCover(float *layer1x1, float *layer1x2, float n2x1, float n2x2, int size1,
+            int n1, int normDistance) {
+  if (!distanceChange(layer1x1, layer1x2, normDistance, size1))
+    return 0;
+  else {
+    if (signalChange(n2x1, n2x2))
+      return 1;
+    else
+      return 0;
+  }
+}
+
+// The method that prints the covered neurons
+void printDSCover(float *layeri1, float *layeri2, float *layerj1,
+                  float *layerj2, int l1, int l2, int layerIndex) {
+  int i = 0;
+  int j = 0;
+  int find = 0;
+
+  if (!distanceChange(layeri1, layeri2, 1, l1)) {
+    printf("There exists no DSCover neurons for these 2 test cases \n");
+    return;
+  }
+
+  for (i = 0; i < l2; i++) {
+    if (signalChange(layerj1[i], layerj2[i])) {
+      find = 1;
+      for (j = 0; j < l1; j++) {
+        coverageDS[neuronLayerIndexSum(layerIndex) + j] = 1;
+        coverageDS[neuronLayerIndexSum(layerIndex + 1) + i] = 1;
+        printf("The neuron pair ni%d, nj%d is DSCovered by the 2 test cases.\n",
+               j, i);
+      }
+    }
+  }
+  if (!find) {
+    printf("There exists no DSCover neurons for these 2 test cases \n");
+    return;
+  }
+}
+
+void fullDSCover(float *layeri1, float *layeri2, float *layerj1, float *layerj2,
+                 int l1, int l2, int layerIndex) {
+  int i, j;
+  int find = 0;
+  if (!distanceChange(layeri1, layeri2, 1, l1)) {
+    return;
+  }
+
+  for (i = 0; i < l2; i++) {
+    if (signalChange(layerj1[i], layerj2[i])) {
+      find = 1;
+      for (j = 0; j < l1; j++) {
+        if (layerIndex == 1) {
+          coverageDS[j] = 1;
+          coverageDS[fc1 + i] = 1;
+        } else {
+          coverageDS[fc1 + j] = 1;
+          coverageDS[fc1 + fc2 + i] = 1;
+        }
+      }
+    }
+  }
+  if (!find) {
+    return;
+  }
+}
+
+// Covering method
+// Sign-Value Cover, or SVCover
+_Bool SVCover(float *layer1x1, float *layer1x2, float n2x1, float n2x2, int size1,
+            int n1, int distance) {
+  int i;
+  if (!signalChange(layer1x1[n1], layer1x2[n1]))
+    return 0;
+  for (i = 0; i < size1; i++) {
+    if (i == n1)
+      continue;
+    else if (signalChange(layer1x1[i], layer1x2[i]))
+      return 0;
+  }
+  if (valueChange(n2x1, n2x2, distance))
+    return 1;
+  else
+    return 0;
+}
+
+// The method that prints the covered neurons
+void printSVCover(float *layeri1, float *layeri2, float *layerj1,
+                  float *layerj2, int l1, int l2, int distance,
+                  int layerIndex) {
+  int i = 0;
+  int n1 = -1;
+  int n2 = -1;
+  int *sc1, *sc2;
+  sc1 = malloc(l1 * sizeof(int));
+  sc2 = malloc(l2 * sizeof(int));
+  for (i = 0; i < l1; i++) {
+    sc1[i] = signalChange(layeri1[i], layeri2[i]);
+    if ((n1 != -1) && (sc1[i] == 1)) {
+      printf("There is no SVCover neurons for these 2 test cases \n");
+      return;
+    }
+    if ((sc1[i] == 1) && (n1 == -1)) {
+      n1 = i;
+    }
+    if (i == (l1 - 1) && (n1 == -1)) {
+      printf("There is no SVCover neurons for these 2 test cases \n");
+      return;
+    }
+  }
+  for (i = 0; i < l2; i++) {
+    sc2[i] = valueChange(layerj1[i], layerj2[i], distance);
+    if (sc2[i]) {
+      coverageSV[neuronLayerIndexSum(layerIndex) + n1] = 1;
+      coverageSV[neuronLayerIndexSum(layerIndex + 1) + i] = 1;
+      printf("The neuron pair ni%d, nj%d is SVCovered by the 2 test cases.\n",
+             n1, i);
+      n2 = i;
+    }
+    if ((n2 == -1) && (i == (l2 - 1))) {
+      printf("There exists no SVCover neurons for these 2 test cases \n");
+      return;
+    }
+  }
+}
+
+void fullSVCover(float *layeri1, float *layeri2, float *layerj1, float *layerj2,
+                 int l1, int l2, float distance, int layerIndex) {
+  unsigned int i;
+  int n1 = -1;
+  int n2 = -1;
+  unsigned char *sc1, *sc2;
+  sc1 = malloc(l1 * sizeof(unsigned char));
+  sc2 = malloc(l2 * sizeof(unsigned char));
+  for (i = 0; i < l1; i++) {
+    sc1[i] = signalChange(layeri1[i], layeri2[i]);
+    if ((n1 != -1) && (sc1[i] == 1)) {
+      return;
+    }
+    if ((sc1[i] == 1) && (n1 == -1)) {
+      n1 = i;
+    }
+    if (i == (l1 - 1) && (n1 == -1)) {
+      return;
+    }
+  }
+  for (i = 0; i < l2; i++) {
+    sc2[i] = valueChange(layerj1[i], layerj2[i], distance);
+    if (sc2[i]) {
+      if (layerIndex == 1) {
+        coverageSV[n1] = 1;
+        coverageSV[fc1 + i] = 1;
+        n2 = i;
+      } else {
+        coverageSV[fc1 + n1] = 1;
+        coverageSV[fc1 + fc2 + i] = 1;
+        n2 = i;
+      }
+    }
+    if ((n2 == -1) && (i == (l2 - 1))) {
+      return;
+    }
+  }
+}
+
+// Covering method
+// Distance-Value Cover, or DVCover
+_Bool DVCover(float *layer1x1, float *layer1x2, float n2x1, float n2x2, int size1,
+            int distance) {
+  if (!distanceChange(layer1x1, layer1x2, distance, size1))
+    return 0;
+  if (valueChange(n2x1, n2x2, distance))
+    return 1;
+  else
+    return 0;
+}
+
+// The method that prints the covered neurons
+void printDVCover(float *layeri1, float *layeri2, float *layerj1,
+                  float *layerj2, int l1, int l2, int distance,
+                  int layerIndex) {
+  unsigned int i, j;
+  int find = 0;
+  if (!distanceChange(layeri1, layeri2, 1, l1)) {
+    printf("There exists no DSCover neurons for these 2 test cases \n");
+    return;
+  }
+
+  for (i = 0; i < l2; i++) {
+    if (valueChange(layerj1[i], layerj2[i], distance)) {
+      find = 1;
+      for (j = 0; j < l1; j++) {
+        coverageDV[neuronLayerIndexSum(layerIndex) + j] = 1;
+        coverageDV[neuronLayerIndexSum(layerIndex + 1) + i] = 1;
+        //printf("The neuron pair ni%d, nj%d is DSCovered by the 2 test cases.\n",
+        //       j, i);
+      }
+    }
+  }
+  if (!find) {
+    printf("There exists no DSCover neurons for these 2 test cases \n");
+    return;
+  }
+}
+
+void fullDVCover(float *layeri1, float *layeri2, float *layerj1, float *layerj2,
+                 int l1, int l2, int distance, int layerIndex) {
+  int i, j;
+  int find = 0;
+  if (!distanceChange(layeri1, layeri2, 1, l1)) {
+    return;
+  }
+
+  for (i = 0; i < l2; i++) {
+    if (valueChange(layerj1[i], layerj2[i], distance)) {
+      find = 1;
+      for (j = 0; j < l1; j++) {
+        if (layerIndex == 1) {
+          coverageDV[j] = 1;
+          coverageDV[fc1 + i] = 1;
+        } else {
+          coverageDV[fc1 + j] = 1;
+          coverageDV[fc1 + fc2 + i] = 1;
+        }
+      }
+    }
+  }
+  if (!find) {
+    return;
   }
 }
 
@@ -4903,16 +5266,69 @@ void checkNN(float *wfc1, float *bfc1, float *wfc2, float *bfc2, float *wfc3,
   activeSigmoid(x2layer3, fc3);
 }
 
-void checkNNLUT(float wfc1[125], float bfc1[5], float wfc2[20], float bfc2[4],
-                float wfc3[20], float bfc3[5], float img[25], unsigned char vogal,
-                unsigned char unsafe) {
+float neuronCoverageSS() {
+  int i;
+  float sum = 0;
+  float neuronsCoveredPercent = 0;
+  for (i = 0; i < (fc1 + fc2 + fc3); i++) {
+    sum += coverageSS[i];
+  }
+  neuronsCoveredPercent = sum / (fc1 + fc2 + fc3);
+  return neuronsCoveredPercent;
+}
 
-  //	float *x1layer1;
-  //	float *x1layer2;
-  //	float *x1layer3;
-  //	float *x2layer1;
-  //	float *x2layer2;
-  //	float *x2layer3;
+float neuronCoverageDS() {
+  int i;
+  float sum = 0;
+  float neuronsCoveredPercent = 0;
+  for (i = 0; i < (fc1 + fc2 + fc3); i++) {
+    sum += coverageDS[i];
+  }
+  neuronsCoveredPercent = sum / (fc1 + fc2 + fc3);
+  return neuronsCoveredPercent;
+}
+
+float neuronCoverageSV() {
+  int i;
+  float sum = 0;
+  float neuronsCoveredPercent = 0;
+  for (i = 0; i < (fc1 + fc2 + fc3); i++) {
+    sum += coverageSV[i];
+  }
+  neuronsCoveredPercent = sum / (fc1 + fc2 + fc3);
+  return neuronsCoveredPercent;
+}
+
+float neuronCoverageDV() {
+  int i;
+  float sum = 0;
+  float neuronsCoveredPercent = 0;
+  for (i = 0; i < (fc1 + fc2 + fc3); i++) {
+    sum += coverageDV[i];
+  }
+  neuronsCoveredPercent = sum / (fc1 + fc2 + fc3);
+  return neuronsCoveredPercent;
+}
+
+void checkNNSSCover(float *wfc1, float *bfc1, float *wfc2, float *bfc2,
+                    float *wfc3, float *bfc3, float *img, float *img2) {
+
+  float *x1layer1;
+  float *x1layer2;
+  float *x1layer3;
+
+  float *x2layer1;
+  float *x2layer2;
+  float *x2layer3;
+
+  float *AV1layer1;
+  float *AV1layer2;
+  float *AV1layer3;
+
+  float *AV2layer1;
+  float *AV2layer2;
+  float *AV2layer3;
+
   float alpha;
   float beta;
   // float* dev_result;
@@ -4930,37 +5346,36 @@ void checkNNLUT(float wfc1[125], float bfc1[5], float wfc2[20], float bfc2[4],
 
   // wfc1 = (float*)malloc(data*fc1*sizeof(float));
 
-  // x1layer1 = (float*)malloc(fc1*sizeof(float));
-  // x1layer2 = (float*)malloc(fc2*sizeof(float));
-  // x1layer3 = (float*)malloc(fc3*sizeof(float));
+  x1layer1 = (float *)malloc(fc1 * sizeof(float));
+  x1layer2 = (float *)malloc(fc2 * sizeof(float));
+  x1layer3 = (float *)malloc(fc3 * sizeof(float));
 
-  // x2layer1 = (float*)malloc(fc1*sizeof(float));
-  // x2layer2 = (float*)malloc(fc2*sizeof(float));
-  // x2layer3 = (float*)malloc(fc3*sizeof(float));
+  x2layer1 = (float *)malloc(fc1 * sizeof(float));
+  x2layer2 = (float *)malloc(fc2 * sizeof(float));
+  x2layer3 = (float *)malloc(fc3 * sizeof(float));
 
-  float x1layer1[5] = { 0, 0, 0, 0, 0 };
-  float x1layer2[4] = { 0, 0, 0, 0 };
-  float x1layer3[5] = { 0, 0, 0, 0, 0 };
+  AV1layer1 = (float *)malloc(fc1 * sizeof(float));
+  AV1layer2 = (float *)malloc(fc2 * sizeof(float));
+  AV1layer3 = (float *)malloc(fc3 * sizeof(float));
 
-  // __ESBMC_assume(x1layer1[0] >= -3.40282346639e+38 && x1layer1[0] <= 3.40282346639e+38);
-  // __ESBMC_assume(x1layer1[1] >= -3.40282346639e+38 && x1layer1[1] <= 3.40282346639e+38);
-  // __ESBMC_assume(x1layer1[2] >= -3.40282346639e+38 && x1layer1[2] <= 3.40282346639e+38);
-  // __ESBMC_assume(x1layer1[3] >= -3.40282346639e+38 && x1layer1[3] <= 3.40282346639e+38);
-  // __ESBMC_assume(x1layer1[4] >= -3.40282346639e+38 && x1layer1[4] <= 3.40282346639e+38);
+  AV2layer1 = (float *)malloc(fc1 * sizeof(float));
+  AV2layer2 = (float *)malloc(fc2 * sizeof(float));
+  AV2layer3 = (float *)malloc(fc3 * sizeof(float));
+
+  // float *img;
+  // float *img2;
   //
-  // __ESBMC_assume(x1layer2[0] >= -3.40282346639e+38 && x1layer2[0] <= 3.40282346639e+38);
-  // __ESBMC_assume(x1layer2[1] >= -3.40282346639e+38 && x1layer2[1] <= 3.40282346639e+38);
-  // __ESBMC_assume(x1layer2[2] >= -3.40282346639e+38 && x1layer2[2] <= 3.40282346639e+38);
-  // __ESBMC_assume(x1layer2[3] >= -3.40282346639e+38 && x1layer2[3] <= 3.40282346639e+38);
   //
-  // __ESBMC_assume(x1layer3[0] >= -3.40282346639e+38 && x1layer3[0] <= 3.40282346639e+38);
-  // __ESBMC_assume(x1layer3[1] >= -3.40282346639e+38 && x1layer3[1] <= 3.40282346639e+38);
-  // __ESBMC_assume(x1layer3[2] >= -3.40282346639e+38 && x1layer3[2] <= 3.40282346639e+38);
-  // __ESBMC_assume(x1layer3[3] >= -3.40282346639e+38 && x1layer3[3] <= 3.40282346639e+38);
-  // __ESBMC_assume(x1layer3[4] >= -3.40282346639e+38 && x1layer3[4] <= 3.40282346639e+38);
+  // img = (float*)malloc(25*sizeof(float));
+  //
+  // img2 = (float*)malloc(25*sizeof(float));
+  //
+  //
+  // memcpy(img, imgx, 25*sizeof(float));
+  // memcpy(img2, imgy, 25*sizeof(float));
 
-
-
+  //  normalizef(img, 25); // input pointer and image size
+  //  normalizef(img2, 25); // input pointer and image size
 
   cublasSgemm(cublasHandle, CUBLAS_OP_N, CUBLAS_OP_N, fc1, 1, data, &alpha,
               wfc1, data, img, 1, &beta, x1layer1, 1);
@@ -4968,13 +5383,19 @@ void checkNNLUT(float wfc1[125], float bfc1[5], float wfc2[20], float bfc2[4],
   cublasSgemm(cublasHandle, CUBLAS_OP_N, CUBLAS_OP_N, fc1, 1, 1, &alpha, bfc1,
               1, onevec, 1, &alpha, x1layer1, 1);
 
-//  printf("SEM ativaçao: \n");
-  //printfMatrix(x1layer1, 5, 1);
+  memcpy(AV1layer1, x1layer1, fc1 * sizeof(float));
   activeSigmoidLUT(x1layer1, fc1);
-  //printf("COM ativaçao: \n");
-  //printfMatrix(x1layer1, 5, 1);
 
   // Computing the first layer of the second image x2 on the same Neural Network
+  cublasSgemm(cublasHandle, CUBLAS_OP_N, CUBLAS_OP_N, fc1, 1, data, &alpha,
+              wfc1, data, img2, 1, &beta, x2layer1, 1);
+
+  cublasSgemm(cublasHandle, CUBLAS_OP_N, CUBLAS_OP_N, fc1, 1, 1, &alpha, bfc1,
+              1, onevec, 1, &alpha, x2layer1, 1);
+
+  memcpy(AV2layer1, x2layer1, fc1 * sizeof(float));
+  activeSigmoidLUT(x2layer1, fc1);
+  // printLayerValues(AV1layer1, AV2layer1, fc1, 1);
 
   cublasSgemm(cublasHandle, CUBLAS_OP_N, CUBLAS_OP_N, fc2, 1, fc1, &alpha, wfc2,
               fc1, x1layer1, 1, &beta, x1layer2, 1);
@@ -4982,13 +5403,21 @@ void checkNNLUT(float wfc1[125], float bfc1[5], float wfc2[20], float bfc2[4],
   cublasSgemm(cublasHandle, CUBLAS_OP_N, CUBLAS_OP_N, fc2, 1, 1, &alpha, bfc2,
               1, onevec, 1, &alpha, x1layer2, 1);
 
-  //printf("SEM ativaçao: \n");
-  //printfMatrix(x1layer2, 4, 1);
+  memcpy(AV1layer2, x1layer2, fc2 * sizeof(float));
   activeSigmoidLUT(x1layer2, fc2);
-  //printf("COM ativaçao: \n");
-  //printfMatrix(x1layer2, 5, 1);
 
   // Computing the second layer of the second image on the same Neural network
+
+  cublasSgemm(cublasHandle, CUBLAS_OP_N, CUBLAS_OP_N, fc2, 1, fc1, &alpha, wfc2,
+              fc1, x2layer1, 1, &beta, x2layer2, 1);
+
+  cublasSgemm(cublasHandle, CUBLAS_OP_N, CUBLAS_OP_N, fc2, 1, 1, &alpha, bfc2,
+              1, onevec, 1, &alpha, x2layer2, 1);
+
+  memcpy(AV2layer2, x2layer2, fc2 * sizeof(float));
+  // printLayerValues(AV1layer2, AV2layer2, fc2, 2);
+  fullSSCover(AV1layer1, AV2layer1, AV1layer2, AV2layer2, fc1, fc2, 1);
+  activeSigmoidLUT(x2layer2, fc2);
 
   cublasSgemm(cublasHandle, CUBLAS_OP_N, CUBLAS_OP_N, fc3, 1, fc2, &alpha, wfc3,
               fc2, x1layer2, 1, &beta, x1layer3, 1);
@@ -4996,17 +5425,1256 @@ void checkNNLUT(float wfc1[125], float bfc1[5], float wfc2[20], float bfc2[4],
   cublasSgemm(cublasHandle, CUBLAS_OP_N, CUBLAS_OP_N, fc3, 1, 1, &alpha, bfc3,
               1, onevec, 1, &alpha, x1layer3, 1);
 
-  //printf("SEM ativaçao: \n");
-  //printfMatrix(x1layer3, 5, 1);
+  memcpy(AV1layer3, x1layer3, fc3 * sizeof(float));
   activeSigmoidLUT(x1layer3, fc3);
-  //printf("COM ativaçao: \n");
-  //printfMatrix(x1layer3, 5, 1);
-  //	float a[3] = {0.8, 0.8, 0.8};
+
   // Computing the third layer of the second image on the same Neural network
-__ESBMC_assert(x1layer3[0] > x1layer3[1] && x1layer3[0] > x1layer3[2] && x1layer3[0] > x1layer3[3] &&
-  x1layer3[0] > x1layer3[4], "Is not safe anymore.");
+
+  cublasSgemm(cublasHandle, CUBLAS_OP_N, CUBLAS_OP_N, fc3, 1, fc2, &alpha, wfc3,
+              fc2, x2layer2, 1, &beta, x2layer3, 1);
+
+  cublasSgemm(cublasHandle, CUBLAS_OP_N, CUBLAS_OP_N, fc3, 1, 1, &alpha, bfc3,
+              1, onevec, 1, &alpha, x2layer3, 1);
+
+  memcpy(AV2layer3, x2layer3, fc3 * sizeof(float));
+  //	printLayerValues(AV1layer3, AV2layer3, fc3, 3);
+  fullSSCover(AV1layer2, AV2layer2, AV1layer3, AV2layer3, fc2, fc3, 2);
+  // printf("neuron coverage SS %.6f \n" , neuronCoverageSS());
+  activeSigmoidLUT(x2layer3, fc3);
+  // printLayerValues(x1layer3, x2layer3, fc3, 3);
+  //assert(neuronCoverageSS() > 0.8, "At least 80% of all neurons must
+  // be SS-Covered.");
 }
 
+void checkNNDSCover(float *wfc1, float *bfc1, float *wfc2, float *bfc2,
+                    float *wfc3, float *bfc3, float *img, float *img2) {
+
+  float *x1layer1;
+  float *x1layer2;
+  float *x1layer3;
+
+  float *x2layer1;
+  float *x2layer2;
+  float *x2layer3;
+
+  float *AV1layer1;
+  float *AV1layer2;
+  float *AV1layer3;
+
+  float *AV2layer1;
+  float *AV2layer2;
+  float *AV2layer3;
+
+  float alpha;
+  float beta;
+  // float* dev_result;
+
+  // initializing cublas handle
+  cublasHandle_t cublasHandle;
+  cublasCreate(&cublasHandle);
+
+  alpha = 1;
+  beta = 0;
+  /* sets the size of v */
+  // data = (float*)malloc(data*sizeof(float));
+  float onevec[25] = { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+                       1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 };
+
+  // wfc1 = (float*)malloc(data*fc1*sizeof(float));
+
+  x1layer1 = (float *)malloc(fc1 * sizeof(float));
+  x1layer2 = (float *)malloc(fc2 * sizeof(float));
+  x1layer3 = (float *)malloc(fc3 * sizeof(float));
+
+  x2layer1 = (float *)malloc(fc1 * sizeof(float));
+  x2layer2 = (float *)malloc(fc2 * sizeof(float));
+  x2layer3 = (float *)malloc(fc3 * sizeof(float));
+
+  AV1layer1 = (float *)malloc(fc1 * sizeof(float));
+  AV1layer2 = (float *)malloc(fc2 * sizeof(float));
+  AV1layer3 = (float *)malloc(fc3 * sizeof(float));
+
+  AV2layer1 = (float *)malloc(fc1 * sizeof(float));
+  AV2layer2 = (float *)malloc(fc2 * sizeof(float));
+  AV2layer3 = (float *)malloc(fc3 * sizeof(float));
+
+  // float *img;
+  // float *img2;
+  //
+  //
+  // img = (float*)malloc(25*sizeof(float));
+  //
+  // img2 = (float*)malloc(25*sizeof(float));
+  //
+  //
+  // memcpy(img, imgx, 25*sizeof(float));
+  // memcpy(img2, imgy, 25*sizeof(float));
+
+  // normalizef(img, 25); // input pointer and image size
+  // normalizef(img2, 25); // input pointer and image size
+
+  cublasSgemm(cublasHandle, CUBLAS_OP_N, CUBLAS_OP_N, fc1, 1, data, &alpha,
+              wfc1, data, img, 1, &beta, x1layer1, 1);
+
+  cublasSgemm(cublasHandle, CUBLAS_OP_N, CUBLAS_OP_N, fc1, 1, 1, &alpha, bfc1,
+              1, onevec, 1, &alpha, x1layer1, 1);
+
+  memcpy(AV1layer1, x1layer1, fc1 * sizeof(float));
+  activeSigmoidLUT(x1layer1, fc1);
+
+  // Computing the first layer of the second image x2 on the same Neural Network
+  cublasSgemm(cublasHandle, CUBLAS_OP_N, CUBLAS_OP_N, fc1, 1, data, &alpha,
+              wfc1, data, img2, 1, &beta, x2layer1, 1);
+
+  cublasSgemm(cublasHandle, CUBLAS_OP_N, CUBLAS_OP_N, fc1, 1, 1, &alpha, bfc1,
+              1, onevec, 1, &alpha, x2layer1, 1);
+
+  memcpy(AV2layer1, x2layer1, fc1 * sizeof(float));
+  activeSigmoidLUT(x2layer1, fc1);
+  // printLayerValues(AV1layer1, AV2layer1, fc1, 1);
+
+  cublasSgemm(cublasHandle, CUBLAS_OP_N, CUBLAS_OP_N, fc2, 1, fc1, &alpha, wfc2,
+              fc1, x1layer1, 1, &beta, x1layer2, 1);
+
+  cublasSgemm(cublasHandle, CUBLAS_OP_N, CUBLAS_OP_N, fc2, 1, 1, &alpha, bfc2,
+              1, onevec, 1, &alpha, x1layer2, 1);
+
+  memcpy(AV1layer2, x1layer2, fc2 * sizeof(float));
+  activeSigmoidLUT(x1layer2, fc2);
+
+  // Computing the second layer of the second image on the same Neural network
+
+  cublasSgemm(cublasHandle, CUBLAS_OP_N, CUBLAS_OP_N, fc2, 1, fc1, &alpha, wfc2,
+              fc1, x2layer1, 1, &beta, x2layer2, 1);
+
+  cublasSgemm(cublasHandle, CUBLAS_OP_N, CUBLAS_OP_N, fc2, 1, 1, &alpha, bfc2,
+              1, onevec, 1, &alpha, x2layer2, 1);
+
+  memcpy(AV2layer2, x2layer2, fc2 * sizeof(float));
+  // printLayerValues(AV1layer2, AV2layer2, fc2, 2);
+  fullDSCover(AV1layer1, AV2layer1, AV1layer2, AV2layer2, fc1, fc2, 1);
+  activeSigmoidLUT(x2layer2, fc2);
+
+  cublasSgemm(cublasHandle, CUBLAS_OP_N, CUBLAS_OP_N, fc3, 1, fc2, &alpha, wfc3,
+              fc2, x1layer2, 1, &beta, x1layer3, 1);
+
+  cublasSgemm(cublasHandle, CUBLAS_OP_N, CUBLAS_OP_N, fc3, 1, 1, &alpha, bfc3,
+              1, onevec, 1, &alpha, x1layer3, 1);
+
+  memcpy(AV1layer3, x1layer3, fc3 * sizeof(float));
+  activeSigmoidLUT(x1layer3, fc3);
+
+  // Computing the third layer of the second image on the same Neural network
+
+  cublasSgemm(cublasHandle, CUBLAS_OP_N, CUBLAS_OP_N, fc3, 1, fc2, &alpha, wfc3,
+              fc2, x2layer2, 1, &beta, x2layer3, 1);
+
+  cublasSgemm(cublasHandle, CUBLAS_OP_N, CUBLAS_OP_N, fc3, 1, 1, &alpha, bfc3,
+              1, onevec, 1, &alpha, x2layer3, 1);
+
+  memcpy(AV2layer3, x2layer3, fc3 * sizeof(float));
+  // printLayerValues(AV1layer3, AV2layer3, fc3, 3);
+  fullDSCover(AV1layer2, AV2layer2, AV1layer3, AV2layer3, fc2, fc3, 2);
+  // printCoverageSS();
+  activeSigmoidLUT(x2layer3, fc3);
+  //assert(neuronCoverageSS() > 0.8, "At least 80% of all neurons must
+  // be SS-Covered.");
+}
+
+void checkNNSVCover(float *wfc1, float *bfc1, float *wfc2, float *bfc2,
+                    float *wfc3, float *bfc3, float *img, float *img2) {
+
+  float *x1layer1;
+  float *x1layer2;
+  float *x1layer3;
+
+  float *x2layer1;
+  float *x2layer2;
+  float *x2layer3;
+
+  float *AV1layer1;
+  float *AV1layer2;
+  float *AV1layer3;
+
+  float *AV2layer1;
+  float *AV2layer2;
+  float *AV2layer3;
+
+  float alpha;
+  float beta;
+  // float* dev_result;
+
+  // initializing cublas handle
+  cublasHandle_t cublasHandle;
+  cublasCreate(&cublasHandle);
+
+  alpha = 1;
+  beta = 0;
+  /* sets the size of v */
+  // data = (float*)malloc(data*sizeof(float));
+  float onevec[25] = { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+                       1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 };
+
+  // wfc1 = (float*)malloc(data*fc1*sizeof(float));
+
+  x1layer1 = (float *)malloc(fc1 * sizeof(float));
+  x1layer2 = (float *)malloc(fc2 * sizeof(float));
+  x1layer3 = (float *)malloc(fc3 * sizeof(float));
+
+  x2layer1 = (float *)malloc(fc1 * sizeof(float));
+  x2layer2 = (float *)malloc(fc2 * sizeof(float));
+  x2layer3 = (float *)malloc(fc3 * sizeof(float));
+
+  AV1layer1 = (float *)malloc(fc1 * sizeof(float));
+  AV1layer2 = (float *)malloc(fc2 * sizeof(float));
+  AV1layer3 = (float *)malloc(fc3 * sizeof(float));
+
+  AV2layer1 = (float *)malloc(fc1 * sizeof(float));
+  AV2layer2 = (float *)malloc(fc2 * sizeof(float));
+  AV2layer3 = (float *)malloc(fc3 * sizeof(float));
+
+  // float *img;
+  // float *img2;
+  //
+  //
+  // img = (float*)malloc(25*sizeof(float));
+  //
+  // img2 = (float*)malloc(25*sizeof(float));
+  //
+  //
+  // memcpy(img, imgx, 25*sizeof(float));
+  // memcpy(img2, imgy, 25*sizeof(float));
+
+  // normalizef(img, 25); // input pointer and image size
+  // normalizef(img2, 25); // input pointer and image size
+
+  cublasSgemm(cublasHandle, CUBLAS_OP_N, CUBLAS_OP_N, fc1, 1, data, &alpha,
+              wfc1, data, img, 1, &beta, x1layer1, 1);
+
+  cublasSgemm(cublasHandle, CUBLAS_OP_N, CUBLAS_OP_N, fc1, 1, 1, &alpha, bfc1,
+              1, onevec, 1, &alpha, x1layer1, 1);
+
+  memcpy(AV1layer1, x1layer1, fc1 * sizeof(float));
+  activeSigmoidLUT(x1layer1, fc1);
+
+  // Computing the first layer of the second image x2 on the same Neural Network
+  cublasSgemm(cublasHandle, CUBLAS_OP_N, CUBLAS_OP_N, fc1, 1, data, &alpha,
+              wfc1, data, img2, 1, &beta, x2layer1, 1);
+
+  cublasSgemm(cublasHandle, CUBLAS_OP_N, CUBLAS_OP_N, fc1, 1, 1, &alpha, bfc1,
+              1, onevec, 1, &alpha, x2layer1, 1);
+
+  memcpy(AV2layer1, x2layer1, fc1 * sizeof(float));
+  activeSigmoidLUT(x2layer1, fc1);
+  // printLayerValues(AV1layer1, AV2layer1, fc1, 1);
+
+  cublasSgemm(cublasHandle, CUBLAS_OP_N, CUBLAS_OP_N, fc2, 1, fc1, &alpha, wfc2,
+              fc1, x1layer1, 1, &beta, x1layer2, 1);
+
+  cublasSgemm(cublasHandle, CUBLAS_OP_N, CUBLAS_OP_N, fc2, 1, 1, &alpha, bfc2,
+              1, onevec, 1, &alpha, x1layer2, 1);
+
+  memcpy(AV1layer2, x1layer2, fc2 * sizeof(float));
+  activeSigmoidLUT(x1layer2, fc2);
+
+  // Computing the second layer of the second image on the same Neural network
+
+  cublasSgemm(cublasHandle, CUBLAS_OP_N, CUBLAS_OP_N, fc2, 1, fc1, &alpha, wfc2,
+              fc1, x2layer1, 1, &beta, x2layer2, 1);
+
+  cublasSgemm(cublasHandle, CUBLAS_OP_N, CUBLAS_OP_N, fc2, 1, 1, &alpha, bfc2,
+              1, onevec, 1, &alpha, x2layer2, 1);
+
+  memcpy(AV2layer2, x2layer2, fc2 * sizeof(float));
+  // printLayerValues(AV1layer2, AV2layer2, fc2, 2);
+  fullSVCover(AV1layer1, AV2layer1, AV1layer2, AV2layer2, fc1, fc2, 1, 1);
+  activeSigmoidLUT(x2layer2, fc2);
+
+  cublasSgemm(cublasHandle, CUBLAS_OP_N, CUBLAS_OP_N, fc3, 1, fc2, &alpha, wfc3,
+              fc2, x1layer2, 1, &beta, x1layer3, 1);
+
+  cublasSgemm(cublasHandle, CUBLAS_OP_N, CUBLAS_OP_N, fc3, 1, 1, &alpha, bfc3,
+              1, onevec, 1, &alpha, x1layer3, 1);
+
+  memcpy(AV1layer3, x1layer3, fc3 * sizeof(float));
+  activeSigmoidLUT(x1layer3, fc3);
+
+  // Computing the third layer of the second image on the same Neural network
+
+  cublasSgemm(cublasHandle, CUBLAS_OP_N, CUBLAS_OP_N, fc3, 1, fc2, &alpha, wfc3,
+              fc2, x2layer2, 1, &beta, x2layer3, 1);
+
+  cublasSgemm(cublasHandle, CUBLAS_OP_N, CUBLAS_OP_N, fc3, 1, 1, &alpha, bfc3,
+              1, onevec, 1, &alpha, x2layer3, 1);
+
+  memcpy(AV2layer3, x2layer3, fc3 * sizeof(float));
+  // printLayerValues(AV1layer3, AV2layer3, fc3, 3);
+  fullSVCover(AV1layer2, AV2layer2, AV1layer3, AV2layer3, fc2, fc3, 0.1, 2);
+  // printCoverageSS();
+  activeSigmoidLUT(x2layer3, fc3);
+  //assert(neuronCoverageSS() > 0.8, "At least 80% of all neurons must
+  // be SS-Covered.");
+}
+
+void checkNNDVCover(float *wfc1, float *bfc1, float *wfc2, float *bfc2,
+                    float *wfc3, float *bfc3, float *img, float *img2) {
+
+  float *x1layer1;
+  float *x1layer2;
+  float *x1layer3;
+
+  float *x2layer1;
+  float *x2layer2;
+  float *x2layer3;
+
+  float *AV1layer1;
+  float *AV1layer2;
+  float *AV1layer3;
+
+  float *AV2layer1;
+  float *AV2layer2;
+  float *AV2layer3;
+
+  float alpha;
+  float beta;
+  // float* dev_result;
+
+  // initializing cublas handle
+  cublasHandle_t cublasHandle;
+  cublasCreate(&cublasHandle);
+
+  alpha = 1;
+  beta = 0;
+  /* sets the size of v */
+  // data = (float*)malloc(data*sizeof(float));
+  float onevec[25] = { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+                       1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 };
+
+  // wfc1 = (float*)malloc(data*fc1*sizeof(float));
+
+  x1layer1 = (float *)malloc(fc1 * sizeof(float));
+  x1layer2 = (float *)malloc(fc2 * sizeof(float));
+  x1layer3 = (float *)malloc(fc3 * sizeof(float));
+
+  x2layer1 = (float *)malloc(fc1 * sizeof(float));
+  x2layer2 = (float *)malloc(fc2 * sizeof(float));
+  x2layer3 = (float *)malloc(fc3 * sizeof(float));
+
+  AV1layer1 = (float *)malloc(fc1 * sizeof(float));
+  AV1layer2 = (float *)malloc(fc2 * sizeof(float));
+  AV1layer3 = (float *)malloc(fc3 * sizeof(float));
+
+  AV2layer1 = (float *)malloc(fc1 * sizeof(float));
+  AV2layer2 = (float *)malloc(fc2 * sizeof(float));
+  AV2layer3 = (float *)malloc(fc3 * sizeof(float));
+
+  // float *img;
+  // float *img2;
+  //
+  //
+  // img = (float*)malloc(25*sizeof(float));
+  //
+  // img2 = (float*)malloc(25*sizeof(float));
+  //
+  //
+  // memcpy(img, imgx, 25*sizeof(float));
+  // memcpy(img2, imgy, 25*sizeof(float));
+
+  // normalizef(img, 25); // input pointer and image size
+  // normalizef(img2, 25); // input pointer and image size
+
+  cublasSgemm(cublasHandle, CUBLAS_OP_N, CUBLAS_OP_N, fc1, 1, data, &alpha,
+              wfc1, data, img, 1, &beta, x1layer1, 1);
+
+  cublasSgemm(cublasHandle, CUBLAS_OP_N, CUBLAS_OP_N, fc1, 1, 1, &alpha, bfc1,
+              1, onevec, 1, &alpha, x1layer1, 1);
+
+  memcpy(AV1layer1, x1layer1, fc1 * sizeof(float));
+  activeSigmoidLUT(x1layer1, fc1);
+
+  // Computing the first layer of the second image x2 on the same Neural Network
+  cublasSgemm(cublasHandle, CUBLAS_OP_N, CUBLAS_OP_N, fc1, 1, data, &alpha,
+              wfc1, data, img2, 1, &beta, x2layer1, 1);
+
+  cublasSgemm(cublasHandle, CUBLAS_OP_N, CUBLAS_OP_N, fc1, 1, 1, &alpha, bfc1,
+              1, onevec, 1, &alpha, x2layer1, 1);
+
+  memcpy(AV2layer1, x2layer1, fc1 * sizeof(float));
+  activeSigmoidLUT(x2layer1, fc1);
+  // printLayerValues(AV1layer1, AV2layer1, fc1, 1);
+
+  cublasSgemm(cublasHandle, CUBLAS_OP_N, CUBLAS_OP_N, fc2, 1, fc1, &alpha, wfc2,
+              fc1, x1layer1, 1, &beta, x1layer2, 1);
+
+  cublasSgemm(cublasHandle, CUBLAS_OP_N, CUBLAS_OP_N, fc2, 1, 1, &alpha, bfc2,
+              1, onevec, 1, &alpha, x1layer2, 1);
+
+  memcpy(AV1layer2, x1layer2, fc2 * sizeof(float));
+  activeSigmoidLUT(x1layer2, fc2);
+
+  // Computing the second layer of the second image on the same Neural network
+
+  cublasSgemm(cublasHandle, CUBLAS_OP_N, CUBLAS_OP_N, fc2, 1, fc1, &alpha, wfc2,
+              fc1, x2layer1, 1, &beta, x2layer2, 1);
+
+  cublasSgemm(cublasHandle, CUBLAS_OP_N, CUBLAS_OP_N, fc2, 1, 1, &alpha, bfc2,
+              1, onevec, 1, &alpha, x2layer2, 1);
+
+  memcpy(AV2layer2, x2layer2, fc2 * sizeof(float));
+  // printLayerValues(AV1layer2, AV2layer2, fc2, 2);
+  fullDVCover(AV1layer1, AV2layer1, AV1layer2, AV2layer2, fc1, fc2, 0, 1);
+  activeSigmoidLUT(x2layer2, fc2);
+
+  cublasSgemm(cublasHandle, CUBLAS_OP_N, CUBLAS_OP_N, fc3, 1, fc2, &alpha, wfc3,
+              fc2, x1layer2, 1, &beta, x1layer3, 1);
+
+  cublasSgemm(cublasHandle, CUBLAS_OP_N, CUBLAS_OP_N, fc3, 1, 1, &alpha, bfc3,
+              1, onevec, 1, &alpha, x1layer3, 1);
+
+  memcpy(AV1layer3, x1layer3, fc3 * sizeof(float));
+  activeSigmoidLUT(x1layer3, fc3);
+
+  // Computing the third layer of the second image on the same Neural network
+
+  cublasSgemm(cublasHandle, CUBLAS_OP_N, CUBLAS_OP_N, fc3, 1, fc2, &alpha, wfc3,
+              fc2, x2layer2, 1, &beta, x2layer3, 1);
+
+  cublasSgemm(cublasHandle, CUBLAS_OP_N, CUBLAS_OP_N, fc3, 1, 1, &alpha, bfc3,
+              1, onevec, 1, &alpha, x2layer3, 1);
+
+  memcpy(AV2layer3, x2layer3, fc3 * sizeof(float));
+  // printLayerValues(AV1layer3, AV2layer3, fc3, 3);
+  fullDVCover(AV1layer2, AV2layer2, AV1layer3, AV2layer3, fc2, fc3, 0, 2);
+  activeSigmoidLUT(x2layer3, fc3);
+  //assert(neuronCoverageSS() > 0.8, "At least 80% of all neurons must
+  // be SS-Covered.");
+}
+
+void checkDatasetSSCover(float *wfc1, float *bfc1, float *wfc2, float *bfc2,
+                         float *wfc3, float *bfc3) {
+  // normalizef(dataset, 25*200);
+  checkNNSSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(0 * 2) * 25],
+                 &dataset[((0 * 2) + 1) * 25]);
+  checkNNSSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(1 * 2) * 25],
+                 &dataset[((1 * 2) + 1) * 25]);
+  checkNNSSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(2 * 2) * 25],
+                 &dataset[((2 * 2) + 1) * 25]);
+  checkNNSSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(3 * 2) * 25],
+                 &dataset[((3 * 2) + 1) * 25]);
+  checkNNSSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(4 * 2) * 25],
+                 &dataset[((4 * 2) + 1) * 25]);
+  checkNNSSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(5 * 2) * 25],
+                 &dataset[((5 * 2) + 1) * 25]);
+  checkNNSSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(6 * 2) * 25],
+                 &dataset[((6 * 2) + 1) * 25]);
+  checkNNSSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(7 * 2) * 25],
+                 &dataset[((7 * 2) + 1) * 25]);
+  checkNNSSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(8 * 2) * 25],
+                 &dataset[((8 * 2) + 1) * 25]);
+  checkNNSSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(9 * 2) * 25],
+                 &dataset[((9 * 2) + 1) * 25]);
+  checkNNSSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(10 * 2) * 25],
+                 &dataset[((10 * 2) + 1) * 25]);
+  checkNNSSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(11 * 2) * 25],
+                 &dataset[((11 * 2) + 1) * 25]);
+  checkNNSSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(12 * 2) * 25],
+                 &dataset[((12 * 2) + 1) * 25]);
+  checkNNSSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(13 * 2) * 25],
+                 &dataset[((13 * 2) + 1) * 25]);
+  checkNNSSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(14 * 2) * 25],
+                 &dataset[((14 * 2) + 1) * 25]);
+  checkNNSSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(15 * 2) * 25],
+                 &dataset[((15 * 2) + 1) * 25]);
+  checkNNSSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(16 * 2) * 25],
+                 &dataset[((16 * 2) + 1) * 25]);
+  checkNNSSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(17 * 2) * 25],
+                 &dataset[((17 * 2) + 1) * 25]);
+  checkNNSSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(18 * 2) * 25],
+                 &dataset[((18 * 2) + 1) * 25]);
+  checkNNSSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(19 * 2) * 25],
+                 &dataset[((19 * 2) + 1) * 25]);
+  checkNNSSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(20 * 2) * 25],
+                 &dataset[((20 * 2) + 1) * 25]);
+  checkNNSSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(21 * 2) * 25],
+                 &dataset[((21 * 2) + 1) * 25]);
+  checkNNSSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(22 * 2) * 25],
+                 &dataset[((22 * 2) + 1) * 25]);
+  checkNNSSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(23 * 2) * 25],
+                 &dataset[((23 * 2) + 1) * 25]);
+  checkNNSSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(24 * 2) * 25],
+                 &dataset[((24 * 2) + 1) * 25]);
+  checkNNSSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(25 * 2) * 25],
+                 &dataset[((25 * 2) + 1) * 25]);
+  checkNNSSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(26 * 2) * 25],
+                 &dataset[((26 * 2) + 1) * 25]);
+  checkNNSSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(27 * 2) * 25],
+                 &dataset[((27 * 2) + 1) * 25]);
+  checkNNSSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(28 * 2) * 25],
+                 &dataset[((28 * 2) + 1) * 25]);
+  checkNNSSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(29 * 2) * 25],
+                 &dataset[((29 * 2) + 1) * 25]);
+  checkNNSSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(30 * 2) * 25],
+                 &dataset[((30 * 2) + 1) * 25]);
+  checkNNSSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(31 * 2) * 25],
+                 &dataset[((31 * 2) + 1) * 25]);
+  checkNNSSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(32 * 2) * 25],
+                 &dataset[((32 * 2) + 1) * 25]);
+  checkNNSSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(33 * 2) * 25],
+                 &dataset[((33 * 2) + 1) * 25]);
+  checkNNSSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(34 * 2) * 25],
+                 &dataset[((34 * 2) + 1) * 25]);
+  checkNNSSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(35 * 2) * 25],
+                 &dataset[((35 * 2) + 1) * 25]);
+  checkNNSSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(36 * 2) * 25],
+                 &dataset[((36 * 2) + 1) * 25]);
+  checkNNSSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(37 * 2) * 25],
+                 &dataset[((37 * 2) + 1) * 25]);
+  checkNNSSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(38 * 2) * 25],
+                 &dataset[((38 * 2) + 1) * 25]);
+  checkNNSSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(39 * 2) * 25],
+                 &dataset[((39 * 2) + 1) * 25]);
+  checkNNSSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(40 * 2) * 25],
+                 &dataset[((40 * 2) + 1) * 25]);
+  checkNNSSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(41 * 2) * 25],
+                 &dataset[((41 * 2) + 1) * 25]);
+  checkNNSSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(42 * 2) * 25],
+                 &dataset[((42 * 2) + 1) * 25]);
+  checkNNSSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(43 * 2) * 25],
+                 &dataset[((43 * 2) + 1) * 25]);
+  checkNNSSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(44 * 2) * 25],
+                 &dataset[((44 * 2) + 1) * 25]);
+  checkNNSSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(45 * 2) * 25],
+                 &dataset[((45 * 2) + 1) * 25]);
+  checkNNSSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(46 * 2) * 25],
+                 &dataset[((46 * 2) + 1) * 25]);
+  checkNNSSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(47 * 2) * 25],
+                 &dataset[((47 * 2) + 1) * 25]);
+  checkNNSSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(48 * 2) * 25],
+                 &dataset[((48 * 2) + 1) * 25]);
+  checkNNSSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(49 * 2) * 25],
+                 &dataset[((49 * 2) + 1) * 25]);
+  checkNNSSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(50 * 2) * 25],
+                 &dataset[((50 * 2) + 1) * 25]);
+  checkNNSSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(51 * 2) * 25],
+                 &dataset[((51 * 2) + 1) * 25]);
+  checkNNSSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(52 * 2) * 25],
+                 &dataset[((52 * 2) + 1) * 25]);
+  checkNNSSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(53 * 2) * 25],
+                 &dataset[((53 * 2) + 1) * 25]);
+  checkNNSSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(54 * 2) * 25],
+                 &dataset[((54 * 2) + 1) * 25]);
+  checkNNSSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(55 * 2) * 25],
+                 &dataset[((55 * 2) + 1) * 25]);
+  checkNNSSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(56 * 2) * 25],
+                 &dataset[((56 * 2) + 1) * 25]);
+  checkNNSSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(57 * 2) * 25],
+                 &dataset[((57 * 2) + 1) * 25]);
+  checkNNSSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(58 * 2) * 25],
+                 &dataset[((58 * 2) + 1) * 25]);
+  checkNNSSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(59 * 2) * 25],
+                 &dataset[((59 * 2) + 1) * 25]);
+  checkNNSSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(60 * 2) * 25],
+                 &dataset[((60 * 2) + 1) * 25]);
+  checkNNSSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(61 * 2) * 25],
+                 &dataset[((61 * 2) + 1) * 25]);
+  checkNNSSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(62 * 2) * 25],
+                 &dataset[((62 * 2) + 1) * 25]);
+  checkNNSSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(63 * 2) * 25],
+                 &dataset[((63 * 2) + 1) * 25]);
+  checkNNSSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(64 * 2) * 25],
+                 &dataset[((64 * 2) + 1) * 25]);
+  checkNNSSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(65 * 2) * 25],
+                 &dataset[((65 * 2) + 1) * 25]);
+  checkNNSSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(66 * 2) * 25],
+                 &dataset[((66 * 2) + 1) * 25]);
+  checkNNSSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(67 * 2) * 25],
+                 &dataset[((67 * 2) + 1) * 25]);
+  checkNNSSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(68 * 2) * 25],
+                 &dataset[((68 * 2) + 1) * 25]);
+  checkNNSSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(69 * 2) * 25],
+                 &dataset[((69 * 2) + 1) * 25]);
+  checkNNSSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(70 * 2) * 25],
+                 &dataset[((70 * 2) + 1) * 25]);
+  checkNNSSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(71 * 2) * 25],
+                 &dataset[((71 * 2) + 1) * 25]);
+  checkNNSSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(72 * 2) * 25],
+                 &dataset[((72 * 2) + 1) * 25]);
+  checkNNSSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(73 * 2) * 25],
+                 &dataset[((73 * 2) + 1) * 25]);
+  checkNNSSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(74 * 2) * 25],
+                 &dataset[((74 * 2) + 1) * 25]);
+  checkNNSSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(75 * 2) * 25],
+                 &dataset[((75 * 2) + 1) * 25]);
+  checkNNSSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(76 * 2) * 25],
+                 &dataset[((76 * 2) + 1) * 25]);
+  checkNNSSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(77 * 2) * 25],
+                 &dataset[((77 * 2) + 1) * 25]);
+  checkNNSSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(78 * 2) * 25],
+                 &dataset[((78 * 2) + 1) * 25]);
+  checkNNSSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(79 * 2) * 25],
+                 &dataset[((79 * 2) + 1) * 25]);
+  checkNNSSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(80 * 2) * 25],
+                 &dataset[((80 * 2) + 1) * 25]);
+  checkNNSSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(81 * 2) * 25],
+                 &dataset[((81 * 2) + 1) * 25]);
+  checkNNSSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(82 * 2) * 25],
+                 &dataset[((82 * 2) + 1) * 25]);
+  checkNNSSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(83 * 2) * 25],
+                 &dataset[((83 * 2) + 1) * 25]);
+  checkNNSSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(84 * 2) * 25],
+                 &dataset[((84 * 2) + 1) * 25]);
+  checkNNSSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(85 * 2) * 25],
+                 &dataset[((85 * 2) + 1) * 25]);
+  checkNNSSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(86 * 2) * 25],
+                 &dataset[((86 * 2) + 1) * 25]);
+  checkNNSSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(87 * 2) * 25],
+                 &dataset[((87 * 2) + 1) * 25]);
+  checkNNSSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(88 * 2) * 25],
+                 &dataset[((88 * 2) + 1) * 25]);
+  checkNNSSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(89 * 2) * 25],
+                 &dataset[((89 * 2) + 1) * 25]);
+  checkNNSSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(90 * 2) * 25],
+                 &dataset[((90 * 2) + 1) * 25]);
+  checkNNSSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(91 * 2) * 25],
+                 &dataset[((91 * 2) + 1) * 25]);
+  checkNNSSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(92 * 2) * 25],
+                 &dataset[((92 * 2) + 1) * 25]);
+  checkNNSSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(93 * 2) * 25],
+                 &dataset[((93 * 2) + 1) * 25]);
+  checkNNSSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(94 * 2) * 25],
+                 &dataset[((94 * 2) + 1) * 25]);
+  checkNNSSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(95 * 2) * 25],
+                 &dataset[((95 * 2) + 1) * 25]);
+  checkNNSSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(96 * 2) * 25],
+                 &dataset[((96 * 2) + 1) * 25]);
+  checkNNSSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(97 * 2) * 25],
+                 &dataset[((97 * 2) + 1) * 25]);
+  checkNNSSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(98 * 2) * 25],
+                 &dataset[((98 * 2) + 1) * 25]);
+  checkNNSSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(99 * 2) * 25],
+                 &dataset[((99 * 2) + 1) * 25]);
+
+  float neuronAcover = neuronCoverageSS();
+  //@assert neuronAcover > 0.8;
+}
+
+void checkDatasetDSCover(float *wfc1, float *bfc1, float *wfc2, float *bfc2,
+                         float *wfc3, float *bfc3) {
+  checkNNDSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(0 * 2) * 25],
+                 &dataset[((0 * 2) + 1) * 25]);
+  checkNNDSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(1 * 2) * 25],
+                 &dataset[((1 * 2) + 1) * 25]);
+  checkNNDSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(2 * 2) * 25],
+                 &dataset[((2 * 2) + 1) * 25]);
+  checkNNDSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(3 * 2) * 25],
+                 &dataset[((3 * 2) + 1) * 25]);
+  checkNNDSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(4 * 2) * 25],
+                 &dataset[((4 * 2) + 1) * 25]);
+  checkNNDSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(5 * 2) * 25],
+                 &dataset[((5 * 2) + 1) * 25]);
+  checkNNDSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(6 * 2) * 25],
+                 &dataset[((6 * 2) + 1) * 25]);
+  checkNNDSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(7 * 2) * 25],
+                 &dataset[((7 * 2) + 1) * 25]);
+  checkNNDSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(8 * 2) * 25],
+                 &dataset[((8 * 2) + 1) * 25]);
+  checkNNDSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(9 * 2) * 25],
+                 &dataset[((9 * 2) + 1) * 25]);
+  checkNNDSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(10 * 2) * 25],
+                 &dataset[((10 * 2) + 1) * 25]);
+  checkNNDSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(11 * 2) * 25],
+                 &dataset[((11 * 2) + 1) * 25]);
+  checkNNDSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(12 * 2) * 25],
+                 &dataset[((12 * 2) + 1) * 25]);
+  checkNNDSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(13 * 2) * 25],
+                 &dataset[((13 * 2) + 1) * 25]);
+  checkNNDSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(14 * 2) * 25],
+                 &dataset[((14 * 2) + 1) * 25]);
+  checkNNDSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(15 * 2) * 25],
+                 &dataset[((15 * 2) + 1) * 25]);
+  checkNNDSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(16 * 2) * 25],
+                 &dataset[((16 * 2) + 1) * 25]);
+  checkNNDSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(17 * 2) * 25],
+                 &dataset[((17 * 2) + 1) * 25]);
+  checkNNDSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(18 * 2) * 25],
+                 &dataset[((18 * 2) + 1) * 25]);
+  checkNNDSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(19 * 2) * 25],
+                 &dataset[((19 * 2) + 1) * 25]);
+  checkNNDSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(20 * 2) * 25],
+                 &dataset[((20 * 2) + 1) * 25]);
+  checkNNDSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(21 * 2) * 25],
+                 &dataset[((21 * 2) + 1) * 25]);
+  checkNNDSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(22 * 2) * 25],
+                 &dataset[((22 * 2) + 1) * 25]);
+  checkNNDSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(23 * 2) * 25],
+                 &dataset[((23 * 2) + 1) * 25]);
+  checkNNDSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(24 * 2) * 25],
+                 &dataset[((24 * 2) + 1) * 25]);
+  checkNNDSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(25 * 2) * 25],
+                 &dataset[((25 * 2) + 1) * 25]);
+  checkNNDSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(26 * 2) * 25],
+                 &dataset[((26 * 2) + 1) * 25]);
+  checkNNDSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(27 * 2) * 25],
+                 &dataset[((27 * 2) + 1) * 25]);
+  checkNNDSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(28 * 2) * 25],
+                 &dataset[((28 * 2) + 1) * 25]);
+  checkNNDSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(29 * 2) * 25],
+                 &dataset[((29 * 2) + 1) * 25]);
+  checkNNDSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(30 * 2) * 25],
+                 &dataset[((30 * 2) + 1) * 25]);
+  checkNNDSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(31 * 2) * 25],
+                 &dataset[((31 * 2) + 1) * 25]);
+  checkNNDSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(32 * 2) * 25],
+                 &dataset[((32 * 2) + 1) * 25]);
+  checkNNDSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(33 * 2) * 25],
+                 &dataset[((33 * 2) + 1) * 25]);
+  checkNNDSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(34 * 2) * 25],
+                 &dataset[((34 * 2) + 1) * 25]);
+  checkNNDSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(35 * 2) * 25],
+                 &dataset[((35 * 2) + 1) * 25]);
+  checkNNDSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(36 * 2) * 25],
+                 &dataset[((36 * 2) + 1) * 25]);
+  checkNNDSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(37 * 2) * 25],
+                 &dataset[((37 * 2) + 1) * 25]);
+  checkNNDSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(38 * 2) * 25],
+                 &dataset[((38 * 2) + 1) * 25]);
+  checkNNDSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(39 * 2) * 25],
+                 &dataset[((39 * 2) + 1) * 25]);
+  checkNNDSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(40 * 2) * 25],
+                 &dataset[((40 * 2) + 1) * 25]);
+  checkNNDSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(41 * 2) * 25],
+                 &dataset[((41 * 2) + 1) * 25]);
+  checkNNDSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(42 * 2) * 25],
+                 &dataset[((42 * 2) + 1) * 25]);
+  checkNNDSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(43 * 2) * 25],
+                 &dataset[((43 * 2) + 1) * 25]);
+  checkNNDSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(44 * 2) * 25],
+                 &dataset[((44 * 2) + 1) * 25]);
+  checkNNDSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(45 * 2) * 25],
+                 &dataset[((45 * 2) + 1) * 25]);
+  checkNNDSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(46 * 2) * 25],
+                 &dataset[((46 * 2) + 1) * 25]);
+  checkNNDSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(47 * 2) * 25],
+                 &dataset[((47 * 2) + 1) * 25]);
+  checkNNDSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(48 * 2) * 25],
+                 &dataset[((48 * 2) + 1) * 25]);
+  checkNNDSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(49 * 2) * 25],
+                 &dataset[((49 * 2) + 1) * 25]);
+  checkNNDSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(50 * 2) * 25],
+                 &dataset[((50 * 2) + 1) * 25]);
+  checkNNDSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(51 * 2) * 25],
+                 &dataset[((51 * 2) + 1) * 25]);
+  checkNNDSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(52 * 2) * 25],
+                 &dataset[((52 * 2) + 1) * 25]);
+  checkNNDSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(53 * 2) * 25],
+                 &dataset[((53 * 2) + 1) * 25]);
+  checkNNDSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(54 * 2) * 25],
+                 &dataset[((54 * 2) + 1) * 25]);
+  checkNNDSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(55 * 2) * 25],
+                 &dataset[((55 * 2) + 1) * 25]);
+  checkNNDSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(56 * 2) * 25],
+                 &dataset[((56 * 2) + 1) * 25]);
+  checkNNDSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(57 * 2) * 25],
+                 &dataset[((57 * 2) + 1) * 25]);
+  checkNNDSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(58 * 2) * 25],
+                 &dataset[((58 * 2) + 1) * 25]);
+  checkNNDSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(59 * 2) * 25],
+                 &dataset[((59 * 2) + 1) * 25]);
+  checkNNDSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(60 * 2) * 25],
+                 &dataset[((60 * 2) + 1) * 25]);
+  checkNNDSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(61 * 2) * 25],
+                 &dataset[((61 * 2) + 1) * 25]);
+  checkNNDSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(62 * 2) * 25],
+                 &dataset[((62 * 2) + 1) * 25]);
+  checkNNDSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(63 * 2) * 25],
+                 &dataset[((63 * 2) + 1) * 25]);
+  checkNNDSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(64 * 2) * 25],
+                 &dataset[((64 * 2) + 1) * 25]);
+  checkNNDSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(65 * 2) * 25],
+                 &dataset[((65 * 2) + 1) * 25]);
+  checkNNDSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(66 * 2) * 25],
+                 &dataset[((66 * 2) + 1) * 25]);
+  checkNNDSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(67 * 2) * 25],
+                 &dataset[((67 * 2) + 1) * 25]);
+  checkNNDSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(68 * 2) * 25],
+                 &dataset[((68 * 2) + 1) * 25]);
+  checkNNDSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(69 * 2) * 25],
+                 &dataset[((69 * 2) + 1) * 25]);
+  checkNNDSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(70 * 2) * 25],
+                 &dataset[((70 * 2) + 1) * 25]);
+  checkNNDSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(71 * 2) * 25],
+                 &dataset[((71 * 2) + 1) * 25]);
+  checkNNDSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(72 * 2) * 25],
+                 &dataset[((72 * 2) + 1) * 25]);
+  checkNNDSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(73 * 2) * 25],
+                 &dataset[((73 * 2) + 1) * 25]);
+  checkNNDSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(74 * 2) * 25],
+                 &dataset[((74 * 2) + 1) * 25]);
+  checkNNDSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(75 * 2) * 25],
+                 &dataset[((75 * 2) + 1) * 25]);
+  checkNNDSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(76 * 2) * 25],
+                 &dataset[((76 * 2) + 1) * 25]);
+  checkNNDSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(77 * 2) * 25],
+                 &dataset[((77 * 2) + 1) * 25]);
+  checkNNDSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(78 * 2) * 25],
+                 &dataset[((78 * 2) + 1) * 25]);
+  checkNNDSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(79 * 2) * 25],
+                 &dataset[((79 * 2) + 1) * 25]);
+  checkNNDSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(80 * 2) * 25],
+                 &dataset[((80 * 2) + 1) * 25]);
+  checkNNDSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(81 * 2) * 25],
+                 &dataset[((81 * 2) + 1) * 25]);
+  checkNNDSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(82 * 2) * 25],
+                 &dataset[((82 * 2) + 1) * 25]);
+  checkNNDSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(83 * 2) * 25],
+                 &dataset[((83 * 2) + 1) * 25]);
+  checkNNDSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(84 * 2) * 25],
+                 &dataset[((84 * 2) + 1) * 25]);
+  checkNNDSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(85 * 2) * 25],
+                 &dataset[((85 * 2) + 1) * 25]);
+  checkNNDSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(86 * 2) * 25],
+                 &dataset[((86 * 2) + 1) * 25]);
+  checkNNDSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(87 * 2) * 25],
+                 &dataset[((87 * 2) + 1) * 25]);
+  checkNNDSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(88 * 2) * 25],
+                 &dataset[((88 * 2) + 1) * 25]);
+  checkNNDSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(89 * 2) * 25],
+                 &dataset[((89 * 2) + 1) * 25]);
+  checkNNDSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(90 * 2) * 25],
+                 &dataset[((90 * 2) + 1) * 25]);
+  checkNNDSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(91 * 2) * 25],
+                 &dataset[((91 * 2) + 1) * 25]);
+  checkNNDSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(92 * 2) * 25],
+                 &dataset[((92 * 2) + 1) * 25]);
+  checkNNDSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(93 * 2) * 25],
+                 &dataset[((93 * 2) + 1) * 25]);
+  checkNNDSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(94 * 2) * 25],
+                 &dataset[((94 * 2) + 1) * 25]);
+  checkNNDSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(95 * 2) * 25],
+                 &dataset[((95 * 2) + 1) * 25]);
+  checkNNDSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(96 * 2) * 25],
+                 &dataset[((96 * 2) + 1) * 25]);
+  checkNNDSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(97 * 2) * 25],
+                 &dataset[((97 * 2) + 1) * 25]);
+  checkNNDSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(98 * 2) * 25],
+                 &dataset[((98 * 2) + 1) * 25]);
+  checkNNDSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(99 * 2) * 25],
+                 &dataset[((99 * 2) + 1) * 25]);
+  float neuronAcover = neuronCoverageDS();
+  //@assert neuronAcover > 0.8;
+}
+
+void checkDatasetSVCover(float *wfc1, float *bfc1, float *wfc2, float *bfc2,
+                         float *wfc3, float *bfc3) {
+  checkNNSVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(0 * 2) * 25],
+                 &dataset[((0 * 2) + 1) * 25]);
+  checkNNSVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(1 * 2) * 25],
+                 &dataset[((1 * 2) + 1) * 25]);
+  checkNNSVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(2 * 2) * 25],
+                 &dataset[((2 * 2) + 1) * 25]);
+  checkNNSVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(3 * 2) * 25],
+                 &dataset[((3 * 2) + 1) * 25]);
+  checkNNSVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(4 * 2) * 25],
+                 &dataset[((4 * 2) + 1) * 25]);
+  checkNNSVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(5 * 2) * 25],
+                 &dataset[((5 * 2) + 1) * 25]);
+  checkNNSVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(6 * 2) * 25],
+                 &dataset[((6 * 2) + 1) * 25]);
+  checkNNSVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(7 * 2) * 25],
+                 &dataset[((7 * 2) + 1) * 25]);
+  checkNNSVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(8 * 2) * 25],
+                 &dataset[((8 * 2) + 1) * 25]);
+  checkNNSVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(9 * 2) * 25],
+                 &dataset[((9 * 2) + 1) * 25]);
+  checkNNSVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(10 * 2) * 25],
+                 &dataset[((10 * 2) + 1) * 25]);
+  checkNNSVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(11 * 2) * 25],
+                 &dataset[((11 * 2) + 1) * 25]);
+  checkNNSVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(12 * 2) * 25],
+                 &dataset[((12 * 2) + 1) * 25]);
+  checkNNSVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(13 * 2) * 25],
+                 &dataset[((13 * 2) + 1) * 25]);
+  checkNNSVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(14 * 2) * 25],
+                 &dataset[((14 * 2) + 1) * 25]);
+  checkNNSVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(15 * 2) * 25],
+                 &dataset[((15 * 2) + 1) * 25]);
+  checkNNSVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(16 * 2) * 25],
+                 &dataset[((16 * 2) + 1) * 25]);
+  checkNNSVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(17 * 2) * 25],
+                 &dataset[((17 * 2) + 1) * 25]);
+  checkNNSVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(18 * 2) * 25],
+                 &dataset[((18 * 2) + 1) * 25]);
+  checkNNSVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(19 * 2) * 25],
+                 &dataset[((19 * 2) + 1) * 25]);
+  checkNNSVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(20 * 2) * 25],
+                 &dataset[((20 * 2) + 1) * 25]);
+  checkNNSVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(21 * 2) * 25],
+                 &dataset[((21 * 2) + 1) * 25]);
+  checkNNSVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(22 * 2) * 25],
+                 &dataset[((22 * 2) + 1) * 25]);
+  checkNNSVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(23 * 2) * 25],
+                 &dataset[((23 * 2) + 1) * 25]);
+  checkNNSVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(24 * 2) * 25],
+                 &dataset[((24 * 2) + 1) * 25]);
+  checkNNSVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(25 * 2) * 25],
+                 &dataset[((25 * 2) + 1) * 25]);
+  checkNNSVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(26 * 2) * 25],
+                 &dataset[((26 * 2) + 1) * 25]);
+  checkNNSVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(27 * 2) * 25],
+                 &dataset[((27 * 2) + 1) * 25]);
+  checkNNSVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(28 * 2) * 25],
+                 &dataset[((28 * 2) + 1) * 25]);
+  checkNNSVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(29 * 2) * 25],
+                 &dataset[((29 * 2) + 1) * 25]);
+  checkNNSVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(30 * 2) * 25],
+                 &dataset[((30 * 2) + 1) * 25]);
+  checkNNSVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(31 * 2) * 25],
+                 &dataset[((31 * 2) + 1) * 25]);
+  checkNNSVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(32 * 2) * 25],
+                 &dataset[((32 * 2) + 1) * 25]);
+  checkNNSVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(33 * 2) * 25],
+                 &dataset[((33 * 2) + 1) * 25]);
+  checkNNSVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(34 * 2) * 25],
+                 &dataset[((34 * 2) + 1) * 25]);
+  checkNNSVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(35 * 2) * 25],
+                 &dataset[((35 * 2) + 1) * 25]);
+  checkNNSVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(36 * 2) * 25],
+                 &dataset[((36 * 2) + 1) * 25]);
+  checkNNSVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(37 * 2) * 25],
+                 &dataset[((37 * 2) + 1) * 25]);
+  checkNNSVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(38 * 2) * 25],
+                 &dataset[((38 * 2) + 1) * 25]);
+  checkNNSVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(39 * 2) * 25],
+                 &dataset[((39 * 2) + 1) * 25]);
+  checkNNSVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(40 * 2) * 25],
+                 &dataset[((40 * 2) + 1) * 25]);
+  checkNNSVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(41 * 2) * 25],
+                 &dataset[((41 * 2) + 1) * 25]);
+  checkNNSVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(42 * 2) * 25],
+                 &dataset[((42 * 2) + 1) * 25]);
+  checkNNSVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(43 * 2) * 25],
+                 &dataset[((43 * 2) + 1) * 25]);
+  checkNNSVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(44 * 2) * 25],
+                 &dataset[((44 * 2) + 1) * 25]);
+  checkNNSVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(45 * 2) * 25],
+                 &dataset[((45 * 2) + 1) * 25]);
+  checkNNSVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(46 * 2) * 25],
+                 &dataset[((46 * 2) + 1) * 25]);
+  checkNNSVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(47 * 2) * 25],
+                 &dataset[((47 * 2) + 1) * 25]);
+  checkNNSVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(48 * 2) * 25],
+                 &dataset[((48 * 2) + 1) * 25]);
+  checkNNSVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(49 * 2) * 25],
+                 &dataset[((49 * 2) + 1) * 25]);
+  checkNNSVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(50 * 2) * 25],
+                 &dataset[((50 * 2) + 1) * 25]);
+  checkNNSVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(51 * 2) * 25],
+                 &dataset[((51 * 2) + 1) * 25]);
+  checkNNSVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(52 * 2) * 25],
+                 &dataset[((52 * 2) + 1) * 25]);
+  checkNNSVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(53 * 2) * 25],
+                 &dataset[((53 * 2) + 1) * 25]);
+  checkNNSVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(54 * 2) * 25],
+                 &dataset[((54 * 2) + 1) * 25]);
+  checkNNSVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(55 * 2) * 25],
+                 &dataset[((55 * 2) + 1) * 25]);
+  checkNNSVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(56 * 2) * 25],
+                 &dataset[((56 * 2) + 1) * 25]);
+  checkNNSVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(57 * 2) * 25],
+                 &dataset[((57 * 2) + 1) * 25]);
+  checkNNSVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(58 * 2) * 25],
+                 &dataset[((58 * 2) + 1) * 25]);
+  checkNNSVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(59 * 2) * 25],
+                 &dataset[((59 * 2) + 1) * 25]);
+  checkNNSVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(60 * 2) * 25],
+                 &dataset[((60 * 2) + 1) * 25]);
+  checkNNSVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(61 * 2) * 25],
+                 &dataset[((61 * 2) + 1) * 25]);
+  checkNNSVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(62 * 2) * 25],
+                 &dataset[((62 * 2) + 1) * 25]);
+  checkNNSVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(63 * 2) * 25],
+                 &dataset[((63 * 2) + 1) * 25]);
+  checkNNSVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(64 * 2) * 25],
+                 &dataset[((64 * 2) + 1) * 25]);
+  checkNNSVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(65 * 2) * 25],
+                 &dataset[((65 * 2) + 1) * 25]);
+  checkNNSVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(66 * 2) * 25],
+                 &dataset[((66 * 2) + 1) * 25]);
+  checkNNSVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(67 * 2) * 25],
+                 &dataset[((67 * 2) + 1) * 25]);
+  checkNNSVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(68 * 2) * 25],
+                 &dataset[((68 * 2) + 1) * 25]);
+  checkNNSVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(69 * 2) * 25],
+                 &dataset[((69 * 2) + 1) * 25]);
+  checkNNSVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(70 * 2) * 25],
+                 &dataset[((70 * 2) + 1) * 25]);
+  checkNNSVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(71 * 2) * 25],
+                 &dataset[((71 * 2) + 1) * 25]);
+  checkNNSVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(72 * 2) * 25],
+                 &dataset[((72 * 2) + 1) * 25]);
+  checkNNSVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(73 * 2) * 25],
+                 &dataset[((73 * 2) + 1) * 25]);
+  checkNNSVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(74 * 2) * 25],
+                 &dataset[((74 * 2) + 1) * 25]);
+  checkNNSVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(75 * 2) * 25],
+                 &dataset[((75 * 2) + 1) * 25]);
+  checkNNSVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(76 * 2) * 25],
+                 &dataset[((76 * 2) + 1) * 25]);
+  checkNNSVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(77 * 2) * 25],
+                 &dataset[((77 * 2) + 1) * 25]);
+  checkNNSVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(78 * 2) * 25],
+                 &dataset[((78 * 2) + 1) * 25]);
+  checkNNSVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(79 * 2) * 25],
+                 &dataset[((79 * 2) + 1) * 25]);
+  checkNNSVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(80 * 2) * 25],
+                 &dataset[((80 * 2) + 1) * 25]);
+  checkNNSVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(81 * 2) * 25],
+                 &dataset[((81 * 2) + 1) * 25]);
+  checkNNSVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(82 * 2) * 25],
+                 &dataset[((82 * 2) + 1) * 25]);
+  checkNNSVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(83 * 2) * 25],
+                 &dataset[((83 * 2) + 1) * 25]);
+  checkNNSVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(84 * 2) * 25],
+                 &dataset[((84 * 2) + 1) * 25]);
+  checkNNSVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(85 * 2) * 25],
+                 &dataset[((85 * 2) + 1) * 25]);
+  checkNNSVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(86 * 2) * 25],
+                 &dataset[((86 * 2) + 1) * 25]);
+  checkNNSVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(87 * 2) * 25],
+                 &dataset[((87 * 2) + 1) * 25]);
+  checkNNSVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(88 * 2) * 25],
+                 &dataset[((88 * 2) + 1) * 25]);
+  checkNNSVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(89 * 2) * 25],
+                 &dataset[((89 * 2) + 1) * 25]);
+  checkNNSVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(90 * 2) * 25],
+                 &dataset[((90 * 2) + 1) * 25]);
+  checkNNSVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(91 * 2) * 25],
+                 &dataset[((91 * 2) + 1) * 25]);
+  checkNNSVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(92 * 2) * 25],
+                 &dataset[((92 * 2) + 1) * 25]);
+  checkNNSVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(93 * 2) * 25],
+                 &dataset[((93 * 2) + 1) * 25]);
+  checkNNSVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(94 * 2) * 25],
+                 &dataset[((94 * 2) + 1) * 25]);
+  checkNNSVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(95 * 2) * 25],
+                 &dataset[((95 * 2) + 1) * 25]);
+  checkNNSVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(96 * 2) * 25],
+                 &dataset[((96 * 2) + 1) * 25]);
+  checkNNSVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(97 * 2) * 25],
+                 &dataset[((97 * 2) + 1) * 25]);
+  checkNNSVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(98 * 2) * 25],
+                 &dataset[((98 * 2) + 1) * 25]);
+  checkNNSVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(99 * 2) * 25],
+                 &dataset[((99 * 2) + 1) * 25]);
+  float neuronAcover = neuronCoverageSV();
+  //@assert neuronAcover > 0.8;
+}
+
+void checkDatasetDVCover(float *wfc1, float *bfc1, float *wfc2, float *bfc2,
+                         float *wfc3, float *bfc3) {
+  checkNNDVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(0 * 2) * 25],
+                 &dataset[((0 * 2) + 1) * 25]);
+  checkNNDVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(1 * 2) * 25],
+                 &dataset[((1 * 2) + 1) * 25]);
+  checkNNDVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(2 * 2) * 25],
+                 &dataset[((2 * 2) + 1) * 25]);
+  checkNNDVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(3 * 2) * 25],
+                 &dataset[((3 * 2) + 1) * 25]);
+  checkNNDVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(4 * 2) * 25],
+                 &dataset[((4 * 2) + 1) * 25]);
+  checkNNDVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(5 * 2) * 25],
+                 &dataset[((5 * 2) + 1) * 25]);
+  checkNNDVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(6 * 2) * 25],
+                 &dataset[((6 * 2) + 1) * 25]);
+  checkNNDVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(7 * 2) * 25],
+                 &dataset[((7 * 2) + 1) * 25]);
+  checkNNDVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(8 * 2) * 25],
+                 &dataset[((8 * 2) + 1) * 25]);
+  checkNNDVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(9 * 2) * 25],
+                 &dataset[((9 * 2) + 1) * 25]);
+  checkNNDVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(10 * 2) * 25],
+                 &dataset[((10 * 2) + 1) * 25]);
+  checkNNDVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(11 * 2) * 25],
+                 &dataset[((11 * 2) + 1) * 25]);
+  checkNNDVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(12 * 2) * 25],
+                 &dataset[((12 * 2) + 1) * 25]);
+  checkNNDVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(13 * 2) * 25],
+                 &dataset[((13 * 2) + 1) * 25]);
+  checkNNDVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(14 * 2) * 25],
+                 &dataset[((14 * 2) + 1) * 25]);
+  checkNNDVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(15 * 2) * 25],
+                 &dataset[((15 * 2) + 1) * 25]);
+  checkNNDVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(16 * 2) * 25],
+                 &dataset[((16 * 2) + 1) * 25]);
+  checkNNDVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(17 * 2) * 25],
+                 &dataset[((17 * 2) + 1) * 25]);
+  checkNNDVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(18 * 2) * 25],
+                 &dataset[((18 * 2) + 1) * 25]);
+  checkNNDVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(19 * 2) * 25],
+                 &dataset[((19 * 2) + 1) * 25]);
+  checkNNDVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(20 * 2) * 25],
+                 &dataset[((20 * 2) + 1) * 25]);
+  checkNNDVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(21 * 2) * 25],
+                 &dataset[((21 * 2) + 1) * 25]);
+  checkNNDVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(22 * 2) * 25],
+                 &dataset[((22 * 2) + 1) * 25]);
+  checkNNDVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(23 * 2) * 25],
+                 &dataset[((23 * 2) + 1) * 25]);
+  checkNNDVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(24 * 2) * 25],
+                 &dataset[((24 * 2) + 1) * 25]);
+  checkNNDVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(25 * 2) * 25],
+                 &dataset[((25 * 2) + 1) * 25]);
+  checkNNDVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(26 * 2) * 25],
+                 &dataset[((26 * 2) + 1) * 25]);
+  checkNNDVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(27 * 2) * 25],
+                 &dataset[((27 * 2) + 1) * 25]);
+  checkNNDVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(28 * 2) * 25],
+                 &dataset[((28 * 2) + 1) * 25]);
+  checkNNDVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(29 * 2) * 25],
+                 &dataset[((29 * 2) + 1) * 25]);
+  checkNNDVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(30 * 2) * 25],
+                 &dataset[((30 * 2) + 1) * 25]);
+  checkNNDVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(31 * 2) * 25],
+                 &dataset[((31 * 2) + 1) * 25]);
+  checkNNDVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(32 * 2) * 25],
+                 &dataset[((32 * 2) + 1) * 25]);
+  checkNNDVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(33 * 2) * 25],
+                 &dataset[((33 * 2) + 1) * 25]);
+  checkNNDVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(34 * 2) * 25],
+                 &dataset[((34 * 2) + 1) * 25]);
+  checkNNDVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(35 * 2) * 25],
+                 &dataset[((35 * 2) + 1) * 25]);
+  checkNNDVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(36 * 2) * 25],
+                 &dataset[((36 * 2) + 1) * 25]);
+  checkNNDVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(37 * 2) * 25],
+                 &dataset[((37 * 2) + 1) * 25]);
+  checkNNDVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(38 * 2) * 25],
+                 &dataset[((38 * 2) + 1) * 25]);
+  checkNNDVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(39 * 2) * 25],
+                 &dataset[((39 * 2) + 1) * 25]);
+  checkNNDVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(40 * 2) * 25],
+                 &dataset[((40 * 2) + 1) * 25]);
+  checkNNDVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(41 * 2) * 25],
+                 &dataset[((41 * 2) + 1) * 25]);
+  checkNNDVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(42 * 2) * 25],
+                 &dataset[((42 * 2) + 1) * 25]);
+  checkNNDVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(43 * 2) * 25],
+                 &dataset[((43 * 2) + 1) * 25]);
+  checkNNDVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(44 * 2) * 25],
+                 &dataset[((44 * 2) + 1) * 25]);
+  checkNNDVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(45 * 2) * 25],
+                 &dataset[((45 * 2) + 1) * 25]);
+  checkNNDVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(46 * 2) * 25],
+                 &dataset[((46 * 2) + 1) * 25]);
+  checkNNDVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(47 * 2) * 25],
+                 &dataset[((47 * 2) + 1) * 25]);
+  checkNNDVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(48 * 2) * 25],
+                 &dataset[((48 * 2) + 1) * 25]);
+  checkNNDVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(49 * 2) * 25],
+                 &dataset[((49 * 2) + 1) * 25]);
+  checkNNDVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(50 * 2) * 25],
+                 &dataset[((50 * 2) + 1) * 25]);
+  checkNNDVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(51 * 2) * 25],
+                 &dataset[((51 * 2) + 1) * 25]);
+  checkNNDVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(52 * 2) * 25],
+                 &dataset[((52 * 2) + 1) * 25]);
+  checkNNDVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(53 * 2) * 25],
+                 &dataset[((53 * 2) + 1) * 25]);
+  checkNNDVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(54 * 2) * 25],
+                 &dataset[((54 * 2) + 1) * 25]);
+  checkNNDVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(55 * 2) * 25],
+                 &dataset[((55 * 2) + 1) * 25]);
+  checkNNDVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(56 * 2) * 25],
+                 &dataset[((56 * 2) + 1) * 25]);
+  checkNNDVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(57 * 2) * 25],
+                 &dataset[((57 * 2) + 1) * 25]);
+  checkNNDVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(58 * 2) * 25],
+                 &dataset[((58 * 2) + 1) * 25]);
+  checkNNDVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(59 * 2) * 25],
+                 &dataset[((59 * 2) + 1) * 25]);
+  checkNNDVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(60 * 2) * 25],
+                 &dataset[((60 * 2) + 1) * 25]);
+  checkNNDVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(61 * 2) * 25],
+                 &dataset[((61 * 2) + 1) * 25]);
+  checkNNDVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(62 * 2) * 25],
+                 &dataset[((62 * 2) + 1) * 25]);
+  checkNNDVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(63 * 2) * 25],
+                 &dataset[((63 * 2) + 1) * 25]);
+  checkNNDVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(64 * 2) * 25],
+                 &dataset[((64 * 2) + 1) * 25]);
+  checkNNDVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(65 * 2) * 25],
+                 &dataset[((65 * 2) + 1) * 25]);
+  checkNNDVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(66 * 2) * 25],
+                 &dataset[((66 * 2) + 1) * 25]);
+  checkNNDVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(67 * 2) * 25],
+                 &dataset[((67 * 2) + 1) * 25]);
+  checkNNDVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(68 * 2) * 25],
+                 &dataset[((68 * 2) + 1) * 25]);
+  checkNNDVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(69 * 2) * 25],
+                 &dataset[((69 * 2) + 1) * 25]);
+  checkNNDVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(70 * 2) * 25],
+                 &dataset[((70 * 2) + 1) * 25]);
+  checkNNDVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(71 * 2) * 25],
+                 &dataset[((71 * 2) + 1) * 25]);
+  checkNNDVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(72 * 2) * 25],
+                 &dataset[((72 * 2) + 1) * 25]);
+  checkNNDVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(73 * 2) * 25],
+                 &dataset[((73 * 2) + 1) * 25]);
+  checkNNDVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(74 * 2) * 25],
+                 &dataset[((74 * 2) + 1) * 25]);
+  checkNNDVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(75 * 2) * 25],
+                 &dataset[((75 * 2) + 1) * 25]);
+  checkNNDVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(76 * 2) * 25],
+                 &dataset[((76 * 2) + 1) * 25]);
+  checkNNDVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(77 * 2) * 25],
+                 &dataset[((77 * 2) + 1) * 25]);
+  checkNNDVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(78 * 2) * 25],
+                 &dataset[((78 * 2) + 1) * 25]);
+  checkNNDVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(79 * 2) * 25],
+                 &dataset[((79 * 2) + 1) * 25]);
+  checkNNDVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(80 * 2) * 25],
+                 &dataset[((80 * 2) + 1) * 25]);
+  checkNNDVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(81 * 2) * 25],
+                 &dataset[((81 * 2) + 1) * 25]);
+  checkNNDVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(82 * 2) * 25],
+                 &dataset[((82 * 2) + 1) * 25]);
+  checkNNDVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(83 * 2) * 25],
+                 &dataset[((83 * 2) + 1) * 25]);
+  checkNNDVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(84 * 2) * 25],
+                 &dataset[((84 * 2) + 1) * 25]);
+  checkNNDVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(85 * 2) * 25],
+                 &dataset[((85 * 2) + 1) * 25]);
+  checkNNDVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(86 * 2) * 25],
+                 &dataset[((86 * 2) + 1) * 25]);
+  checkNNDVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(87 * 2) * 25],
+                 &dataset[((87 * 2) + 1) * 25]);
+  checkNNDVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(88 * 2) * 25],
+                 &dataset[((88 * 2) + 1) * 25]);
+  checkNNDVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(89 * 2) * 25],
+                 &dataset[((89 * 2) + 1) * 25]);
+  checkNNDVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(90 * 2) * 25],
+                 &dataset[((90 * 2) + 1) * 25]);
+  checkNNDVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(91 * 2) * 25],
+                 &dataset[((91 * 2) + 1) * 25]);
+  checkNNDVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(92 * 2) * 25],
+                 &dataset[((92 * 2) + 1) * 25]);
+  checkNNDVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(93 * 2) * 25],
+                 &dataset[((93 * 2) + 1) * 25]);
+  checkNNDVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(94 * 2) * 25],
+                 &dataset[((94 * 2) + 1) * 25]);
+  checkNNDVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(95 * 2) * 25],
+                 &dataset[((95 * 2) + 1) * 25]);
+  checkNNDVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(96 * 2) * 25],
+                 &dataset[((96 * 2) + 1) * 25]);
+  checkNNDVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(97 * 2) * 25],
+                 &dataset[((97 * 2) + 1) * 25]);
+  checkNNDVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(98 * 2) * 25],
+                 &dataset[((98 * 2) + 1) * 25]);
+  checkNNDVCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, &dataset[(99 * 2) * 25],
+                 &dataset[((99 * 2) + 1) * 25]);
+  float neuronAcover = neuronCoverageDV();
+  //@assert neuronAcover > 0.8;
+}
 
 // esbmc-gpu verifynn.c -I . --force-malloc-success --state-hashing --unwind 30
 
@@ -5059,89 +6727,5 @@ float imgU[25] = {255, 0,   0,   0, 255, 255, 0,   0,   0,   255, 255, 0,  0,
 
 int main() {
 
-  unsigned int x1 = nondet_uint();
-  __ESBMC_assume((x1 <= 255) && (x1 >= 0));
-  unsigned int x2 = nondet_uint();
-  __ESBMC_assume((x2 <= 255) && (x2 >= 0));
-  unsigned int x3 = nondet_uint();
-  __ESBMC_assume((x3 <= 255) && (x3 >= 0));
-  unsigned int x4 = nondet_uint();
-  __ESBMC_assume((x4 <= 255) && (x4 >= 0));
-  unsigned int x5 = nondet_uint();
-  __ESBMC_assume((x5 <= 255) && (x5 >= 0));
-  unsigned int x6 = nondet_uint();
-  __ESBMC_assume((x6 <= 255) && (x6 >= 0));
-  unsigned int x7 = nondet_uint();
-  __ESBMC_assume((x7 <= 255) && (x7 >= 0));
-  unsigned int x8 = nondet_uint();
-  __ESBMC_assume((x8 <= 255) && (x8 >= 0));
-  unsigned int x9 = nondet_uint();
-  __ESBMC_assume((x9 <= 255) && (x9 >= 0));
-  unsigned int x10 = nondet_uint();
-  __ESBMC_assume((x10 <= 255) && (x10 >= 0));
-  unsigned int x11 = nondet_uint();
-  __ESBMC_assume((x11 <= 255) && (x11 >= 0));
-  unsigned int x12 = nondet_uint();
-  __ESBMC_assume((x12 <= 255) && (x12 >= 0));
-  unsigned int x13 = nondet_uint();
-  __ESBMC_assume((x13 <= 255) && (x13 >= 0));
-  unsigned int x14 = nondet_uint();
-  __ESBMC_assume((x14 <= 255) && (x14 >= 0));
-  unsigned int x15 = nondet_uint();
-  __ESBMC_assume((x15 <= 255) && (x15 >= 0));
-  unsigned int x16 = nondet_uint();
-  __ESBMC_assume((x16 <= 255) && (x16 >= 0));
-  unsigned int x17 = nondet_uint();
-  __ESBMC_assume((x17 <= 255) && (x17 >= 0));
-  unsigned int x18 = nondet_uint();
-  __ESBMC_assume((x18 <= 255) && (x18 >= 0));
-  unsigned int x19 = nondet_uint();
-  __ESBMC_assume((x19 <= 255) && (x19 >= 0));
-  unsigned int x20 = nondet_uint();
-  __ESBMC_assume((x20 <= 255) && (x20 >= 0));
-  unsigned int x21 = nondet_uint();
-  __ESBMC_assume((x21 <= 255) && (x21 >= 0));
-  unsigned int x22 = nondet_uint();
-  __ESBMC_assume((x22 <= 255) && (x22 >= 0));
-  unsigned int x23 = nondet_uint();
-  __ESBMC_assume((x23 <= 255) && (x23 >= 0));
-  unsigned int x24 = nondet_uint();
-  __ESBMC_assume((x24 <= 255) && (x24 >= 0));
-  unsigned int x25 = nondet_uint();
-  __ESBMC_assume((x25 <= 255) && (x25 >= 0));
-
-
-  float img2[25];
-  img2[0] = (float)x1;
-  img2[1] = (float)x2;
-  img2[2] = (float)x3;
-  img2[3] = (float)x4;
-  img2[4] = (float)x5;
-  img2[5] = (float)x6;
-  img2[6] = (float)x7;
-  img2[7] = (float)x8;
-  img2[8] = (float)x9;
-  img2[9] = (float)x10;
-  img2[10] = (float)x11;
-  img2[11] = (float)x12;
-  img2[12] = (float)x13;
-  img2[13] = (float)x14;
-  img2[14] = (float)x15;
-  img2[15] = (float)x16;
-  img2[16] = (float)x17;
-  img2[17] = (float)x18;
-  img2[18] = (float)x19;
-  img2[19] = (float)x20;
-  img2[20] = (float)x21;
-  img2[21] = (float)x22;
-  img2[22] = (float)x23;
-  img2[23] = (float)x24;
-  img2[24] = (float)x25;
-
-  normalizef(imgA, 25);
-  normalizef(img2, 25);
-  //	unsigned int i = isCloseEnough(img,img2,10,25);
-  __ESBMC_assume(isCloseEnough(imgA, img2, 0.3, 25) == 1);
-  //	assert(isCloseEnough(img, 1), "Image is near");
-  checkNNLUT(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3, img2, 0, 1);
+checkDatasetDSCover(wfc1, bfc1, wfc2, bfc2, wfc3, bfc3);
 }

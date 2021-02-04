@@ -4,7 +4,6 @@
 #include <stdio.h>
 #include <math.h>
 #include <stdlib.h>
-#include "struct.h"
 
 #define data 25
 #define fc1 2

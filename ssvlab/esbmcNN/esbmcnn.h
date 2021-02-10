@@ -898,7 +898,7 @@ void exportANNC(esbmc_nnet** nnet, int classification, int range){
       } else {
         if(j!=0) {
           fprintf(ann2cFile, "layer%d[%d] = sigmoidLUT(layer%d[%d]);\n", i, j, i, j);
-          fprintf(ann2cFile, "if (layer%d[%d] > layer%d[%d]) r = %d;\n", i, j, i, j-1, j);
+          fprintf(ann2cFile, "if (layer%d[%d] > layer%d[r]) r = %d;\n", i, j, i, j);
         }
         else{
           fprintf(ann2cFile, "layer%d[%d] = sigmoidLUT(layer%d[%d]);\n", i, j, i, j);

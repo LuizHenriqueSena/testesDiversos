@@ -767,7 +767,7 @@ int neuralNetPrediction(esbmc_nnet** nnet){
                   (*nnet)->layers[1].weights, inputs, (*nnet)->inputs, 1, &beta, (*nnet)->layers[1].outputLayer, 1);
       cublasSgemm(cublasHandle, CUBLAS_OP_N, CUBLAS_OP_N, neurons, 1, 1, &alpha, (*nnet)->layers[1].bias,
                   1, onevec, 1, &alpha, (*nnet)->layers[1].outputLayer, 1);
-      RELU((*nnet)->layers[1].outputLayer, neurons);
+      activeSigmoidLUT((*nnet)->layers[1].outputLayer, neurons);
       printfLayerResults((*nnet)->layers[i].outputLayer, neurons, i);
     } else {
       cublasSgemm(cublasHandle, CUBLAS_OP_N, CUBLAS_OP_N, neurons, 1, previous, &alpha,
@@ -775,7 +775,9 @@ int neuralNetPrediction(esbmc_nnet** nnet){
       cublasSgemm(cublasHandle, CUBLAS_OP_N, CUBLAS_OP_N, neurons, 1, 1, &alpha, (*nnet)->layers[i].bias,
                   1, onevec, 1, &alpha, (*nnet)->layers[i].outputLayer, 1);
       if(i != layers -1){
-        RELU((*nnet)->layers[i].outputLayer, neurons);
+        activeSigmoidLUT((*nnet)->layers[i].outputLayer, neurons);
+      } else{
+        activeSigmoidLUT((*nnet)->layers[i].outputLayer, neurons);
       }
       printfLayerResults((*nnet)->layers[i].outputLayer, neurons, i);
      }
@@ -806,6 +808,7 @@ void exportAssumes(int * input, int range, int size) {
     }
     if(max>255)
       max = 255;
+
     if(min < 0)
       min = 0;
     fprintf(ann2cFile,"__ESBMC_assume((x%d >= %d)&&(x%d <=%d));\n",i, min,i, max);
@@ -833,11 +836,11 @@ void exportANNC(esbmc_nnet** nnet, int classification, int range){
   }
   strcpy(ANN2CPath, cwd);
   strcat(ANN2CPath, nnetFileName);
-  sprintf(sufix, "_L%d_R%d.c", classification, range);
+  sprintf(sufix, "annVocalic_L%d_R%d.c", classification, range);
   strcat(ANN2CPath, sufix);
   printf("path: %s\n", ANN2CPath);
   ann2cFile = fopen(ANN2CPath, "w");
-  fprintf(ann2cFile,"#include <stdio.h>\n#include <math.h>\n#include <stdlib.h>\n#include <time.h>\n\n");
+  fprintf(ann2cFile,"#include <stdio.h>\n#include <math.h>\n#include <stdlib.h>\n#include <time.h>\n#include \"utils.h\"\n\n");
   //fprintf(outputFile,"float UpLinearRelaxation(float input, float up, float low) {\n    float relaxation = (up/(up-low))*(input-low);\n    return relaxation;\n  }\n\n  float LowLinearRelaxation(float input, float up, float low) {\n    float relaxation = up/(up-low)*(input);\n    return relaxation;\n  }\n\n");
   fprintf(ann2cFile,"int main(){\n");
   fprintf(ann2cFile,"float norm = (float)1/(float)255;\n");
@@ -846,6 +849,7 @@ void exportANNC(esbmc_nnet** nnet, int classification, int range){
   for(int i=1; i < layers; i++) {
     neurons = (*nnet)->layers[i].neurons;
     previous = (*nnet)->layers[i-1].neurons;
+    transposeMatrix((*nnet)->layers[i].weights, neurons, previous);
     fprintf(ann2cFile, "float layer%d[%d];\n", i, neurons);
     if(i==1) {
       for(int j = 0; j < neurons; j++) {
@@ -854,7 +858,7 @@ void exportANNC(esbmc_nnet** nnet, int classification, int range){
           fprintf(ann2cFile, "(%.6ff)*i[%d] + ", (*nnet)->layers[i].weights[j*inputs + k], k);
         }
           fprintf(ann2cFile, "(%.6ff);\n", (*nnet)->layers[i].bias[j]);
-          fprintf(ann2cFile, "if (layer%d[%d] < 0) layer%d[%d]=0;\n", i, j, i, j);
+          fprintf(ann2cFile, "layer%d[%d] = sigmoidLUT(layer%d[%d]);\n", i, j, i, j);
       }
     } else {
       for(int j = 0; j < neurons; j++) {
@@ -865,12 +869,14 @@ void exportANNC(esbmc_nnet** nnet, int classification, int range){
           fprintf(ann2cFile, "(%.6ff);\n", (*nnet)->layers[i].bias[j]);
 
       if(i != layers -1){
-        fprintf(ann2cFile, "if (layer%d[%d] < 0) layer%d[%d]=0;\n", i, j, i, j);
+        fprintf(ann2cFile, "layer%d[%d] = sigmoidLUT(layer%d[%d]);\n", i, j, i, j);
       } else {
         if(j!=0) {
+          fprintf(ann2cFile, "layer%d[%d] = sigmoidLUT(layer%d[%d]);\n", i, j, i, j);
           fprintf(ann2cFile, "if (layer%d[%d] > layer%d[%d]) r = %d;\n", i, j, i, j-1, j);
         }
         else{
+          fprintf(ann2cFile, "layer%d[%d] = sigmoidLUT(layer%d[%d]);\n", i, j, i, j);
           fprintf(ann2cFile, "int r = 0;\n");
         }
       }

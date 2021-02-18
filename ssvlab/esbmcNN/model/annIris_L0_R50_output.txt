@@ -1,0 +1,14 @@
+ESBMC version 6.6.0 64-bit x86_64 linux
+file annIris_L0_R50.c: Parsing
+Converting
+Generating GOTO Program
+GOTO program creation time: 119.044s
+GOTO program processing time: 0.488s
+*** Checking base case, k = 1
+Starting Bounded Model Checking
+Symex completed in: 3.836s (177 assignments)
+Slicing time: 0.081s (removed 16 assignments)
+Generated 1 VCC(s), 1 remaining after simplification (161 assignments)
+Encoding remaining VCC(s) using bit-vector/floating-point arithmetic
+Encoding to solver time: 264.711s
+Solving with solver Boolector 3.2.0

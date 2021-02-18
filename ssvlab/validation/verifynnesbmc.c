@@ -16894,7 +16894,7 @@ void checkNNLUT(float wfc1[125], float bfc1[5], float wfc2[20], float bfc2[4],
 
 //Here we get the label {0 - setosa, 1 - versicolor, 2 - virginica}
 
-label = classify(x1layer2, fc2);
+int label = classify(x1layer2, fc2);
 //an example of property could be:
 //__ESBMC_assert(label == 0, "It is not a setosa. Probably an adversarial example");
 

@@ -1,0 +1,28 @@
+ESBMC version 6.6.0 64-bit x86_64 linux
+file annVocalic_L0_R10.c: Parsing
+Converting
+Generating GOTO Program
+GOTO program creation time: 9.049s
+GOTO program processing time: 0.003s
+*** Checking base case, k = 1
+Starting Bounded Model Checking
+Symex completed in: 0.292s (336 assignments)
+Slicing time: 0.011s (removed 17 assignments)
+Generated 1 VCC(s), 1 remaining after simplification (319 assignments)
+Encoding remaining VCC(s) using bit-vector/floating-point arithmetic
+Encoding to solver time: 0.592s
+Solving with solver Boolector 3.2.0
+Encoding to solver time: 0.592s
+Runtime decision procedure: 18083.274s
+BMC program time: 18084.189s
+No bug has been found in the base case
+*** Checking forward condition, k = 1
+Starting Bounded Model Checking
+Symex completed in: 2.071s (335 assignments)
+Slicing time: 0.104s (removed 25 assignments)
+Generated 0 VCC(s), 0 remaining after simplification (310 assignments)
+BMC program time: 2.175s
+
+VERIFICATION SUCCESSFUL
+
+Solution found by the forward condition; all states are reachable (k = 1)

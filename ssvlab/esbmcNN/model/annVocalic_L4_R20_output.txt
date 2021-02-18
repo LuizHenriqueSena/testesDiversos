@@ -1,0 +1,14 @@
+ESBMC version 6.6.0 64-bit x86_64 linux
+file annVocalic_L4_R20.c: Parsing
+Converting
+Generating GOTO Program
+GOTO program creation time: 16.280s
+GOTO program processing time: 0.006s
+*** Checking base case, k = 1
+Starting Bounded Model Checking
+Symex completed in: 0.613s (336 assignments)
+Slicing time: 0.070s (removed 17 assignments)
+Generated 1 VCC(s), 1 remaining after simplification (319 assignments)
+Encoding remaining VCC(s) using bit-vector/floating-point arithmetic
+Encoding to solver time: 1.159s
+Solving with solver Boolector 3.2.0

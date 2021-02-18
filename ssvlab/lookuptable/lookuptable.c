@@ -91,7 +91,7 @@ void printLookUpTableForCVectorTanh(int number, int decimalPlaces) {
 
 
 int main(){
-	//printLookUpTableForCVectorSigmoid(40,3);
+	printLookUpTableForCVectorSigmoid(12,2);
 	//printLookUpTableForCVectorExp(2, 3, 0);
-	printLookUpTableForCVectorTanh(16,4);
+	//printLookUpTableForCVectorTanh(8,2);
 }

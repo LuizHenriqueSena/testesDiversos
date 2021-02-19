@@ -3,22 +3,22 @@
 #include <stdlib.h>
 #include <time.h>
 #include "utils.h"
-#include "__fc_builtin.h" 
+//#include "__fc_builtin.h"
 
 int main(){
 float norm = (float)1/(float)255;
-//int x0 = nondet_int();
-//__ESBMC_assume((x0 >= 0)&&(x0 <=20));
-//int x1 = nondet_int();
-//__ESBMC_assume((x1 >= 0)&&(x1 <=20));
-//int x2 = nondet_int();
-//__ESBMC_assume((x2 >= 0)&&(x2 <=20));
-//int x3 = nondet_int();
-//__ESBMC_assume((x3 >= 0)&&(x3 <=20));
-unsigned int x0 = Frama_C_interval(0, 20);
-unsigned int x1 = Frama_C_interval(0, 20);
-unsigned int x2 = Frama_C_interval(0, 20);
-unsigned int x3 = Frama_C_interval(0, 20);
+int x0 = nondet_int();
+__ESBMC_assume((x0 >= 0)&&(x0 <=20));
+int x1 = nondet_int();
+__ESBMC_assume((x1 >= 0)&&(x1 <=20));
+int x2 = nondet_int();
+__ESBMC_assume((x2 >= 0)&&(x2 <=20));
+int x3 = nondet_int();
+__ESBMC_assume((x3 >= 0)&&(x3 <=20));
+// unsigned int x0 = Frama_C_interval(0, 20);
+// unsigned int x1 = Frama_C_interval(0, 20);
+// unsigned int x2 = Frama_C_interval(0, 20);
+// unsigned int x3 = Frama_C_interval(0, 20);
 float i[4];
 i[0] = x0*norm;
 i[1] = x1*norm;
@@ -51,6 +51,6 @@ if (layer2[1] > layer2[r]) r = 1;
 layer2[2]= (-0.028897f)*layer1[0] + (0.064892f)*layer1[1] + (0.519332f)*layer1[2] + (0.998079f)*layer1[3] + (-0.608707f)*layer1[4] + (-0.508822f)*layer1[5] + (-0.901339f)*layer1[6] + (0.131860f);
 layer2[2] = sigmoidLUT(layer2[2]);
 if (layer2[2] > layer2[r]) r = 2;
-//__ESBMC_assert(r == 2, "Classification is not a 2 anymore.");
+__ESBMC_assert(r == 2, "Classification is not a 2 anymore.");
 //@assert(r == 2);
 }

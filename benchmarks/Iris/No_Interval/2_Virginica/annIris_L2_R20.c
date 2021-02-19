@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include "utils.h"
-#include "__fc_builtin.h" 
+//#include "__fc_builtin.h" 
 
 int main(){
 float norm = (float)1/(float)255;

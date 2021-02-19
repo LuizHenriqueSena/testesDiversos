@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include "utils.h"
-#include "__fc_builtin.h" 
+//#include "__fc_builtin.h"
 
 int main(){
 float norm = (float)1/(float)255;
@@ -51,6 +51,6 @@ if (layer2[1] > layer2[r]) r = 1;
 layer2[2]= (-0.028897f)*layer1[0] + (0.064892f)*layer1[1] + (0.519332f)*layer1[2] + (0.998079f)*layer1[3] + (-0.608707f)*layer1[4] + (-0.508822f)*layer1[5] + (-0.901339f)*layer1[6] + (0.131860f);
 layer2[2] = sigmoidLUT(layer2[2]);
 if (layer2[2] > layer2[r]) r = 2;
-//__ESBMC_assert(r == 2, "Classification is not a 2 anymore.");
+__ESBMC_assert(r == 2, "Classification is not a 2 anymore.");
 //@assert(r == 2);
 }

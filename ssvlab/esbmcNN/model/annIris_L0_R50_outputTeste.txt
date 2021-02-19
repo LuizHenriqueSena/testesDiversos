@@ -2,13 +2,221 @@ ESBMC version 6.6.0 64-bit x86_64 linux
 file annIris_L0_R50.c: Parsing
 Converting
 Generating GOTO Program
-GOTO program creation time: 0.767s
+GOTO program creation time: 0.565s
 GOTO program processing time: 0.002s
 *** Checking base case, k = 1
 Starting Bounded Model Checking
 Symex completed in: 0.009s (177 assignments)
-Slicing time: 0.001s (removed 16 assignments)
+Slicing time: 0.000s (removed 16 assignments)
 Generated 1 VCC(s), 1 remaining after simplification (161 assignments)
 Encoding remaining VCC(s) using bit-vector/floating-point arithmetic
-Encoding to solver time: 0.075s
+Encoding to solver time: 0.064s
 Solving with solver Boolector 3.2.0
+Encoding to solver time: 0.064s
+Runtime decision procedure: 1999.293s
+Building error trace
+
+Counterexample:
+
+State 1 file annIris_L0_R50.c line 10 function main thread 0
+----------------------------------------------------
+  x0 = 276 (00000000 00000000 00000001 00010100)
+
+State 3 file annIris_L0_R50.c line 12 function main thread 0
+----------------------------------------------------
+  x1 = 318 (00000000 00000000 00000001 00111110)
+
+State 5 file annIris_L0_R50.c line 14 function main thread 0
+----------------------------------------------------
+  x2 = 200 (00000000 00000000 00000000 11001000)
+
+State 7 file annIris_L0_R50.c line 16 function main thread 0
+----------------------------------------------------
+  x3 = 10 (00000000 00000000 00000000 00001010)
+
+State 9 file annIris_L0_R50.c line 23 function main thread 0
+----------------------------------------------------
+  i[0] = 2.760000e+0f (01000000 00110000 10100011 11010111)
+
+State 10 file annIris_L0_R50.c line 24 function main thread 0
+----------------------------------------------------
+  i[1] = 3.180000e+0f (01000000 01001011 10000101 00011110)
+
+State 11 file annIris_L0_R50.c line 25 function main thread 0
+----------------------------------------------------
+  i[2] = 2.000000f (01000000 00000000 00000000 00000000)
+
+State 12 file annIris_L0_R50.c line 26 function main thread 0
+----------------------------------------------------
+  i[3] = 9.999999e-2f (00111101 11001100 11001100 11001100)
+
+State 13 file annIris_L0_R50.c line 30 function main thread 0
+----------------------------------------------------
+  layer1[0] = -1.383843e+0f (10111111 10110001 00100001 11000010)
+
+State 14 file utils.h line 214 function tanhFunctionLUT thread 0
+----------------------------------------------------
+  lookTableIndex = 0 (00000000 00000000 00000000 00000000)
+
+State 15 file utils.h line 215 function tanhFunctionLUT thread 0
+----------------------------------------------------
+  lookTableIndex = 262 (00000000 00000000 00000001 00000110)
+
+State 16 file utils.h line 222 function tanhFunctionLUT thread 0
+----------------------------------------------------
+  value = -8.809510e-1f (10111111 01100001 10000110 00000001)
+
+State 17 file annIris_L0_R50.c line 32 function main thread 0
+----------------------------------------------------
+  layer1[1] = 1.725168e+0f (00111111 11011100 11010010 01001101)
+
+State 18 file utils.h line 214 function tanhFunctionLUT thread 0
+----------------------------------------------------
+  lookTableIndex = 172 (00000000 00000000 00000000 10101100)
+
+State 19 file utils.h line 215 function tanhFunctionLUT thread 0
+----------------------------------------------------
+  lookTableIndex = 572 (00000000 00000000 00000010 00111100)
+
+State 20 file utils.h line 222 function tanhFunctionLUT thread 0
+----------------------------------------------------
+  value = 9.378630e-1f (00111111 01110000 00010111 11001010)
+
+State 21 file annIris_L0_R50.c line 34 function main thread 0
+----------------------------------------------------
+  layer1[2] = 1.822354e-1f (00111110 00111010 10011011 11101011)
+
+State 22 file utils.h line 214 function tanhFunctionLUT thread 0
+----------------------------------------------------
+  lookTableIndex = 18 (00000000 00000000 00000000 00010010)
+
+State 23 file utils.h line 215 function tanhFunctionLUT thread 0
+----------------------------------------------------
+  lookTableIndex = 418 (00000000 00000000 00000001 10100010)
+
+State 24 file utils.h line 222 function tanhFunctionLUT thread 0
+----------------------------------------------------
+  value = 1.780810e-1f (00111110 00110110 01011010 11011110)
+
+State 25 file annIris_L0_R50.c line 36 function main thread 0
+----------------------------------------------------
+  layer1[3] = -6.569451e-2f (10111101 10000110 10001010 11011000)
+
+State 26 file utils.h line 214 function tanhFunctionLUT thread 0
+----------------------------------------------------
+  lookTableIndex = 0 (00000000 00000000 00000000 00000000)
+
+State 27 file utils.h line 215 function tanhFunctionLUT thread 0
+----------------------------------------------------
+  lookTableIndex = 394 (00000000 00000000 00000001 10001010)
+
+State 28 file utils.h line 222 function tanhFunctionLUT thread 0
+----------------------------------------------------
+  value = -5.992800e-2f (10111101 01110101 01110111 00010000)
+
+State 29 file annIris_L0_R50.c line 38 function main thread 0
+----------------------------------------------------
+  layer1[4] = 1.054943e+0f (00111111 10000111 00001000 01100000)
+
+State 30 file utils.h line 214 function tanhFunctionLUT thread 0
+----------------------------------------------------
+  lookTableIndex = 105 (00000000 00000000 00000000 01101001)
+
+State 31 file utils.h line 215 function tanhFunctionLUT thread 0
+----------------------------------------------------
+  lookTableIndex = 505 (00000000 00000000 00000001 11111001)
+
+State 32 file utils.h line 222 function tanhFunctionLUT thread 0
+----------------------------------------------------
+  value = 7.818060e-1f (00111111 01001000 00100100 01110000)
+
+State 33 file annIris_L0_R50.c line 40 function main thread 0
+----------------------------------------------------
+  layer1[5] = 2.529439e-1f (00111110 10000001 10000001 11011110)
+
+State 34 file utils.h line 214 function tanhFunctionLUT thread 0
+----------------------------------------------------
+  lookTableIndex = 25 (00000000 00000000 00000000 00011001)
+
+State 35 file utils.h line 215 function tanhFunctionLUT thread 0
+----------------------------------------------------
+  lookTableIndex = 425 (00000000 00000000 00000001 10101001)
+
+State 36 file utils.h line 222 function tanhFunctionLUT thread 0
+----------------------------------------------------
+  value = 2.449190e-1f (00111110 01111010 11001100 00001100)
+
+State 37 file annIris_L0_R50.c line 42 function main thread 0
+----------------------------------------------------
+  layer1[6] = 2.831037e+0f (01000000 00110101 00101111 10110100)
+
+State 38 file utils.h line 214 function tanhFunctionLUT thread 0
+----------------------------------------------------
+  lookTableIndex = 283 (00000000 00000000 00000001 00011011)
+
+State 39 file utils.h line 215 function tanhFunctionLUT thread 0
+----------------------------------------------------
+  lookTableIndex = 683 (00000000 00000000 00000010 10101011)
+
+State 40 file utils.h line 222 function tanhFunctionLUT thread 0
+----------------------------------------------------
+  value = 9.930590e-1f (00111111 01111110 00111001 00011101)
+
+State 41 file annIris_L0_R50.c line 45 function main thread 0
+----------------------------------------------------
+  layer2[0] = 8.790272e-1f (00111111 01100001 00000111 11101101)
+
+State 42 file utils.h line 214 function tanhFunctionLUT thread 0
+----------------------------------------------------
+  lookTableIndex = 87 (00000000 00000000 00000000 01010111)
+
+State 43 file utils.h line 215 function tanhFunctionLUT thread 0
+----------------------------------------------------
+  lookTableIndex = 487 (00000000 00000000 00000001 11100111)
+
+State 44 file utils.h line 222 function tanhFunctionLUT thread 0
+----------------------------------------------------
+  value = 7.013740e-1f (00111111 00110011 10001101 00111111)
+
+State 45 file annIris_L0_R50.c line 48 function main thread 0
+----------------------------------------------------
+  layer2[1] = 9.570243e-1f (00111111 01110100 11111111 10001100)
+
+State 46 file utils.h line 214 function tanhFunctionLUT thread 0
+----------------------------------------------------
+  lookTableIndex = 95 (00000000 00000000 00000000 01011111)
+
+State 47 file utils.h line 215 function tanhFunctionLUT thread 0
+----------------------------------------------------
+  lookTableIndex = 495 (00000000 00000000 00000001 11101111)
+
+State 48 file utils.h line 222 function tanhFunctionLUT thread 0
+----------------------------------------------------
+  value = 7.397830e-1f (00111111 00111101 01100010 01101011)
+
+State 49 file annIris_L0_R50.c line 51 function main thread 0
+----------------------------------------------------
+  layer2[2] = -5.161309e-1f (10111111 00000100 00100001 00101000)
+
+State 50 file utils.h line 214 function tanhFunctionLUT thread 0
+----------------------------------------------------
+  lookTableIndex = 0 (00000000 00000000 00000000 00000000)
+
+State 51 file utils.h line 215 function tanhFunctionLUT thread 0
+----------------------------------------------------
+  lookTableIndex = 349 (00000000 00000000 00000001 01011101)
+
+State 52 file utils.h line 222 function tanhFunctionLUT thread 0
+----------------------------------------------------
+  value = -4.699450e-1f (10111110 11110000 10011100 10100010)
+
+State 53 file annIris_L0_R50.c line 54 function main thread 0
+----------------------------------------------------
+Violated property:
+  file annIris_L0_R50.c line 54 function main
+  Classification is not a 0 anymore.
+  (_Bool)(r == 0)
+
+VERIFICATION FAILED
+
+Bug found (k = 1)

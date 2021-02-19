@@ -109,7 +109,7 @@ int main(int argc,char* argv[]){
   float iris1[4] = {6.4,3.2,4.5,1.5};
   float iris2[4] = {6.2,3.4,5.4,2.3};
 
-  setImg(&nnet, iris1);
+  setImg(&nnet, iris2);
 
   int classification = 0;
   classification = neuralNetPrediction(&nnet);

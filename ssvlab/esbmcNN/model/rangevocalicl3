@@ -1,0 +1,78 @@
+__ESBMC_assume((layer1[0] >= 0.191544994712) && (layer1[0] <= 0.911330997944));
+__ESBMC_assume((layer1[1] >= 0.967703998089) && (layer1[1] <= 1));
+__ESBMC_assume((layer1[2] >= 0) && (layer1[2] <= 0.127862006426));
+__ESBMC_assume((layer1[3] >= 0.23866699636) && (layer1[3] <= 0.937614023685));
+__ESBMC_assume(layer1[4] == 1);
+__ESBMC_assume((layer2[0] >= 0) && (layer2[0] <= 0.0541669987142));
+__ESBMC_assume((layer2[1] >= 0.00669299997389) && (layer2[1] <= 0.629482984543));
+__ESBMC_assume((layer2[2] >= 0) && (layer2[2] <= 0.0063689998351));
+__ESBMC_assume((layer2[3] >= 0.0129960002378) && (layer2[3] <= 0.589039981365));
+__ESBMC_assume(layer3[0] == 0);
+__ESBMC_assume(layer3[1] == 0);
+__ESBMC_assume((layer3[2] >= 0) && (layer3[2] <= 0.349781990051));
+__ESBMC_assume((layer3[3] >= 0) && (layer3[3] <= 0.964084029198));
+__ESBMC_assume((layer3[4] >= 0) && (layer3[4] <= 0.79575997591));
+
+
+__ESBMC_assume((layer1[0] >= 0.0171239990741) && (layer1[0] <= 0.97068798542));
+__ESBMC_assume((layer1[1] >= 0.729088008404) && (layer1[1] <= 1));
+__ESBMC_assume((layer1[2] >= 0) && (layer1[2] <= 0.60587400198));
+__ESBMC_assume((layer1[3] >= 0.0426970012486) && (layer1[3] <= 0.990529000759));
+__ESBMC_assume(layer1[4] == 1);
+__ESBMC_assume((layer2[0] >= 0) && (layer2[0] <= 0.869890987873));
+__ESBMC_assume((layer2[1] >= 0) && (layer2[1] <= 0.985656023026));
+__ESBMC_assume((layer2[2] >= 0) && (layer2[2] <= 0.0787099972367));
+__ESBMC_assume((layer2[3] >= 0.00937800016254) && (layer2[3] <= 0.987872004509));
+__ESBMC_assume((layer3[0] >= 0) && (layer3[0] <= 0.140637993813));
+__ESBMC_assume((layer3[1] >= 0) && (layer3[1] <= 0.968016028404));
+__ESBMC_assume((layer3[2] >= 0) && (layer3[2] <= 0.962311983109));
+__ESBMC_assume((layer3[3] >= 0) && (layer3[3] <= 0.967073976994));
+__ESBMC_assume((layer3[4] >= 0) && (layer3[4] <= 0.987506985664));
+
+
+__ESBMC_assume((layer1[0] >= 0) && (layer1[0] <= 0.997040987015));
+__ESBMC_assume((layer1[1] >= 0.0216680001467) && (layer1[1] <= 1));
+__ESBMC_assume((layer1[2] >= 0) && (layer1[2] <= 0.994234025478));
+__ESBMC_assume((layer1[3] >= 0) && (layer1[3] <= 1));
+__ESBMC_assume(layer1[4] == 1);
+__ESBMC_assume((layer2[0] >= 0) && (layer2[0] <= 0.997040987015));
+__ESBMC_assume((layer2[1] >= 0) && (layer2[1] <= 1));
+__ESBMC_assume((layer2[2] >= 0) && (layer2[2] <= 0.782450020313));
+__ESBMC_assume((layer2[3] >= 0.00824400037527) && (layer2[3] <= 1));
+__ESBMC_assume((layer3[0] >= 0) && (layer3[0] <= 0.976796984673));
+__ESBMC_assume((layer3[1] >= 0) && (layer3[1] <= 0.991674005985));
+__ESBMC_assume((layer3[2] >= 0) && (layer3[2] <= 0.96643102169));
+__ESBMC_assume((layer3[3] >= 0) && (layer3[3] <= 0.967703998089));
+__ESBMC_assume((layer3[4] >= 0) && (layer3[4] <= 0.989013016224));
+
+
+__ESBMC_assume((layer1[0] >= 0) && (layer1[0] <= 1));
+__ESBMC_assume((layer1[1] >= 0) && (layer1[1] <= 1));
+__ESBMC_assume((layer1[2] >= 0) && (layer1[2] <= 1));
+__ESBMC_assume((layer1[3] >= 0) && (layer1[3] <= 1));
+__ESBMC_assume((layer1[4] >= 0.0395440012217) && (layer1[4] <= 1));
+__ESBMC_assume((layer2[0] >= 0) && (layer2[0] <= 0.997295022011));
+__ESBMC_assume((layer2[1] >= 0) && (layer2[1] <= 1));
+__ESBMC_assume((layer2[2] >= 0) && (layer2[2] <= 0.798991024494));
+__ESBMC_assume((layer2[3] >= 0) && (layer2[3] <= 1));
+__ESBMC_assume((layer3[0] >= 0) && (layer3[0] <= 0.979367017746));
+__ESBMC_assume((layer3[1] >= 0) && (layer3[1] <= 0.991674005985));
+__ESBMC_assume((layer3[2] >= 0) && (layer3[2] <= 0.96643102169));
+__ESBMC_assume((layer3[3] >= 0) && (layer3[3] <= 0.97068798542));
+__ESBMC_assume((layer3[4] >= 0) && (layer3[4] <= 0.989848971367));
+
+
+__ESBMC_assume((layer1[0] >= 0) && (layer1[0] <= 1));
+__ESBMC_assume((layer1[1] >= 0) && (layer1[1] <= 1));
+__ESBMC_assume((layer1[2] >= 0) && (layer1[2] <= 1));
+__ESBMC_assume((layer1[3] >= 0) && (layer1[3] <= 1));
+__ESBMC_assume((layer1[4] >= 0) && (layer1[4] <= 1));
+__ESBMC_assume((layer2[0] >= 0) && (layer2[0] <= 0.997295022011));
+__ESBMC_assume((layer2[1] >= 0) && (layer2[1] <= 1));
+__ESBMC_assume((layer2[2] >= 0) && (layer2[2] <= 0.798991024494));
+__ESBMC_assume((layer2[3] >= 0) && (layer2[3] <= 1));
+__ESBMC_assume((layer3[0] >= 0) && (layer3[0] <= 0.979367017746));
+__ESBMC_assume((layer3[1] >= 0) && (layer3[1] <= 0.991674005985));
+__ESBMC_assume((layer3[2] >= 0) && (layer3[2] <= 0.96643102169));
+__ESBMC_assume((layer3[3] >= 0) && (layer3[3] <= 0.97068798542));
+__ESBMC_assume((layer3[4] >= 0) && (layer3[4] <= 0.989848971367));

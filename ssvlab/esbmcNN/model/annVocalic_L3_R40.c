@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include "utils.h"
-//#include "__fc_builtin.h"
+#include "//__fc_builtin.h" 
 
 int main(){
 float norm = (float)1/(float)255;
@@ -57,31 +57,31 @@ int x23 = nondet_int();
 __ESBMC_assume((x23 >= 175)&&(x23 <=255));
 int x24 = nondet_int();
 __ESBMC_assume((x24 >= 175)&&(x24 <=255));
-// unsigned int x0 = Frama_C_interval(175, 255);
-// unsigned int x1 = Frama_C_interval(175, 255);
-// unsigned int x2 = Frama_C_interval(175, 255);
-// unsigned int x3 = Frama_C_interval(175, 255);
-// unsigned int x4 = Frama_C_interval(175, 255);
-// unsigned int x5 = Frama_C_interval(175, 255);
-// unsigned int x6 = Frama_C_interval(0, 80);
-// unsigned int x7 = Frama_C_interval(0, 80);
-// unsigned int x8 = Frama_C_interval(0, 80);
-// unsigned int x9 = Frama_C_interval(175, 255);
-// unsigned int x10 = Frama_C_interval(175, 255);
-// unsigned int x11 = Frama_C_interval(0, 80);
-// unsigned int x12 = Frama_C_interval(0, 80);
-// unsigned int x13 = Frama_C_interval(0, 80);
-// unsigned int x14 = Frama_C_interval(175, 255);
-// unsigned int x15 = Frama_C_interval(175, 255);
-// unsigned int x16 = Frama_C_interval(0, 80);
-// unsigned int x17 = Frama_C_interval(0, 80);
-// unsigned int x18 = Frama_C_interval(0, 80);
-// unsigned int x19 = Frama_C_interval(175, 255);
-// unsigned int x20 = Frama_C_interval(175, 255);
-// unsigned int x21 = Frama_C_interval(175, 255);
-// unsigned int x22 = Frama_C_interval(175, 255);
-// unsigned int x23 = Frama_C_interval(175, 255);
-// unsigned int x24 = Frama_C_interval(175, 255);
+//unsigned int x0 = Frama_C_interval(175, 255);
+//unsigned int x1 = Frama_C_interval(175, 255);
+//unsigned int x2 = Frama_C_interval(175, 255);
+//unsigned int x3 = Frama_C_interval(175, 255);
+//unsigned int x4 = Frama_C_interval(175, 255);
+//unsigned int x5 = Frama_C_interval(175, 255);
+//unsigned int x6 = Frama_C_interval(0, 80);
+//unsigned int x7 = Frama_C_interval(0, 80);
+//unsigned int x8 = Frama_C_interval(0, 80);
+//unsigned int x9 = Frama_C_interval(175, 255);
+//unsigned int x10 = Frama_C_interval(175, 255);
+//unsigned int x11 = Frama_C_interval(0, 80);
+//unsigned int x12 = Frama_C_interval(0, 80);
+//unsigned int x13 = Frama_C_interval(0, 80);
+//unsigned int x14 = Frama_C_interval(175, 255);
+//unsigned int x15 = Frama_C_interval(175, 255);
+//unsigned int x16 = Frama_C_interval(0, 80);
+//unsigned int x17 = Frama_C_interval(0, 80);
+//unsigned int x18 = Frama_C_interval(0, 80);
+//unsigned int x19 = Frama_C_interval(175, 255);
+//unsigned int x20 = Frama_C_interval(175, 255);
+//unsigned int x21 = Frama_C_interval(175, 255);
+//unsigned int x22 = Frama_C_interval(175, 255);
+//unsigned int x23 = Frama_C_interval(175, 255);
+//unsigned int x24 = Frama_C_interval(175, 255);
 float i[25];
 i[0] = x0*norm;
 i[1] = x1*norm;

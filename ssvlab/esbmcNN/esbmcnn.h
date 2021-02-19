@@ -865,7 +865,7 @@ void exportANNC(esbmc_nnet** nnet, int classification, int range){
   strcat(ANN2CPath, sufix);
   printf("path: %s\n", ANN2CPath);
   ann2cFile = fopen(ANN2CPath, "w");
-  fprintf(ann2cFile,"#include <stdio.h>\n#include <math.h>\n#include <stdlib.h>\n#include <time.h>\n#include \"utils.h\"\n#include \"//__fc_builtin.h\" \n\n");
+  fprintf(ann2cFile,"#include <stdio.h>\n#include <math.h>\n#include <stdlib.h>\n#include <time.h>\n#include \"utils.h\"\n//#include \"__fc_builtin.h\" \n\n");
   //fprintf(outputFile,"float UpLinearRelaxation(float input, float up, float low) {\n    float relaxation = (up/(up-low))*(input-low);\n    return relaxation;\n  }\n\n  float LowLinearRelaxation(float input, float up, float low) {\n    float relaxation = up/(up-low)*(input);\n    return relaxation;\n  }\n\n");
   fprintf(ann2cFile,"int main(){\n");
   fprintf(ann2cFile,"float norm = (float)1/(float)255;\n");

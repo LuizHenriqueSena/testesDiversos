@@ -106,10 +106,10 @@ int main(int argc,char* argv[]){
   transposeMatrix(nnet->layers[2].weights, 7, 3);
 
   float iris0[4] = {4.9,3.0,1.4,0.2};
-  // float iris1[4] = {6.4,3.2,4.5,1.5};
-  // float iris2[4] = {6.2,3.4,5.4,2.3};
+  float iris1[4] = {6.4,3.2,4.5,1.5};
+  float iris2[4] = {6.2,3.4,5.4,2.3};
 
-  setImg(&nnet, iris0);
+  setImg(&nnet, iris1);
 
   int classification = 0;
   classification = neuralNetPrediction(&nnet);

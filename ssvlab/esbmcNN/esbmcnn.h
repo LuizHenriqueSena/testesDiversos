@@ -792,7 +792,7 @@ void exportAssumes(int * input, int range, int size) {
   int min = 0;
   int max = 0;
   for(int i = 0; i < size; i++) {
-    fprintf(ann2cFile,"int x%d = nondet_int();\n", i);
+    fprintf(ann2cFile,"//int x%d = nondet_int();\n", i);
     max = input[i] + range;
     min = input[i] - range;
     if((input[i] + range) > 255){
@@ -811,7 +811,7 @@ void exportAssumes(int * input, int range, int size) {
 
     if(min < 0)
       min = 0;
-    fprintf(ann2cFile,"__ESBMC_assume((x%d >= %d)&&(x%d <=%d));\n",i, min,i, max);
+    fprintf(ann2cFile,"//__ESBMC_assume((x%d >= %d)&&(x%d <=%d));\n",i, min,i, max);
   }
 
   for(int i = 0; i < size; i++) {
@@ -833,7 +833,7 @@ void exportAssumes(int * input, int range, int size) {
 
     if(min < 0)
       min = 0;
-    fprintf(ann2cFile,"//unsigned int x%d = Frama_C_interval(", i);
+    fprintf(ann2cFile,"unsigned int x%d = Frama_C_interval(", i);
     fprintf(ann2cFile,"%d, %d);\n", min, max);
   }
 
@@ -865,7 +865,7 @@ void exportANNC(esbmc_nnet** nnet, int classification, int range){
   strcat(ANN2CPath, sufix);
   printf("path: %s\n", ANN2CPath);
   ann2cFile = fopen(ANN2CPath, "w");
-  fprintf(ann2cFile,"#include <stdio.h>\n#include <math.h>\n#include <stdlib.h>\n#include <time.h>\n#include \"utils.h\"\n//#include \"__fc_builtin.h\" \n\n");
+  fprintf(ann2cFile,"#include <stdio.h>\n#include <math.h>\n#include <stdlib.h>\n#include <time.h>\n#include \"utils.h\"\n#include \"__fc_builtin.h\" \n\n");
   //fprintf(outputFile,"float UpLinearRelaxation(float input, float up, float low) {\n    float relaxation = (up/(up-low))*(input-low);\n    return relaxation;\n  }\n\n  float LowLinearRelaxation(float input, float up, float low) {\n    float relaxation = up/(up-low)*(input);\n    return relaxation;\n  }\n\n");
   fprintf(ann2cFile,"int main(){\n");
   fprintf(ann2cFile,"float norm = (float)1/(float)255;\n");
@@ -908,7 +908,7 @@ void exportANNC(esbmc_nnet** nnet, int classification, int range){
     }
      }
   }
-  fprintf(ann2cFile, "__ESBMC_assert(r == %d, \"Classification is not a %d anymore.\");\n", classification, classification);
+  fprintf(ann2cFile, "//__ESBMC_assert(r == %d, \"Classification is not a %d anymore.\");\n", classification, classification);
   fprintf(ann2cFile, "//@assert(r == %d);\n", classification);
   // for(int n =0; n < outputs; n++){
   //   if(n != classification)
